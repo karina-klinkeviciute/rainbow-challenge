@@ -3,3 +3,4 @@ djangorestframework
 python-dotenv
 mysqlclient
 djoser
+drf-spectacular
