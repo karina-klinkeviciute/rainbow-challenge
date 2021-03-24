@@ -86,6 +86,12 @@ class User(AbstractUser):
         blank=True,
         null=True
     )
+    region = models.ForeignKey(
+        'challenge.Region',
+        verbose_name=_('region'),
+        on_delete=models.SET_NULL,
+        null=True
+    )
     is_active = models.BooleanField(_('is active'), default=True)
     is_admin = models.BooleanField(_('is admin'), default=False)
 
