@@ -3,8 +3,6 @@ import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from challenge.models import Region
-
 
 class ChallengeType:
     """Class for challenge types. Used in choices for Challenge Type"""
@@ -83,7 +81,7 @@ class EventParticipantChallenge(BaseChallenge):
         verbose_name=_("event name")
     )
     region = models.ForeignKey(
-        Region,
+        'challenge.Region',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

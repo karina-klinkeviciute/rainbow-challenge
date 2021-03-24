@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from challenge.models import Challenge, ArticleChallenge, EventParticipantChallenge
+from challenge.models.challenge import ArticleChallenge, EventParticipantChallenge
 
 
 class JoinedChallengeStatus:
@@ -24,12 +24,13 @@ class JoinedChallenge(models.Model):
         default=uuid.uuid4,
         editable=False)
     user = models.ForeignKey(
-        get_user_model(),
+        # get_user_model(),
+        'user.User',
         verbose_name=_('user'),
         on_delete=models.SET_NULL,
         null=True)
     challenge = models.ForeignKey(
-        Challenge,
+        'challenge.Challenge',
         verbose_name=_('challenge'),
         on_delete=models.SET_NULL,
         null=True, blank=True)
@@ -47,7 +48,7 @@ class BaseJoinedChallenge(models.Model):
         default=uuid.uuid4,
         editable=False)
     main_joined_challenge = models.OneToOneField(
-        JoinedChallenge,
+        'challenge.JoinedChallenge',
         verbose_name=_('main joined challenge'),
         on_delete=models.SET_NULL,
         null=True,

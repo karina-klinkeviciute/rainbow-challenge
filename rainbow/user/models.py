@@ -3,9 +3,13 @@ import uuid
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
+from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.models import AbstractUser
+
+from challenge.models.challenge import Challenge
+from challenge.models.joined_challenge import JoinedChallenge, JoinedChallengeStatus
 
 
 class UserManager(BaseUserManager):
@@ -118,3 +122,17 @@ class User(AbstractUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+    @property
+    def completed_joined_challenges(self):
+        return JoinedChallenge.objects.filter(user=self, status=JoinedChallengeStatus.COMPLETED)
+
+    def completed_challenges(self):
+        return Challenge.objects.filter(
+            joinedchallenge__user=self,
+            joinedchallenge__status=JoinedChallengeStatus.COMPLETED)
+
+    @property
+    def all_points(self):
+        return self.completed_challenges().aggregate(Sum('points'))
+
