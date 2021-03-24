@@ -12,6 +12,14 @@ class JoinedChallengeSerializer(serializers.ModelSerializer):
 class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
     main_joined_challenge = JoinedChallengeSerializer()
 
+    def create(self, validated_data):
+        main_joined_challenge_data = validated_data.pop('main_joined_challenge')
+        this_challenge = self.Meta.model.objects.create(**validated_data)
+        main_joined_challenge = JoinedChallenge.objects.create(**main_joined_challenge_data)
+        this_challenge.main_joined_challenge = main_joined_challenge
+        this_challenge.save()
+        return this_challenge
+
 
 class ArticleJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
