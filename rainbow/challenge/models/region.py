@@ -3,7 +3,7 @@ import uuid
 
 from django.db.models import Sum
 
-from challenge.models.joined_challenge import JoinedChallengeStatus
+from challenge.models.joined_challenge import JoinedChallengeStatus, JoinedChallenge
 
 
 class Region(models.Model):
@@ -18,13 +18,15 @@ class Region(models.Model):
     @property
     def points(self):
         from challenge.models import Challenge
-        all_challenges_region = Challenge.objects.filter(
-            joinedchallenge__user__in=self.user_set.all())
+        joined_joined_challenges_region = JoinedChallenge.objects.filter(
+            user__in=self.user_set.all())
 
-        completed_challenges_region = all_challenges_region.filter(
-            joinedchallenge__status=JoinedChallengeStatus.COMPLETED)
+        completed_joined_challenges_region = joined_joined_challenges_region.filter(
+            status=JoinedChallengeStatus.COMPLETED)
 
-        points = completed_challenges_region.aggregate(Sum('points', distinct=True))
-        # print(points.query)
+        points = 0
 
-        return points['points__sum']
+        for completed_challenge in completed_joined_challenges_region:
+            points += completed_challenge.challenge.points
+
+        return points
