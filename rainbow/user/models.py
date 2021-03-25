@@ -102,7 +102,7 @@ class User(AbstractUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['year_of_birth']
+    REQUIRED_FIELDS = ['year_of_birth', ]
 
     def __str__(self):
         return self.email
@@ -127,6 +127,7 @@ class User(AbstractUser):
     def completed_joined_challenges(self):
         return JoinedChallenge.objects.filter(user=self, status=JoinedChallengeStatus.COMPLETED)
 
+    @property
     def completed_challenges(self):
         return Challenge.objects.filter(
             joinedchallenge__user=self,
@@ -134,5 +135,6 @@ class User(AbstractUser):
 
     @property
     def all_points(self):
-        return self.completed_challenges().aggregate(Sum('points'))
-
+        sum_all = self.completed_challenges.aggregate((Sum('points')))
+        sum_field = sum_all['points__sum']
+        return sum_field
