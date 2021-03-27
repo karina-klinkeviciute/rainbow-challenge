@@ -10,6 +10,7 @@ class Region(models.Model):
     name = models.CharField(max_length=255)
     uuid = models.UUIDField(
         default=uuid.uuid4,
+        primary_key=True,
         editable=False)
 
     def __str__(self):

@@ -25,7 +25,9 @@ class Challenge(models.Model):
     """
     uuid = models.UUIDField(
         default=uuid.uuid4,
-        editable=False)
+        editable=False,
+        primary_key=True,
+    )
     name = models.CharField(max_length=255, verbose_name=_("name"))
     description = models.TextField(verbose_name=_("description"))
     points = models.IntegerField(verbose_name=_("points"))
@@ -56,13 +58,16 @@ class BaseChallenge(models.Model):
     """Base class for other challenge models"""
     uuid = models.UUIDField(
         default=uuid.uuid4,
-        editable=False)
-    main_challenge = models.ForeignKey(
+        editable=False,
+        primary_key=True,
+    )
+    main_challenge = models.OneToOneField(
         Challenge,
         verbose_name=_("main challenge"),
         on_delete=models.SET_NULL,
         null=True,
-        blank=True)
+        blank=True,
+    )
 
     class Meta:
         abstract = True

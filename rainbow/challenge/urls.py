@@ -20,7 +20,7 @@ from rest_framework import routers
 from challenge import views
 
 router = routers.DefaultRouter()
-# router.register(r'challenge', views.ChallengeViewSet)
+router.register(r'challenge', views.ChallengeViewSet)
 router.register(r'article_challenge', views.ArticleChallengeViewSet)
 router.register(r'event_participant_challenge', views.EventParticipantChallengeViewSet)
 router.register(r'article_joined_challenge', views.ArticleJoinedChallengeViewSet)

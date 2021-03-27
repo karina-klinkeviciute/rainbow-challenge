@@ -10,11 +10,13 @@ class JoinedChallengeStatus:
     """Class for challenge types. Used in choices for Challenge Type"""
     JOINED = 'joined'
     COMPLETED = 'completed'
+    PENDING = 'pending'  # waiting for confirmation
     CANCELLED = 'cancelled'
 
     STATUS_CHOICES = (
         (JOINED, _('joined')),
         (COMPLETED, _('completed')),
+        (PENDING, _('pending')),  # waiting for confirmation
         (CANCELLED, _('cancelled')),
     )
 
@@ -22,7 +24,9 @@ class JoinedChallengeStatus:
 class JoinedChallenge(models.Model):
     uuid = models.UUIDField(
         default=uuid.uuid4,
-        editable=False)
+        editable=False,
+        primary_key=True,
+    )
     user = models.ForeignKey(
         # get_user_model(),
         'user.User',
@@ -46,6 +50,7 @@ class JoinedChallenge(models.Model):
 class BaseJoinedChallenge(models.Model):
     uuid = models.UUIDField(
         default=uuid.uuid4,
+        primary_key=True,
         editable=False)
     main_joined_challenge = models.OneToOneField(
         'challenge.JoinedChallenge',

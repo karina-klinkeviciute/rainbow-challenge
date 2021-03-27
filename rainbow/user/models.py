@@ -13,7 +13,7 @@ from challenge.models.joined_challenge import JoinedChallenge, JoinedChallengeSt
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, year_of_birth, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -23,13 +23,14 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
+            year_of_birth=year_of_birth,
         )
 
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self, email, password=None):
+    def create_superuser(self, email, year_of_birth, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -37,6 +38,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password,
+            year_of_birth=year_of_birth,
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -63,6 +65,7 @@ class User(AbstractUser):
     username_validator = UnicodeUsernameValidator()
     uid = models.UUIDField(
         default=uuid.uuid4,
+        primary_key=True,
         editable=False)
     username = models.CharField(
         _('username'),
