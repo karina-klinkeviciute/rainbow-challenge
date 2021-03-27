@@ -4,42 +4,53 @@
 
 1. create some directory and clone the repository 
 
-2. create virtual environment next to the repository:
+1. create virtual environment next to the repository:
 
-`python3 -m venv venv`
+    `python3 -m venv venv`
 
-3. activate the virtual environment:
+1. activate the virtual environment:
 
-Linux/MacOS:
-`source venv/bin/activate`
+    Linux/MacOS:
+    `source venv/bin/activate`
 
-Windows:
-`venv\Scripts\activate`
+    Windows:
+    `venv\Scripts\activate`
 
-4. cd into the project:
-`cd rainbow/rainbow/`
+1. cd into the project:
+    `cd rainbow/rainbow/`
    
-5. create database
+1. install requirements
 
-create empty database in the mysql 
+    `pip install -r requirements.txt`
 
-5. clone the environment file
+1. create database
 
-in this directory there's a file `.env_example` - you should copy it to a file called `.env` and change those settings there to your own:
+    create empty database in the mysql 
 
-```
-DJANGO_PROJECT_PATH=/home/karina/work/rainbow/rainbow
-DJANGO_SECRET_KEY=add_one
+1. clone the environment file
 
-DB_USER=rainbow
-DB_HOST=localhost
-DB_PASSWORD=add_one
-```
+    in this directory there's a file `.env_example` - you should copy it to a file called `.env` and change those settings there to your own:
 
-6. run django server:
-python manage.py runserver
+    ```
+    DJANGO_PROJECT_PATH=/home/karina/work/rainbow/rainbow
+    DJANGO_SECRET_KEY=add_one
+    
+    DB_USER=rainbow
+    DB_HOST=localhost
+    DB_PASSWORD=add_one
+    ```
+
+1. migrate database:
+    `python manage.py migrate`
    
-This will start Django server on port 8000
+1. create a user (superuser) for yourself:
+    `python manage.py createsuperuser`
+   and enter the details it asks
 
-You will be able to access it here: http://127.0.0.1:8000/ 
+1. run django server:
+    `python manage.py runserver`
+   
+    This will start Django server on port 8000
+    
+    You will be able to access it here: http://127.0.0.1:8000/ 
 
