@@ -6,7 +6,11 @@
 
 1. create virtual environment next to the repository:
 
+    Linux/MacOS"
     `python3 -m venv venv`
+   
+    Windows:
+    `py -m venv venv`
 
 1. activate the virtual environment:
 
