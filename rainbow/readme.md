@@ -21,7 +21,7 @@
     `venv\Scripts\activate`
 
 1. cd into the project:
-    `cd rainbow/rainbow/`
+    `cd rainbow_challenge/rainbow/`
    
 1. install requirements
 
