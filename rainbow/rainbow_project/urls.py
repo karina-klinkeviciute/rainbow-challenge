@@ -19,6 +19,7 @@ from django.urls import path, include
 import challenge
 
 urlpatterns = [
+    path('/', include('django.contrib.flatpages.urls')),
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),

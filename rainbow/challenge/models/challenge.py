@@ -2,7 +2,7 @@ import uuid
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.apps import apps
 
 class ChallengeType:
     """Class for challenge types. Used in choices for Challenge Type"""
@@ -17,6 +17,11 @@ class ChallengeType:
         (EVENT, _('event')),
         (CUSTOM, _('custom'))
     )
+
+    CLASSES = {
+        ARTICLE: 'ArticleChallenge',
+        EVENT: 'EventParticipantChallenge',
+    }
 
 
 class Challenge(models.Model):
@@ -50,8 +55,21 @@ class Challenge(models.Model):
 #     because in some cases only the general data will be enough
 #     so it is useful to have one class for all tasks
 
-    def __str__(self):
-        return self.name
+    @property
+    def concrete_challenge_uuid(self):
+        """
+        Information that we have about a specific challenge
+        """
+        challenge_class = ChallengeType.CLASSES[self.type]
+        model = apps.get_model('challenge', challenge_class)
+        info = model.objects.get(main_challenge=self)
+        return info.uuid
+
+    @property
+    def challenge_model(self):
+        challenge_class = ChallengeType.CLASSES[self.type]
+        model = apps.get_model('challenge', challenge_class)
+        return model
 
 
 class BaseChallenge(models.Model):
