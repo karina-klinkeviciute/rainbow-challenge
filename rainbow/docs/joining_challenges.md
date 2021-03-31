@@ -9,7 +9,7 @@
 
 Visų užduočių sąrašas su pagrindine informacija (bet ne specifine) yra čia:
 
-http://127.0.0.1:8000/api/challenge/
+http://rainbowchallenge.lt/api/challenge/
 
 Užduotis identifikuojama pagal lauką `uuid`
 

@@ -20,6 +20,14 @@ class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
         this_challenge.save()
         return this_challenge
 
+    def update(self, instance, validated_data):
+        main_joined_challenge_data = validated_data.pop('main_joined_challenge')
+        this_challenge = instance
+        main_joined_challenge = instance.main_joined_challenge
+        this_challenge.main_joined_challenge = main_joined_challenge
+        this_challenge.save()
+        return this_challenge
+
 
 class ArticleJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
