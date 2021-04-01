@@ -93,12 +93,12 @@ DB_HOST = os.environ.get('DB_HOST')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'rainbow',
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
         'HOST': DB_HOST,
-        'PORT': '3306',
+        'PORT': '5432',
         # 'OPTIONS': {
         #     'read_default_file': '/path/to/my.cnf',
         # },

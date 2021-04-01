@@ -4,3 +4,4 @@ python-dotenv
 mysqlclient
 djoser
 drf-spectacular
+psycopg2
