@@ -44,7 +44,7 @@ class JoinedChallenge(models.Model):
         max_length=255)
 
     def __str__(self):
-        return f'{self.user.username} - {self.challenge.name}'
+        return f'{self.user.username} - {self.challenge.name} / {self.challenge.type}'
 
 
 class BaseJoinedChallenge(models.Model):
@@ -61,6 +61,9 @@ class BaseJoinedChallenge(models.Model):
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return f"concrete challenge for {self.main_joined_challenge.__str__()}"
 
 
 class ArticleJoinedChallenge(BaseJoinedChallenge):
