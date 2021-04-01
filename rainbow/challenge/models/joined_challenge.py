@@ -67,8 +67,16 @@ class BaseJoinedChallenge(models.Model):
 
 
 class ArticleJoinedChallenge(BaseJoinedChallenge):
-    article_name = models.TextField(verbose_name=_("name of the article"))
-    article_url = models.TextField(verbose_name=_('link to the article'))
+    article_name = models.TextField(
+        verbose_name=_("name of the article"),
+        blank=True,
+        null=True
+    )
+    article_url = models.URLField(
+        verbose_name=_('link to the article'),
+        blank=True,
+        null=True
+    )
 
     @property
     def article_challenge(self):
