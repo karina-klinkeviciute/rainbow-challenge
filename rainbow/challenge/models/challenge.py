@@ -71,6 +71,9 @@ class Challenge(models.Model):
         model = apps.get_model('challenge', challenge_class)
         return model
 
+    def __str__(self):
+        return f"{self.name} - type: {self.type}"
+
 
 class BaseChallenge(models.Model):
     """Base class for other challenge models"""
@@ -89,6 +92,9 @@ class BaseChallenge(models.Model):
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return f"concrete challenge for {self.main_challenge.name} - type: {self.main_challenge.type}"
 
 
 class ArticleChallenge(BaseChallenge):
