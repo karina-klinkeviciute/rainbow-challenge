@@ -1,8 +1,6 @@
 from django.db import models
 import uuid
 
-from django.db.models import Sum
-
 from challenge.models.joined_challenge import JoinedChallengeStatus, JoinedChallenge
 
 

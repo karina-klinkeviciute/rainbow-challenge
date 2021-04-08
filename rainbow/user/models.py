@@ -79,7 +79,11 @@ class User(AbstractUser):
         null=True,
     )
     email = models.EmailField(_('email address'), blank=True, unique=True)
-    year_of_birth = models.IntegerField(verbose_name=_('year of birth'))
+    year_of_birth = models.IntegerField(
+        verbose_name=_('year of birth'),
+        blank=True,
+        null=True
+    )
     gender = models.CharField(
         verbose_name=_('gender'),
         choices=GenderOptions.GENDER_CHOICES,
