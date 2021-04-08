@@ -7,7 +7,7 @@ from challenge.models import Challenge, ArticleChallenge, EventParticipantChalle
 # Challenges
 
 class ChallengeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'type', 'points')
+    list_display = ('name', 'description', 'type', 'points', 'region')
 
 class ArticleChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )
