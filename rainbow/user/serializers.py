@@ -32,3 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
                 instance.is_active = False
                 instance.save(update_fields=["is_active"])
         return super().update(instance, validated_data)
+
+
+class GenderSerializer(serializers.Serializer):
+    genders = serializers.DictField()

@@ -53,13 +53,18 @@ class GenderOptions:
     PREFERNOT = 'prefer_not_to_say'
 
     GENDER_CHOICES = (
-        (WOMAN, _('woman')),
+        (WOMAN, _('moteris')),  # temporary until translation is ready
         (MAN, _('man')),
         (NONBINARY, _('non-binary')),
         (OTHER, _('other')),
         (PREFERNOT, _('prefer not to say')),
     )
 
+    def __init__(self):
+        genders = dict()
+        for gender in self.GENDER_CHOICES:
+            genders[gender[0]] = gender[1]
+        self.genders = genders
 
 class User(AbstractUser):
     username_validator = UnicodeUsernameValidator()
