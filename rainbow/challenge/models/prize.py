@@ -16,4 +16,5 @@ class Prize(models.Model):
         null=True,
         blank=True
     )
+    price = models.IntegerField(verbose_name=_('price'))
     amount = models.IntegerField(verbose_name=_('amount'))

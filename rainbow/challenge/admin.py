@@ -30,7 +30,7 @@ class RegionAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
 class PrizeAdmin(admin.ModelAdmin):
-    list_display = ('name', )
+    list_display = ('name', 'amount')
 
 admin.site.register(Challenge, ChallengeAdmin)
 admin.site.register(ArticleChallenge, ArticleChallengeAdmin)
