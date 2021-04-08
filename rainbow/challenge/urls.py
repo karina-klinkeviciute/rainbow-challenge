@@ -26,6 +26,7 @@ router.register(r'event_participant_challenge', views.EventParticipantChallengeV
 router.register(r'article_joined_challenge', views.ArticleJoinedChallengeViewSet)
 router.register(r'event_participant_joined_challenge', views.EventParticipantJoinedChallengeViewSet)
 router.register(r'region', views.RegionViewSet)
+router.register(r'prize', views.PrizeViewSet)
 # router.register(r'groups', views.GroupViewSet)
 
 # Wire up our API using automatic URL routing.

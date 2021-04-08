@@ -106,7 +106,8 @@ class User(AbstractUser):
         'challenge.Region',
         verbose_name=_('region'),
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        blank=True
     )
     is_active = models.BooleanField(_('is active'), default=True)
     is_admin = models.BooleanField(_('is admin'), default=False)

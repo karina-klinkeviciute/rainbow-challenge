@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from challenge.models import Challenge, ArticleChallenge, EventParticipantChallenge, JoinedChallenge, \
-    ArticleJoinedChallenge, EventParticipantJoinedChallenge, Region
+    ArticleJoinedChallenge, EventParticipantJoinedChallenge, Region, Prize
 
 
 # Challenges
@@ -29,6 +29,8 @@ class EventParticipantJoinedChallengeAdmin(admin.ModelAdmin):
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
+class PrizeAdmin(admin.ModelAdmin):
+    list_display = ('name', )
 
 admin.site.register(Challenge, ChallengeAdmin)
 admin.site.register(ArticleChallenge, ArticleChallengeAdmin)
@@ -37,3 +39,4 @@ admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
 admin.site.register(ArticleJoinedChallenge, ArticleJoinedChallengeAdmin)
 admin.site.register(EventParticipantJoinedChallenge, EventParticipantJoinedChallengeAdmin)
 admin.site.register(Region, RegionAdmin)
+admin.site.register(Prize, PrizeAdmin)
