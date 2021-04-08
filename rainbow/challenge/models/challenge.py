@@ -33,13 +33,20 @@ class Challenge(models.Model):
         editable=False,
         primary_key=True,
     )
-    name = models.CharField(max_length=255, verbose_name=_("name"))
-    description = models.TextField(verbose_name=_("description"))
-    points = models.IntegerField(verbose_name=_("points"))
     type = models.CharField(
         max_length=50,
         choices=ChallengeType.TYPE_CHOICES,
         verbose_name=_("type")
+    )
+    name = models.CharField(max_length=255, verbose_name=_("name"))
+    description = models.TextField(verbose_name=_("description"))
+    points = models.IntegerField(verbose_name=_("points"))
+    region = models.ForeignKey(
+        'challenge.Region',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_("region")
     )
     multiple = models.BooleanField(
         help_text=_("can the participant join this challenge more than once"),
@@ -108,13 +115,6 @@ class EventParticipantChallenge(BaseChallenge):
     event_name = models.CharField(
         max_length=1000,
         verbose_name=_("event name")
-    )
-    region = models.ForeignKey(
-        'challenge.Region',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name=_("region")
     )
     date = models.DateField(
         verbose_name=_("date"),
