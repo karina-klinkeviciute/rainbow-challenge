@@ -26,6 +26,8 @@ class Prize(models.Model):
     @property
     def amount_remaining(self):
         amount_used = self.claimedprize_set.aggregate(Sum('amount'))['amount__sum']
+        if amount_used is None:
+            amount_used = 0
         remaining = self.amount - amount_used
         return remaining
 #     todo write tests for this
