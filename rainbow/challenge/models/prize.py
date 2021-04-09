@@ -25,9 +25,10 @@ class Prize(models.Model):
 
     @property
     def amount_remaining(self):
-        amount_used = ClaimedPrize.objects.filter(prize=self).aggregate(Sum('amount'))['amount__sum']
+        amount_used = self.claimedprize_set.aggregate(Sum('amount'))['amount__sum']
         remaining = self.amount - amount_used
         return remaining
+#     todo write tests for this
 
 
 class ClaimedPrize(models.Model):

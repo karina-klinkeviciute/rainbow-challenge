@@ -151,3 +151,11 @@ class User(AbstractUser):
         sum_all = self.completed_challenges.aggregate((Sum('points')))
         sum_field = sum_all['points__sum']
         return sum_field
+
+    @property
+    def remaining_points(self):
+        claimed_prizes = self.claimedprize_set.all()
+        points_used = 0
+        for prize in claimed_prizes:
+            points_used += prize.amount * prize.price
+        return self.all_points - points_used
