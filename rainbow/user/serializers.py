@@ -20,7 +20,8 @@ class UserSerializer(serializers.ModelSerializer):
             'username',
             'region',
             # 'completed_joined_challenges',
-            'all_points'
+            'all_points',
+            'remaining_points',
         )
         read_only_fields = (settings.LOGIN_FIELD,)
 
