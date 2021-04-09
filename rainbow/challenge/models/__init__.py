@@ -1,5 +1,5 @@
 from .region import Region
-from .prize import Prize
+from .prize import Prize, ClaimedPrize
 from .challenge import (
     Challenge,
     BaseChallenge,

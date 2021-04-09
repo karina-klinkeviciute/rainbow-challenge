@@ -5,6 +5,8 @@ from challenge.models import Challenge, ArticleChallenge, EventParticipantChalle
 
 
 # Challenges
+from challenge.models.prize import ClaimedPrize
+
 
 class ChallengeAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'type', 'points', 'region')
@@ -32,6 +34,10 @@ class RegionAdmin(admin.ModelAdmin):
 class PrizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'amount')
 
+class ClaimedPrizeAdmin(admin.ModelAdmin):
+    list_display = ('prize', 'user', 'amount', 'issued')
+    list_filter = ('prize', 'user', 'issued')
+
 admin.site.register(Challenge, ChallengeAdmin)
 admin.site.register(ArticleChallenge, ArticleChallengeAdmin)
 admin.site.register(EventParticipantChallenge, EventParticipantChallengeAdmin)
@@ -40,3 +46,4 @@ admin.site.register(ArticleJoinedChallenge, ArticleJoinedChallengeAdmin)
 admin.site.register(EventParticipantJoinedChallenge, EventParticipantJoinedChallengeAdmin)
 admin.site.register(Region, RegionAdmin)
 admin.site.register(Prize, PrizeAdmin)
+admin.site.register(ClaimedPrize, ClaimedPrizeAdmin)
