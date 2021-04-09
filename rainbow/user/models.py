@@ -156,6 +156,6 @@ class User(AbstractUser):
     def remaining_points(self):
         claimed_prizes = self.claimedprize_set.all()
         points_used = 0
-        for prize in claimed_prizes:
-            points_used += prize.amount * prize.price
+        for claimed_prize in claimed_prizes:
+            points_used += claimed_prize.amount * claimed_prize.prize.price
         return self.all_points - points_used
