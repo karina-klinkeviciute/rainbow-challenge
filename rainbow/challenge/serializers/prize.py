@@ -30,6 +30,6 @@ class ClaimedPrizeSerializer(serializers.ModelSerializer):
         cost_points = prize.price * amount
         user = data['user']
         if user.remaining_points < cost_points:
-            raise serializers.ValidationError(_("Sorry, you dont have enough points for that."))
+            raise serializers.ValidationError(_("Sorry, you dont have enough rainbows for that."))
 
         return data
