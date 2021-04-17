@@ -9,7 +9,8 @@ from challenge.models.prize import ClaimedPrize
 
 
 class ChallengeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'type', 'points', 'region')
+    list_display = ('name', 'description', 'type', 'points', 'region', 'published', )
+    list_filter = ('type', 'region', 'published', )
 
 class ArticleChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )

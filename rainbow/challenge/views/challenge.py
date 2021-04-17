@@ -11,7 +11,7 @@ class ChallengeViewSet(viewsets.ModelViewSet):
     A viewset for viewing and editing user instances.
     """
     serializer_class = ChallengeSerializer
-    queryset = Challenge.objects.all()
+    queryset = Challenge.objects.filter(published=True)
 
 
 class ArticleChallengeViewSet(viewsets.ModelViewSet):

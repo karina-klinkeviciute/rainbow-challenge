@@ -40,6 +40,7 @@ class Challenge(models.Model):
     )
     name = models.CharField(max_length=255, verbose_name=_("name"))
     description = models.TextField(verbose_name=_("description"))
+    published = models.BooleanField(verbose_name=_('is published'), default=False)
     points = models.IntegerField(verbose_name=_("points"))
     region = models.ForeignKey(
         'challenge.Region',
