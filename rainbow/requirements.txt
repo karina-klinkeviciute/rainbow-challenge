@@ -9,3 +9,4 @@ django-extensions
 pytest
 qrcode[pil]
 django_otp
+gunicorn
