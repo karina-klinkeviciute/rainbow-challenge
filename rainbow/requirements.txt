@@ -7,3 +7,5 @@ drf-spectacular
 psycopg2-binary
 django-extensions
 pytest
+qrcode[pil]
+django_otp

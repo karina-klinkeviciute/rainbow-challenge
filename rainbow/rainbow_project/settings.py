@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'djoser',
     'drf_spectacular',
     'django_extensions',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
     # project apps
     'user',
     'challenge',
@@ -58,6 +60,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
@@ -177,3 +180,5 @@ DJOSER = {
     'USER_ID_FIELD': 'uid',
 
 }
+
+OTP_TOTP_ISSUER = 'Rainbow challenge'
