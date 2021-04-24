@@ -4,5 +4,5 @@ from rest_framework import routers
 from user import views
 
 urlpatterns = [
-    path('gender/', views.GenderListView.as_view()),
+    path('gender/', views.GenderListView.as_view(), name='gender-list'),
 ]
