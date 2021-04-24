@@ -6,3 +6,4 @@ djoser
 drf-spectacular
 psycopg2-binary
 django-extensions
+pytest

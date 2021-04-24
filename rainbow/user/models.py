@@ -44,6 +44,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class GenderOptions:
     """Class for challenge types. Used in choices for Challenge Type"""
     WOMAN = 'woman'
@@ -65,6 +66,7 @@ class GenderOptions:
         for gender in self.GENDER_CHOICES:
             genders[gender[0]] = gender[1]
         self.genders = genders
+
 
 class User(AbstractUser):
     username_validator = UnicodeUsernameValidator()
@@ -149,7 +151,9 @@ class User(AbstractUser):
     @property
     def all_points(self):
         sum_all = self.completed_challenges.aggregate((Sum('points')))
-        sum_field = sum_all['points__sum']
+        sum_field = sum_all.get('points__sum')
+        if sum_field is None:
+            sum_field = 0
         return sum_field
 
     @property
