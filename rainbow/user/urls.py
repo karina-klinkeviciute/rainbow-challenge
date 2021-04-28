@@ -5,4 +5,5 @@ from user import views
 
 urlpatterns = [
     path('gender/', views.GenderListView.as_view(), name='gender-list'),
+    path('<user-uuid>/prize', views.UserClaimedPrizeAPIView, name='user-prize-list')
 ]

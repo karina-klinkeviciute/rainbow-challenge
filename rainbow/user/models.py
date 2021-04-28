@@ -163,3 +163,8 @@ class User(AbstractUser):
         for claimed_prize in claimed_prizes:
             points_used += claimed_prize.amount * claimed_prize.prize.price
         return self.all_points - points_used
+
+    @property
+    def claimed_prizes(self):
+        """All prizes the user has claimed"""
+        return self.claimedprize_set.all()
