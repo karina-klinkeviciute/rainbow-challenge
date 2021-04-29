@@ -1,3 +1,6 @@
+import datetime
+
+from django.db.models import Q
 from rest_framework import viewsets
 
 
@@ -11,7 +14,11 @@ class ChallengeViewSet(viewsets.ModelViewSet):
     A viewset for viewing and editing user instances.
     """
     serializer_class = ChallengeSerializer
-    queryset = Challenge.objects.filter(published=True)
+    queryset = Challenge.objects.filter(
+        Q(published=True),
+        Q(start_date__lt=datetime.datetime.now()) | Q(start_date__isnull=True),
+        Q(end_date__gt=datetime.datetime.now()) | Q(end_date__isnull=True)
+    )
 
 
 class ArticleChallengeViewSet(viewsets.ModelViewSet):
