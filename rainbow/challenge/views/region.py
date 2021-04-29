@@ -2,7 +2,8 @@ from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from challenge.models import Region
+from challenge.models import Region, Challenge
+from challenge.serializers.challenge import ChallengeSerializer
 from challenge.serializers.region import RegionSerializer
 from user.serializers import UserSerializer
 
@@ -23,6 +24,17 @@ class RegionUsersAPIView(ListAPIView):
 
     def get_queryset(self):
         queryset = User.objects.all()
+        region = self.kwargs.get('region_uuid')
+        if region is not None:
+            queryset = queryset.filter(region=region)
+        return queryset
+
+
+class RegionChallengesAPIView(ListAPIView):
+    serializer_class = ChallengeSerializer
+
+    def get_queryset(self):
+        queryset = Challenge.objects.all()
         region = self.kwargs.get('region_uuid')
         if region is not None:
             queryset = queryset.filter(region=region)

@@ -26,7 +26,7 @@ class ChallengeType:
 
 class Challenge(models.Model):
     """
-    Model for common information on callenges. It will help calculations of points, statistics, search.
+    Model for common information on challenges. It will help calculations of points, statistics, search.
     """
     uuid = models.UUIDField(
         default=uuid.uuid4,
