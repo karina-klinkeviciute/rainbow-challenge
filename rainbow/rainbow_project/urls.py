@@ -35,7 +35,8 @@ import challenge
 
 urlpatterns = [
     path('/', include('django.contrib.flatpages.urls')),
-    path('admin/', admin_site.urls),
+    # path('admin/', admin_site.urls),
+    path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('api/user/', include('user.urls')),
