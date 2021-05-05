@@ -1,8 +1,11 @@
+import datetime
 import uuid
 
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from django.apps import apps
+
 
 class ChallengeType:
     """Class for challenge types. Used in choices for Challenge Type"""
@@ -22,6 +25,18 @@ class ChallengeType:
         ARTICLE: 'ArticleChallenge',
         EVENT: 'EventParticipantChallenge',
     }
+
+
+class ActiveChallengeManager(models.Manager):
+    """
+    Model manager to return only active challenges (between start and end dates and published)
+    """
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            Q(published=True),
+            Q(start_date__lt=datetime.datetime.now()) | Q(start_date__isnull=True),
+            Q(end_date__gt=datetime.datetime.now()) | Q(end_date__isnull=True)
+        )
 
 
 class Challenge(models.Model):
@@ -72,6 +87,9 @@ class Challenge(models.Model):
 #     I think this is better than extending this class,
 #     because in some cases only the general data will be enough
 #     so it is useful to have one class for all tasks
+
+    objects = models.Manager()
+    active = ActiveChallengeManager()
 
     @property
     def concrete_challenge_uuid(self):

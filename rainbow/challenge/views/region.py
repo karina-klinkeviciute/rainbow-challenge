@@ -34,7 +34,7 @@ class RegionChallengesAPIView(ListAPIView):
     serializer_class = ChallengeSerializer
 
     def get_queryset(self):
-        queryset = Challenge.objects.all()
+        queryset = Challenge.active.all()
         region = self.kwargs.get('region_uuid')
         if region is not None:
             queryset = queryset.filter(region=region)
