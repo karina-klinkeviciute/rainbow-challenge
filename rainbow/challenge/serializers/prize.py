@@ -16,7 +16,8 @@ class ClaimedPrizeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ClaimedPrize
-        fields = ['user', 'uuid', 'amount', 'prize', ]
+        fields = ['user', 'uuid', 'amount', 'prize', 'issued']
+        read_only_fields = ['issued', ]
 
     def validate(self, data):
         data = super().validate(data)
@@ -30,6 +31,6 @@ class ClaimedPrizeSerializer(serializers.ModelSerializer):
         cost_points = prize.price * amount
         user = data['user']
         if user.remaining_points < cost_points:
-            raise serializers.ValidationError(_("Sorry, you dont have enough rainbows for that."))
+            raise serializers.ValidationError(_("Sorry, you don't have enough rainbows for that."))
 
         return data
