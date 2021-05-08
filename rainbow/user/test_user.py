@@ -1,11 +1,8 @@
 import pytest
 from model_bakery import baker
-from model_bakery.recipe import Recipe
 from faker import Faker
 
-from challenge.models.challenge import ChallengeType
-from challenge.models.joined_challenge import JoinedChallengeStatus, ArticleJoinedChallenge
-from user.baker_recipes import joined_challenge_recipe
+from challenge.models.joined_challenge import JoinedChallengeStatus
 
 faker = Faker()
 
