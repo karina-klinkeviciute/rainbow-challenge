@@ -41,7 +41,9 @@ class JoinedChallenge(models.Model):
     status = models.CharField(
         verbose_name=_('status'),
         choices=JoinedChallengeStatus.STATUS_CHOICES,
-        max_length=255)
+        max_length=255,
+        default=JoinedChallengeStatus.JOINED
+    )
 
     def __str__(self):
         return f'{self.user.username} - {self.challenge.name} / {self.challenge.type}'
