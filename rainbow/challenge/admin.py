@@ -1,10 +1,14 @@
 from django.contrib import admin
 
 from challenge.models import Challenge, ArticleChallenge, EventParticipantChallenge, JoinedChallenge, \
-    ArticleJoinedChallenge, EventParticipantJoinedChallenge, Region, Prize
-
+    ArticleJoinedChallenge, EventParticipantJoinedChallenge, Region, Prize, EventOrganizerJoinedChallenge
 
 # Challenges
+from challenge.models.challenge.event_organizer import EventOrganizerChallenge
+from challenge.models.challenge.school_gsa import SchoolGSAChallenge
+from challenge.models.challenge.story import StoryChallenge
+from challenge.models.joined_challenge.school_gsa import SchoolGSAJoinedChallenge
+from challenge.models.joined_challenge.story import StoryJoinedChallenge
 from challenge.models.prize import ClaimedPrize
 
 
@@ -22,6 +26,9 @@ class SchoolGSAChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )
 
 class EventOrganizerChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_challenge', )
+
+class StoryChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )
 
 #     Joined challenges
@@ -42,6 +49,9 @@ class EventOrganizerJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', 'event_name')
     list_filter = ('event_name', )
 
+class StoryJoinedChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_joined_challenge', )
+
 
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('name', )
@@ -54,11 +64,23 @@ class ClaimedPrizeAdmin(admin.ModelAdmin):
     list_filter = ('prize', 'user', 'issued')
 
 admin.site.register(Challenge, ChallengeAdmin)
+
+# challenge
 admin.site.register(ArticleChallenge, ArticleChallengeAdmin)
 admin.site.register(EventParticipantChallenge, EventParticipantChallengeAdmin)
+admin.site.register(SchoolGSAChallenge, SchoolGSAChallengeAdmin)
+admin.site.register(EventOrganizerChallenge, EventOrganizerChallengeAdmin)
+admin.site.register(StoryChallenge, StoryChallengeAdmin)
+
 admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
+
+# joined challenge
 admin.site.register(ArticleJoinedChallenge, ArticleJoinedChallengeAdmin)
 admin.site.register(EventParticipantJoinedChallenge, EventParticipantJoinedChallengeAdmin)
+admin.site.register(SchoolGSAJoinedChallenge, SchoolGSAJoinedChallengeAdmin)
+admin.site.register(EventOrganizerJoinedChallenge, EventOrganizerJoinedChallengeAdmin)
+admin.site.register(StoryJoinedChallenge, StoryJoinedChallengeAdmin)
+
 admin.site.register(Region, RegionAdmin)
 admin.site.register(Prize, PrizeAdmin)
 admin.site.register(ClaimedPrize, ClaimedPrizeAdmin)

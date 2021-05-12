@@ -26,5 +26,5 @@ class EventOrganizerJoinedChallenge(BaseJoinedChallenge):
     )
 
     @property
-    def article_challenge(self):
+    def concrete_challenge(self):
         return EventOrganizerChallenge.objects.get(main_challenge=self.main_joined_challenge.challenge)

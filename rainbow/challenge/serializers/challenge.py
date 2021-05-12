@@ -3,6 +3,7 @@ from rest_framework import serializers
 from challenge.models.challenge import Challenge, ArticleChallenge, EventParticipantChallenge, ChallengeType
 from challenge.models.challenge.event_organizer import EventOrganizerChallenge
 from challenge.models.challenge.school_gsa import SchoolGSAChallenge
+from challenge.models.challenge.story import StoryChallenge
 
 
 class ChallengeSerializer(serializers.ModelSerializer):
@@ -42,5 +43,12 @@ class EventOrganizerChallengeSerializer(BaseChallengeSerializer):
 
     class Meta:
         model = EventOrganizerChallenge
+        fields = '__all__'
+
+
+class StoryChallengeSerializer(BaseChallengeSerializer):
+
+    class Meta:
+        model = StoryChallenge
         fields = '__all__'
 
