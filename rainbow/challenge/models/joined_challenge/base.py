@@ -1,9 +1,7 @@
 import uuid
-from django.contrib.auth import get_user_model
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-from challenge.models.challenge import ArticleChallenge, EventParticipantChallenge
 
 
 class JoinedChallengeStatus:
@@ -66,27 +64,3 @@ class BaseJoinedChallenge(models.Model):
 
     def __str__(self):
         return f"concrete challenge for {self.main_joined_challenge.__str__()}"
-
-
-class ArticleJoinedChallenge(BaseJoinedChallenge):
-    article_name = models.TextField(
-        verbose_name=_("name of the article"),
-        blank=True,
-        null=True
-    )
-    article_url = models.URLField(
-        verbose_name=_('link to the article'),
-        blank=True,
-        null=True
-    )
-
-    @property
-    def article_challenge(self):
-        return ArticleChallenge.objects.get(main_challenge=self.main_joined_challenge.challenge)
-
-
-class EventParticipantJoinedChallenge(BaseJoinedChallenge):
-
-    @property
-    def article_challenge(self):
-        return EventParticipantChallenge.objects.get(main_challenge=self.main_joined_challenge.challenge)
