@@ -20,11 +20,17 @@ from rest_framework import routers
 from challenge import views
 
 router = routers.DefaultRouter()
+# challenges
 router.register(r'challenge', views.ChallengeViewSet)
 router.register(r'article_challenge', views.ArticleChallengeViewSet)
 router.register(r'event_participant_challenge', views.EventParticipantChallengeViewSet)
+router.register(r'event_participant_challenge', views.SchoolGSAChallengeViewSet)
+
+# joined challenges
 router.register(r'article_joined_challenge', views.ArticleJoinedChallengeViewSet)
 router.register(r'event_participant_joined_challenge', views.EventParticipantJoinedChallengeViewSet)
+router.register(r'school_gsa_joined_challenge', views.SchoolGSAJoinedChallengeViewSet)
+
 router.register(r'region', views.RegionViewSet)
 router.register(r'prize', views.PrizeViewSet)
 router.register(r'claimed_prize', views.ClaimedPrizeViewSet)
