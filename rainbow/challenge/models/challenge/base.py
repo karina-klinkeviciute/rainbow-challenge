@@ -13,17 +13,21 @@ class ChallengeType:
     ARTICLE = 'article'
     EVENT = 'event'
     CUSTOM = 'custom'
+    SCHOOL_GSA = 'school_gsa'
 
     TYPE_CHOICES = (
         (QUIZ, _('quiz')),
         (ARTICLE, _('article')),
         (EVENT, _('event')),
-        (CUSTOM, _('custom'))
+        (CUSTOM, _('custom')),
+        (SCHOOL_GSA, _('school GSA'))
     )
+    TYPE_CHOICES_DICT = {type[0]: type[1] for type in TYPE_CHOICES}
 
     CLASSES = {
         ARTICLE: 'ArticleChallenge',
         EVENT: 'EventParticipantChallenge',
+        SCHOOL_GSA: 'SchoolGSAChallenge'
     }
 
 
@@ -108,7 +112,7 @@ class Challenge(models.Model):
         return model
 
     def __str__(self):
-        return f"{self.name} - type: {self.type}"
+        return f"{self.name} - type: {ChallengeType.TYPE_CHOICES_DICT[self.type]}"
 
 
 class BaseChallenge(models.Model):
@@ -130,4 +134,5 @@ class BaseChallenge(models.Model):
         abstract = True
 
     def __str__(self):
-        return f"concrete challenge for {self.main_challenge.name} - type: {self.main_challenge.type}"
+        return f"concrete challenge for {self.main_challenge.name} " \
+               f"- type: {ChallengeType.TYPE_CHOICES_DICT[self.main_challenge.type]}"

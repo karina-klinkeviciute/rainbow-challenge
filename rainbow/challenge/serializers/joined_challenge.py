@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from challenge.models.joined_challenge import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge
+from challenge.models.joined_challenge.school_gsa import SchoolGSAJoinedChallenge
 
 
 class JoinedChallengeSerializer(serializers.ModelSerializer):
@@ -40,4 +41,11 @@ class EventParticipantJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
     class Meta:
         model = EventParticipantJoinedChallenge
+        fields = '__all__'
+
+
+class SchoolGSAJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
+
+    class Meta:
+        model = SchoolGSAJoinedChallenge
         fields = '__all__'

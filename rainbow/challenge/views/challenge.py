@@ -5,8 +5,9 @@ from rest_framework import viewsets
 
 
 from challenge.models.challenge import Challenge, ArticleChallenge, EventParticipantChallenge
+from challenge.models.challenge.school_gsa import SchoolGSAChallenge
 from challenge.serializers.challenge import ChallengeSerializer, ArticleChallengeSerializer, \
-    EventParticipantChallengeSerializer
+    EventParticipantChallengeSerializer, SchoolGSAChallengeSerializer
 
 
 class ChallengeViewSet(viewsets.ModelViewSet):
@@ -35,6 +36,18 @@ class EventParticipantChallengeViewSet(viewsets.ModelViewSet):
     """
     serializer_class = EventParticipantChallengeSerializer
     queryset = EventParticipantChallenge.objects.filter(
+        Q(main_challenge__published=True),
+        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
+    )
+
+
+class SchoolGSAChallengeViewSet(viewsets.ModelViewSet):
+    """
+    A ViewSet for EventParticipant challenges.
+    """
+    serializer_class = SchoolGSAChallengeSerializer
+    queryset = SchoolGSAChallenge.objects.filter(
         Q(main_challenge__published=True),
         Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
