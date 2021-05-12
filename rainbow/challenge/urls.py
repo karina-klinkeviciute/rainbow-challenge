@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.urls import path, include
 
-from challenge.views.challenge import ChallengeViewSet
 from rest_framework import routers
 from challenge import views
 
@@ -25,11 +24,13 @@ router.register(r'challenge', views.ChallengeViewSet)
 router.register(r'article_challenge', views.ArticleChallengeViewSet)
 router.register(r'event_participant_challenge', views.EventParticipantChallengeViewSet)
 router.register(r'event_participant_challenge', views.SchoolGSAChallengeViewSet)
+router.register(r'event_participant_challenge', views.EventOrganizerChallengeViewSet)
 
 # joined challenges
 router.register(r'article_joined_challenge', views.ArticleJoinedChallengeViewSet)
 router.register(r'event_participant_joined_challenge', views.EventParticipantJoinedChallengeViewSet)
 router.register(r'school_gsa_joined_challenge', views.SchoolGSAJoinedChallengeViewSet)
+router.register(r'school_gsa_joined_challenge', views.EventOrganizerJoinedChallengeViewSet)
 
 router.register(r'region', views.RegionViewSet)
 router.register(r'prize', views.PrizeViewSet)

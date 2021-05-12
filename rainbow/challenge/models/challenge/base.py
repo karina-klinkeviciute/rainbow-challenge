@@ -14,13 +14,15 @@ class ChallengeType:
     EVENT = 'event'
     CUSTOM = 'custom'
     SCHOOL_GSA = 'school_gsa'
+    EVENT_ORG = 'event_org'
 
     TYPE_CHOICES = (
         (QUIZ, _('quiz')),
         (ARTICLE, _('article')),
         (EVENT, _('event')),
         (CUSTOM, _('custom')),
-        (SCHOOL_GSA, _('school GSA'))
+        (SCHOOL_GSA, _('school GSA')),
+        (EVENT_ORG, _('event organizer')),
     )
     TYPE_CHOICES_DICT = {type[0]: type[1] for type in TYPE_CHOICES}
 

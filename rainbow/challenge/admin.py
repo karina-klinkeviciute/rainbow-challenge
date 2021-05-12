@@ -18,6 +18,12 @@ class ArticleChallengeAdmin(admin.ModelAdmin):
 class EventParticipantChallengeAdmin(admin.ModelAdmin):
     list_display = ('event_name', )
 
+class SchoolGSAChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_challenge', )
+
+class EventOrganizerChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_challenge', )
+
 #     Joined challenges
 
 class JoinedChallengeAdmin(admin.ModelAdmin):
@@ -28,6 +34,14 @@ class ArticleJoinedChallengeAdmin(admin.ModelAdmin):
 
 class EventParticipantJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', )
+
+class SchoolGSAJoinedChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_joined_challenge', )
+
+class EventOrganizerJoinedChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_joined_challenge', 'event_name')
+    list_filter = ('event_name', )
+
 
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('name', )

@@ -15,3 +15,6 @@ from .joined_challenge.article import (
 from .joined_challenge.event_participant import (
     EventParticipantJoinedChallenge,
 )
+from .joined_challenge.event_organizer import (
+    EventOrganizerJoinedChallenge,
+)
