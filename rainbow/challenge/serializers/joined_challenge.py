@@ -1,7 +1,12 @@
 from rest_framework import serializers
 
-from challenge.models import EventOrganizerJoinedChallenge, SupportJoinedChallenge
-from challenge.models.joined_challenge import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge
+from challenge.models import (
+    EventOrganizerJoinedChallenge,
+    SupportJoinedChallenge,
+    JoinedChallenge,
+    ArticleJoinedChallenge,
+    EventParticipantJoinedChallenge
+)
 from challenge.models.joined_challenge.project import ProjectJoinedChallenge
 from challenge.models.joined_challenge.reacting import ReactingJoinedChallenge
 from challenge.models.joined_challenge.school_gsa import SchoolGSAJoinedChallenge

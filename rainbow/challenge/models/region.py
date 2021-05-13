@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 
-from challenge.models.joined_challenge import JoinedChallengeStatus, JoinedChallenge
+from challenge.models.joined_challenge.base import JoinedChallengeStatus, JoinedChallenge
 
 
 class Region(models.Model):

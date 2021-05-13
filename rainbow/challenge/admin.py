@@ -42,7 +42,7 @@ class ReactingChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )
 
 class SupportChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', )
+    list_display = ('main_challenge', 'organization', )
 
 #     Joined challenges
 
@@ -68,10 +68,11 @@ class ProjectJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', 'project_name')
 
 class ReactingJoinedChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_joined_challenge', 'project_name')
+    list_display = ('main_joined_challenge', )
 
 class SupportJoinedChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_joined_challenge', 'project_name')
+    list_display = ('main_joined_challenge', )
+
 
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('name', )

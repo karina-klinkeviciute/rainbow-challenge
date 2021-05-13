@@ -8,8 +8,8 @@ from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.models import AbstractUser
 
-from challenge.models.challenge import Challenge
-from challenge.models.joined_challenge import JoinedChallenge, JoinedChallengeStatus
+from challenge.models import JoinedChallenge, Challenge
+from challenge.models.joined_challenge.base import JoinedChallengeStatus
 
 
 class UserManager(BaseUserManager):

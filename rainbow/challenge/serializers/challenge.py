@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from challenge.models import SupportChallenge
-from challenge.models.challenge import Challenge, ArticleChallenge, EventParticipantChallenge, ChallengeType
+from challenge.models import SupportChallenge, Challenge, ArticleChallenge, EventParticipantChallenge
 from challenge.models.challenge.event_organizer import EventOrganizerChallenge
 from challenge.models.challenge.project import ProjectChallenge
 from challenge.models.challenge.reacting import ReactingChallenge
