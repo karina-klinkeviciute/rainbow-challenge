@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 from challenge.models import Challenge, ArticleChallenge, EventParticipantChallenge, JoinedChallenge, \
-    ArticleJoinedChallenge, EventParticipantJoinedChallenge, Region, Prize, EventOrganizerJoinedChallenge
+    ArticleJoinedChallenge, EventParticipantJoinedChallenge, Region, Prize, EventOrganizerJoinedChallenge, \
+    SupportChallenge, SupportJoinedChallenge
 
 from challenge.models.challenge.event_organizer import EventOrganizerChallenge
 from challenge.models.challenge.project import ProjectChallenge
@@ -40,6 +41,9 @@ class ProjectChallengeAdmin(admin.ModelAdmin):
 class ReactingChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )
 
+class SupportChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_challenge', )
+
 #     Joined challenges
 
 class JoinedChallengeAdmin(admin.ModelAdmin):
@@ -66,6 +70,8 @@ class ProjectJoinedChallengeAdmin(admin.ModelAdmin):
 class ReactingJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', 'project_name')
 
+class SupportJoinedChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_joined_challenge', 'project_name')
 
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('name', )
@@ -87,6 +93,7 @@ admin.site.register(EventOrganizerChallenge, EventOrganizerChallengeAdmin)
 admin.site.register(StoryChallenge, StoryChallengeAdmin)
 admin.site.register(ProjectChallenge, ProjectChallengeAdmin)
 admin.site.register(ReactingChallenge, ReactingChallengeAdmin)
+admin.site.register(SupportChallenge, SupportChallengeAdmin)
 
 admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
 
@@ -98,6 +105,7 @@ admin.site.register(EventOrganizerJoinedChallenge, EventOrganizerJoinedChallenge
 admin.site.register(StoryJoinedChallenge, StoryJoinedChallengeAdmin)
 admin.site.register(ProjectJoinedChallenge, ProjectJoinedChallengeAdmin)
 admin.site.register(ReactingJoinedChallenge, ReactingJoinedChallengeAdmin)
+admin.site.register(SupportJoinedChallenge, SupportJoinedChallengeAdmin)
 
 admin.site.register(Region, RegionAdmin)
 admin.site.register(Prize, PrizeAdmin)

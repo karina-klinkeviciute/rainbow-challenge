@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from challenge.models import SupportChallenge
 from challenge.models.challenge import Challenge, ArticleChallenge, EventParticipantChallenge, ChallengeType
 from challenge.models.challenge.event_organizer import EventOrganizerChallenge
 from challenge.models.challenge.project import ProjectChallenge
@@ -66,4 +67,11 @@ class ReactingChallengeSerializer(BaseChallengeSerializer):
 
     class Meta:
         model = ReactingChallenge
+        fields = '__all__'
+
+
+class SupportChallengeSerializer(BaseChallengeSerializer):
+
+    class Meta:
+        model = SupportChallenge
         fields = '__all__'

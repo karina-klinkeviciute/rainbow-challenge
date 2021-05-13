@@ -18,6 +18,7 @@ class ChallengeType:
     STORY = 'story'
     PROJECT = 'project'
     REACTING = 'reacting'
+    SUPPORT = 'support'
 
     TYPE_CHOICES = (
         (QUIZ, _('quiz')),
@@ -29,6 +30,7 @@ class ChallengeType:
         (STORY, _('story')),
         (PROJECT, _('project')),
         (REACTING, _('reacting to public events, informing society')),
+        (SUPPORT, _('support')),
     )
 
     TYPE_CHOICES_DICT = {type[0]: type[1] for type in TYPE_CHOICES}
@@ -41,6 +43,7 @@ class ChallengeType:
         STORY: 'StoryChallenge',
         PROJECT: 'ProjectChallenge',
         REACTING: 'ReactingChallenge',
+        SUPPORT: 'SupportChallenge',
     }
 
 

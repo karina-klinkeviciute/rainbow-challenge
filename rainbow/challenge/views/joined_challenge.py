@@ -79,3 +79,11 @@ class ReactingJoinedChallengeViewSet(viewsets.ModelViewSet):
     """
     serializer_class = ReactingJoinedChallengeSerializer
     queryset = ReactingJoinedChallenge.objects.all()
+
+
+class SupportJoinedChallengeViewSet(viewsets.ModelViewSet):
+    """
+    A ViewSet for EventOrganizer challenges.
+    """
+    serializer_class = ReactingJoinedChallengeSerializer
+    queryset = ReactingJoinedChallenge.objects.all()

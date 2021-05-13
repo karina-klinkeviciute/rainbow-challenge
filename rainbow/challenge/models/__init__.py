@@ -11,6 +11,7 @@ from .challenge.event_organizer import EventOrganizerChallenge
 from .challenge.story import StoryChallenge
 from .challenge.project import ProjectChallenge
 from .challenge.reacting import ReactingChallenge
+from .challenge.support import SupportChallenge
 
 from .joined_challenge.base import (
     JoinedChallenge,
@@ -23,3 +24,4 @@ from .joined_challenge.event_organizer import EventOrganizerJoinedChallenge
 from .joined_challenge.story import StoryJoinedChallenge
 from .joined_challenge.project import ProjectJoinedChallenge
 from .joined_challenge.reacting import ReactingJoinedChallenge
+from .joined_challenge.support import SupportJoinedChallenge

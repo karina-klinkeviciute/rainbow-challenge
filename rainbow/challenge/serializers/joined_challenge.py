@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from challenge.models import EventOrganizerJoinedChallenge
+from challenge.models import EventOrganizerJoinedChallenge, SupportJoinedChallenge
 from challenge.models.joined_challenge import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge
 from challenge.models.joined_challenge.project import ProjectJoinedChallenge
 from challenge.models.joined_challenge.reacting import ReactingJoinedChallenge
@@ -80,4 +80,11 @@ class ReactingJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
     class Meta:
         model = ReactingJoinedChallenge
+        fields = '__all__'
+
+
+class SupportJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
+
+    class Meta:
+        model = SupportJoinedChallenge
         fields = '__all__'

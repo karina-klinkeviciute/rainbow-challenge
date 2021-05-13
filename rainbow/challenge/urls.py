@@ -28,6 +28,7 @@ router.register(r'event_organizer_challenge', views.EventOrganizerChallengeViewS
 router.register(r'story_challenge', views.StoryChallengeViewSet)
 router.register(r'project_challenge', views.ProjectChallengeViewSet)
 router.register(r'reacting_challenge', views.ReactingChallengeViewSet)
+router.register(r'support_challenge', views.SupportChallengeViewSet)
 
 # joined challenges
 router.register(r'article_joined_challenge', views.ArticleJoinedChallengeViewSet)
@@ -37,6 +38,7 @@ router.register(r'event_organizer_joined_challenge', views.EventOrganizerJoinedC
 router.register(r'story_joined_challenge', views.StoryJoinedChallengeViewSet)
 router.register(r'project_joined_challenge', views.ProjectJoinedChallengeViewSet)
 router.register(r'reacting_joined_challenge', views.ReactingJoinedChallengeViewSet)
+router.register(r'support_joined_challenge', views.SupportJoinedChallengeViewSet)
 
 router.register(r'region', views.RegionViewSet)
 router.register(r'prize', views.PrizeViewSet)
