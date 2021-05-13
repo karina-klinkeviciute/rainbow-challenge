@@ -7,11 +7,12 @@ from rest_framework import viewsets
 from challenge.models.challenge import Challenge, ArticleChallenge, EventParticipantChallenge
 from challenge.models.challenge.event_organizer import EventOrganizerChallenge
 from challenge.models.challenge.project import ProjectChallenge
+from challenge.models.challenge.reacting import ReactingChallenge
 from challenge.models.challenge.school_gsa import SchoolGSAChallenge
 from challenge.models.challenge.story import StoryChallenge
 from challenge.serializers.challenge import ChallengeSerializer, ArticleChallengeSerializer, \
     EventParticipantChallengeSerializer, SchoolGSAChallengeSerializer, EventOrganizerChallengeSerializer, \
-    StoryChallengeSerializer, ProjectChallengeSerializer
+    StoryChallengeSerializer, ProjectChallengeSerializer, ReactingChallengeSerializer
 
 
 class ChallengeViewSet(viewsets.ModelViewSet):
@@ -88,6 +89,18 @@ class ProjectChallengeViewSet(viewsets.ModelViewSet):
     """
     serializer_class = ProjectChallengeSerializer
     queryset = ProjectChallenge.objects.filter(
+        Q(main_challenge__published=True),
+        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
+    )
+
+
+class ReactingChallengeViewSet(viewsets.ModelViewSet):
+    """
+    A ViewSet for EventParticipant challenges.
+    """
+    serializer_class = ReactingChallengeSerializer
+    queryset = ReactingChallenge.objects.filter(
         Q(main_challenge__published=True),
         Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)

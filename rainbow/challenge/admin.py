@@ -5,9 +5,11 @@ from challenge.models import Challenge, ArticleChallenge, EventParticipantChalle
 
 from challenge.models.challenge.event_organizer import EventOrganizerChallenge
 from challenge.models.challenge.project import ProjectChallenge
+from challenge.models.challenge.reacting import ReactingChallenge
 from challenge.models.challenge.school_gsa import SchoolGSAChallenge
 from challenge.models.challenge.story import StoryChallenge
 from challenge.models.joined_challenge.project import ProjectJoinedChallenge
+from challenge.models.joined_challenge.reacting import ReactingJoinedChallenge
 from challenge.models.joined_challenge.school_gsa import SchoolGSAJoinedChallenge
 from challenge.models.joined_challenge.story import StoryJoinedChallenge
 from challenge.models.prize import ClaimedPrize
@@ -35,6 +37,9 @@ class StoryChallengeAdmin(admin.ModelAdmin):
 class ProjectChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )
 
+class ReactingChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_challenge', )
+
 #     Joined challenges
 
 class JoinedChallengeAdmin(admin.ModelAdmin):
@@ -58,6 +63,9 @@ class StoryJoinedChallengeAdmin(admin.ModelAdmin):
 class ProjectJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', 'project_name')
 
+class ReactingJoinedChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_joined_challenge', 'project_name')
+
 
 class RegionAdmin(admin.ModelAdmin):
     list_display = ('name', )
@@ -78,6 +86,7 @@ admin.site.register(SchoolGSAChallenge, SchoolGSAChallengeAdmin)
 admin.site.register(EventOrganizerChallenge, EventOrganizerChallengeAdmin)
 admin.site.register(StoryChallenge, StoryChallengeAdmin)
 admin.site.register(ProjectChallenge, ProjectChallengeAdmin)
+admin.site.register(ReactingChallenge, ReactingChallengeAdmin)
 
 admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
 
@@ -88,6 +97,7 @@ admin.site.register(SchoolGSAJoinedChallenge, SchoolGSAJoinedChallengeAdmin)
 admin.site.register(EventOrganizerJoinedChallenge, EventOrganizerJoinedChallengeAdmin)
 admin.site.register(StoryJoinedChallenge, StoryJoinedChallengeAdmin)
 admin.site.register(ProjectJoinedChallenge, ProjectJoinedChallengeAdmin)
+admin.site.register(ReactingJoinedChallenge, ReactingJoinedChallengeAdmin)
 
 admin.site.register(Region, RegionAdmin)
 admin.site.register(Prize, PrizeAdmin)
