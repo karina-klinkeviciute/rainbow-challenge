@@ -16,6 +16,7 @@ class ChallengeType:
     SCHOOL_GSA = 'school_gsa'
     EVENT_ORG = 'event_org'
     STORY = 'story'
+    PROJECT = 'project'
 
     TYPE_CHOICES = (
         (QUIZ, _('quiz')),
@@ -25,6 +26,7 @@ class ChallengeType:
         (SCHOOL_GSA, _('school GSA')),
         (EVENT_ORG, _('event organizer')),
         (STORY, _('story')),
+        (PROJECT, _('project')),
     )
 
     TYPE_CHOICES_DICT = {type[0]: type[1] for type in TYPE_CHOICES}
@@ -35,6 +37,7 @@ class ChallengeType:
         SCHOOL_GSA: 'SchoolGSAChallenge',
         EVENT_ORG: 'EventOrganizerChallenge',
         STORY: 'StoryChallenge',
+        PROJECT: 'ProjectChallenge',
     }
 
 

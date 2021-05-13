@@ -5,13 +5,14 @@ from challenge.models import (
     JoinedChallenge,
     ArticleJoinedChallenge,
     EventParticipantJoinedChallenge, EventOrganizerJoinedChallenge)
+from challenge.models.joined_challenge.project import ProjectJoinedChallenge
 from challenge.models.joined_challenge.school_gsa import SchoolGSAJoinedChallenge
 from challenge.models.joined_challenge.story import StoryJoinedChallenge
 from challenge.serializers.joined_challenge import (
     JoinedChallengeSerializer,
     ArticleJoinedChallengeSerializer,
     EventParticipantJoinedChallengeSerializer, SchoolGSAJoinedChallengeSerializer,
-    EventOrganizerJoinedChallengeSerializer, StoryJoinedChallengeSerializer)
+    EventOrganizerJoinedChallengeSerializer, StoryJoinedChallengeSerializer, ProjectJoinedChallengeSerializer)
 
 
 class JoinedChallengeViewSet(viewsets.ModelViewSet):
@@ -60,3 +61,11 @@ class StoryJoinedChallengeViewSet(viewsets.ModelViewSet):
     """
     serializer_class = StoryJoinedChallengeSerializer
     queryset = StoryJoinedChallenge.objects.all()
+
+
+class ProjectJoinedChallengeViewSet(viewsets.ModelViewSet):
+    """
+    A ViewSet for EventOrganizer challenges.
+    """
+    serializer_class = ProjectJoinedChallengeSerializer
+    queryset = ProjectJoinedChallenge.objects.all()
