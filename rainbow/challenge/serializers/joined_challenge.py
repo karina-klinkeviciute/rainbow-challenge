@@ -7,6 +7,7 @@ from challenge.models import (
     ArticleJoinedChallenge,
     EventParticipantJoinedChallenge
 )
+from challenge.models.joined_challenge.base import JoinedChallengeStatus
 from challenge.models.joined_challenge.project import ProjectJoinedChallenge
 from challenge.models.joined_challenge.reacting import ReactingJoinedChallenge
 from challenge.models.joined_challenge.school_gsa import SchoolGSAJoinedChallenge
@@ -34,8 +35,16 @@ class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
         main_joined_challenge_data = validated_data.pop('main_joined_challenge')
         this_challenge = instance
         main_joined_challenge = instance.main_joined_challenge
+        status = main_joined_challenge_data["status"]
+        if status == JoinedChallengeStatus.CONFIRMED:
+            raise serializers.ValidationError("Status can't be 'confirmed'")
+        if status == JoinedChallengeStatus.COMPLETED:
+            if main_joined_challenge.challenge.needs_confirmtaion is False:
+                status = JoinedChallengeStatus.CONFIRMED
+
         this_challenge.main_joined_challenge = main_joined_challenge
         this_challenge.save()
+
         return this_challenge
 
 

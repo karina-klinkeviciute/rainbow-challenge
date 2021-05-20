@@ -10,12 +10,14 @@ class JoinedChallengeStatus:
     COMPLETED = 'completed'
     PENDING = 'pending'  # waiting for confirmation
     CANCELLED = 'cancelled'
+    CONFIRMED = 'confirmed'
 
     STATUS_CHOICES = (
         (JOINED, _('joined')),
         (COMPLETED, _('completed')),
         (PENDING, _('pending')),  # waiting for confirmation
         (CANCELLED, _('cancelled')),
+        (CONFIRMED, _('confirmed')),
     )
 
 
