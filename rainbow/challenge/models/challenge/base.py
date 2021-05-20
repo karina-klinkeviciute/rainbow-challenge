@@ -54,7 +54,7 @@ class ActiveChallengeManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(
             Q(published=True),
-            Q(start_date__lt=datetime.datetime.now()) | Q(start_date__isnull=True),
+            Q(start_date__lte=datetime.datetime.now()) | Q(start_date__isnull=True),
             Q(end_date__gt=datetime.datetime.now()) | Q(end_date__isnull=True)
         )
 

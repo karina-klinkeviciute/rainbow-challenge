@@ -29,7 +29,7 @@ class ArticleChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleChallengeSerializer
     queryset = ArticleChallenge.objects.filter(
         Q(main_challenge__published=True),
-        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
     )
 
@@ -41,7 +41,7 @@ class EventParticipantChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = EventParticipantChallengeSerializer
     queryset = EventParticipantChallenge.objects.filter(
         Q(main_challenge__published=True),
-        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
     )
 
@@ -53,7 +53,7 @@ class SchoolGSAChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = SchoolGSAChallengeSerializer
     queryset = SchoolGSAChallenge.objects.filter(
         Q(main_challenge__published=True),
-        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
     )
 
@@ -65,7 +65,7 @@ class EventOrganizerChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = EventOrganizerChallengeSerializer
     queryset = EventOrganizerChallenge.objects.filter(
         Q(main_challenge__published=True),
-        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
     )
 
@@ -77,7 +77,7 @@ class StoryChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = StoryChallengeSerializer
     queryset = StoryChallenge.objects.filter(
         Q(main_challenge__published=True),
-        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
     )
 
@@ -89,7 +89,7 @@ class ProjectChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectChallengeSerializer
     queryset = ProjectChallenge.objects.filter(
         Q(main_challenge__published=True),
-        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
     )
 
@@ -101,7 +101,7 @@ class ReactingChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = ReactingChallengeSerializer
     queryset = ReactingChallenge.objects.filter(
         Q(main_challenge__published=True),
-        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
     )
 
@@ -113,6 +113,6 @@ class SupportChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = SupportChallengeSerializer
     queryset = SupportChallenge.objects.filter(
         Q(main_challenge__published=True),
-        Q(main_challenge__start_date__lt=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
+        Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
         Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True)
     )
