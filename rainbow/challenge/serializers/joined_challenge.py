@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from challenge.models import (
@@ -37,10 +38,12 @@ class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
         main_joined_challenge = instance.main_joined_challenge
         status = main_joined_challenge_data["status"]
         if status == JoinedChallengeStatus.CONFIRMED:
-            raise serializers.ValidationError("Status can't be 'confirmed'")
+            raise serializers.ValidationError(_("Status can't be 'confirmed'"))
         if status == JoinedChallengeStatus.COMPLETED:
             if main_joined_challenge.challenge.needs_confirmtaion is False:
                 status = JoinedChallengeStatus.CONFIRMED
+                main_joined_challenge.status = status
+                main_joined_challenge.save()
 
         this_challenge.main_joined_challenge = main_joined_challenge
         this_challenge.save()
