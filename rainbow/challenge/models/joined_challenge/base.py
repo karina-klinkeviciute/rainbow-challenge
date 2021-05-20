@@ -65,7 +65,7 @@ class BaseJoinedChallenge(models.Model):
         abstract = True
 
     def __str__(self):
-        return f"concrete challenge for {self.main_joined_challenge.__str__()}"
+        return _(f"concrete challenge for {self.main_joined_challenge.__str__()}")
 
     @property
     def concrete_challenge(self):

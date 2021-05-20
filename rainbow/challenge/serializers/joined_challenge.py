@@ -44,6 +44,10 @@ class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
                 status = JoinedChallengeStatus.CONFIRMED
                 main_joined_challenge.status = status
                 main_joined_challenge.save()
+            else:
+                status = JoinedChallengeStatus.PENDING
+                main_joined_challenge.status = status
+                main_joined_challenge.save()
 
         this_challenge.main_joined_challenge = main_joined_challenge
         this_challenge.save()

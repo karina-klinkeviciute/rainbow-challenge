@@ -149,6 +149,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 SITE_ID = 1
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'), ]
 # STATIC_ROOT = '/root/rainbow-challenge/rainbow/staticfiles/'
 
 AUTH_USER_MODEL = 'user.User'
