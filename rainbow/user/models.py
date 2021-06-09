@@ -54,7 +54,7 @@ class GenderOptions:
     PREFERNOT = 'prefer_not_to_say'
 
     GENDER_CHOICES = (
-        (WOMAN, _('moteris')),  # temporary until translation is ready
+        (WOMAN, _('woman')),  # temporary until translation is ready
         (MAN, _('man')),
         (NONBINARY, _('non-binary')),
         (OTHER, _('other')),

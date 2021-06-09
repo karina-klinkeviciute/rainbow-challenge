@@ -92,7 +92,7 @@ class Challenge(models.Model):
     end_date = models.DateField(
         null=True,
         blank=True,
-        verbose_name=_('end_date')
+        verbose_name=_('end date')
     )
     multiple = models.BooleanField(
         help_text=_("can the participant join this challenge more than once"),
