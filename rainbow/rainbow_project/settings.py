@@ -184,7 +184,7 @@ DJOSER = {
 
 OTP_TOTP_ISSUER = 'Rainbow challenge'
 
-EMAIL_HOST = 'http://smtp.gmail.com/'
+EMAIL_HOST = 'smtp.gmail.com/'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'test@lygiai.org'
 EMAIL_HOST_PASSWORD = 'testtest'
