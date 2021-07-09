@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django_otp.admin import OTPAdminSite
+from drf_spectacular.views import SpectacularAPIView
+
 from user.models import User
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp.plugins.otp_totp.admin import TOTPDeviceAdmin
@@ -40,5 +42,6 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('api/user/', include('user.urls')),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/', include('challenge.urls'))
 ]
