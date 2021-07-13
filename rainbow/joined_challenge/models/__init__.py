@@ -1,0 +1,9 @@
+from joined_challenge.models.project import ProjectJoinedChallenge
+from joined_challenge.models.base import BaseJoinedChallenge, JoinedChallenge
+from joined_challenge.models.article import ArticleJoinedChallenge
+from joined_challenge.models.event_organizer import EventOrganizerJoinedChallenge
+from joined_challenge.models.event_participant import EventParticipantJoinedChallenge
+from joined_challenge.models.reacting import ReactingJoinedChallenge
+from joined_challenge.models.school_gsa import SchoolGSAJoinedChallenge
+from joined_challenge.models.story import StoryJoinedChallenge
+from joined_challenge.models.support import SupportJoinedChallenge

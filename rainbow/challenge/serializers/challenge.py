@@ -1,11 +1,12 @@
 from rest_framework import serializers
 
-from challenge.models import SupportChallenge, Challenge, ArticleChallenge, EventParticipantChallenge
-from challenge.models.challenge.event_organizer import EventOrganizerChallenge
-from challenge.models.challenge.project import ProjectChallenge
-from challenge.models.challenge.reacting import ReactingChallenge
-from challenge.models.challenge.school_gsa import SchoolGSAChallenge
-from challenge.models.challenge.story import StoryChallenge
+from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge
+from challenge.models.base import Challenge
+from challenge.models.event_organizer import EventOrganizerChallenge
+from challenge.models.project import ProjectChallenge
+from challenge.models.reacting import ReactingChallenge
+from challenge.models.school_gsa import SchoolGSAChallenge
+from challenge.models.story import StoryChallenge
 
 
 class ChallengeSerializer(serializers.ModelSerializer):

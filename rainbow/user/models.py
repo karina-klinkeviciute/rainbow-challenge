@@ -8,8 +8,10 @@ from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.models import AbstractUser
 
-from challenge.models import JoinedChallenge, Challenge
-from challenge.models.joined_challenge.base import JoinedChallengeStatus
+from challenge.models import Challenge
+from joined_challenge.models import JoinedChallenge
+from joined_challenge.models.base import JoinedChallengeStatus
+from results.models.region import Region
 
 
 class UserManager(BaseUserManager):
@@ -105,7 +107,7 @@ class User(AbstractUser):
         null=True
     )
     region = models.ForeignKey(
-        'challenge.Region',
+        Region,
         verbose_name=_('region'),
         on_delete=models.SET_NULL,
         null=True,

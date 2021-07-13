@@ -51,7 +51,11 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     # project apps
     'user',
+    'results',
     'challenge',
+    'joined_challenge',
+    'quiz',
+
 ]
 
 MIDDLEWARE = [

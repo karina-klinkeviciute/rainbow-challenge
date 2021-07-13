@@ -1,0 +1,306 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-13 19:47+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: challenge/models/base.py:24
+msgid "quiz"
+msgstr "testas"
+
+#: challenge/models/base.py:25
+msgid "article"
+msgstr "straipsnis"
+
+#: challenge/models/base.py:26
+msgid "event"
+msgstr "renginys"
+
+#: challenge/models/base.py:27
+msgid "custom"
+msgstr "nuosava"
+
+#: challenge/models/base.py:28
+msgid "school GSA"
+msgstr "mokyklų GSA"
+
+#: challenge/models/base.py:29
+msgid "event organizer"
+msgstr "renginio organizavimas"
+
+#: challenge/models/base.py:30
+msgid "story"
+msgstr "istorija"
+
+#: challenge/models/base.py:31
+msgid "project"
+msgstr "projektas"
+
+#: challenge/models/base.py:32
+msgid "reacting to public events, informing society"
+msgstr "reagavimas į įvykius, visuomenės informavimas"
+
+#: challenge/models/base.py:33
+msgid "support"
+msgstr "parama"
+
+#: challenge/models/base.py:74
+msgid "type"
+msgstr "tipas"
+
+#: challenge/models/base.py:76 results/models/prize.py:14
+msgid "name"
+msgstr "pavadinimas"
+
+#: challenge/models/base.py:77 results/models/prize.py:16
+msgid "description"
+msgstr "aprašymas"
+
+#: challenge/models/base.py:78
+msgid "is published"
+msgstr "paskelbtas"
+
+#: challenge/models/base.py:79
+msgid "points"
+msgstr "vaivorykštės"
+
+#: challenge/models/base.py:85 user/models.py:111
+msgid "region"
+msgstr "regionas"
+
+#: challenge/models/base.py:90
+msgid "start date"
+msgstr "pradžios data"
+
+#: challenge/models/base.py:95
+#, fuzzy
+#| msgid "end_date"
+msgid "end date"
+msgstr "pabaigos data"
+
+#: challenge/models/base.py:98
+msgid "can the participant join this challenge more than once"
+msgstr "ar dalyvis gali atlikti šią užduotį daugiau nei kartą"
+
+#: challenge/models/base.py:99
+msgid "multiple"
+msgstr "daugkartinė"
+
+#: challenge/models/base.py:102
+msgid "if completion of this challenge needs to be confirmed by admins"
+msgstr "ar šios užduoties atlikimas turi būti patvirtinamas administratorių"
+
+#: challenge/models/base.py:103
+msgid "required confirmation by admin"
+msgstr "reikalingas administratorių patvirtinimas apie užduoties atlikimą"
+
+#: challenge/models/base.py:143
+msgid "main challenge"
+msgstr "pagrindinė užduotis"
+
+#: challenge/models/event_participant.py:12
+msgid "event name"
+msgstr "renginio pavadinimas"
+
+#: challenge/models/event_participant.py:15
+msgid "date"
+msgstr "data"
+
+#: challenge/models/event_participant.py:23
+msgid "link to the event"
+msgstr "nuoroda į renginį"
+
+#: challenge/models/support.py:10
+msgid "organization"
+msgstr "organizacija"
+
+#: joined_challenge/models/article.py:9
+msgid "name of the article"
+msgstr "straipsnio pavadinimas"
+
+#: joined_challenge/models/article.py:14
+msgid "link to the article"
+msgstr "nuoroda į straipsnį"
+
+#: joined_challenge/models/base.py:16
+msgid "joined"
+msgstr "pradėta"
+
+#: joined_challenge/models/base.py:17
+msgid "completed"
+msgstr "atlikta"
+
+#: joined_challenge/models/base.py:18
+msgid "pending"
+msgstr "laukiama patvirtinimo"
+
+#: joined_challenge/models/base.py:19
+msgid "cancelled"
+msgstr "atšaukta"
+
+#: joined_challenge/models/base.py:20
+msgid "confirmed"
+msgstr "patvirtinta"
+
+#: joined_challenge/models/base.py:33 results/models/prize.py:46
+msgid "user"
+msgstr "vartotojas"
+
+#: joined_challenge/models/base.py:38
+msgid "challenge"
+msgstr "užduotis"
+
+#: joined_challenge/models/base.py:42
+msgid "status"
+msgstr "būsena"
+
+#: joined_challenge/models/base.py:59
+msgid "main joined challenge"
+msgstr "pagrindinė pradėta užduotis"
+
+#: joined_challenge/models/base.py:68
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "concrete joined challenge for: "
+msgstr "pagrindinė pradėta užduotis"
+
+#: joined_challenge/models/event_organizer.py:9
+#: joined_challenge/models/project.py:9
+msgid "name of the event"
+msgstr "renginio pavadinimas"
+
+#: joined_challenge/models/event_organizer.py:14
+#: joined_challenge/models/project.py:14
+msgid "link to the event website or Facebook page if there is one"
+msgstr "nuoroda į renginio tinklalapį ar Facebook puslapį, jei toks yra"
+
+#: joined_challenge/models/event_organizer.py:19
+#: joined_challenge/models/project.py:19
+msgid "description of the event in your own words"
+msgstr "savais žodžiais aprašykite renginį"
+
+#: joined_challenge/models/event_organizer.py:22
+msgid "if this event was organized by you alone"
+msgstr "ar jūs organizavot šį renginį viena/s"
+
+#: joined_challenge/models/project.py:22
+msgid "if this project was implemented by you alone"
+msgstr "ar šį projektą jūs įgyvendinot viena/s"
+
+#: joined_challenge/models/reacting.py:9
+msgid "description of the reaction in your own words"
+msgstr "savais žodžiais aprašykite reagavimą į įvykį ar visuomenės informavimą"
+
+#: joined_challenge/models/story.py:10
+msgid "link to the story if it has one"
+msgstr "nuoroda į istoriją, jei tokia yra"
+
+#: joined_challenge/models/story.py:15
+msgid "description of your story"
+msgstr "jūsų istorijos aprašymas"
+
+#: joined_challenge/models/support.py:9
+msgid "Other organization"
+msgstr "kita organizacija"
+
+#: joined_challenge/models/support.py:10
+msgid "only if organization on challenge is Other"
+msgstr "tik, jeigu užduotyje organizacija nurodyta kaip Kita"
+
+#: joined_challenge/serializers/joined_challenge.py:41
+msgid "Status can't be 'confirmed'"
+msgstr "statusas negali būti 'patvirtinta' (confirmed)"
+
+#: results/models/prize.py:20
+msgid "price"
+msgstr "kaina"
+
+#: results/models/prize.py:21 results/models/prize.py:56
+msgid "amount"
+msgstr "kiekis"
+
+#: results/models/prize.py:53
+msgid "prize"
+msgstr "prizas"
+
+#: results/models/prize.py:57
+msgid "issued"
+msgstr "išduotas"
+
+#: results/serializers/prize.py:27
+msgid "Sorry, we don't have that much of this prize."
+msgstr "Atsiprašome, tiek šių prizų dabar neturime"
+
+#: results/serializers/prize.py:33
+msgid "Sorry, you don't have enough rainbows for that."
+msgstr "Atsiprašome, neturi pakankamai vaivorykščių šiam prizui"
+
+#: user/models.py:59
+msgid "woman"
+msgstr "moteris"
+
+#: user/models.py:60
+msgid "man"
+msgstr "vyras"
+
+#: user/models.py:61
+msgid "non-binary"
+msgstr "nebinarinė"
+
+#: user/models.py:62
+msgid "other"
+msgstr "kita"
+
+#: user/models.py:63
+msgid "prefer not to say"
+msgstr "nenoriu nurodyti"
+
+#: user/models.py:80
+msgid "username"
+msgstr "vartotojo vardas"
+
+#: user/models.py:83
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+"ne daugiau 150 ženklų. Tik raidės, skaičiai ir šie simboliai: @/./+/-/_"
+
+#: user/models.py:86
+msgid "A user with that username already exists."
+msgstr "Šis vartotojo vardas užimtas"
+
+#: user/models.py:90
+msgid "email address"
+msgstr "el. pašto adresas"
+
+#: user/models.py:92
+msgid "year of birth"
+msgstr "gimimo metai"
+
+#: user/models.py:97
+msgid "gender"
+msgstr "lytis"
+
+#: user/models.py:104
+msgid "enter gender if selected other"
+msgstr "įveskite, jei pasirinkote lytį 'kita'"
+
+#: user/models.py:116
+msgid "is active"
+msgstr "aktyvus"
+
+#: user/models.py:117
+msgid "is admin"
+msgstr "administratorius"

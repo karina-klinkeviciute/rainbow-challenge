@@ -16,40 +16,44 @@ Including another URLconf
 from django.urls import path, include
 
 from rest_framework import routers
-from challenge import views
+
+from challenge.views import challenge
+from joined_challenge.views import joined_challenge
+from results.views import region, prize
+from results.views.region import RegionChallengesAPIView, RegionUsersAPIView
 
 router = routers.DefaultRouter()
 # challenges
-router.register(r'challenge', views.ChallengeViewSet)
-router.register(r'article_challenge', views.ArticleChallengeViewSet)
-router.register(r'event_participant_challenge', views.EventParticipantChallengeViewSet)
-router.register(r'school_gsa_challenge', views.SchoolGSAChallengeViewSet)
-router.register(r'event_organizer_challenge', views.EventOrganizerChallengeViewSet)
-router.register(r'story_challenge', views.StoryChallengeViewSet)
-router.register(r'project_challenge', views.ProjectChallengeViewSet)
-router.register(r'reacting_challenge', views.ReactingChallengeViewSet)
-router.register(r'support_challenge', views.SupportChallengeViewSet)
+router.register(r'challenge', challenge.ChallengeViewSet)
+router.register(r'article_challenge', challenge.ArticleChallengeViewSet)
+router.register(r'event_participant_challenge', challenge.EventParticipantChallengeViewSet)
+router.register(r'school_gsa_challenge', challenge.SchoolGSAChallengeViewSet)
+router.register(r'event_organizer_challenge', challenge.EventOrganizerChallengeViewSet)
+router.register(r'story_challenge', challenge.StoryChallengeViewSet)
+router.register(r'project_challenge', challenge.ProjectChallengeViewSet)
+router.register(r'reacting_challenge', challenge.ReactingChallengeViewSet)
+router.register(r'support_challenge', challenge.SupportChallengeViewSet)
 
 # joined challenges
-router.register(r'article_joined_challenge', views.ArticleJoinedChallengeViewSet)
-router.register(r'event_participant_joined_challenge', views.EventParticipantJoinedChallengeViewSet)
-router.register(r'school_gsa_joined_challenge', views.SchoolGSAJoinedChallengeViewSet)
-router.register(r'event_organizer_joined_challenge', views.EventOrganizerJoinedChallengeViewSet)
-router.register(r'story_joined_challenge', views.StoryJoinedChallengeViewSet)
-router.register(r'project_joined_challenge', views.ProjectJoinedChallengeViewSet)
-router.register(r'reacting_joined_challenge', views.ReactingJoinedChallengeViewSet)
-router.register(r'support_joined_challenge', views.SupportJoinedChallengeViewSet)
+router.register(r'article_joined_challenge', joined_challenge.ArticleJoinedChallengeViewSet)
+router.register(r'event_participant_joined_challenge', joined_challenge.EventParticipantJoinedChallengeViewSet)
+router.register(r'school_gsa_joined_challenge', joined_challenge.SchoolGSAJoinedChallengeViewSet)
+router.register(r'event_organizer_joined_challenge', joined_challenge.EventOrganizerJoinedChallengeViewSet)
+router.register(r'story_joined_challenge', joined_challenge.StoryJoinedChallengeViewSet)
+router.register(r'project_joined_challenge', joined_challenge.ProjectJoinedChallengeViewSet)
+router.register(r'reacting_joined_challenge', joined_challenge.ReactingJoinedChallengeViewSet)
+router.register(r'support_joined_challenge', joined_challenge.SupportJoinedChallengeViewSet)
 
-router.register(r'region', views.RegionViewSet)
-router.register(r'prize', views.PrizeViewSet)
-router.register(r'claimed_prize', views.ClaimedPrizeViewSet)
+router.register(r'region', region.RegionViewSet)
+router.register(r'prize', prize.PrizeViewSet)
+router.register(r'claimed_prize', prize.ClaimedPrizeViewSet)
 # router.register(r'groups', views.GroupViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('region/<region_uuid>/challenge/', views.RegionChallengesAPIView.as_view(), name='region-user-list'),
-    path('region/<region_uuid>/user/', views.RegionUsersAPIView.as_view(), name='region-user-list'),
+    path('region/<region_uuid>/challenge/', RegionChallengesAPIView.as_view(), name='region-user-list'),
+    path('region/<region_uuid>/user/', RegionUsersAPIView.as_view(), name='region-user-list'),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
