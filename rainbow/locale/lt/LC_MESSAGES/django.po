@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-13 19:47+0300\n"
+"POT-Creation-Date: 2021-07-16 16:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: challenge/models/base.py:24
+#: challenge/models/base.py:24 challenge/models/quiz.py:13 quiz/models.py:33
 msgid "quiz"
 msgstr "testas"
 
@@ -57,57 +57,58 @@ msgstr "reagavimas į įvykius, visuomenės informavimas"
 msgid "support"
 msgstr "parama"
 
-#: challenge/models/base.py:74
+#: challenge/models/base.py:76
 msgid "type"
 msgstr "tipas"
 
-#: challenge/models/base.py:76 results/models/prize.py:14
+#: challenge/models/base.py:78 quiz/models.py:15 results/models/prize.py:14
 msgid "name"
 msgstr "pavadinimas"
 
-#: challenge/models/base.py:77 results/models/prize.py:16
+#: challenge/models/base.py:79 joined_challenge/models/custom.py:9
+#: quiz/models.py:18 results/models/prize.py:16
 msgid "description"
 msgstr "aprašymas"
 
-#: challenge/models/base.py:78
+#: challenge/models/base.py:80
 msgid "is published"
 msgstr "paskelbtas"
 
-#: challenge/models/base.py:79
+#: challenge/models/base.py:81
 msgid "points"
 msgstr "vaivorykštės"
 
-#: challenge/models/base.py:85 user/models.py:111
+#: challenge/models/base.py:87 user/models.py:111
 msgid "region"
 msgstr "regionas"
 
-#: challenge/models/base.py:90
+#: challenge/models/base.py:92
 msgid "start date"
 msgstr "pradžios data"
 
-#: challenge/models/base.py:95
+#: challenge/models/base.py:97
 #, fuzzy
 #| msgid "end_date"
 msgid "end date"
 msgstr "pabaigos data"
 
-#: challenge/models/base.py:98
+#: challenge/models/base.py:100
 msgid "can the participant join this challenge more than once"
 msgstr "ar dalyvis gali atlikti šią užduotį daugiau nei kartą"
 
-#: challenge/models/base.py:99
+#: challenge/models/base.py:101
 msgid "multiple"
 msgstr "daugkartinė"
 
-#: challenge/models/base.py:102
+#: challenge/models/base.py:104
 msgid "if completion of this challenge needs to be confirmed by admins"
 msgstr "ar šios užduoties atlikimas turi būti patvirtinamas administratorių"
 
-#: challenge/models/base.py:103
+#: challenge/models/base.py:105
 msgid "required confirmation by admin"
 msgstr "reikalingas administratorių patvirtinimas apie užduoties atlikimą"
 
-#: challenge/models/base.py:143
+#: challenge/models/base.py:145
 msgid "main challenge"
 msgstr "pagrindinė užduotis"
 
@@ -155,7 +156,8 @@ msgstr "atšaukta"
 msgid "confirmed"
 msgstr "patvirtinta"
 
-#: joined_challenge/models/base.py:33 results/models/prize.py:46
+#: joined_challenge/models/base.py:33 quiz/models.py:38
+#: results/models/prize.py:46
 msgid "user"
 msgstr "vartotojas"
 
@@ -193,7 +195,7 @@ msgid "description of the event in your own words"
 msgstr "savais žodžiais aprašykite renginį"
 
 #: joined_challenge/models/event_organizer.py:22
-msgid "if this event was organized by you alone"
+msgid "was this event was organized by you alone"
 msgstr "ar jūs organizavot šį renginį viena/s"
 
 #: joined_challenge/models/project.py:22
@@ -220,9 +222,25 @@ msgstr "kita organizacija"
 msgid "only if organization on challenge is Other"
 msgstr "tik, jeigu užduotyje organizacija nurodyta kaip Kita"
 
-#: joined_challenge/serializers/joined_challenge.py:41
+#: joined_challenge/serializers/joined_challenge.py:43
 msgid "Status can't be 'confirmed'"
 msgstr "statusas negali būti 'patvirtinta' (confirmed)"
+
+#: quiz/models.py:53 quiz/models.py:57 quiz/models.py:74
+msgid "question"
+msgstr "klausimas"
+
+#: quiz/models.py:69 quiz/models.py:91
+msgid "answer"
+msgstr "atsakymas"
+
+#: quiz/models.py:77
+msgid "correct answer"
+msgstr "teisingas atsakymas"
+
+#: quiz/models.py:96
+msgid "quiz-user connection"
+msgstr "testo-vartotojo ryšys"
 
 #: results/models/prize.py:20
 msgid "price"
@@ -279,7 +297,7 @@ msgstr ""
 
 #: user/models.py:86
 msgid "A user with that username already exists."
-msgstr "Šis vartotojo vardas užimtas"
+msgstr "Šis vartotojo vardas užimtas."
 
 #: user/models.py:90
 msgid "email address"
