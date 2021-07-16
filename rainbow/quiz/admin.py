@@ -19,7 +19,7 @@ class AnswerAdmin(admin.ModelAdmin):
     list_display = ('answer', 'question', 'correct')
 
 class UserAnswerAdmin(admin.ModelAdmin):
-    list_display = ('answer', 'correct', 'quiz_user')
+    list_display = ('answer', 'quiz_user')
 
     def has_change_permission(self, request, obj=None):
         return False
