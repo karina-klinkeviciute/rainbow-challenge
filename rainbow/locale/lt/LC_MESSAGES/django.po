@@ -313,7 +313,7 @@ msgstr "lytis"
 
 #: user/models.py:104
 msgid "enter gender if selected other"
-msgstr "įveskite, jei pasirinkote lytį 'kita'"
+msgstr "įveskite lytį, jei pasirinkote 'kita'"
 
 #: user/models.py:116
 msgid "is active"
