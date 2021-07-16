@@ -40,7 +40,7 @@ class QuizJoinedChallengeAdmin(admin.ModelAdmin):
 
 admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
 
-# joined challenge
+
 admin.site.register(ArticleJoinedChallenge, ArticleJoinedChallengeAdmin)
 admin.site.register(EventParticipantJoinedChallenge, EventParticipantJoinedChallengeAdmin)
 admin.site.register(SchoolGSAJoinedChallenge, SchoolGSAJoinedChallengeAdmin)

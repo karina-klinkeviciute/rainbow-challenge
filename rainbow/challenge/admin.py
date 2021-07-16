@@ -45,14 +45,9 @@ class CustomChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )
 
 
-
-
-
-
-
 admin.site.register(Challenge, ChallengeAdmin)
 
-# challenge
+
 admin.site.register(ArticleChallenge, ArticleChallengeAdmin)
 admin.site.register(EventParticipantChallenge, EventParticipantChallengeAdmin)
 admin.site.register(SchoolGSAChallenge, SchoolGSAChallengeAdmin)

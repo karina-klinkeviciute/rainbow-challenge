@@ -40,6 +40,7 @@ class QuizUser(models.Model):
 
     def evaluate_quiz(self):
         pass
+#         todo finish this
 
 
 class Question(models.Model):
@@ -64,13 +65,17 @@ class Answer(models.Model):
         editable=False,
         primary_key=True,
     )
+    answer = models.TextField(
+        verbose_name=_('answer')
+    )
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,
         verbose_name=_('question')
     )
     correct = models.BooleanField(
-        verbose_name=_('correct answer')
+        verbose_name=_('correct answer'),
+        default=False
     )
 
 
