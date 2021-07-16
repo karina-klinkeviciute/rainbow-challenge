@@ -10,7 +10,9 @@ from joined_challenge.models import (
     SchoolGSAJoinedChallenge,
     StoryJoinedChallenge,
     ProjectJoinedChallenge,
-    ReactingJoinedChallenge
+    ReactingJoinedChallenge,
+    CustomJoinedChallenge,
+    QuizJoinedChallenge,
 )
 from joined_challenge.models.base import JoinedChallengeStatus
 
@@ -108,4 +110,18 @@ class SupportJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
     class Meta:
         model = SupportJoinedChallenge
+        fields = '__all__'
+
+
+class CustomJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
+
+    class Meta:
+        model = CustomJoinedChallenge
+        fields = '__all__'
+
+
+class QuizJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
+
+    class Meta:
+        model = QuizJoinedChallenge
         fields = '__all__'

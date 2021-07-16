@@ -2,8 +2,10 @@ from rest_framework import serializers
 
 from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge
 from challenge.models.base import Challenge
+from challenge.models.custom import CustomChallenge
 from challenge.models.event_organizer import EventOrganizerChallenge
 from challenge.models.project import ProjectChallenge
+from challenge.models.quiz import QuizChallenge
 from challenge.models.reacting import ReactingChallenge
 from challenge.models.school_gsa import SchoolGSAChallenge
 from challenge.models.story import StoryChallenge
@@ -74,4 +76,18 @@ class SupportChallengeSerializer(BaseChallengeSerializer):
 
     class Meta:
         model = SupportChallenge
+        fields = '__all__'
+
+
+class QuizChallengeSerializer(BaseChallengeSerializer):
+
+    class Meta:
+        model = QuizChallenge
+        fields = '__all__'
+
+
+class CustomChallengeSerializer(BaseChallengeSerializer):
+
+    class Meta:
+        model = CustomChallenge
         fields = '__all__'

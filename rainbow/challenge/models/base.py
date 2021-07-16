@@ -44,6 +44,8 @@ class ChallengeType:
         PROJECT: 'ProjectChallenge',
         REACTING: 'ReactingChallenge',
         SUPPORT: 'SupportChallenge',
+        QUIZ: 'QuizChallenge',
+        CUSTOM: 'CustomChallenge',
     }
 
 

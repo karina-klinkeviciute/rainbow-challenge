@@ -2,13 +2,14 @@ from rest_framework import viewsets
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
-    ReactingJoinedChallenge, SupportJoinedChallenge
+    ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
 from joined_challenge.serializers.joined_challenge import (
     JoinedChallengeSerializer,
     ArticleJoinedChallengeSerializer,
     EventParticipantJoinedChallengeSerializer, SchoolGSAJoinedChallengeSerializer,
     EventOrganizerJoinedChallengeSerializer, StoryJoinedChallengeSerializer, ProjectJoinedChallengeSerializer,
-    ReactingJoinedChallengeSerializer, SupportJoinedChallengeSerializer)
+    ReactingJoinedChallengeSerializer, SupportJoinedChallengeSerializer, CustomJoinedChallengeSerializer,
+    QuizJoinedChallengeSerializer)
 
 
 class JoinedChallengeViewSet(viewsets.ModelViewSet):
@@ -81,3 +82,19 @@ class SupportJoinedChallengeViewSet(viewsets.ModelViewSet):
     """
     serializer_class = SupportJoinedChallengeSerializer
     queryset = SupportJoinedChallenge.objects.all()
+
+
+class CustomJoinedChallengeViewSet(viewsets.ModelViewSet):
+    """
+    A ViewSet for EventOrganizer challenges.
+    """
+    serializer_class = CustomJoinedChallengeSerializer
+    queryset = CustomJoinedChallenge.objects.all()
+
+
+class QuizJoinedChallengeViewSet(viewsets.ModelViewSet):
+    """
+    A ViewSet for EventOrganizer challenges.
+    """
+    serializer_class = QuizJoinedChallengeSerializer
+    queryset = QuizJoinedChallenge.objects.all()

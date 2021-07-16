@@ -7,3 +7,5 @@ from joined_challenge.models.reacting import ReactingJoinedChallenge
 from joined_challenge.models.school_gsa import SchoolGSAJoinedChallenge
 from joined_challenge.models.story import StoryJoinedChallenge
 from joined_challenge.models.support import SupportJoinedChallenge
+from joined_challenge.models.custom import CustomJoinedChallenge
+from joined_challenge.models.quiz import QuizJoinedChallenge

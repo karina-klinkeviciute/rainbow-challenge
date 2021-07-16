@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
-    ReactingJoinedChallenge, SupportJoinedChallenge
+    ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
 
 
 class JoinedChallengeAdmin(admin.ModelAdmin):
@@ -32,6 +32,12 @@ class ReactingJoinedChallengeAdmin(admin.ModelAdmin):
 class SupportJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', )
 
+class CustomJoinedChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_joined_challenge', )
+
+class QuizJoinedChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_joined_challenge', )
+
 admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
 
 # joined challenge
@@ -43,3 +49,5 @@ admin.site.register(StoryJoinedChallenge, StoryJoinedChallengeAdmin)
 admin.site.register(ProjectJoinedChallenge, ProjectJoinedChallengeAdmin)
 admin.site.register(ReactingJoinedChallenge, ReactingJoinedChallengeAdmin)
 admin.site.register(SupportJoinedChallenge, SupportJoinedChallengeAdmin)
+admin.site.register(CustomJoinedChallenge, CustomJoinedChallengeAdmin)
+admin.site.register(QuizJoinedChallenge, QuizJoinedChallengeAdmin)
