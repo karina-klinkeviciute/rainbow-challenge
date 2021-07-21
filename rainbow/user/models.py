@@ -151,6 +151,7 @@ class User(AbstractUser):
             joinedchallenge__user=self,
             joinedchallenge__status=JoinedChallengeStatus.COMPLETED)
 
+    @property
     def quiz_points(self):
         all_joined_challenges = self.joinedchallenge_set
         quiz_joined_challenges = all_joined_challenges.filter(
@@ -167,7 +168,7 @@ class User(AbstractUser):
         sum_field = sum_all.get('points__sum')
         if sum_field is None:
             sum_field = 0
-        return sum_field
+        return sum_field + self.quiz_points
 
     @property
     def remaining_points(self):
