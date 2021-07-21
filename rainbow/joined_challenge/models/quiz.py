@@ -7,7 +7,7 @@ from quiz.models import QuizUser
 
 class QuizJoinedChallenge(BaseJoinedChallenge):
 
-    quiz_user_object = models.OneToOneField(
+    quiz_user = models.OneToOneField(
         QuizUser,
         verbose_name=_('quiz user object'),
         on_delete=models.CASCADE
