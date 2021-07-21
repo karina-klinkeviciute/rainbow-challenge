@@ -8,6 +8,7 @@ class QuizAdmin(admin.ModelAdmin):
 
 class QuizUserAdmin(admin.ModelAdmin):
     list_display = ('quiz', 'user')
+    readonly_fields = ('correct_answers_count', )
 
     def has_change_permission(self, request, obj=None):
         return False
@@ -20,6 +21,7 @@ class AnswerAdmin(admin.ModelAdmin):
 
 class UserAnswerAdmin(admin.ModelAdmin):
     list_display = ('answer', 'quiz_user')
+    readonly_fields = ('is_correct', )
 
     def has_change_permission(self, request, obj=None):
         return False

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 16:13+0000\n"
+"POT-Creation-Date: 2021-07-17 13:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: challenge/models/base.py:24 challenge/models/quiz.py:13 quiz/models.py:33
+#: quiz/models.py:57
 msgid "quiz"
 msgstr "testas"
 
@@ -87,8 +88,6 @@ msgid "start date"
 msgstr "pradžios data"
 
 #: challenge/models/base.py:97
-#, fuzzy
-#| msgid "end_date"
 msgid "end date"
 msgstr "pabaigos data"
 
@@ -226,7 +225,7 @@ msgstr "tik, jeigu užduotyje organizacija nurodyta kaip Kita"
 msgid "Status can't be 'confirmed'"
 msgstr "statusas negali būti 'patvirtinta' (confirmed)"
 
-#: quiz/models.py:53 quiz/models.py:57 quiz/models.py:74
+#: quiz/models.py:53 quiz/models.py:74
 msgid "question"
 msgstr "klausimas"
 

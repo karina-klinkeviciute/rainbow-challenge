@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 
 from challenge.models import Challenge
+from challenge.models.base import ChallengeType
 from joined_challenge.models import JoinedChallenge
 from joined_challenge.models.base import JoinedChallengeStatus
 from results.models.region import Region
@@ -149,6 +150,16 @@ class User(AbstractUser):
         return Challenge.objects.filter(
             joinedchallenge__user=self,
             joinedchallenge__status=JoinedChallengeStatus.COMPLETED)
+
+    def quiz_points(self):
+        all_joined_challenges = self.joinedchallenge_set
+        quiz_joined_challenges = all_joined_challenges.filter(
+            challenge__type=ChallengeType.QUIZ
+        )
+        points = 0
+        for quiz_joined_challenge in quiz_joined_challenges:
+            points += quiz_joined_challenge.quizjoinedchallenge.quiz_user_object.correct_answers_count
+        return points
 
     @property
     def all_points(self):

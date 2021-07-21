@@ -20,6 +20,9 @@ class Quiz (models.Model):
         blank=True
     )
 
+    def __str__(self):
+        return self.name
+
 
 class QuizUser(models.Model):
     uuid = models.UUIDField(
@@ -38,9 +41,10 @@ class QuizUser(models.Model):
         verbose_name=_('user')
     )
 
-    def evaluate_quiz(self):
-        pass
-#         todo finish this
+    @property
+    def correct_answers_count(self):
+        return UserAnswer.objects.filter(answer__correct=True)
+
 
 
 class Question(models.Model):
@@ -54,9 +58,12 @@ class Question(models.Model):
     )
     quiz = models.ForeignKey(
         Quiz,
-        verbose_name=_('question'),
+        verbose_name=_('quiz'),
         on_delete=models.CASCADE
     )
+
+    def __str__(self):
+        return self.question
 
 
 class Answer(models.Model):
@@ -78,6 +85,9 @@ class Answer(models.Model):
         default=False
     )
 
+    def __str__(self):
+        return self.answer
+
 
 class UserAnswer(models.Model):
     uuid = models.UUIDField(
@@ -95,3 +105,7 @@ class UserAnswer(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("quiz-user connection")
     )
+
+    @property
+    def is_correct(self):
+        return self.answer.correct

@@ -7,7 +7,7 @@ from quiz.models import Quiz
 
 class QuizChallenge(BaseChallenge):
     """Article challenge"""
-    quiz = models.ForeignKey(
+    quiz = models.OneToOneField(
         Quiz,
         on_delete=models.DO_NOTHING,
         verbose_name=_('quiz')
