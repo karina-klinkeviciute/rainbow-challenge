@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.db.models import UniqueConstraint
 from django.utils.translation import gettext_lazy as _
 
 
@@ -41,10 +42,22 @@ class QuizUser(models.Model):
         verbose_name=_('user')
     )
 
+    UniqueConstraint(fields=['quiz', 'user'], name='unique_quiz_users')
+
     @property
     def correct_answers_count(self):
         return UserAnswer.objects.filter(answer__correct=True).count()
 
+    @property
+    def completed(self):
+        """If amount of answered questions is the same as all questions, it's completed"""
+        quiz_questions = self.quiz.question_set
+        quiz_answers = Answer.objects.filter(question__in=quiz_questions)
+        quiz_user_answers = self.useranswer_set
+        if quiz_answers.count() == quiz_user_answers.count():
+            return True
+        else:
+            return False
 
 
 class Question(models.Model):

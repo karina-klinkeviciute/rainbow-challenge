@@ -10,7 +10,8 @@ class QuizJoinedChallenge(BaseJoinedChallenge):
     quiz_user = models.OneToOneField(
         QuizUser,
         verbose_name=_('quiz user object'),
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True
     )
 
     @property

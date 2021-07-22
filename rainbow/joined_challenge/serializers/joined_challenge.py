@@ -15,6 +15,7 @@ from joined_challenge.models import (
     QuizJoinedChallenge,
 )
 from joined_challenge.models.base import JoinedChallengeStatus
+from quiz.models import QuizUser
 
 
 class JoinedChallengeSerializer(serializers.ModelSerializer):
@@ -121,3 +122,12 @@ class QuizJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
     class Meta:
         model = QuizJoinedChallenge
         fields = '__all__'
+
+    def create(self, validated_data):
+        this_challenge = super().create(validated_data)
+        user = this_challenge.user
+        quiz = this_challenge.main_joined_challenge.quiz_challenge.quiz
+        quiz_user = QuizUser(user=user, quiz=quiz)
+        quiz_user.save()
+        this_challenge.quiz_user = quiz_user
+        this_challenge.save()
