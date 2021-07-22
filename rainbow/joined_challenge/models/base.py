@@ -8,14 +8,12 @@ class JoinedChallengeStatus:
     """Class for challenge types. Used in choices for Challenge Type"""
     JOINED = 'joined'
     COMPLETED = 'completed'
-    PENDING = 'pending'  # waiting for confirmation
     CANCELLED = 'cancelled'
     CONFIRMED = 'confirmed'
 
     STATUS_CHOICES = (
         (JOINED, _('joined')),
         (COMPLETED, _('completed')),
-        (PENDING, _('pending')),  # waiting for confirmation
         (CANCELLED, _('cancelled')),
         (CONFIRMED, _('confirmed')),
     )
@@ -37,7 +35,7 @@ class JoinedChallenge(models.Model):
         'challenge.Challenge',
         verbose_name=_('challenge'),
         on_delete=models.SET_NULL,
-        null=True, blank=True)
+        null=True, blank=True, )
     status = models.CharField(
         verbose_name=_('status'),
         choices=JoinedChallengeStatus.STATUS_CHOICES,

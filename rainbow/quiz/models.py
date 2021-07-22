@@ -43,7 +43,7 @@ class QuizUser(models.Model):
 
     @property
     def correct_answers_count(self):
-        return UserAnswer.objects.filter(answer__correct=True)
+        return UserAnswer.objects.filter(answer__correct=True).count()
 
 
 

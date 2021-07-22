@@ -126,18 +126,18 @@ class User(AbstractUser):
         return self.email
 
     def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
+        """Does the user have a specific permission?"""
         # Simplest possible answer: Yes, always
         return True
 
     def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
+        """Does the user have permissions to view the app `app_label`?"""
         # Simplest possible answer: Yes, always
         return True
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
+        """Is the user a member of staff?"""
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
@@ -146,29 +146,41 @@ class User(AbstractUser):
         return JoinedChallenge.objects.filter(user=self, status=JoinedChallengeStatus.COMPLETED)
 
     @property
+    def confirmed_joined_challenges(self):
+        return JoinedChallenge.objects.filter(user=self, status=JoinedChallengeStatus.CONFIRMED)
+
+    @property
     def completed_challenges(self):
         return Challenge.objects.filter(
             joinedchallenge__user=self,
             joinedchallenge__status=JoinedChallengeStatus.COMPLETED)
 
     @property
+    def confirmed_challenges(self):
+        return Challenge.objects.filter(
+            joinedchallenge__user=self,
+            joinedchallenge__status=JoinedChallengeStatus.CONFIRMED)
+
+    @property
     def quiz_points(self):
         all_joined_challenges = self.joinedchallenge_set
         quiz_joined_challenges = all_joined_challenges.filter(
-            challenge__type=ChallengeType.QUIZ
+            challenge__type=ChallengeType.QUIZ,
+            status=JoinedChallengeStatus.CONFIRMED
         )
         points = 0
         for quiz_joined_challenge in quiz_joined_challenges:
-            points += quiz_joined_challenge.quizjoinedchallenge.quiz_user_object.correct_answers_count
+            points += quiz_joined_challenge.quizjoinedchallenge.quiz_user.correct_answers_count
         return points
 
     @property
     def all_points(self):
-        sum_all = self.completed_challenges.aggregate((Sum('points')))
+        sum_all = self.confirmed_challenges.aggregate((Sum('points')))
         sum_field = sum_all.get('points__sum')
         if sum_field is None:
             sum_field = 0
-        return sum_field + self.quiz_points
+        points = sum_field + self.quiz_points
+        return points
 
     @property
     def remaining_points(self):
