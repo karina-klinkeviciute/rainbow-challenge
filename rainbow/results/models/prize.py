@@ -19,6 +19,7 @@ class Prize(models.Model):
     )
     price = models.IntegerField(verbose_name=_('price'))
     amount = models.IntegerField(verbose_name=_('amount'))
+    available = models.BooleanField(verbose_name=_('available'), default=True)
 
     def __str__(self):
         return self.name

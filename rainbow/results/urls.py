@@ -9,4 +9,5 @@ router = routers.DefaultRouter()
 
 router.register(r'region', region.RegionViewSet)
 router.register(r'prize', prize.PrizeViewSet)
+router.register(r'available_prize', prize.PrizeViewSet)
 router.register(r'claimed_prize', prize.ClaimedPrizeViewSet)
