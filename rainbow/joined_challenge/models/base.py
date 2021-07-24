@@ -42,6 +42,10 @@ class JoinedChallenge(models.Model):
         max_length=255,
         default=JoinedChallengeStatus.JOINED
     )
+    completed_at = models.DateTimeField(
+        verbose_name=_('completed at'),
+        null=True, blank=True
+    )
 
     def __str__(self):
         return f'{self.user.email} - {self.challenge.name} / {self.challenge.type}'
