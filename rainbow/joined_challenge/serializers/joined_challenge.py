@@ -30,7 +30,17 @@ class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
     main_joined_challenge = JoinedChallengeSerializer()
 
     def create(self, validated_data):
+
         main_joined_challenge_data = validated_data.pop('main_joined_challenge')
+
+        # Check if this user can join this challenge.
+        # User can't join challenge if they have already done it and the challenge isn't 'multiple'
+        challenge = main_joined_challenge_data['challenge']
+        if challenge.multiple is False:
+            user = self.context['request'].user
+            if JoinedChallenge.objects.filter(challenge=challenge, user=user).exists():
+                raise serializers.ValidationError(_("This challenge can be joined only once."))
+
         this_challenge = self.Meta.model.objects.create(**validated_data)
         main_joined_challenge = JoinedChallenge.objects.create(**main_joined_challenge_data)
         this_challenge.main_joined_challenge = main_joined_challenge

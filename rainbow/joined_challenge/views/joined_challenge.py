@@ -20,6 +20,13 @@ class JoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = JoinedChallenge.objects.all()
 
 
+# class BaseJoinedChallengeViewSet(viewsets.ModelViewSet):
+#
+#     def create(self, request):
+#
+#
+
+
 class ArticleJoinedChallengeViewSet(viewsets.ModelViewSet):
     """
     A viewset for Article challenges.
