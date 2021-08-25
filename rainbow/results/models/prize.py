@@ -19,6 +19,7 @@ class Prize(models.Model):
     )
     price = models.IntegerField(verbose_name=_('price'))
     amount = models.IntegerField(verbose_name=_('amount'))
+    image = models.ImageField(verbose_name=_('image'), upload_to='prizes')
     available = models.BooleanField(verbose_name=_('available'), default=True)
 
     def __str__(self):
