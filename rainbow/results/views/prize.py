@@ -19,7 +19,7 @@ class AvailablePrizeViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """We only need those prizes that are """
         prizes = Prize.objects.filter(available=True)
-        prizes = (for prize in prizes if prize.amount_remaining > 0)
+        prizes = (prize for prize in prizes if prize.amount_remaining > 0)
         return prizes
 
 
