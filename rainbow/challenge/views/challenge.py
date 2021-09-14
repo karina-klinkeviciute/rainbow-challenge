@@ -1,129 +1,55 @@
-import datetime
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.generic import ListView, TemplateView, FormView
 
-from django.db.models import Q
-from rest_framework import viewsets
-
-from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge
-from challenge.models.base import Challenge
-from challenge.models.event_organizer import EventOrganizerChallenge
-from challenge.models.project import ProjectChallenge
-from challenge.models.reacting import ReactingChallenge
-from challenge.models.school_gsa import SchoolGSAChallenge
-from challenge.models.story import StoryChallenge
-from challenge.serializers.challenge import ChallengeSerializer, ArticleChallengeSerializer, \
-    EventParticipantChallengeSerializer, SchoolGSAChallengeSerializer, EventOrganizerChallengeSerializer, \
-    StoryChallengeSerializer, ProjectChallengeSerializer, ReactingChallengeSerializer, SupportChallengeSerializer, \
-    QuizChallengeSerializer
+from challenge.forms.article import ArticleChallengeForm
+from challenge.forms.event_participant import EventParticipantChallengeForm
+from challenge.models import ArticleChallenge
 
 
-class ChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A viewset for viewing and editing user instances.
-    """
-    serializer_class = ChallengeSerializer
-    queryset = Challenge.active.all()
+@method_decorator(staff_member_required, name='dispatch')
+class ArticleChallengeListView(ListView):
+    model = ArticleChallenge
+    template_name = 'challenge/challenge-list.html'
 
 
-query_challenge_visible = Q(
-    Q(main_challenge__published=True),
-    Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
-    Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True))
+class BaseChallengeView(TemplateView):
+    template_name = 'challenge/challenge.html'
 
-class ArticleChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A viewset for Article challenges.
-    """
-    serializer_class = ArticleChallengeSerializer
-    queryset = ArticleChallenge.objects.filter(
-        query_challenge_visible
-    )
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        uuid = kwargs.get('uuid')
+        if uuid is not None:
+            instance = self.challenge_model.objects.get(pk=uuid)
+            form = self.form(instance=instance.main_challenge)
+            context["view"].form = form
+        return self.render_to_response(context)
 
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        form = context["view"].form
+        uuid = kwargs.get('uuid')
+        if uuid is not None:
+            article_challenge = self.challenge_model.objects.get(pk=uuid)
+            challenge = article_challenge.main_challenge
+            form = form(request.POST, instance=challenge)
+        if form.is_valid():
+            instance = form.save()
+            instance.save()
+            context["view"].form = form
 
-class EventParticipantChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for EventParticipant challenges.
-    """
-    serializer_class = EventParticipantChallengeSerializer
-    queryset = EventParticipantChallenge.objects.filter(
-        query_challenge_visible
-    )
-
-
-class SchoolGSAChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for EventParticipant challenges.
-    """
-    serializer_class = SchoolGSAChallengeSerializer
-    queryset = SchoolGSAChallenge.objects.filter(
-        query_challenge_visible
-    )
+        return self.render_to_response(context)
 
 
-class EventOrganizerChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for EventParticipant challenges.
-    """
-    serializer_class = EventOrganizerChallengeSerializer
-    queryset = EventOrganizerChallenge.objects.filter(
-        query_challenge_visible
-    )
+@method_decorator(staff_member_required, name='dispatch')
+class ArticleChallengeView(BaseChallengeView):
+    form = ArticleChallengeForm
+    challenge_model = ArticleChallenge
 
 
-class StoryChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for EventParticipant challenges.
-    """
-    serializer_class = StoryChallengeSerializer
-    queryset = StoryChallenge.objects.filter(
-        query_challenge_visible
-    )
-
-
-class ProjectChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for EventParticipant challenges.
-    """
-    serializer_class = ProjectChallengeSerializer
-    queryset = ProjectChallenge.objects.filter(
-        query_challenge_visible
-    )
-
-
-class ReactingChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for EventParticipant challenges.
-    """
-    serializer_class = ReactingChallengeSerializer
-    queryset = ReactingChallenge.objects.filter(
-        query_challenge_visible
-    )
-
-
-class SupportChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for EventParticipant challenges.
-    """
-    serializer_class = SupportChallengeSerializer
-    queryset = SupportChallenge.objects.filter(
-        query_challenge_visible
-    )
-
-
-class QuizChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for Quiz challenges.
-    """
-    serializer_class = QuizChallengeSerializer
-    queryset = SupportChallenge.objects.filter(
-        query_challenge_visible
-    )
-
-
-class CustomChallengeViewSet(viewsets.ModelViewSet):
-    """
-    A ViewSet for EventParticipant challenges.
-    """
-    serializer_class = SupportChallengeSerializer
-    queryset = SupportChallenge.objects.filter(
-        query_challenge_visible
-    )
+@method_decorator(staff_member_required, name='dispatch')
+class EventParticipantChallengeView(View):
+    template_name = 'challenge/challenge.html'
+    form = EventParticipantChallengeForm

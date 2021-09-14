@@ -30,6 +30,9 @@ from django_otp.plugins.otp_totp.admin import TOTPDeviceAdmin
 class OTPAdmin(OTPAdminSite):
     pass
 
+class AdminSiteEditors(OTPAdminSite):
+    pass
+
 
 admin_site = OTPAdmin(name='OTPAdmin')
 # admin_site.register(User)
@@ -47,6 +50,7 @@ router.registry.extend(quiz_router.registry)
 urlpatterns = [
     path('/', include('django.contrib.flatpages.urls')),
     # path('admin/', admin_site.urls),
+    # path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
@@ -55,4 +59,5 @@ urlpatterns = [
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/', include(router.urls)),
+    path('challenge/', include('challenge.urls'))
 ]

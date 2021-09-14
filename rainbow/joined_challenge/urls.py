@@ -1,6 +1,5 @@
 # joined challenges
 from rest_framework import routers
-from django.urls import path, include
 
 from joined_challenge.views import joined_challenge
 
@@ -21,5 +20,6 @@ router.register(r'custom_joined_challenge', joined_challenge.CustomJoinedChallen
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+    # path('', include(router.urls)),
+
 ]

@@ -33,6 +33,7 @@ DEBUG = True
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
 INSTALLED_APPS = [
+    # 'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +50,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_otp',
     'django_otp.plugins.otp_totp',
+    'nested_inline',
+    'widget_tweaks',
     # project apps
     'user',
     'results',

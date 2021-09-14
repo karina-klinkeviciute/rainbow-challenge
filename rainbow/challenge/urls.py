@@ -17,30 +17,34 @@ from django.urls import path, include
 
 from rest_framework import routers
 
-from challenge.views import challenge
+from challenge.views import challenge_api
+from challenge.views.challenge import ArticleChallengeView, ArticleChallengeListView
 from results.views.region import RegionChallengesAPIView, RegionUsersAPIView
 
 router = routers.DefaultRouter()
 
 app_name = 'challenge'
 
-router.register(r'challenge', challenge.ChallengeViewSet)
-router.register(r'article_challenge', challenge.ArticleChallengeViewSet)
-router.register(r'event_participant_challenge', challenge.EventParticipantChallengeViewSet)
-router.register(r'school_gsa_challenge', challenge.SchoolGSAChallengeViewSet)
-router.register(r'event_organizer_challenge', challenge.EventOrganizerChallengeViewSet)
-router.register(r'story_challenge', challenge.StoryChallengeViewSet)
-router.register(r'project_challenge', challenge.ProjectChallengeViewSet)
-router.register(r'reacting_challenge', challenge.ReactingChallengeViewSet)
-router.register(r'support_challenge', challenge.SupportChallengeViewSet)
-router.register(r'quiz_challenge', challenge.QuizChallengeViewSet)
-router.register(r'custom_challenge', challenge.CustomChallengeViewSet)
+router.register(r'challenge', challenge_api.ChallengeViewSet)
+router.register(r'article_challenge', challenge_api.ArticleChallengeViewSet)
+router.register(r'event_participant_challenge', challenge_api.EventParticipantChallengeViewSet)
+router.register(r'school_gsa_challenge', challenge_api.SchoolGSAChallengeViewSet)
+router.register(r'event_organizer_challenge', challenge_api.EventOrganizerChallengeViewSet)
+router.register(r'story_challenge', challenge_api.StoryChallengeViewSet)
+router.register(r'project_challenge', challenge_api.ProjectChallengeViewSet)
+router.register(r'reacting_challenge', challenge_api.ReactingChallengeViewSet)
+router.register(r'support_challenge', challenge_api.SupportChallengeViewSet)
+router.register(r'quiz_challenge', challenge_api.QuizChallengeViewSet)
+router.register(r'custom_challenge', challenge_api.CustomChallengeViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('region/<region_uuid>/challenge/', RegionChallengesAPIView.as_view(), name='region-user-list'),
-    path('region/<region_uuid>/user/', RegionUsersAPIView.as_view(), name='region-user-list'),
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # path('region/<region_uuid>/challenge/', RegionChallengesAPIView.as_view(), name='region-user-list'),
+    # path('region/<region_uuid>/user/', RegionUsersAPIView.as_view(), name='region-user-list'),
+    # path('', include(router.urls)),
+    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('article-challenge/<uuid>/', ArticleChallengeView.as_view(), name='article-update'),
+    path('article-challenge/', ArticleChallengeView.as_view(), name='article-create'),
+    path('article-challenges/', ArticleChallengeListView.as_view(), name='articles')
 ]

@@ -1,10 +1,23 @@
 from django.contrib import admin
+from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
 from quiz.models import Quiz, QuizUser, Question, Answer, UserAnswer
 
 
-class QuizAdmin(admin.ModelAdmin):
+class AnswerInline(NestedStackedInline):
+    model = Answer
+    extra = 1
+    fk_name = 'question'
+
+class QuestionInline(NestedStackedInline):
+    model = Question
+    extra = 1
+    fk_name = 'quiz'
+    inlines = (AnswerInline, )
+
+class QuizAdmin(NestedModelAdmin):
     list_display = ('name', )
+    inlines = (QuestionInline, )
 
 class QuizUserAdmin(admin.ModelAdmin):
     list_display = ('quiz', 'user')
@@ -13,11 +26,14 @@ class QuizUserAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
-class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('question', 'quiz')
-
 class AnswerAdmin(admin.ModelAdmin):
     list_display = ('answer', 'question', 'correct')
+
+
+
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ('question', 'quiz')
+    inlines = (AnswerInline, )
 
 class UserAnswerAdmin(admin.ModelAdmin):
     list_display = ('answer', 'quiz_user')

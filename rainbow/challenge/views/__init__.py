@@ -1,1 +1,1 @@
-from .challenge import *
+from .challenge_api import *
