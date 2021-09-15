@@ -1,0 +1,310 @@
+{
+    "": {
+        "Content-Transfer-Encoding": "8bit",
+        "Content-Type": "text/plain; charset=UTF-8",
+        "Language": "",
+        "Language-Team": "LANGUAGE <LL@li.org>",
+        "Last-Translator": "FULL NAME <EMAIL@ADDRESS>",
+        "MIME-Version": "1.0",
+        "PO-Revision-Date": "YEAR-MO-DA HO:MI+ZONE",
+        "POT-Creation-Date": "2021-07-17 13:00+0000",
+        "Project-Id-Version": "PACKAGE VERSION",
+        "Report-Msgid-Bugs-To": ""
+    },
+    "A user with that username already exists.": [
+        null,
+        "Šis vartotojo vardas užimtas."
+    ],
+    "Other organization": [
+        null,
+        "kita organizacija"
+    ],
+    "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.": [
+        null,
+        "ne daugiau 150 ženklų. Tik raidės, skaičiai ir šie simboliai: @/./+/-/_"
+    ],
+    "Sorry, we don't have that much of this prize.": [
+        null,
+        "Atsiprašome, tiek šių prizų dabar neturime"
+    ],
+    "Sorry, you don't have enough rainbows for that.": [
+        null,
+        "Atsiprašome, neturi pakankamai vaivorykščių šiam prizui"
+    ],
+    "Status can't be 'confirmed'": [
+        null,
+        "statusas negali būti 'patvirtinta' (confirmed)"
+    ],
+    "amount": [
+        null,
+        "kiekis"
+    ],
+    "answer": [
+        null,
+        "atsakymas"
+    ],
+    "article": [
+        null,
+        "straipsnis"
+    ],
+    "can the participant join this challenge more than once": [
+        null,
+        "ar dalyvis gali atlikti šią užduotį daugiau nei kartą"
+    ],
+    "cancelled": [
+        null,
+        "atšaukta"
+    ],
+    "challenge": [
+        null,
+        "užduotis"
+    ],
+    "completed": [
+        null,
+        "atlikta"
+    ],
+    "concrete joined challenge for: ": [
+        null,
+        "pagrindinė pradėta užduotis"
+    ],
+    "confirmed": [
+        null,
+        "patvirtinta"
+    ],
+    "correct answer": [
+        null,
+        "teisingas atsakymas"
+    ],
+    "custom": [
+        null,
+        "nuosava"
+    ],
+    "date": [
+        null,
+        "data"
+    ],
+    "description": [
+        null,
+        "aprašymas"
+    ],
+    "description of the event in your own words": [
+        null,
+        "savais žodžiais aprašykite renginį"
+    ],
+    "description of the reaction in your own words": [
+        null,
+        "savais žodžiais aprašykite reagavimą į įvykį ar visuomenės informavimą"
+    ],
+    "description of your story": [
+        null,
+        "jūsų istorijos aprašymas"
+    ],
+    "email address": [
+        null,
+        "el. pašto adresas"
+    ],
+    "end date": [
+        null,
+        "pabaigos data"
+    ],
+    "enter gender if selected other": [
+        null,
+        "įveskite lytį, jei pasirinkote 'kita'"
+    ],
+    "event": [
+        null,
+        "renginys"
+    ],
+    "event name": [
+        null,
+        "renginio pavadinimas"
+    ],
+    "event organizer": [
+        null,
+        "renginio organizavimas"
+    ],
+    "gender": [
+        null,
+        "lytis"
+    ],
+    "if completion of this challenge needs to be confirmed by admins": [
+        null,
+        "ar šios užduoties atlikimas turi būti patvirtinamas administratorių"
+    ],
+    "if this project was implemented by you alone": [
+        null,
+        "ar šį projektą jūs įgyvendinot viena/s"
+    ],
+    "is active": [
+        null,
+        "aktyvus"
+    ],
+    "is admin": [
+        null,
+        "administratorius"
+    ],
+    "is published": [
+        null,
+        "paskelbtas"
+    ],
+    "issued": [
+        null,
+        "išduotas"
+    ],
+    "joined": [
+        null,
+        "pradėta"
+    ],
+    "link to the article": [
+        null,
+        "nuoroda į straipsnį"
+    ],
+    "link to the event": [
+        null,
+        "nuoroda į renginį"
+    ],
+    "link to the event website or Facebook page if there is one": [
+        null,
+        "nuoroda į renginio tinklalapį ar Facebook puslapį, jei toks yra"
+    ],
+    "link to the story if it has one": [
+        null,
+        "nuoroda į istoriją, jei tokia yra"
+    ],
+    "main challenge": [
+        null,
+        "pagrindinė užduotis"
+    ],
+    "main joined challenge": [
+        null,
+        "pagrindinė pradėta užduotis"
+    ],
+    "man": [
+        null,
+        "vyras"
+    ],
+    "multiple": [
+        null,
+        "daugkartinė"
+    ],
+    "name": [
+        null,
+        "pavadinimas"
+    ],
+    "name of the article": [
+        null,
+        "straipsnio pavadinimas"
+    ],
+    "name of the event": [
+        null,
+        "renginio pavadinimas"
+    ],
+    "non-binary": [
+        null,
+        "nebinarinė"
+    ],
+    "only if organization on challenge is Other": [
+        null,
+        "tik, jeigu užduotyje organizacija nurodyta kaip Kita"
+    ],
+    "organization": [
+        null,
+        "organizacija"
+    ],
+    "other": [
+        null,
+        "kita"
+    ],
+    "pending": [
+        null,
+        "laukiama patvirtinimo"
+    ],
+    "points": [
+        null,
+        "vaivorykštės"
+    ],
+    "prefer not to say": [
+        null,
+        "nenoriu nurodyti"
+    ],
+    "price": [
+        null,
+        "kaina"
+    ],
+    "prize": [
+        null,
+        "prizas"
+    ],
+    "project": [
+        null,
+        "projektas"
+    ],
+    "question": [
+        null,
+        "klausimas"
+    ],
+    "quiz": [
+        null,
+        "testas"
+    ],
+    "quiz-user connection": [
+        null,
+        "testo-vartotojo ryšys"
+    ],
+    "reacting to public events, informing society": [
+        null,
+        "reagavimas į įvykius, visuomenės informavimas"
+    ],
+    "region": [
+        null,
+        "regionas"
+    ],
+    "required confirmation by admin": [
+        null,
+        "reikalingas administratorių patvirtinimas apie užduoties atlikimą"
+    ],
+    "school GSA": [
+        null,
+        "mokyklų GSA"
+    ],
+    "start date": [
+        null,
+        "pradžios data"
+    ],
+    "status": [
+        null,
+        "būsena"
+    ],
+    "story": [
+        null,
+        "istorija"
+    ],
+    "support": [
+        null,
+        "parama"
+    ],
+    "type": [
+        null,
+        "tipas"
+    ],
+    "user": [
+        null,
+        "vartotojas"
+    ],
+    "username": [
+        null,
+        "vartotojo vardas"
+    ],
+    "was this event was organized by you alone": [
+        null,
+        "ar jūs organizavot šį renginį viena/s"
+    ],
+    "woman": [
+        null,
+        "moteris"
+    ],
+    "year of birth": [
+        null,
+        "gimimo metai"
+    ]
+}
