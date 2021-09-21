@@ -77,6 +77,7 @@ class Challenge(models.Model):
     )
     name = models.CharField(max_length=255, verbose_name=_("name"))
     description = models.TextField(verbose_name=_("description"))
+    image = models.ImageField(verbose_name=_("image"), upload_to="challenge", blank=True, null=True)
     published = models.BooleanField(verbose_name=_('is published'), default=False)
     points = models.IntegerField(verbose_name=_("points"))
     region = models.ForeignKey(

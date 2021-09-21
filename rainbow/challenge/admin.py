@@ -11,7 +11,7 @@ from challenge.models.story import StoryChallenge
 
 
 class ChallengeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
+    list_display = ('name', 'description', 'image', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
     list_filter = ('type', 'region', 'published', )
 
 class ArticleChallengeAdmin(admin.ModelAdmin):

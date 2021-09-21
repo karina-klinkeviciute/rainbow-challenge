@@ -12,4 +12,3 @@ qrcode[pil]
 django_otp
 gunicorn
 django_widget_tweaks
-pojson
