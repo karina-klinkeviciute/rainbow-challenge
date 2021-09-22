@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-17 13:00+0000\n"
+"POT-Creation-Date: 2021-09-22 15:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: challenge/models/base.py:24 challenge/models/quiz.py:13 quiz/models.py:33
-#: quiz/models.py:57
+#: challenge/models/base.py:24 challenge/models/quiz.py:13 quiz/models.py:37
+#: quiz/models.py:74
 msgid "quiz"
 msgstr "testas"
 
@@ -62,52 +62,56 @@ msgstr "parama"
 msgid "type"
 msgstr "tipas"
 
-#: challenge/models/base.py:78 quiz/models.py:15 results/models/prize.py:14
+#: challenge/models/base.py:78 quiz/models.py:16 results/models/prize.py:14
 msgid "name"
 msgstr "pavadinimas"
 
 #: challenge/models/base.py:79 joined_challenge/models/custom.py:9
-#: quiz/models.py:18 results/models/prize.py:16
+#: quiz/models.py:19 results/models/prize.py:16
 msgid "description"
 msgstr "aprašymas"
 
-#: challenge/models/base.py:80
+#: challenge/models/base.py:80 results/models/prize.py:22
+msgid "image"
+msgstr "paveikslėlis"
+
+#: challenge/models/base.py:81
 msgid "is published"
 msgstr "paskelbtas"
 
-#: challenge/models/base.py:81
+#: challenge/models/base.py:82
 msgid "points"
 msgstr "vaivorykštės"
 
-#: challenge/models/base.py:87 user/models.py:111
+#: challenge/models/base.py:88 user/models.py:125
 msgid "region"
 msgstr "regionas"
 
-#: challenge/models/base.py:92
+#: challenge/models/base.py:93
 msgid "start date"
 msgstr "pradžios data"
 
-#: challenge/models/base.py:97
+#: challenge/models/base.py:98
 msgid "end date"
 msgstr "pabaigos data"
 
-#: challenge/models/base.py:100
+#: challenge/models/base.py:101
 msgid "can the participant join this challenge more than once"
 msgstr "ar dalyvis gali atlikti šią užduotį daugiau nei kartą"
 
-#: challenge/models/base.py:101
+#: challenge/models/base.py:102
 msgid "multiple"
 msgstr "daugkartinė"
 
-#: challenge/models/base.py:104
+#: challenge/models/base.py:105
 msgid "if completion of this challenge needs to be confirmed by admins"
 msgstr "ar šios užduoties atlikimas turi būti patvirtinamas administratorių"
 
-#: challenge/models/base.py:105
+#: challenge/models/base.py:106
 msgid "required confirmation by admin"
 msgstr "reikalingas administratorių patvirtinimas apie užduoties atlikimą"
 
-#: challenge/models/base.py:145
+#: challenge/models/base.py:146
 msgid "main challenge"
 msgstr "pagrindinė užduotis"
 
@@ -135,44 +139,46 @@ msgstr "straipsnio pavadinimas"
 msgid "link to the article"
 msgstr "nuoroda į straipsnį"
 
-#: joined_challenge/models/base.py:16
+#: joined_challenge/models/base.py:15
 msgid "joined"
 msgstr "pradėta"
 
-#: joined_challenge/models/base.py:17
+#: joined_challenge/models/base.py:16
 msgid "completed"
 msgstr "atlikta"
 
-#: joined_challenge/models/base.py:18
-msgid "pending"
-msgstr "laukiama patvirtinimo"
-
-#: joined_challenge/models/base.py:19
+#: joined_challenge/models/base.py:17
 msgid "cancelled"
 msgstr "atšaukta"
 
-#: joined_challenge/models/base.py:20
+#: joined_challenge/models/base.py:18
 msgid "confirmed"
 msgstr "patvirtinta"
 
-#: joined_challenge/models/base.py:33 quiz/models.py:38
-#: results/models/prize.py:46
+#: joined_challenge/models/base.py:31 quiz/models.py:42
+#: results/models/prize.py:48
 msgid "user"
 msgstr "vartotojas"
 
-#: joined_challenge/models/base.py:38
+#: joined_challenge/models/base.py:36
 msgid "challenge"
 msgstr "užduotis"
 
-#: joined_challenge/models/base.py:42
+#: joined_challenge/models/base.py:40
 msgid "status"
 msgstr "būsena"
 
-#: joined_challenge/models/base.py:59
+#: joined_challenge/models/base.py:46
+#, fuzzy
+#| msgid "completed"
+msgid "completed at"
+msgstr "atlikimo laikas"
+
+#: joined_challenge/models/base.py:61
 msgid "main joined challenge"
 msgstr "pagrindinė pradėta užduotis"
 
-#: joined_challenge/models/base.py:68
+#: joined_challenge/models/base.py:70
 #, fuzzy
 #| msgid "main joined challenge"
 msgid "concrete joined challenge for: "
@@ -201,6 +207,12 @@ msgstr "ar jūs organizavot šį renginį viena/s"
 msgid "if this project was implemented by you alone"
 msgstr "ar šį projektą jūs įgyvendinot viena/s"
 
+#: joined_challenge/models/quiz.py:12
+#, fuzzy
+#| msgid "quiz-user connection"
+msgid "quiz user object"
+msgstr "testo-vartotojo ryšys"
+
 #: joined_challenge/models/reacting.py:9
 msgid "description of the reaction in your own words"
 msgstr "savais žodžiais aprašykite reagavimą į įvykį ar visuomenės informavimą"
@@ -221,23 +233,27 @@ msgstr "kita organizacija"
 msgid "only if organization on challenge is Other"
 msgstr "tik, jeigu užduotyje organizacija nurodyta kaip Kita"
 
-#: joined_challenge/serializers/joined_challenge.py:43
+#: joined_challenge/serializers/joined_challenge.py:42
+msgid "This challenge can be joined only once."
+msgstr "Šią užduotį galite atlikti tik vieną kartą"
+
+#: joined_challenge/serializers/joined_challenge.py:56
 msgid "Status can't be 'confirmed'"
 msgstr "statusas negali būti 'patvirtinta' (confirmed)"
 
-#: quiz/models.py:53 quiz/models.py:74
+#: quiz/models.py:70 quiz/models.py:94
 msgid "question"
 msgstr "klausimas"
 
-#: quiz/models.py:69 quiz/models.py:91
+#: quiz/models.py:89 quiz/models.py:114
 msgid "answer"
 msgstr "atsakymas"
 
-#: quiz/models.py:77
+#: quiz/models.py:97
 msgid "correct answer"
 msgstr "teisingas atsakymas"
 
-#: quiz/models.py:96
+#: quiz/models.py:119
 msgid "quiz-user connection"
 msgstr "testo-vartotojo ryšys"
 
@@ -245,15 +261,19 @@ msgstr "testo-vartotojo ryšys"
 msgid "price"
 msgstr "kaina"
 
-#: results/models/prize.py:21 results/models/prize.py:56
+#: results/models/prize.py:21 results/models/prize.py:58
 msgid "amount"
 msgstr "kiekis"
 
-#: results/models/prize.py:53
+#: results/models/prize.py:23
+msgid "available"
+msgstr "turime"
+
+#: results/models/prize.py:55
 msgid "prize"
 msgstr "prizas"
 
-#: results/models/prize.py:57
+#: results/models/prize.py:59
 msgid "issued"
 msgstr "išduotas"
 
@@ -265,59 +285,71 @@ msgstr "Atsiprašome, tiek šių prizų dabar neturime"
 msgid "Sorry, you don't have enough rainbows for that."
 msgstr "Atsiprašome, neturi pakankamai vaivorykščių šiam prizui"
 
-#: user/models.py:59
+#: user/models.py:60
 msgid "woman"
 msgstr "moteris"
 
-#: user/models.py:60
+#: user/models.py:61
 msgid "man"
 msgstr "vyras"
 
-#: user/models.py:61
+#: user/models.py:62
 msgid "non-binary"
 msgstr "nebinarinė"
 
-#: user/models.py:62
+#: user/models.py:63
 msgid "other"
 msgstr "kita"
 
-#: user/models.py:63
+#: user/models.py:64 user/models.py:77
 msgid "prefer not to say"
 msgstr "nenoriu nurodyti"
 
-#: user/models.py:80
+#: user/models.py:75
+msgid "yes"
+msgstr "taip"
+
+#: user/models.py:76
+msgid "no"
+msgstr "ne"
+
+#: user/models.py:94
 msgid "username"
 msgstr "vartotojo vardas"
 
-#: user/models.py:83
+#: user/models.py:97
 msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
 "ne daugiau 150 ženklų. Tik raidės, skaičiai ir šie simboliai: @/./+/-/_"
 
-#: user/models.py:86
+#: user/models.py:100
 msgid "A user with that username already exists."
 msgstr "Šis vartotojo vardas užimtas."
 
-#: user/models.py:90
+#: user/models.py:104
 msgid "email address"
 msgstr "el. pašto adresas"
 
-#: user/models.py:92
+#: user/models.py:106
 msgid "year of birth"
 msgstr "gimimo metai"
 
-#: user/models.py:97
+#: user/models.py:111
 msgid "gender"
 msgstr "lytis"
 
-#: user/models.py:104
+#: user/models.py:118
 msgid "enter gender if selected other"
 msgstr "įveskite lytį, jei pasirinkote 'kita'"
 
-#: user/models.py:116
+#: user/models.py:132
+msgid "Do you consider yourself LGBTQIA+?"
+msgstr "Ar priskiriate save LGBTQIA+?"
+
+#: user/models.py:137
 msgid "is active"
 msgstr "aktyvus"
 
-#: user/models.py:117
+#: user/models.py:138
 msgid "is admin"
 msgstr "administratorius"

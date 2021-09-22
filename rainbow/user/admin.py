@@ -53,6 +53,7 @@ class UserChangeForm(forms.ModelForm):
             'gender',
             'gender_other',
             'region',
+            'is_lgbtqia',
             'username'
         )
 
@@ -75,7 +76,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_admin', 'region', )
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('region', 'gender', 'gender_other', 'year_of_birth')}),
+        ('Personal info', {'fields': ('region', 'gender', 'gender_other', 'year_of_birth', 'is_lgbtqia')}),
         ('Permissions', {'fields': ('is_admin',)}),
         ('Stats', {'fields': ('all_points', 'quiz_points')})
     )

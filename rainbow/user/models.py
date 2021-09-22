@@ -49,7 +49,7 @@ class UserManager(BaseUserManager):
 
 
 class GenderOptions:
-    """Class for challenge types. Used in choices for Challenge Type"""
+    """Class for question options"""
     WOMAN = 'woman'
     MAN = 'man'
     NONBINARY = 'non-binary'
@@ -64,11 +64,24 @@ class GenderOptions:
         (PREFERNOT, _('prefer not to say')),
     )
 
+
+class IsLGBTQIAOptions:
+    """Class for question options types"""
+    YES = 'yes'
+    NO = 'no'
+    PREFERNOT = 'prefer_not_to_say'
+
+    IsLGBTQIA_CHOICES = (
+        (YES, _('yes')),  # temporary until translation is ready
+        (NO, _('no')),
+        (PREFERNOT, _('prefer not to say')),
+    )
+
     def __init__(self):
-        genders = dict()
-        for gender in self.GENDER_CHOICES:
-            genders[gender[0]] = gender[1]
-        self.genders = genders
+        options = dict()
+        for option in self.IsLGBTQIA_CHOICES:
+            options[option[0]] = option[1]
+        self.options = options
 
 
 class User(AbstractUser):
@@ -113,6 +126,13 @@ class User(AbstractUser):
         on_delete=models.SET_NULL,
         null=True,
         blank=True
+    )
+    is_lgbtqia = models.CharField(
+        choices=IsLGBTQIAOptions.IsLGBTQIA_CHOICES,
+        verbose_name=_('Do you consider yourself LGBTQIA+?'),
+        null=True,
+        blank=True,
+        max_length=255
     )
     is_active = models.BooleanField(_('is active'), default=True)
     is_admin = models.BooleanField(_('is admin'), default=False)

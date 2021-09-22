@@ -19,6 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
             'gender_other',
             'username',
             'region',
+            'is_lgbtqia',
             # 'completed_joined_challenges',
             'all_points',
             'remaining_points',
