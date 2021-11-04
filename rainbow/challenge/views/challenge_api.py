@@ -21,7 +21,7 @@ class ChallengeViewSet(
         mixins.ListModelMixin,
         viewsets.GenericViewSet):
     """
-    A viewset for viewing and editing user instances.
+    A viewset for viewing Challenge instances.
     """
     http_method_names = ('get', )
     serializer_class = ChallengeSerializer
