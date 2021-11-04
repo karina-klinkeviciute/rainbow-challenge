@@ -16,7 +16,19 @@ class ChallengeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Challenge
-        fields = '__all__'
+        fields = ('uuid',
+                  'type',
+                  'name',
+                  'description',
+                  'image',
+                  'points',
+                  'region',
+                  'start_date',
+                  'end_date',
+                  'multiple',
+                  'needs_confirmation',
+                  'concrete_challenge_uuid',
+                  )
 
 
 class BaseChallengeSerializer(serializers.ModelSerializer):

@@ -28,11 +28,11 @@ msgstr "straipsnis"
 
 #: challenge/models/base.py:26
 msgid "event"
-msgstr "renginys"
+msgstr "dalyvavimas renginyje"
 
 #: challenge/models/base.py:27
 msgid "custom"
-msgstr "nuosava"
+msgstr "įvairios"
 
 #: challenge/models/base.py:28
 msgid "school GSA"
@@ -182,7 +182,7 @@ msgstr "pagrindinė pradėta užduotis"
 #, fuzzy
 #| msgid "main joined challenge"
 msgid "concrete joined challenge for: "
-msgstr "pagrindinė pradėta užduotis"
+msgstr "konkreti pradėta užduotis pagrindinei užduočiai:"
 
 #: joined_challenge/models/event_organizer.py:9
 #: joined_challenge/models/project.py:9
@@ -197,15 +197,15 @@ msgstr "nuoroda į renginio tinklalapį ar Facebook puslapį, jei toks yra"
 #: joined_challenge/models/event_organizer.py:19
 #: joined_challenge/models/project.py:19
 msgid "description of the event in your own words"
-msgstr "savais žodžiais aprašykite renginį"
+msgstr "savais žodžiais aprašyk renginį"
 
 #: joined_challenge/models/event_organizer.py:22
 msgid "was this event was organized by you alone"
-msgstr "ar jūs organizavot šį renginį viena/s"
+msgstr "ar organizavai šį renginį viena/s"
 
 #: joined_challenge/models/project.py:22
 msgid "if this project was implemented by you alone"
-msgstr "ar šį projektą jūs įgyvendinot viena/s"
+msgstr "ar šį projektą įgyvendinai viena/s"
 
 #: joined_challenge/models/quiz.py:12
 #, fuzzy
@@ -215,7 +215,7 @@ msgstr "testo-vartotojo ryšys"
 
 #: joined_challenge/models/reacting.py:9
 msgid "description of the reaction in your own words"
-msgstr "savais žodžiais aprašykite reagavimą į įvykį ar visuomenės informavimą"
+msgstr "savais žodžiais aprašyk reagavimą į įvykį ar visuomenės informavimą"
 
 #: joined_challenge/models/story.py:10
 msgid "link to the story if it has one"
@@ -223,7 +223,7 @@ msgstr "nuoroda į istoriją, jei tokia yra"
 
 #: joined_challenge/models/story.py:15
 msgid "description of your story"
-msgstr "jūsų istorijos aprašymas"
+msgstr "tavo istorijos aprašymas"
 
 #: joined_challenge/models/support.py:9
 msgid "Other organization"
@@ -235,7 +235,7 @@ msgstr "tik, jeigu užduotyje organizacija nurodyta kaip Kita"
 
 #: joined_challenge/serializers/joined_challenge.py:42
 msgid "This challenge can be joined only once."
-msgstr "Šią užduotį galite atlikti tik vieną kartą"
+msgstr "Šią užduotį gali atlikti tik vieną kartą"
 
 #: joined_challenge/serializers/joined_challenge.py:56
 msgid "Status can't be 'confirmed'"
@@ -340,11 +340,11 @@ msgstr "lytis"
 
 #: user/models.py:118
 msgid "enter gender if selected other"
-msgstr "įveskite lytį, jei pasirinkote 'kita'"
+msgstr "įvesk lytį, jei pasirinkai 'kita'"
 
 #: user/models.py:132
 msgid "Do you consider yourself LGBTQIA+?"
-msgstr "Ar priskiriate save LGBTQIA+?"
+msgstr "Ar priskiri save LGBTQIA+?"
 
 #: user/models.py:137
 msgid "is active"

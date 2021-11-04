@@ -1,7 +1,7 @@
 import datetime
 
 from django.db.models import Q
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 
 from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge
 from challenge.models.base import Challenge
@@ -16,10 +16,14 @@ from challenge.serializers.challenge import ChallengeSerializer, ArticleChalleng
     QuizChallengeSerializer
 
 
-class ChallengeViewSet(viewsets.ModelViewSet):
+class ChallengeViewSet(
+        mixins.RetrieveModelMixin,
+        mixins.ListModelMixin,
+        viewsets.GenericViewSet):
     """
     A viewset for viewing and editing user instances.
     """
+    http_method_names = ('get', )
     serializer_class = ChallengeSerializer
     queryset = Challenge.active.all()
 
