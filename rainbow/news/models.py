@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 
@@ -8,3 +9,8 @@ class NewsItem(models.Model):
     image = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(default=False)
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False,
+        primary_key=True,
+    )
