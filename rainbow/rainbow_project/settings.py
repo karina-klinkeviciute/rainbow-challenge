@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'quiz',
     'challenge',
     'joined_challenge',
+    'news',
 
 
 ]
