@@ -7,7 +7,7 @@ from news.models import NewsItem
 from news.serializers import NewsItemSerializer
 
 
-class NewsItemViewSet(
+class NewsViewSet(
         mixins.RetrieveModelMixin,
         mixins.ListModelMixin,
         viewsets.GenericViewSet):
