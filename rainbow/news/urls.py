@@ -5,9 +5,9 @@ from news.views import NewsViewSet
 
 router = routers.DefaultRouter()
 
-app_name = 'quiz'
+app_name = 'news'
 
-router.register(r'quiz', NewsViewSet)
+router.register(r'news', NewsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
