@@ -9,10 +9,12 @@ from challenge.models.quiz import QuizChallenge
 from challenge.models.reacting import ReactingChallenge
 from challenge.models.school_gsa import SchoolGSAChallenge
 from challenge.models.story import StoryChallenge
+from joined_challenge.models import JoinedChallenge
 
 
 class ChallengeSerializer(serializers.ModelSerializer):
     concrete_challenge_uuid = serializers.UUIDField()
+    can_be_joined = serializers.SerializerMethodField()
 
     class Meta:
         model = Challenge
@@ -28,7 +30,21 @@ class ChallengeSerializer(serializers.ModelSerializer):
                   'multiple',
                   'needs_confirmation',
                   'concrete_challenge_uuid',
+                  'can_be_joined'
                   )
+
+    def get_can_be_joined(self, obj):
+        """
+        Checks if the current user can join this challenge
+        Users can't join challenges which are not multiple and they have already joined it.
+        """
+        if obj.multiple is False:
+            user = self.context["request"].user
+            joined_challenge = JoinedChallenge.objects.filter(challenge=obj, user=user)
+            if len(joined_challenge) > 0:
+                return False
+            return True
+        return True
 
 
 class BaseChallengeSerializer(serializers.ModelSerializer):
