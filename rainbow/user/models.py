@@ -57,12 +57,13 @@ class GenderOptions:
     PREFERNOT = 'prefer_not_to_say'
 
     GENDER_CHOICES = (
-        (WOMAN, _('woman')),  # temporary until translation is ready
+        (WOMAN, _('woman')),
         (MAN, _('man')),
         (NONBINARY, _('non-binary')),
         (OTHER, _('other')),
         (PREFERNOT, _('prefer not to say')),
     )
+    genders = {gender[0]: gender[1] for gender in GENDER_CHOICES}
 
 
 class IsLGBTQIAOptions:

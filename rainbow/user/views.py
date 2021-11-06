@@ -11,6 +11,7 @@ from user.serializers import GenderSerializer
 
 
 class GenderListView(views.APIView):
+    http_method_names = ('get', )
     permission_classes = [IsAuthenticatedOrReadOnly, ]
 
     def get(self, request, format=None):
