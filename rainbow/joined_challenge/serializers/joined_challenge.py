@@ -3,6 +3,7 @@ import datetime
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
+from challenge.models import EventParticipantChallenge
 from joined_challenge.models import (
     EventOrganizerJoinedChallenge,
     SupportJoinedChallenge,
@@ -23,7 +24,7 @@ from quiz.models import QuizUser
 class JoinedChallengeSerializer(serializers.ModelSerializer):
     class Meta:
         model = JoinedChallenge
-        fields = '__all__'
+        fields = ('uuid', 'status', 'challenge')
 
 
 class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
@@ -79,6 +80,13 @@ class EventParticipantJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
     class Meta:
         model = EventParticipantJoinedChallenge
         fields = '__all__'
+
+    def validate_qr_code(self, value):
+        challenge_uuid = self.initial_data["main_joined_challenge"]["challenge"]
+        event_challenge = EventParticipantChallenge.objects.get(main_challenge__uuid=challenge_uuid)
+        challenge_qr_code = event_challenge.qr_code
+        if value != challenge_qr_code:
+            raise serializers.ValidationError(_("QR code is invalid."))
 
 
 class SchoolGSAJoinedChallengeSerializer(BaseJoinedChallengeSerializer):

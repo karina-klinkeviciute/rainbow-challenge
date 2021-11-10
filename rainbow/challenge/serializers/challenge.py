@@ -62,7 +62,7 @@ class EventParticipantChallengeSerializer(BaseChallengeSerializer):
 
     class Meta:
         model = EventParticipantChallenge
-        fields = '__all__'
+        fields = ('uuid', 'main_challenge', 'event_name', 'date', 'url')
 
 
 class SchoolGSAChallengeSerializer(BaseChallengeSerializer):
