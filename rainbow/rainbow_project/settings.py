@@ -201,4 +201,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'test@lygiai.org'
 EMAIL_HOST_PASSWORD = 'bandymasbANdymas'
 EMAIL_USE_TLS = True
-
