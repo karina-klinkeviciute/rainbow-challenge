@@ -14,6 +14,10 @@ Rainbow challenge is a project meant to help young LGBTQIA+ activists to get inv
 
 This app helps people, especially youth to get involved in the LGBTQIA+ activism and support in a captivating and rewarding way.
 
+### Rainbow challenge app code
+
+The backend of the code is written in Python and Django and is in this repository. The frontend is written in Dart and Flutter and is in a repository here: [https://github.com/karina-klinkeviciute/rainbow-challenge-front](https://github.com/karina-klinkeviciute/rainbow-challenge-front) 
+
 #### How Rainbow Challenge app works
 
 Rainbow challenge app presents a set of challenges of different types. Those include writing of an article, participating in an event or organizing one, telling a story or some other way of contribution to awarance and acceptance of LGBTQIA++ people.
