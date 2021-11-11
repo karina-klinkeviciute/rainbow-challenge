@@ -2,7 +2,7 @@
 
 ## License
 
-Rainbow Challenge is licensed by the MIT license. Full license in the LICENSE.md file
+Rainbow Challenge is licensed by the MIT license. Full license in the LICENSE file
 
 ## About Rainbow Challenge
 
