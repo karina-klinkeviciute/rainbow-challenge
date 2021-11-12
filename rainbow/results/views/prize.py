@@ -24,14 +24,6 @@ class AvailablePrizeViewSet(viewsets.ModelViewSet):
         return prizes
 
 
-# class ClaimedPrizeViewSet(viewsets.ModelViewSet):
-#     """
-#     A viewset for viewing and editing prizes claimed by a user.
-#     """
-#     serializer_class = ClaimedPrizeSerializer
-#     queryset = ClaimedPrize.objects.all()
-
-
 class UserClaimedPrizesAPIView(ListAPIView):
     serializer_class = ClaimedPrizeSerializer
 
