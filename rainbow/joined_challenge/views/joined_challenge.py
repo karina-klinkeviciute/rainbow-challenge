@@ -1,8 +1,10 @@
 from rest_framework import viewsets
+from rest_framework.generics import ListAPIView
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
+from joined_challenge.models.base import JoinedChallengeStatus
 from joined_challenge.serializers.joined_challenge import (
     JoinedChallengeSerializer,
     ArticleJoinedChallengeSerializer,
@@ -105,3 +107,30 @@ class QuizJoinedChallengeViewSet(viewsets.ModelViewSet):
     """
     serializer_class = QuizJoinedChallengeSerializer
     queryset = QuizJoinedChallenge.objects.all()
+
+
+class UserJoinedChallengesAPIView(ListAPIView):
+    serializer_class = JoinedChallengeSerializer
+
+    def get_queryset(self):
+        queryset = JoinedChallenge.objects.all()
+        user = self.request.user
+        if user is not None:
+            queryset = queryset.filter(
+                user=user,
+                status__in=(JoinedChallengeStatus.JOINED, JoinedChallengeStatus.COMPLETED))
+        return queryset
+
+
+class UserCompletedChallengesAPIView(ListAPIView):
+    serializer_class = JoinedChallengeSerializer
+
+    def get_queryset(self):
+        queryset = JoinedChallenge.objects.all()
+        user = self.request.user
+        if user is not None:
+            queryset = queryset.filter(
+                user=user,
+                status=JoinedChallengeStatus.CONFIRMED
+            )
+        return queryset

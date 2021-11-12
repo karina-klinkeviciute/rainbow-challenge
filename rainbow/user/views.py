@@ -20,12 +20,4 @@ class GenderListView(views.APIView):
         return Response(serializer.data)
 
 
-class UserClaimedPrizeAPIView(ListAPIView):
-    serializer_class = ClaimedPrizeSerializer
 
-    def get_queryset(self):
-        queryset = ClaimedPrize.objects.all()
-        user = self.kwargs.get('user_uuid')
-        if user is not None:
-            queryset = queryset.filter(user=user)
-        return queryset
