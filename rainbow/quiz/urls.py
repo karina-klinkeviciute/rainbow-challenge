@@ -7,13 +7,8 @@ router = routers.DefaultRouter()
 
 app_name = 'quiz'
 
-router.register(r'quiz', QuizViewSet)
-router.register(r'quiz-user', QuizUserViewSet)
-router.register(r'question', QuestionViewSet)
-router.register(r'answer', AnswerViewSet)
-router.register(r'user-answer', UserAnswerViewSet)
-
-
-urlpatterns = [
-    path('', include(router.urls)),
-]
+router.register(r'quiz/quiz', QuizViewSet)
+router.register(r'quiz/quiz-user', QuizUserViewSet)
+router.register(r'quiz/question', QuestionViewSet)
+router.register(r'quiz/answer', AnswerViewSet)
+router.register(r'quiz/user-answer', UserAnswerViewSet)
