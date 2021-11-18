@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 15:10+0000\n"
+"POT-Creation-Date: 2021-11-18 21:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: challenge/admin.py:18
+msgid "Generate QR code files"
+msgstr "Sugeneruoti QR kodų paveikslėlius"
 
 #: challenge/models/base.py:24 challenge/models/quiz.py:13 quiz/models.py:37
 #: quiz/models.py:74
@@ -83,7 +87,7 @@ msgstr "paskelbtas"
 msgid "points"
 msgstr "vaivorykštės"
 
-#: challenge/models/base.py:88 user/models.py:125
+#: challenge/models/base.py:88 user/models.py:126
 msgid "region"
 msgstr "regionas"
 
@@ -115,17 +119,26 @@ msgstr "reikalingas administratorių patvirtinimas apie užduoties atlikimą"
 msgid "main challenge"
 msgstr "pagrindinė užduotis"
 
-#: challenge/models/event_participant.py:12
+#: challenge/models/event_participant.py:14
 msgid "event name"
 msgstr "renginio pavadinimas"
 
-#: challenge/models/event_participant.py:15
+#: challenge/models/event_participant.py:17
 msgid "date"
 msgstr "data"
 
-#: challenge/models/event_participant.py:23
+#: challenge/models/event_participant.py:24
 msgid "link to the event"
 msgstr "nuoroda į renginį"
+
+#: challenge/models/event_participant.py:29
+#: joined_challenge/models/event_participant.py:14
+msgid "QR code"
+msgstr "QR kodas"
+
+#: challenge/models/event_participant.py:33
+msgid "QR code file"
+msgstr "QR kodo failas"
 
 #: challenge/models/support.py:10
 msgid "organization"
@@ -233,13 +246,17 @@ msgstr "kita organizacija"
 msgid "only if organization on challenge is Other"
 msgstr "tik, jeigu užduotyje organizacija nurodyta kaip Kita"
 
-#: joined_challenge/serializers/joined_challenge.py:42
+#: joined_challenge/serializers/joined_challenge.py:48
 msgid "This challenge can be joined only once."
 msgstr "Šią užduotį gali atlikti tik vieną kartą"
 
-#: joined_challenge/serializers/joined_challenge.py:56
+#: joined_challenge/serializers/joined_challenge.py:64
 msgid "Status can't be 'confirmed'"
-msgstr "statusas negali būti 'patvirtinta' (confirmed)"
+msgstr "Statusas negali būti 'patvirtinta' (confirmed)"
+
+#: joined_challenge/serializers/joined_challenge.py:97
+msgid "QR code is invalid."
+msgstr ""
 
 #: quiz/models.py:70 quiz/models.py:94
 msgid "question"
@@ -256,6 +273,22 @@ msgstr "teisingas atsakymas"
 #: quiz/models.py:119
 msgid "quiz-user connection"
 msgstr "testo-vartotojo ryšys"
+
+#: results/models/medal.py:31
+msgid "bronze"
+msgstr ""
+
+#: results/models/medal.py:32
+msgid "silver"
+msgstr ""
+
+#: results/models/medal.py:33
+msgid "gold"
+msgstr ""
+
+#: results/models/medal.py:34
+msgid "platinum"
+msgstr ""
 
 #: results/models/prize.py:20
 msgid "price"
@@ -285,6 +318,35 @@ msgstr "Atsiprašome, tiek šių prizų dabar neturime"
 msgid "Sorry, you don't have enough rainbows for that."
 msgstr "Atsiprašome, neturi pakankamai vaivorykščių šiam prizui"
 
+#: templates/email/activation.html:5
+#, python-format
+msgid "Account activation on %(site_name)s"
+msgstr "Paskyros aktyvavimas %(site_name)s"
+
+#: templates/email/activation.html:9 templates/email/activation.html:24
+#, python-format
+msgid ""
+"You're receiving this email because you need to finish activation process on "
+"%(site_name)s."
+msgstr "Šį el. laišką gavai todėl, kad turi aktyvuoti savo paskyrą %(site_name)s "
+
+#: templates/email/activation.html:11 templates/email/activation.html:26
+msgid "Please go to the following page to activate account:"
+msgstr "Norėdamas aktyvuoti paskyrą, spausk čia:"
+
+#: templates/email/activation.html:14 templates/email/activation.html:29
+msgid "Thanks for using our site!"
+msgstr "Ačiū, kad naudojiesi mūsų programėle!"
+
+#: templates/email/activation.html:16 templates/email/activation.html:31
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "%(site_name)s komanda"
+
+#: templates/email/activation.html:18
+msgid "If you have any questions about the app, send us an email:"
+msgstr "Jei turi klausimų dėl programėlės, parašyk mums:"
+
 #: user/models.py:60
 msgid "woman"
 msgstr "moteris"
@@ -301,55 +363,63 @@ msgstr "nebinarinė"
 msgid "other"
 msgstr "kita"
 
-#: user/models.py:64 user/models.py:77
+#: user/models.py:64 user/models.py:78
 msgid "prefer not to say"
 msgstr "nenoriu nurodyti"
 
-#: user/models.py:75
+#: user/models.py:76
 msgid "yes"
 msgstr "taip"
 
-#: user/models.py:76
+#: user/models.py:77
 msgid "no"
 msgstr "ne"
 
-#: user/models.py:94
+#: user/models.py:95
 msgid "username"
 msgstr "vartotojo vardas"
 
-#: user/models.py:97
+#: user/models.py:98
 msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
 "ne daugiau 150 ženklų. Tik raidės, skaičiai ir šie simboliai: @/./+/-/_"
 
-#: user/models.py:100
+#: user/models.py:101
 msgid "A user with that username already exists."
 msgstr "Šis vartotojo vardas užimtas."
 
-#: user/models.py:104
+#: user/models.py:105
 msgid "email address"
 msgstr "el. pašto adresas"
 
-#: user/models.py:106
+#: user/models.py:107
 msgid "year of birth"
 msgstr "gimimo metai"
 
-#: user/models.py:111
+#: user/models.py:112
 msgid "gender"
 msgstr "lytis"
 
-#: user/models.py:118
+#: user/models.py:119
 msgid "enter gender if selected other"
 msgstr "įvesk lytį, jei pasirinkai 'kita'"
 
-#: user/models.py:132
+#: user/models.py:133
 msgid "Do you consider yourself LGBTQIA+?"
 msgstr "Ar priskiri save LGBTQIA+?"
 
-#: user/models.py:137
+#: user/models.py:138
 msgid "is active"
 msgstr "aktyvus"
 
-#: user/models.py:138
+#: user/models.py:139
 msgid "is admin"
 msgstr "administratorius"
+
+#: user/views.py:38
+msgid "Congratulations! Your account was successfully activated."
+msgstr "Sveikiname! Tavo paskyra aktyvuota."
+
+#: user/views.py:40
+msgid "Sorry, your account can't be activated."
+msgstr "Deja, tavo paskyra negali būti aktyvuota"
