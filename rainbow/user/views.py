@@ -1,4 +1,6 @@
+import requests
 from django.views.generic import TemplateView
+from django.utils.translation import gettext_lazy as _
 from rest_framework import views
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -27,3 +29,16 @@ class UserActivationView(TemplateView):
     def get(self, request, *args, **kwargs):
         uid = kwargs.get("uid")
         token = kwargs.get("token")
+        # todo de-hardcode here
+        url = "https://rainbowchallenge.lt/api/v1/auth/users/activation/"
+        payload = {'uid': uid, 'token': token}
+        response = requests.post(url, data=payload)
+
+        if response.status_code == 204:
+            message = _("Sorry, your account can't be activated.")
+        else:
+            message = _("Congratulations! Your account was successfully activated.")
+        context = super().get_context_data(**kwargs)
+        context["message"] = message
+
+        return self.render_to_response(context)
