@@ -30,6 +30,9 @@ from user.models import User
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp.plugins.otp_totp.admin import TOTPDeviceAdmin
 
+from user.views import UserActivationView
+
+
 class OTPAdmin(OTPAdminSite):
     pass
 
@@ -63,5 +66,6 @@ urlpatterns = [
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/', include(router.urls)),
-    path('challenge/', include('challenge.urls'))
+    path('challenge/', include('challenge.urls')),
+    path('activate/<uid>/<token>', UserActivationView.as_view(), name='user-activate')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
