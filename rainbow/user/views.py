@@ -30,14 +30,14 @@ class UserActivationView(TemplateView):
         uid = kwargs.get("uid")
         token = kwargs.get("token")
         # todo de-hardcode here
-        url = "https://rainbowchallenge.lt/api/v1/auth/users/activation/"
+        url = 'https://rainbowchallenge.lt/auth/users/activation/'
         payload = {'uid': uid, 'token': token}
         response = requests.post(url, data=payload)
 
         if response.status_code == 204:
-            message = _("Sorry, your account can't be activated.")
-        else:
             message = _("Congratulations! Your account was successfully activated.")
+        else:
+            message = _("Sorry, your account can't be activated.")
         context = super().get_context_data(**kwargs)
         context["message"] = message
 
