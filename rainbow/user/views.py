@@ -1,11 +1,8 @@
-# Create your views here.
+from django.views.generic import TemplateView
 from rest_framework import views
-from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from results.models.prize import ClaimedPrize
-from results.serializers.prize import ClaimedPrizeSerializer
 from user.models import GenderOptions
 from user.serializers import GenderSerializer
 
@@ -20,4 +17,13 @@ class GenderListView(views.APIView):
         return Response(serializer.data)
 
 
+class UserActivationView(TemplateView):
+    """
+    This view gets uuid and activation token and then sends to the API endpoint a request to activate
+    the user with Djoser. Also displays a nice thank you message.
+    """
+    template_name = "user/activation.html"
 
+    def get(self, request, *args, **kwargs):
+        uid = kwargs.get("uid")
+        token = kwargs.get("token")

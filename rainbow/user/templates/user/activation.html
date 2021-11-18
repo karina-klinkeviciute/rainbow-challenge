@@ -1,0 +1,9 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block head-title %} User Activation {% endblock %}
+
+{% block content %}
+    uid: {{ data.uid }}
+    token: {{ data.token }}
+{% endblock content %}

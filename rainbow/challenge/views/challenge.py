@@ -2,7 +2,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import ListView, TemplateView, FormView
+from django.views.generic import ListView, TemplateView
 
 from challenge.forms.article import ArticleChallengeForm
 from challenge.forms.event_participant import EventParticipantChallengeForm

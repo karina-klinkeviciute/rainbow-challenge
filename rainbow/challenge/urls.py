@@ -40,6 +40,7 @@ router.register(r'challenge/custom_challenge', challenge_api.CustomChallengeView
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
+    # URLS for adding.editing challenges for admins/volunteers
     path('challenge/article-challenge/<uuid>/', ArticleChallengeView.as_view(), name='article-update'),
     path('challenge/article-challenge/', ArticleChallengeView.as_view(), name='article-create'),
     path('challenge/article-challenges/', ArticleChallengeListView.as_view(), name='articles')
