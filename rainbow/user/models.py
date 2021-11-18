@@ -135,7 +135,7 @@ class User(AbstractUser):
         blank=True,
         max_length=255
     )
-    is_active = models.BooleanField(_('is active'), default=True)
+    is_active = models.BooleanField(_('is active'), default=False)
     is_admin = models.BooleanField(_('is admin'), default=False)
 
     objects = UserManager()
