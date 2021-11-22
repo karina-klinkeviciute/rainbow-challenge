@@ -3,7 +3,7 @@ import datetime
 from django.db.models import Q
 from rest_framework import viewsets, mixins
 
-from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge
+from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge, CustomChallenge
 from challenge.models.base import Challenge
 from challenge.models.event_organizer import EventOrganizerChallenge
 from challenge.models.project import ProjectChallenge
@@ -13,7 +13,7 @@ from challenge.models.story import StoryChallenge
 from challenge.serializers.challenge import ChallengeSerializer, ArticleChallengeSerializer, \
     EventParticipantChallengeSerializer, SchoolGSAChallengeSerializer, EventOrganizerChallengeSerializer, \
     StoryChallengeSerializer, ProjectChallengeSerializer, ReactingChallengeSerializer, SupportChallengeSerializer, \
-    QuizChallengeSerializer
+    QuizChallengeSerializer, CustomChallengeSerializer
 
 
 class ChallengeViewSet(
@@ -55,7 +55,7 @@ class EventParticipantChallengeViewSet(viewsets.ModelViewSet):
 
 class SchoolGSAChallengeViewSet(viewsets.ModelViewSet):
     """
-    A ViewSet for EventParticipant challenges.
+    A ViewSet for SchoolGSA challenges.
     """
     serializer_class = SchoolGSAChallengeSerializer
     queryset = SchoolGSAChallenge.objects.filter(
@@ -65,7 +65,7 @@ class SchoolGSAChallengeViewSet(viewsets.ModelViewSet):
 
 class EventOrganizerChallengeViewSet(viewsets.ModelViewSet):
     """
-    A ViewSet for EventParticipant challenges.
+    A ViewSet for EventOrganizer challenges.
     """
     serializer_class = EventOrganizerChallengeSerializer
     queryset = EventOrganizerChallenge.objects.filter(
@@ -75,7 +75,7 @@ class EventOrganizerChallengeViewSet(viewsets.ModelViewSet):
 
 class StoryChallengeViewSet(viewsets.ModelViewSet):
     """
-    A ViewSet for EventParticipant challenges.
+    A ViewSet for Story challenges.
     """
     serializer_class = StoryChallengeSerializer
     queryset = StoryChallenge.objects.filter(
@@ -85,7 +85,7 @@ class StoryChallengeViewSet(viewsets.ModelViewSet):
 
 class ProjectChallengeViewSet(viewsets.ModelViewSet):
     """
-    A ViewSet for EventParticipant challenges.
+    A ViewSet for Project challenges.
     """
     serializer_class = ProjectChallengeSerializer
     queryset = ProjectChallenge.objects.filter(
@@ -95,7 +95,7 @@ class ProjectChallengeViewSet(viewsets.ModelViewSet):
 
 class ReactingChallengeViewSet(viewsets.ModelViewSet):
     """
-    A ViewSet for EventParticipant challenges.
+    A ViewSet for Reacting challenges.
     """
     serializer_class = ReactingChallengeSerializer
     queryset = ReactingChallenge.objects.filter(
@@ -105,7 +105,7 @@ class ReactingChallengeViewSet(viewsets.ModelViewSet):
 
 class SupportChallengeViewSet(viewsets.ModelViewSet):
     """
-    A ViewSet for EventParticipant challenges.
+    A ViewSet for Support challenges.
     """
     serializer_class = SupportChallengeSerializer
     queryset = SupportChallenge.objects.filter(
@@ -125,9 +125,9 @@ class QuizChallengeViewSet(viewsets.ModelViewSet):
 
 class CustomChallengeViewSet(viewsets.ModelViewSet):
     """
-    A ViewSet for EventParticipant challenges.
+    A ViewSet for Custom challenges.
     """
-    serializer_class = SupportChallengeSerializer
-    queryset = SupportChallenge.objects.filter(
+    serializer_class = CustomChallengeSerializer
+    queryset = CustomChallenge.objects.filter(
         query_challenge_visible
     )
