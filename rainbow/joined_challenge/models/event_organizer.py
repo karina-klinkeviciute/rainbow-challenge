@@ -16,7 +16,9 @@ class EventOrganizerJoinedChallenge(BaseJoinedChallenge):
         null=True
     )
     event_description = models.TextField(
-        verbose_name=_('description of the event in your own words')
+        verbose_name=_('description of the event in your own words'),
+        blank=True,
+        null=True
     )
     organized_alone = models.BooleanField(
         verbose_name=_('was this event was organized by you alone'),

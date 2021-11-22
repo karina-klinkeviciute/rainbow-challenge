@@ -12,7 +12,9 @@ class StoryJoinedChallenge(BaseJoinedChallenge):
         null=True
     )
     description = models.TextField(
-        verbose_name=_('description of your story')
+        verbose_name=_('description of your story'),
+        blank=True,
+        null=True
     )
 
     @property

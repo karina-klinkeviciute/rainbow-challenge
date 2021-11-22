@@ -6,7 +6,9 @@ from joined_challenge.models.base import BaseJoinedChallenge
 
 class CustomJoinedChallenge(BaseJoinedChallenge):
     description = models.TextField(
-        verbose_name=_('description')
+        verbose_name=_('description'),
+        blank=True,
+        null=True
     )
 
     @property

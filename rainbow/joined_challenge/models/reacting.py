@@ -6,7 +6,9 @@ from joined_challenge.models.base import BaseJoinedChallenge
 
 class ReactingJoinedChallenge(BaseJoinedChallenge):
     reaction_description = models.TextField(
-        verbose_name=_('description of the reaction in your own words')
+        verbose_name=_('description of the reaction in your own words'),
+        blank=True,
+        null=True
     )
 
     @property

@@ -16,7 +16,9 @@ class ProjectJoinedChallenge(BaseJoinedChallenge):
         null=True
     )
     project_description = models.TextField(
-        verbose_name=_('description of the event in your own words')
+        verbose_name=_('description of the event in your own words'),
+        blank=True,
+        null=True
     )
     implemented_alone = models.BooleanField(
         verbose_name=_('if this project was implemented by you alone'),
