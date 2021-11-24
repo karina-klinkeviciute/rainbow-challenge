@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'challenge',
     'joined_challenge',
     'news',
-
+    'message',
 
 ]
 

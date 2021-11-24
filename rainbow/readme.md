@@ -58,7 +58,7 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
 
 1. create some directory and clone the repository 
 
-1. create virtual environment next to the repository:
+2. create virtual environment next to the repository:
 
     Linux/MacOS"
     `python3 -m venv venv`
@@ -66,7 +66,7 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
     Windows:
     `py -m venv venv`
 
-1. activate the virtual environment:
+3. activate the virtual environment:
 
     Linux/MacOS:
     `source venv/bin/activate`
@@ -74,18 +74,18 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
     Windows:
     `venv\Scripts\activate`
 
-1. cd into the project:
+4. cd into the project:
     `cd rainbow_challenge/rainbow/`
    
-1. install requirements
+5. install requirements
 
     `pip install -r requirements.txt`
 
-1. create database
+6. create database
 
     create empty database in the mysql 
 
-1. clone the environment file
+7. clone the environment file
 
     in this directory there's a file `.env_example` - you should copy it to a file called `.env` and change those settings there to your own:
 
@@ -98,17 +98,19 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
     DB_PASSWORD=add_one
     ```
 
-1. migrate database:
+8. migrate database:
     `python manage.py migrate`
    
-1. create a user (superuser) for yourself:
+9. create a user (superuser) for yourself:
     `python manage.py createsuperuser`
    and enter the details it asks
 
-1. run django server:
-    `python manage.py runserver`
+10. run django server:
+     `python manage.py runserver`
    
-    This will start Django server on port 8000
+     This will start Django server on port 8000
     
-    You will be able to access it here: http://127.0.0.1:8000/ 
+     You will be able to access it here: http://127.0.0.1:8000/ 
 
+11. run celery: 
+    `celery -A project worker -B --detach -f celery.log --loglevel=DEBUG`

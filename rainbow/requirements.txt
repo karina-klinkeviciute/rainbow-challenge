@@ -14,3 +14,4 @@ gunicorn
 django_widget_tweaks
 django-nested-inline
 isoweek
+celery[redis]

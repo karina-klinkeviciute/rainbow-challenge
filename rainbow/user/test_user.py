@@ -2,7 +2,7 @@ import pytest
 from model_bakery import baker
 from faker import Faker
 
-from challenge.models.joined_challenge import JoinedChallengeStatus
+from joined_challenge.models.base import JoinedChallengeStatus
 
 faker = Faker()
 
