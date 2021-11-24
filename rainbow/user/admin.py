@@ -78,7 +78,7 @@ class UserAdmin(BaseUserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('region', 'gender', 'gender_other', 'year_of_birth', 'is_lgbtqia')}),
         ('Permissions', {'fields': ('is_admin', 'is_active')}),
-        ('Stats', {'fields': ('all_points', 'quiz_points')})
+        ('Stats', {'fields': ('all_points', 'quiz_points', 'medals_all', )})
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -91,7 +91,7 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
-    readonly_fields = ('all_points', 'quiz_points', )
+    readonly_fields = ('all_points', 'quiz_points', 'medals_all',)
 
 
 # Now register the new UserAdmin...

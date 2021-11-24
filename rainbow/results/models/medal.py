@@ -9,6 +9,15 @@
 # We could count them together with medals.
 
 # 2. We can calculate them on the fly when the user checks their profile
+# We shouldn't calculate them on the fly. Because if user goes to zero, goes like that for a few weeks and then
+# does a challenge, they would be still at zero, though they shouldn't, their streak should start again.
+
+# We could take that into account in our formula but maybe having them each week will be more convenient.
+
+# We probably need celery to run every Monday morning and calculate the streaks and the medals.
+
+#  Not sure what to do with challenges if they are completed one week but confirmed another one.
+#  Maybe we can count them in and not worry much about confirmation?
 
 # For medals we will have a model where we will store the highest medal achieved.
 
@@ -43,11 +52,27 @@ class MedalTypes:
 
 
 class Medal(models.Model):
-    """Class for medals that users get for doing streaks"""
-    user = models.ForeignKey('user.User', on_delete=models.CASCADE)
-    level = models.CharField(choices=MedalTypes.MedalChoices, max_length=255)
-    time = models.DateTimeField()
+    """Class for medals that users get for doing streaks
+        Medals can be only one of each level, we need to take care of that
+    """
+    user = models.ForeignKey(
+        'user.User',
+        on_delete=models.CASCADE,
+        verbose_name=_("user")
+    )
+    level = models.CharField(
+        choices=MedalTypes.MedalChoices,
+        max_length=255,
+        verbose_name=_("level")
+    )
+    time_issued = models.DateTimeField(
+        verbose_name=_("time_issued"),
+        auto_now_add=True,
+    )
     uuid = models.UUIDField(
         default=uuid.uuid4,
         primary_key=True,
         editable=False)
+
+    class Meta:
+        unique_together = ('user', 'level')

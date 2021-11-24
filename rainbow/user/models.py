@@ -1,3 +1,4 @@
+import json
 import uuid
 
 from django.contrib.auth.base_user import BaseUserManager
@@ -215,3 +216,11 @@ class User(AbstractUser):
     def claimed_prizes(self):
         """All prizes the user has claimed"""
         return self.claimedprize_set.all()
+
+    @property
+    def medals_all(self):
+        all_medals = list()
+        for medal in self.medal_set.all():
+            all_medals.append({'level': medal.level, "time_issued": str(medal.time_issued)})
+
+        return json.dumps(all_medals)
