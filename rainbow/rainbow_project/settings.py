@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
+
     # third-party apps
     'rest_framework',
     'rest_framework.authtoken',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     'nested_inline',
     'widget_tweaks',
+
     # project apps
     'user',
     'results',
@@ -218,5 +220,10 @@ SECURE_FRAME_DENY = True
 
 ADMIN_EMAILS = os.environ.get("ADMIN_EMAILS").split(",")
 
-CELERY_APP = "rainbow_project"
-CELERY_BIN = "celery"
+
+# Celery Configuration Options
+# Keys should have a `CELERY_` prefix.
+# These prefix-style configs will work until Celery 6.0.
+# CELERY_APP = "rainbow_project"
+# CELERY_BIN = "celery"
+# CELERY_IMPORTS = ('results.tasks',)

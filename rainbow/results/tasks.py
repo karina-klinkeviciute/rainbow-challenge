@@ -12,12 +12,14 @@ from message.models import Message, MessageTypes
 from results.models import Streak, Medal, MedalTypes
 from user.models import User
 
+
 @shared_task
 def test_task():
     message = Message(
         message_text="test message"
     )
     message.save()
+
 
 @shared_task
 def calculate_streaks():

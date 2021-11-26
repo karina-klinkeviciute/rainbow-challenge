@@ -1,10 +1,13 @@
 import os
 from datetime import timedelta
 
+import django
 from celery import Celery
 
 # Set the default Django settings module for the 'celery' program.
 from celery.schedules import crontab
+
+# django.setup()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rainbow_project.settings')
 
@@ -14,12 +17,13 @@ app = Celery('rainbow_project')
 # the configuration object to child processes.
 # - namespace='CELERY' means all celery-related configuration keys
 #   should have a `CELERY_` prefix.
-app.config_from_object('django.conf:settings', namespace='CELERY')
+app.config_from_object('django.conf:settings', namespace="CELERY")
 app.conf.broker_url = 'redis://localhost:6379/0'
 app.conf.result_backend = 'redis://localhost:6379/0'
 
 # Load task modules from all registered Django apps.
-app.autodiscover_tasks()
+app.autodiscover_tasks(['results'])
+# app.autodiscover_tasks()
 
 
 # @app.task(bind=True)
@@ -34,10 +38,10 @@ app.conf.beat_schedule = {
     },
     'test-task': {
         'task': 'test_task',
-        'schedule': timedelta(minutes=10),
+        'schedule': crontab(minute='*/1'),
     }
 }
 
 
 # running celery:
-# celery -A project worker -B --detach -f celery.log --loglevel=DEBUG
+# celery -A rainbow_project worker -B --detach -f celery.log --loglevel=DEBUG
