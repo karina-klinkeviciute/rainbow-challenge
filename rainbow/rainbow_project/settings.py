@@ -217,3 +217,6 @@ SECURE_FRAME_DENY = True
 
 
 ADMIN_EMAILS = os.environ.get("ADMIN_EMAILS").split(",")
+
+CELERY_APP = "rainbow_project"
+CELERY_BIN = "celery"

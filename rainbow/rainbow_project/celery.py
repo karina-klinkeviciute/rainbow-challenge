@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 from celery import Celery
 
@@ -23,13 +24,17 @@ app.autodiscover_tasks()
 
 # @app.task(bind=True)
 # def debug_task(self):
-#     print(f'Request: {self.request!r}')
+#     print("something")
 
 
 app.conf.beat_schedule = {
     'streaks-and-medals-calculation': {
         'task': 'calculate_streaks',
         'schedule': crontab(hour=5, minute=0, day_of_week=1),
+    },
+    'test-task': {
+        'task': 'test_task',
+        'schedule': timedelta(minutes=10),
     }
 }
 

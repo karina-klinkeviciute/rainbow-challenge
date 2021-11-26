@@ -114,3 +114,4 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
 
 11. run celery: 
     `celery -A rainbow_project worker -B --detach -f celery.log --loglevel=DEBUG`
+    Checking for celery status: `celery -A rainbow_project status`
