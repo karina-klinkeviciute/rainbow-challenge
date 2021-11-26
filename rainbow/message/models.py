@@ -8,7 +8,7 @@ class MessageTypes:
     MEDAL = "medal"
 
     MessageChoices = (
-        (MEDAL, _("medal"))
+        (MEDAL, _("medal")),
     )
 
 
@@ -38,6 +38,7 @@ class Message(models.Model):
         blank=True
     ),
     type = models.CharField(
+        max_length=255,
         verbose_name=_("type"),
         choices=MessageTypes.MessageChoices,
         blank=True,
