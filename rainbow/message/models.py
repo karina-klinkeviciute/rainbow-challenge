@@ -4,6 +4,14 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
+class MessageTypes:
+    MEDAL = "medal"
+
+    MessageChoices = (
+        (MEDAL, _("medal"))
+    )
+
+
 class Message(models.Model):
     """
     Class for messages that are sent either automatically by an app or between users and admins.
@@ -29,13 +37,23 @@ class Message(models.Model):
         null=True,
         blank=True
     ),
-    automatic = models.BooleanField(
-        verbose_name=_("automatic"),
+    type = models.CharField(
+        verbose_name=_("type"),
+        choices=MessageTypes.MessageChoices,
+        blank=True,
+        null=True
+    )
+    automated = models.BooleanField(
+        verbose_name=_("automated"),
         default=True
     )
     time_sent = models.DateTimeField(
         verbose_name=_("time of sending"),
         auto_now_add=True
+    )
+    seen = models.BooleanField(
+        verbose_name="seen",
+        default=False
     )
     # there might be aneed to attach files.
     # In that case we need a new model "attachments" which would point to a message

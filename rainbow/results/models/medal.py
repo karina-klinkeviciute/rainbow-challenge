@@ -43,11 +43,13 @@ class MedalTypes:
         (PLATINUM, _("platinum")),
     )
 
+    MedalNames = {medal[0]: medal[1] for medal in MedalChoices}
+
     MedalLevels = {
-        BRONZE: 10,
-        SILVER: 20,
-        GOLD: 30,
-        PLATINUM: 40
+        10: BRONZE,
+        20: SILVER,
+        30: GOLD,
+        40: PLATINUM
     }
 
 

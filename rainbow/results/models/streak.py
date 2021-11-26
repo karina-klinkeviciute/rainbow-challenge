@@ -19,7 +19,13 @@ class StreakChangeOptions:
 
 class Streak(models.Model):
 
-    """Class for user streaks"""
+    """
+    Class for user streaks.
+    We create a new object every week that holds information about
+    that week and at what level the streak is on that week.
+    We could have only one object, holding only the last streak but then we would loose info on how
+    it changes overtime.
+    """
     uuid = models.UUIDField(
         default=uuid.uuid4,
         primary_key=True,
@@ -49,17 +55,3 @@ class Streak(models.Model):
 
     class Meta:
         unique_together = ('user', 'year', 'week')
-
-    # @property
-    # def change(self):
-    #     """
-    #     Returns if the streak has increased or decreased or stayed at zero.
-    #     """
-    #     last_week = self.week - 1
-    #     year = self.year
-    #     if last_week == 0:
-    #         year = year - 1
-    #         last_week = isoweek.Week.last_week_of_year(year)
-    #
-    #     try:
-    #         last_streak =

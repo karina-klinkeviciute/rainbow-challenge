@@ -1,4 +1,5 @@
 import uuid
+import datetime
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -46,6 +47,17 @@ class JoinedChallenge(models.Model):
         verbose_name=_('completed at'),
         null=True, blank=True
     )
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        """Overridden save method for the model"""
+        if self.completed_at is None and (
+                self.status == JoinedChallengeStatus.COMPLETED
+                or self.status == JoinedChallengeStatus.CONFIRMED):
+            self.completed_at = datetime.datetime.now()
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+
+
+
 
     def __str__(self):
         return f'{self.user.email} - {self.challenge.name} / {self.challenge.type}'

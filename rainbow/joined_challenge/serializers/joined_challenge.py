@@ -63,7 +63,6 @@ class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
         if status == JoinedChallengeStatus.CONFIRMED:
             raise serializers.ValidationError(_("Status can't be 'confirmed'"))
         if status == JoinedChallengeStatus.COMPLETED:
-            main_joined_challenge.completed_at = datetime.datetime.now()
             if main_joined_challenge.challenge.needs_confirmation is False:
                 status = JoinedChallengeStatus.CONFIRMED
                 main_joined_challenge.status = status
