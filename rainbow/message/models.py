@@ -20,23 +20,30 @@ class Message(models.Model):
         default=uuid.uuid4,
         editable=False,
         primary_key=True,
-    ),
+    )
     message_text = models.TextField(
-        verbose_name=_("message text")
-    ),
+        verbose_name=_("message text"),
+        blank=True,
+        null=True
+    )
     user = models.ForeignKey(
         # get_user_model(),
         'user.User',
         verbose_name=_('user'),
-        on_delete=models.CASCADE),
+        related_name="user_messages",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     admin_sender = models.ForeignKey(
         # get_user_model(),
         'user.User',
-        verbose_name=_('admin_sender'),
+        verbose_name=_('admin__sender'),
+        related_name="admin_messages",
         on_delete=models.SET_NULL,
         null=True,
         blank=True
-    ),
+    )
     type = models.CharField(
         max_length=255,
         verbose_name=_("type"),
