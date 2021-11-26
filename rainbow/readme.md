@@ -113,4 +113,4 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
      You will be able to access it here: http://127.0.0.1:8000/ 
 
 11. run celery: 
-    `celery -A project worker -B --detach -f celery.log --loglevel=DEBUG`
+    `celery -A rainbow_project worker -B --detach -f celery.log --loglevel=DEBUG`
