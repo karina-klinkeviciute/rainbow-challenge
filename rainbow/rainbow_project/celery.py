@@ -1,13 +1,8 @@
 import os
-from datetime import timedelta
-
-import django
 from celery import Celery
 
 # Set the default Django settings module for the 'celery' program.
 from celery.schedules import crontab
-
-# django.setup()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rainbow_project.settings')
 
@@ -22,8 +17,8 @@ app.conf.broker_url = 'redis://localhost:6379/0'
 app.conf.result_backend = 'redis://localhost:6379/0'
 
 # Load task modules from all registered Django apps.
-app.autodiscover_tasks(['results'])
-# app.autodiscover_tasks()
+app.autodiscover_tasks()
+
 
 
 # @app.task(bind=True)
@@ -33,13 +28,13 @@ app.autodiscover_tasks(['results'])
 
 app.conf.beat_schedule = {
     'streaks-and-medals-calculation': {
-        'task': 'calculate_streaks',
+        'task': 'results.tasks.calculate_streaks',
         'schedule': crontab(hour=5, minute=0, day_of_week=1),
     },
     'test-task': {
-        'task': 'test_task',
-        'schedule': crontab(minute='*/1'),
-    }
+        'task': 'results.tasks.test_task',
+        'schedule': crontab(hour='12'),
+    },
 }
 
 

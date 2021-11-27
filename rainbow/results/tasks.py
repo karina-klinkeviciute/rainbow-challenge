@@ -16,9 +16,16 @@ from user.models import User
 @shared_task
 def test_task():
     message = Message(
-        message_text="test message"
+        message_text="celery works alright"
     )
     message.save()
+    send_mail(
+        _('Streaks and medals statistics'),
+        'celery works alright',
+        'no-reply@rainbowchallenge.com',
+        settings.ADMIN_EMAILS,
+        fail_silently=True,
+    )
 
 
 @shared_task
@@ -27,17 +34,6 @@ def calculate_streaks():
     Calculate streaks for all users for the last week.
     To be run weekly with celery crontab.
     """
-
-    # for each user:
-
-    # first step - calculate streak for the last week.
-
-    # second step - check medals and save
-
-    # also send a message if user got a new medal (10 streaks - bronze, 20 - silver etc)
-
-
-    # finally send email about results to info@rainbowchallenge.lt
 
     # Calculating streaks
 
