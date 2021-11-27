@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from results.models import Medal
+from results.models import Medal, Streak
 from results.models.prize import Prize, ClaimedPrize
 from results.models.region import Region
 
@@ -19,8 +19,13 @@ class ClaimedPrizeAdmin(admin.ModelAdmin):
 class MedalAdmin(admin.ModelAdmin):
     list_display = ('user', 'level')
 
+class StreakAdmin(admin.ModelAdmin):
+    list_display = ('user', 'week', 'streaks', 'change')
+    list_filter = ('week', 'streaks', 'change')
+
 
 admin.site.register(Region, RegionAdmin)
 admin.site.register(Prize, PrizeAdmin)
 admin.site.register(ClaimedPrize, ClaimedPrizeAdmin)
 admin.site.register(Medal, MedalAdmin)
+admin.site.register(Streak, StreakAdmin)
