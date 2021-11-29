@@ -117,8 +117,7 @@ def calculate_streaks():
                 )
                 message.save()
 
-
-    medals_stats = "".join([f"{v}: {k} " for v, k in stats["medals"].items])
+    medals_stats = "".join([f"{v}: {k} " for v, k in stats["medals"].items()])
 
     email_text = _("""
     Statistics for streaks:
