@@ -23,7 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
             # 'completed_joined_challenges',
             'all_points',
             'remaining_points',
-            'streaks',
+            'streak',
         )
         read_only_fields = (settings.LOGIN_FIELD, 'all_points', 'remaining_points', )
 
