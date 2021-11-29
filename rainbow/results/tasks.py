@@ -22,7 +22,7 @@ def test_task():
     send_mail(
         _('Streaks and medals statistics'),
         'celery works alright',
-        'no-reply@rainbowchallenge.com',
+        'no-reply@rainbowchallenge.lt',
         settings.ADMIN_EMAILS,
         fail_silently=True,
     )
@@ -117,7 +117,8 @@ def calculate_streaks():
                 )
                 message.save()
 
-    medals_stats = "".join([f"{v}: {k}" for v, k in stats["medals"]])
+
+    medals_stats = "".join([f"{v}: {k} " for v, k in stats["medals"].items])
 
     email_text = _("""
     Statistics for streaks:
@@ -132,7 +133,7 @@ def calculate_streaks():
     send_mail(
         _('Streaks and medals statistics'),
         email_text,
-        'no-reply@rainbowchallenge.com',
+        'no-reply@rainbowchallenge.lt',
         settings.ADMIN_EMAILS,
         fail_silently=False,
     )
