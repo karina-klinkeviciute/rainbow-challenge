@@ -25,7 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
             'remaining_points',
             'streak',
         )
-        read_only_fields = (settings.LOGIN_FIELD, 'all_points', 'remaining_points', )
+        read_only_fields = (settings.LOGIN_FIELD, 'all_points', 'remaining_points', 'streak')
 
     def update(self, instance, validated_data):
         email_field = get_user_email_field_name(User)
