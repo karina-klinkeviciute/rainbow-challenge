@@ -13,6 +13,7 @@ from challenge.models import Challenge
 from challenge.models.base import ChallengeType
 from joined_challenge.models import JoinedChallenge
 from joined_challenge.models.base import JoinedChallengeStatus
+from results.models import Streak
 from results.models.region import Region
 
 
@@ -225,5 +226,15 @@ class User(AbstractUser):
 
         return json.dumps(all_medals)
 
+    @property
     def streak(self):
-        return self.streak_set.latest('time_added').streaks
+        try:
+            latest_streak = self.streak_set.latest('time_added')
+
+            return {"streak": latest_streak.streaks, "change": latest_streak.change}
+        except Streak.DoesNotExist:
+            return None
+
+    @property
+    def medals(self):
+        return self.medal_set

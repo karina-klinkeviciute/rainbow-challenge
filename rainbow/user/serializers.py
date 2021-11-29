@@ -3,6 +3,8 @@ from djoser.conf import settings
 from rest_framework import serializers
 from djoser.compat import get_user_email, get_user_email_field_name
 
+from results.serializers.medal import MedalSerializer
+
 User = get_user_model()
 
 
@@ -24,8 +26,11 @@ class UserSerializer(serializers.ModelSerializer):
             'all_points',
             'remaining_points',
             'streak',
+            'medals'
         )
-        read_only_fields = (settings.LOGIN_FIELD, 'all_points', 'remaining_points', 'streak')
+        read_only_fields = (settings.LOGIN_FIELD, 'all_points', 'remaining_points', 'streak', 'medals')
+
+    medals = MedalSerializer(many=True)
 
     def update(self, instance, validated_data):
         email_field = get_user_email_field_name(User)
