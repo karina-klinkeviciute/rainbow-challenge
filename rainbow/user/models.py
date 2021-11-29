@@ -224,3 +224,6 @@ class User(AbstractUser):
             all_medals.append({'level': medal.level, "time_issued": str(medal.time_issued)})
 
         return json.dumps(all_medals)
+
+    def streak(self):
+        return self.streak_set.latest('time_added').streaks
