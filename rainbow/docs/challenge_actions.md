@@ -21,7 +21,6 @@ Turi būti siunčiami šie duomenys:
 {
     "main_joined_challenge": {
         "status": null,
-        "user": null,
         "challenge": null
     },
     "article_name": "",
@@ -45,7 +44,6 @@ Turi būti siunčiami šie duomenys:
 {
         "main_joined_challenge": {
             "status": "joined",
-            "user": "11771309-f657-4ef6-a2bd-0fa6d1a95b28",
             "challenge": "cbed2257-98f4-4be3-a894-66f05600db25"
         }
     }
