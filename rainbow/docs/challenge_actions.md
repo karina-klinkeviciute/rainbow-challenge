@@ -29,8 +29,6 @@ Turi būti siunčiami šie duomenys:
 ```
 
 Būtini duomenys: 
-status - `joined`
-user - vartotojo `uuid`
 challenge - užduoties `uuid`
 
 ### Dalyvavimas renginyje
@@ -50,8 +48,6 @@ Turi būti siunčiami šie duomenys:
 ```
 
 Būtini duomenys: 
-status - `joined`
-user - vartotojo `uuid`
 challenge - užduoties `uuid`
 
 ## Užduoties atlikimas
@@ -77,7 +73,7 @@ paduoti šiuos duomenis per `PATCH` metodą:
 
 ## Informacijos apie užduotį gavimas
 
-Jei norim gauti informaciją apie vieną konkrečią užduotį, pavyzdžiui vieną straipsnio rašymo užduotį, reikia kreiptis su `GET` metodu į jos ondpoint:
+Jei norim gauti informaciją apie vieną konkrečią užduotį, pavyzdžiui vieną straipsnio rašymo užduotį, reikia kreiptis su `GET` metodu į jos endpoint:
 
 http://127.0.0.1:8000/api/article_challenge/<uuid>/
 
