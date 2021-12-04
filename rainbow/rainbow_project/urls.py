@@ -71,5 +71,5 @@ urlpatterns = [
     path('challenge/', include('challenge.urls')),
     path('activate/<uid>/<token>', UserActivationView.as_view(), name='user-activate'),
     path('private-media/', include(private_storage.urls)),
-    re_path('^joined_challenge_files/(?P<path>.*)$', JoinedChallengeFileDetailView.as_view()),
+    re_path('^api/joined_challenge_files/(?P<path>.*)$', JoinedChallengeFileDetailView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
