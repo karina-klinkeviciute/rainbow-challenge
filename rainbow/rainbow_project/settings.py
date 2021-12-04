@@ -225,3 +225,24 @@ PRIVATE_STORAGE_ROOT = os.path.join(BASE_DIR, 'media-private')
 PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_staff'
 PRIVATE_STORAGE_SERVER = 'nginx'
 PRIVATE_STORAGE_INTERNAL_URL = '/private-x-accel-redirect/'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'logfile': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'django-logfile'),
+        },
+    },
+    'root': {
+        'level': 'INFO',
+        'handlers': ['console', 'logfile']
+    },
+}
