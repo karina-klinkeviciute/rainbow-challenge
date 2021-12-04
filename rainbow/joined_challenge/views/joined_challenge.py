@@ -1,6 +1,6 @@
 from private_storage.views import PrivateStorageDetailView
 from rest_framework import viewsets
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, get_object_or_404
 from rest_framework.views import APIView
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
@@ -27,11 +27,15 @@ class JoinedChallengeViewSet(viewsets.ModelViewSet):
 class JoinedChallengeFileDetailView(APIView, PrivateStorageDetailView):
     model = JoinedChallengeFile
     model_file_field = 'file'
+    content_disposition = 'attachment'
 
     def can_access_file(self, private_file):
         # When the object can be accessed, the file may be downloaded.
         # This overrides PRIVATE_STORAGE_AUTH_FUNCTION
-        return self.request.is_superuser or self.request.user == private_file.user
+        return self.request.user.is_superuser or self.request.user == private_file.parent_object.joined_challenge.user
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(JoinedChallengeFile, file=self.kwargs['path'])
 
 
 class ArticleJoinedChallengeViewSet(viewsets.ModelViewSet):
