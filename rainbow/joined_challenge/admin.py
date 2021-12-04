@@ -3,10 +3,14 @@ from django.contrib import admin
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
+from joined_challenge.models.base import JoinedChallengeFile
 
 
 class JoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('user', 'challenge', 'status')
+
+class JoinedChallengeFileAdmin(admin.ModelAdmin):
+    list_display = ('joined_challenge', "file")
 
 class ArticleJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', 'article_name', 'article_url')
@@ -39,7 +43,7 @@ class QuizJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', )
 
 admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
-
+admin.site.register(JoinedChallengeFile, JoinedChallengeFileAdmin)
 
 admin.site.register(ArticleJoinedChallenge, ArticleJoinedChallengeAdmin)
 admin.site.register(EventParticipantJoinedChallenge, EventParticipantJoinedChallengeAdmin)

@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django_otp.admin import OTPAdminSite
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+import private_storage.urls
 from rest_framework.routers import DefaultRouter
 from challenge.urls import router as challenge_router
 from joined_challenge.urls import router as joined_challenge_router
+from joined_challenge.views.joined_challenge import JoinedChallengeFileDetailView
 from results.urls import router as results_router
 from quiz.urls import router as quiz_router
 from news.urls import router as news_router
@@ -67,5 +69,7 @@ urlpatterns = [
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/', include(router.urls)),
     path('challenge/', include('challenge.urls')),
-    path('activate/<uid>/<token>', UserActivationView.as_view(), name='user-activate')
+    path('activate/<uid>/<token>', UserActivationView.as_view(), name='user-activate'),
+    path('private-media/', include(private_storage.urls)),
+    re_path('^joined_challenge_files/(?P<path>.*)$', JoinedChallengeFileDetailView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

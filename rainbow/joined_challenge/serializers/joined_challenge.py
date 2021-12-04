@@ -19,7 +19,7 @@ from joined_challenge.models import (
     CustomJoinedChallenge,
     QuizJoinedChallenge,
 )
-from joined_challenge.models.base import JoinedChallengeStatus
+from joined_challenge.models.base import JoinedChallengeStatus, JoinedChallengeFile
 from quiz.models import QuizUser
 
 
@@ -29,6 +29,13 @@ class JoinedChallengeSerializer(serializers.ModelSerializer):
         fields = ('uuid', 'status', 'challenge')
 
     # user = ReadOnlyField()
+
+
+class JoinedChallengeFileSerializer(serializers.ModelSerializer):
+    """Serializer for files added to joined challenges. """
+    class Meta:
+        model = JoinedChallengeFile
+        fields = ('uuid', 'joined_challenge', 'file')
 
 
 class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
@@ -160,3 +167,5 @@ class QuizJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
         quiz_user.save()
         this_challenge.quiz_user = quiz_user
         this_challenge.save()
+
+

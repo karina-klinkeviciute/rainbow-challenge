@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     'nested_inline',
     'widget_tweaks',
+    'private_storage',
 
     # project apps
     'user',
@@ -220,10 +221,7 @@ SECURE_FRAME_DENY = True
 
 ADMIN_EMAILS = os.environ.get("ADMIN_EMAILS").split(",")
 
-
-# Celery Configuration Options
-# Keys should have a `CELERY_` prefix.
-# These prefix-style configs will work until Celery 6.0.
-# CELERY_APP = "rainbow_project"
-# CELERY_BIN = "celery"
-# CELERY_IMPORTS = ('results.tasks',)
+PRIVATE_STORAGE_ROOT = os.path.join(BASE_DIR, 'media-private')
+PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_staff'
+PRIVATE_STORAGE_SERVER = 'nginx'
+PRIVATE_STORAGE_INTERNAL_URL = '/private-x-accel-redirect/'

@@ -33,7 +33,7 @@ app.conf.beat_schedule = {
     },
     'test-task': {
         'task': 'results.tasks.test_task',
-        'schedule': crontab(minute=0, hour='8,12,19,21'),
+        'schedule': crontab(minute=0, hour='12'),
     },
 }
 

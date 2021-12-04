@@ -3,6 +3,7 @@ import datetime
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from private_storage.fields import PrivateFileField
 
 
 class JoinedChallengeStatus:
@@ -56,11 +57,33 @@ class JoinedChallenge(models.Model):
             self.completed_at = datetime.datetime.now()
         super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
-
-
-
     def __str__(self):
         return f'{self.user.email} - {self.challenge.name} / {self.challenge.type}'
+
+
+def upload_subfolder(instance):
+    return [str(instance.joined_challenge.user.uid)]
+
+
+class JoinedChallengeFile(models.Model):
+    """
+    Class for files to upload to joined challenges. All sorts of files, usually uploaded as proofs of completion.
+    """
+    joined_challenge = models.ForeignKey(
+        JoinedChallenge,
+        verbose_name=_("joined challenge"),
+        on_delete=models.CASCADE,
+    )
+    file = PrivateFileField(
+        verbose_name=_("file"),
+        upload_to="joined_challenge_files",
+        upload_subfolder=upload_subfolder
+    )
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        editable=False,
+        primary_key=True,
+    )
 
 
 class BaseJoinedChallenge(models.Model):
@@ -85,3 +108,9 @@ class BaseJoinedChallenge(models.Model):
     @property
     def concrete_challenge(self):
         raise NotImplementedError
+
+
+
+
+
+

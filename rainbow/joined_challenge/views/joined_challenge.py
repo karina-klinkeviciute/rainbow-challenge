@@ -1,10 +1,12 @@
+from private_storage.views import PrivateStorageDetailView
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
+from rest_framework.views import APIView
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
-from joined_challenge.models.base import JoinedChallengeStatus
+from joined_challenge.models.base import JoinedChallengeStatus, JoinedChallengeFile
 from joined_challenge.serializers.joined_challenge import (
     JoinedChallengeSerializer,
     ArticleJoinedChallengeSerializer,
@@ -22,11 +24,14 @@ class JoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = JoinedChallenge.objects.all()
 
 
-# class BaseJoinedChallengeViewSet(viewsets.ModelViewSet):
-#
-#     def create(self, request):
-#
-#
+class JoinedChallengeFileDetailView(APIView, PrivateStorageDetailView):
+    model = JoinedChallengeFile
+    model_file_field = 'file'
+
+    def can_access_file(self, private_file):
+        # When the object can be accessed, the file may be downloaded.
+        # This overrides PRIVATE_STORAGE_AUTH_FUNCTION
+        return self.request.is_superuser or self.request.user == private_file.user
 
 
 class ArticleJoinedChallengeViewSet(viewsets.ModelViewSet):
