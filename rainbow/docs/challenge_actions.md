@@ -21,7 +21,6 @@ Turi būti siunčiami šie duomenys:
 {
     "main_joined_challenge": {
         "status": null,
-        "user": null,
         "challenge": null
     },
     "article_name": "",
@@ -30,8 +29,6 @@ Turi būti siunčiami šie duomenys:
 ```
 
 Būtini duomenys: 
-status - `joined`
-user - vartotojo `uuid`
 challenge - užduoties `uuid`
 
 ### Dalyvavimas renginyje
@@ -45,15 +42,12 @@ Turi būti siunčiami šie duomenys:
 {
         "main_joined_challenge": {
             "status": "joined",
-            "user": "11771309-f657-4ef6-a2bd-0fa6d1a95b28",
             "challenge": "cbed2257-98f4-4be3-a894-66f05600db25"
         }
     }
 ```
 
 Būtini duomenys: 
-status - `joined`
-user - vartotojo `uuid`
 challenge - užduoties `uuid`
 
 ## Užduoties atlikimas
@@ -79,7 +73,7 @@ paduoti šiuos duomenis per `PATCH` metodą:
 
 ## Informacijos apie užduotį gavimas
 
-Jei norim gauti informaciją apie vieną konkrečią užduotį, pavyzdžiui vieną straipsnio rašymo užduotį, reikia kreiptis su `GET` metodu į jos ondpoint:
+Jei norim gauti informaciją apie vieną konkrečią užduotį, pavyzdžiui vieną straipsnio rašymo užduotį, reikia kreiptis su `GET` metodu į jos endpoint:
 
 http://127.0.0.1:8000/api/article_challenge/<uuid>/
 
