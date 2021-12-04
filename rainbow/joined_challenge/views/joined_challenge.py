@@ -32,7 +32,7 @@ class JoinedChallengeFileDetailView(APIView, PrivateStorageDetailView):
     def can_access_file(self, private_file):
         # When the object can be accessed, the file may be downloaded.
         # This overrides PRIVATE_STORAGE_AUTH_FUNCTION
-        return self.request.user.is_superuser or self.request.user == private_file.parent_object.joined_challenge.user
+        return self.request.user.is_admin or self.request.user == private_file.parent_object.joined_challenge.user
 
     def get_object(self, queryset=None):
         return get_object_or_404(JoinedChallengeFile, file=self.kwargs['path'])
