@@ -1,1 +1,4 @@
 *.pyc
+.env
+celery.log
+celerybeat-schedule
