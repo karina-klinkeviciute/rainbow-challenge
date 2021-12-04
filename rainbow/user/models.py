@@ -46,6 +46,7 @@ class UserManager(BaseUserManager):
             year_of_birth=year_of_birth,
         )
         user.is_admin = True
+        user.is_active = True
         user.save(using=self._db)
         return user
 

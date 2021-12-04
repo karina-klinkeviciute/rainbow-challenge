@@ -164,7 +164,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SITE_ID = 1
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'), ]
-# STATIC_ROOT = '/root/rainbow-challenge/rainbow/staticfiles/'
 
 AUTH_USER_MODEL = 'user.User'
 
