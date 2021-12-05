@@ -5,5 +5,6 @@ from challenge.models.base import ChallengeType
 
 joined_challenge_recipe = Recipe(
         JoinedChallenge,
-        challenge__type=ChallengeType.ARTICLE
+        challenge__type=ChallengeType.ARTICLE,
+        needs_confirmation=False
     )
