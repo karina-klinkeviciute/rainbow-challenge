@@ -83,7 +83,7 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
 
 6. create database
 
-    create empty database in the mysql 
+    create an empty `postgresql` database called `rainbow`. Must be accessible at port `5432`
 
 7. clone the environment file
 
@@ -115,3 +115,8 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
 11. run celery: 
     `celery -A rainbow_project worker -B --detach -f celery.log --loglevel=DEBUG`
     Checking for celery status: `celery -A rainbow_project status`
+
+12. run tests:
+    ```bash
+    $ pytest
+    ```

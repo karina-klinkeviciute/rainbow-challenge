@@ -16,3 +16,4 @@ django-nested-inline
 isoweek
 celery[redis]
 django-private-storage
+pytest-django
