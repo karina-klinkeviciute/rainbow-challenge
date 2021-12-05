@@ -43,4 +43,4 @@ def test_all_points():
         user=user1,
         status=JoinedChallengeStatus.JOINED)
 
-    assert user1.all_points == joined_challenge1.challenge.points + joined_challenge2.challenge.points + joined_challenge4.challenge.points
+    assert user1.all_points == joined_challenge1.challenge.points + joined_challenge2.challenge.points
