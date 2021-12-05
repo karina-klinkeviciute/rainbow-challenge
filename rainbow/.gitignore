@@ -2,3 +2,4 @@
 .env
 celery.log
 celerybeat-schedule
+django-logfile

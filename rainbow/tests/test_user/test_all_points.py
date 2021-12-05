@@ -1,10 +1,9 @@
 import pytest
 from model_bakery import baker
-from faker import Faker
 
 from joined_challenge.models.base import JoinedChallengeStatus
 
-faker = Faker()
+pytestmark = pytest.mark.django_db
 
 
 def test_all_points():
@@ -22,33 +21,26 @@ def test_all_points():
     user2 = baker.make('user.User', email='testemail21@aha.com')
 
     joined_challenge1 = baker.make_recipe(
-        'user.joined_challenge_recipe',
+        'tests.joined_challenge_recipe',
         user=user1,
         status=JoinedChallengeStatus.COMPLETED,
     )
 
     joined_challenge2 = baker.make_recipe(
-        'user.joined_challenge_recipe',
+        'tests.joined_challenge_recipe',
         user=user1,
         status=JoinedChallengeStatus.COMPLETED,
     )
 
     joined_challenge3 = baker.make_recipe(
-        'user.joined_challenge_recipe',
+        'tests.joined_challenge_recipe',
         user=user2,
         status=JoinedChallengeStatus.COMPLETED,
     )
 
     joined_challenge4 = baker.make_recipe(
-        'user.joined_challenge_recipe',
+        'tests.joined_challenge_recipe',
         user=user1,
         status=JoinedChallengeStatus.JOINED)
 
     assert user1.all_points == joined_challenge1.challenge.points + joined_challenge2.challenge.points
-
-    user1.delete()
-    user2.delete()
-    joined_challenge1.delete()
-    joined_challenge2.delete()
-    joined_challenge3.delete()
-    joined_challenge4.delete()
