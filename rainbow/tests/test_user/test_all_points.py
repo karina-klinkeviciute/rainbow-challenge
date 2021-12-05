@@ -23,19 +23,19 @@ def test_all_points():
     joined_challenge1 = baker.make_recipe(
         'tests.joined_challenge_recipe',
         user=user1,
-        status=JoinedChallengeStatus.COMPLETED,
+        status=JoinedChallengeStatus.CONFIRMED,
     )
 
     joined_challenge2 = baker.make_recipe(
         'tests.joined_challenge_recipe',
         user=user1,
-        status=JoinedChallengeStatus.COMPLETED,
+        status=JoinedChallengeStatus.CONFIRMED,
     )
 
     joined_challenge3 = baker.make_recipe(
         'tests.joined_challenge_recipe',
         user=user2,
-        status=JoinedChallengeStatus.COMPLETED,
+        status=JoinedChallengeStatus.CONFIRMED,
     )
 
     joined_challenge4 = baker.make_recipe(
