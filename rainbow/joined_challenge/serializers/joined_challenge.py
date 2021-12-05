@@ -23,19 +23,19 @@ from joined_challenge.models.base import JoinedChallengeStatus, JoinedChallengeF
 from quiz.models import QuizUser
 
 
-class JoinedChallengeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = JoinedChallenge
-        fields = ('uuid', 'status', 'challenge')
-
-    # user = ReadOnlyField()
-
-
 class JoinedChallengeFileSerializer(serializers.ModelSerializer):
     """Serializer for files added to joined challenges. """
     class Meta:
         model = JoinedChallengeFile
         fields = ('uuid', 'joined_challenge', 'file')
+
+
+class JoinedChallengeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JoinedChallenge
+        fields = ('uuid', 'status', 'challenge', 'files')
+
+    files = JoinedChallengeFileSerializer(many=True)
 
 
 class BaseJoinedChallengeSerializer(serializers.ModelSerializer):

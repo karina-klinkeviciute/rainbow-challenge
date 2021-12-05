@@ -46,6 +46,7 @@ class UserManager(BaseUserManager):
             year_of_birth=year_of_birth,
         )
         user.is_admin = True
+        user.is_superuser = True
         user.is_active = True
         user.save(using=self._db)
         return user
@@ -167,11 +168,11 @@ class User(AbstractUser):
 
     @property
     def completed_joined_challenges(self):
-        return JoinedChallenge.objects.filter(user=self, status=JoinedChallengeStatus.COMPLETED)
+        return self.joinedchallenge_set.filter(status=JoinedChallengeStatus.COMPLETED)
 
     @property
     def confirmed_joined_challenges(self):
-        return JoinedChallenge.objects.filter(user=self, status=JoinedChallengeStatus.CONFIRMED)
+        return self.joinedchallenge_set.filter(status=JoinedChallengeStatus.CONFIRMED)
 
     @property
     def completed_challenges(self):
@@ -221,6 +222,7 @@ class User(AbstractUser):
 
     @property
     def medals_all(self):
+        """property to return a list of medals in a convenient enough format for admin"""
         all_medals = list()
         for medal in self.medal_set.all():
             all_medals.append({'level': medal.level, "time_issued": str(medal.time_issued)})

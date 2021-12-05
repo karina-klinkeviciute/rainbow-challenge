@@ -49,6 +49,18 @@ class JoinedChallenge(models.Model):
         null=True, blank=True
     )
 
+    @property
+    def files(self):
+        return self.joinedchallengefile_set
+
+    def files_admin(self):
+        """property to return a list of files in a convenient enough format for admin"""
+        files = self.joinedchallengefile_set
+        file_list = []
+        for file in files:
+            file_list.append(file.file)
+
+
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         """Overridden save method for the model"""
         if self.completed_at is None and (
