@@ -34,7 +34,7 @@ challenge - užduoties `uuid`
 ### Dalyvavimas renginyje
 
 Jei tipas yra "event":
-http://127.0.0.1:8000/api/article_joined_challenge/
+http://127.0.0.1:8000/api/event_participant_joined_challenge/
 
 Turi būti siunčiami šie duomenys:
 
