@@ -133,7 +133,8 @@ class UserJoinedChallengesAPIView(ListAPIView):
         if user is not None:
             queryset = queryset.filter(
                 user=user,
-                status__in=(JoinedChallengeStatus.JOINED, JoinedChallengeStatus.COMPLETED))
+                status=JoinedChallengeStatus.JOINED
+            )
         return queryset
 
 
@@ -146,6 +147,6 @@ class UserCompletedChallengesAPIView(ListAPIView):
         if user is not None:
             queryset = queryset.filter(
                 user=user,
-                status=JoinedChallengeStatus.CONFIRMED
+                status__in=(JoinedChallengeStatus.CONFIRMED, JoinedChallengeStatus.COMPLETED)
             )
         return queryset

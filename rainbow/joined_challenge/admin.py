@@ -8,6 +8,7 @@ from joined_challenge.models.base import JoinedChallengeFile
 
 class JoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('user', 'challenge', 'status', )
+    list_filter = ('status', )
 
 class JoinedChallengeFileAdmin(admin.ModelAdmin):
     list_display = ('joined_challenge', "file")

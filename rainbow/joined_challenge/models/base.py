@@ -76,7 +76,7 @@ class JoinedChallenge(models.Model):
         return f'{self.user.email} - {self.challenge.name} / {self.challenge.type}'
 
     @property
-    def concrete_challenge(self):
+    def concrete_joined_challenge(self):
         """
         Information that we have about a specific challenge
         """
@@ -86,7 +86,7 @@ class JoinedChallenge(models.Model):
         return info.uuid
 
     @property
-    def concrete_challenge_type(self):
+    def challenge_type(self):
         return self.challenge.type
 
 
