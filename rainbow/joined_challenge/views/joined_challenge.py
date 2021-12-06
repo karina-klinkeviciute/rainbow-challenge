@@ -1,6 +1,7 @@
-from private_storage.views import PrivateStorageDetailView
+from private_storage.views import PrivateStorageDetailView, PrivateStorageView
 from rest_framework import viewsets
-from rest_framework.generics import ListAPIView, get_object_or_404
+from rest_framework.generics import ListAPIView, get_object_or_404, CreateAPIView
+from rest_framework.mixins import CreateModelMixin
 from rest_framework.views import APIView
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
@@ -13,7 +14,7 @@ from joined_challenge.serializers.joined_challenge import (
     EventParticipantJoinedChallengeSerializer, SchoolGSAJoinedChallengeSerializer,
     EventOrganizerJoinedChallengeSerializer, StoryJoinedChallengeSerializer, ProjectJoinedChallengeSerializer,
     ReactingJoinedChallengeSerializer, SupportJoinedChallengeSerializer, CustomJoinedChallengeSerializer,
-    QuizJoinedChallengeSerializer)
+    QuizJoinedChallengeSerializer, JoinedChallengeFileSerializer)
 
 
 class JoinedChallengeViewSet(viewsets.ModelViewSet):
@@ -36,6 +37,11 @@ class JoinedChallengeFileDetailView(APIView, PrivateStorageDetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(JoinedChallengeFile, file=self.kwargs['path'])
+
+
+class JoinedChallengeFileUploadView(CreateAPIView):
+    queryset = JoinedChallengeFile.objects.all()
+    serializer_class = JoinedChallengeFileSerializer
 
 
 class ArticleJoinedChallengeViewSet(viewsets.ModelViewSet):
