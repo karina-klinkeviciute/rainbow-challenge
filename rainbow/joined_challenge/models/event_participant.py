@@ -16,5 +16,6 @@ class EventParticipantJoinedChallenge(BaseJoinedChallenge):
 
     @property
     def concrete_challenge(self):
+        # todo this is something wrong. Remove but make sure it doesn't break anything
         from challenge.models import EventParticipantChallenge
         return EventParticipantChallenge.objects.get(main_challenge=self.main_joined_challenge.challenge)
