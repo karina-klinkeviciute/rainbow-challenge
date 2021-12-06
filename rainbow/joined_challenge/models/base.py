@@ -1,9 +1,12 @@
 import uuid
 import datetime
 
+from django.apps import apps
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from private_storage.fields import PrivateFileField
+
+from challenge.models.base import ChallengeType
 
 
 class JoinedChallengeStatus:
@@ -72,6 +75,20 @@ class JoinedChallenge(models.Model):
     def __str__(self):
         return f'{self.user.email} - {self.challenge.name} / {self.challenge.type}'
 
+    @property
+    def concrete_challenge(self):
+        """
+        Information that we have about a specific challenge
+        """
+        joined_challenge_class = ChallengeType.JOINED_CHALLENGE_CLASSES[self.challenge.type]
+        model = apps.get_model('joined_challenge', joined_challenge_class)
+        info = model.objects.get(main_joined_challenge=self)
+        return info.uuid
+
+    @property
+    def concrete_challenge_type(self):
+        return self.challenge.type
+
 
 def upload_subfolder(instance):
     return [str(instance.joined_challenge.user.uid)]
@@ -116,13 +133,3 @@ class BaseJoinedChallenge(models.Model):
     def __str__(self):
         text = _("concrete joined challenge for: ")
         return f" {text}{self.main_joined_challenge.__str__()}"
-
-    @property
-    def concrete_challenge(self):
-        raise NotImplementedError
-
-
-
-
-
-

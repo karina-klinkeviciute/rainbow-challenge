@@ -48,6 +48,19 @@ class ChallengeType:
         CUSTOM: 'CustomChallenge',
     }
 
+    JOINED_CHALLENGE_CLASSES = {
+        ARTICLE: 'ArticleJoinedChallenge',
+        EVENT: 'EventParticipantJoinedChallenge',
+        SCHOOL_GSA: 'SchoolGSAJoinedChallenge',
+        EVENT_ORG: 'EventOrganizerJoinedChallenge',
+        STORY: 'StoryJoinedChallenge',
+        PROJECT: 'ProjectJoinedChallenge',
+        REACTING: 'ReactingJoinedChallenge',
+        SUPPORT: 'SupportJoinedChallenge',
+        QUIZ: 'QuizJoinedChallenge',
+        CUSTOM: 'CustomJoinedChallenge',
+    }
+
 
 class ActiveChallengeManager(models.Manager):
     """
