@@ -31,7 +31,7 @@ class JoinedChallengeSerializer(serializers.ModelSerializer):
         model = JoinedChallenge
         fields = ('uuid', 'status', 'challenge', 'concrete_joined_challenge', 'challenge_type', 'files', )
 
-    files = JoinedChallengeFileSerializer(many=True)
+    files = JoinedChallengeFileSerializer(many=True, read_only=True)
 
 
 class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
