@@ -1,3 +1,4 @@
+
 ## Užduočių informacija
 
 Visų užduočių sąrašas su pagrindine informacija (bet ne specifine) yra čia:
@@ -8,7 +9,28 @@ Užduotis identifikuojama pagal lauką `uuid`
 
 ## Užduoties pradėjimas
 
-Vartotojui pasirinkus užduotį, turi būti sukuriamas objektas POST metodu į atitinkamos užduoties endpoint'ą:
+### Užduočių pradėjimo eiga pagal skirtingus kriterijus
+
+Kai kurios užduotys gali būti atliekamos tik vieną kartą, kitos - kelis kartus. 
+
+Užduočių sąraše yra šie indikatoriai
+
+* `multiple` - ar užduotis gali būti atliekama daugiau nei vieną kartą. `true` - gali, `false` - negali.
+* `can_be_joined` - ar prisijungęs naudotojo gali pradėti naują šią užduotį
+* `is_joined` - ar prisijungusi naudotoja yra pradėjusi naują užduotį. Atliktos užduotys čia yra `false`, tik pradėtos bet dar neatliktos yra `true`
+* `joined_concrete_challenges` - prisijungusio naudotojo visos pradėtos užduotys, pagal tipą. t.y., čia grąžinami uuid konkrečios užduoties, pavyzdžiui jei tipas yra `event`, čia grąžinamas `event_joined_challenge` objekto uuid.
+
+Pagal šiuos kriterijus, galimi keli scenarijai:
+1. Užduotis nėra ir nebuvo pradėta 
+
+    Šiuo atveju pradedama nauja užduotis. (siunčiama POST užklausa į konkretaus tipo endpontą, pvz `event_participant_joined_challenge`)
+    Indikatorius `can_be_joined` šiuo atveju bus `true` o `is_joined` - `false`
+2. Užduotis pradėta bent vieną kartą
+   1. užduotį galima atlikti tik vieną kartą (indikatorius `'multiple` yra `false`). Šiuo atveju `can_be_joined` bus `false`, `is_joined` bus `true`. Taip pat bus sąrašas `concrete_joined_challenges` tik su vienos užduoties uuid. Pagal šį uuid ir challenge tipą reikia susirasti pradėtą užduotį (joined challenge) ir jį rodyti. Pavyzdžiui, tai gali būti `event_participant_joined_challenge` su šiuo uuid.
+   2. užduotį galima atlikti daugiau nei vieną kartą (indikatorius `multiple` yra `true`, `can_be_joined` - `true`, `is_joined` - `true`). Tokiu atveju `concrete_joined_challenges` bus sąrašas su viena ar daugiau pradėtų užduočių (jų uuid). Šiuo atveju reikia paklausti vartotojo, ar jis nori pradėti naują užduotį, ar tęsti esamą. 
+      1. Jei pasirenka "pradėti naują" - viskas atliekama kaip pirmam žingsnyje
+      2. Jei pasirenkama "tęsti pradėtą" - vartotojas nukeliamas į puslapį Pradėtos užduotys. Čia galės pasirinkti, kurią pradėtą užduotį tęsti.
+      
 
 ### Straipsnio rašymo užduotis
 
