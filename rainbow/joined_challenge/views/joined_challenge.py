@@ -43,8 +43,11 @@ class JoinedChallengeFileUploadView(CreateAPIView):
     queryset = JoinedChallengeFile.objects.all()
     serializer_class = JoinedChallengeFileSerializer
 
+class BaseJoinedChallengeViewset(viewsets.ModelViewSet):
+    """Base viewset for joined challenges of dihherent typse"""
+    http_method_names = ('get', 'head', 'options', 'post', 'patch', 'delete')
 
-class ArticleJoinedChallengeViewSet(viewsets.ModelViewSet):
+class ArticleJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A viewset for Article challenges.
     """
@@ -52,7 +55,7 @@ class ArticleJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = ArticleJoinedChallenge.objects.all()
 
 
-class EventParticipantJoinedChallengeViewSet(viewsets.ModelViewSet):
+class EventParticipantJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for EventParticipant challenges.
     """
@@ -60,7 +63,7 @@ class EventParticipantJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = EventParticipantJoinedChallenge.objects.all()
 
 
-class SchoolGSAJoinedChallengeViewSet(viewsets.ModelViewSet):
+class SchoolGSAJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for SchoolGSA challenges.
     """
@@ -68,7 +71,7 @@ class SchoolGSAJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = SchoolGSAJoinedChallenge.objects.all()
 
 
-class EventOrganizerJoinedChallengeViewSet(viewsets.ModelViewSet):
+class EventOrganizerJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for EventOrganizer challenges.
     """
@@ -76,7 +79,7 @@ class EventOrganizerJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = EventOrganizerJoinedChallenge.objects.all()
 
 
-class StoryJoinedChallengeViewSet(viewsets.ModelViewSet):
+class StoryJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for EventOrganizer challenges.
     """
@@ -84,7 +87,7 @@ class StoryJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = StoryJoinedChallenge.objects.all()
 
 
-class ProjectJoinedChallengeViewSet(viewsets.ModelViewSet):
+class ProjectJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for EventOrganizer challenges.
     """
@@ -92,7 +95,7 @@ class ProjectJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = ProjectJoinedChallenge.objects.all()
 
 
-class ReactingJoinedChallengeViewSet(viewsets.ModelViewSet):
+class ReactingJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for EventOrganizer challenges.
     """
@@ -100,7 +103,7 @@ class ReactingJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = ReactingJoinedChallenge.objects.all()
 
 
-class SupportJoinedChallengeViewSet(viewsets.ModelViewSet):
+class SupportJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for EventOrganizer challenges.
     """
@@ -108,7 +111,7 @@ class SupportJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = SupportJoinedChallenge.objects.all()
 
 
-class CustomJoinedChallengeViewSet(viewsets.ModelViewSet):
+class CustomJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for EventOrganizer challenges.
     """
@@ -116,7 +119,7 @@ class CustomJoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = CustomJoinedChallenge.objects.all()
 
 
-class QuizJoinedChallengeViewSet(viewsets.ModelViewSet):
+class QuizJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     A ViewSet for EventOrganizer challenges.
     """

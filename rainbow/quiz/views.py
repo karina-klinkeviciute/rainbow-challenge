@@ -14,6 +14,7 @@ class QuizViewSet(viewsets.ModelViewSet):
     """
     A ViewSet for EventOrganizer challenges.
     """
+    http_method_names = ('get', 'head', 'options')
     serializer_class = QuizSerializer
     queryset = Quiz.objects.all()
 
@@ -30,6 +31,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
     """
     A ViewSet for EventOrganizer challenges.
     """
+    http_method_names = ('get', 'head', 'options')
     serializer_class = QuestionSerializer
     queryset = Question.objects.all()
 
@@ -38,6 +40,7 @@ class AnswerViewSet(viewsets.ModelViewSet):
     """
     A ViewSet for EventOrganizer challenges.
     """
+    http_method_names = ('get', 'head', 'options')
     serializer_class = AnswerSerializer
     queryset = Answer.objects.all()
 

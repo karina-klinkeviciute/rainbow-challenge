@@ -33,7 +33,13 @@ query_challenge_visible = Q(
     Q(main_challenge__start_date__lte=datetime.datetime.now()) | Q(main_challenge__start_date__isnull=True),
     Q(main_challenge__end_date__gt=datetime.datetime.now()) | Q(main_challenge__end_date__isnull=True))
 
-class ArticleChallengeViewSet(viewsets.ModelViewSet):
+
+class BaseChallengeViewSet(viewsets.ModelViewSet):
+    """A viewset to extend for all other challenge types"""
+    http_method_names = ('get', 'head', 'options')
+
+
+class ArticleChallengeViewSet(BaseChallengeViewSet):
     """
     A viewset for Article challenges.
     """
@@ -43,7 +49,7 @@ class ArticleChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class EventParticipantChallengeViewSet(viewsets.ModelViewSet):
+class EventParticipantChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for EventParticipant challenges.
     """
@@ -53,7 +59,7 @@ class EventParticipantChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class SchoolGSAChallengeViewSet(viewsets.ModelViewSet):
+class SchoolGSAChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for SchoolGSA challenges.
     """
@@ -63,7 +69,7 @@ class SchoolGSAChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class EventOrganizerChallengeViewSet(viewsets.ModelViewSet):
+class EventOrganizerChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for EventOrganizer challenges.
     """
@@ -73,7 +79,7 @@ class EventOrganizerChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class StoryChallengeViewSet(viewsets.ModelViewSet):
+class StoryChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for Story challenges.
     """
@@ -83,7 +89,7 @@ class StoryChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class ProjectChallengeViewSet(viewsets.ModelViewSet):
+class ProjectChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for Project challenges.
     """
@@ -93,7 +99,7 @@ class ProjectChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class ReactingChallengeViewSet(viewsets.ModelViewSet):
+class ReactingChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for Reacting challenges.
     """
@@ -103,7 +109,7 @@ class ReactingChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class SupportChallengeViewSet(viewsets.ModelViewSet):
+class SupportChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for Support challenges.
     """
@@ -113,7 +119,7 @@ class SupportChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class QuizChallengeViewSet(viewsets.ModelViewSet):
+class QuizChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for Quiz challenges.
     """
@@ -123,7 +129,7 @@ class QuizChallengeViewSet(viewsets.ModelViewSet):
     )
 
 
-class CustomChallengeViewSet(viewsets.ModelViewSet):
+class CustomChallengeViewSet(BaseChallengeViewSet):
     """
     A ViewSet for Custom challenges.
     """

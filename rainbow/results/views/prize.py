@@ -9,12 +9,14 @@ class PrizeViewSet(viewsets.ModelViewSet):
     """
     A viewset for viewing prizes.
     """
+    http_method_names = ('get', 'head', 'options')
     serializer_class = PrizeSerializer
     queryset = Prize.objects.all()
 
 
 class AvailablePrizeViewSet(viewsets.ModelViewSet):
     """A view for only available prizes"""
+    http_method_names = ('get', 'head', 'options')
     serializer_class = PrizeSerializer
 
     def get_queryset(self):
