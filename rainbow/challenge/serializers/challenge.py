@@ -10,11 +10,15 @@ from challenge.models.reacting import ReactingChallenge
 from challenge.models.school_gsa import SchoolGSAChallenge
 from challenge.models.story import StoryChallenge
 from joined_challenge.models import JoinedChallenge
+from joined_challenge.models.base import JoinedChallengeStatus
+from joined_challenge.serializers.joined_challenge import JoinedChallengeSerializer
 
 
 class ChallengeSerializer(serializers.ModelSerializer):
     concrete_challenge_uuid = serializers.UUIDField()
     can_be_joined = serializers.SerializerMethodField()
+    concrete_joined_challenges = serializers.SerializerMethodField()
+    is_joined = serializers.SerializerMethodField()
 
     class Meta:
         model = Challenge
@@ -30,7 +34,9 @@ class ChallengeSerializer(serializers.ModelSerializer):
                   'multiple',
                   'needs_confirmation',
                   'concrete_challenge_uuid',
-                  'can_be_joined'
+                  'can_be_joined',
+                  'concrete_joined_challenges',
+                  'is_joined'
                   )
 
     def get_can_be_joined(self, obj):
@@ -40,11 +46,34 @@ class ChallengeSerializer(serializers.ModelSerializer):
         """
         if obj.multiple is False:
             user = self.context["request"].user
-            joined_challenge = JoinedChallenge.objects.filter(challenge=obj, user=user)
-            if len(joined_challenge) > 0:
+            joined_challenges = JoinedChallenge.objects.filter(challenge=obj, user=user)
+            if len(joined_challenges) > 0:
                 return False
             return True
         return True
+
+    def get_concrete_joined_challenges(self, obj):
+        """
+        returns a list of User's joined challenges
+        """
+        user = self.context["request"].user
+        joined_challenges = JoinedChallenge.objects.filter(
+            challenge=obj, user=user, status=JoinedChallengeStatus.JOINED
+        )
+        concrete_joined_challenges = list()
+        for joined_challenge in joined_challenges:
+            concrete_joined_challenges.append(joined_challenge.concrete_joined_challenge)
+        return concrete_joined_challenges
+
+    def get_is_joined(self, obj):
+        user = self.context["request"].user
+        joined_challenges = JoinedChallenge.objects.filter(
+            challenge=obj, user=user, status=JoinedChallengeStatus.JOINED
+        )
+        if len(joined_challenges) > 0:
+            return True
+        else:
+            return False
 
 
 class BaseChallengeSerializer(serializers.ModelSerializer):

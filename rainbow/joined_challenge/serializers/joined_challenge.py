@@ -1,11 +1,7 @@
-import datetime
-
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
-from rest_framework.fields import ReadOnlyField
 
 from challenge.models import EventParticipantChallenge
-from challenge.serializers.challenge import ChallengeSerializer
 from joined_challenge.models import (
     EventOrganizerJoinedChallenge,
     SupportJoinedChallenge,
