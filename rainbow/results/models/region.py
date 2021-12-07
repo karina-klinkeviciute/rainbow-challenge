@@ -5,7 +5,7 @@ from joined_challenge.models.base import JoinedChallengeStatus
 
 
 class Region(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     uuid = models.UUIDField(
         default=uuid.uuid4,
         primary_key=True,
