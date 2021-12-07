@@ -27,6 +27,7 @@ Pagal šiuos kriterijus, galimi keli scenarijai:
     Indikatorius `can_be_joined` šiuo atveju bus `true` o `is_joined` - `false`
 2. Užduotis pradėta bent vieną kartą
    1. užduotį galima atlikti tik vieną kartą (indikatorius `'multiple` yra `false`). Šiuo atveju `can_be_joined` bus `false`, `is_joined` bus `true`. Taip pat bus sąrašas `concrete_joined_challenges` tik su vienos užduoties uuid. Pagal šį uuid ir challenge tipą reikia susirasti pradėtą užduotį (joined challenge) ir jį rodyti. Pavyzdžiui, tai gali būti `event_participant_joined_challenge` su šiuo uuid.
+      1. Jei `is_joined` yra `false` ir `can_be_joined` yra false tai reiškia, kad užduotis jau vieną kartą atlikta ir daugiau atlikta nebegali būti. Tokiu atveju parodom vartotojui mandagų pranešimą "Deja, šios užduoties atlikti nebegalite, nes vieną kartą jau atlikot.".
    2. užduotį galima atlikti daugiau nei vieną kartą (indikatorius `multiple` yra `true`, `can_be_joined` - `true`, `is_joined` - `true`). Tokiu atveju `concrete_joined_challenges` bus sąrašas su viena ar daugiau pradėtų užduočių (jų uuid). Šiuo atveju reikia paklausti vartotojo, ar jis nori pradėti naują užduotį, ar tęsti esamą. 
       1. Jei pasirenka "pradėti naują" - viskas atliekama kaip pirmam žingsnyje
       2. Jei pasirenkama "tęsti pradėtą" - vartotojas nukeliamas į puslapį Pradėtos užduotys. Čia galės pasirinkti, kurią pradėtą užduotį tęsti.
