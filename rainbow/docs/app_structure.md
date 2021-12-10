@@ -2,7 +2,7 @@
 
 Project consists of these parts:
 1. [Challenges](challenges.md)
-2. [Joined challenges](challenges.md) - each Challenge has its counterpart joined challenge.
+2. [Joined challenges](joined_challenges.md) - each Challenge has its counterpart joined challenge.
    They are used for storing the data for that challenge for each user that joins the challenge.
    Joining challenges with endpoints is explained [here](challenge_actions.md)
 3. User - stores all the information about the user. Also has methods for displaying calculated information about

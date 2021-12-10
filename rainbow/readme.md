@@ -125,4 +125,4 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
 
 ## Further documentation
 
-You can find further documentaion [here](docs/index.md)
+Further documentation is [here](docs/index.md)
