@@ -50,6 +50,8 @@ Users should have an option to contact support through the app. This will be don
 
 `quiz` app is for quizzes that are connected to the challenges of quiz type.
 
+[More about the app structure](docs/app_structure.md)
+
 ## Contributing
 
 Contributors are welcome. If you'd like to contribute, you can write to the email karina.klinkeviciute@gmail.com 
@@ -120,3 +122,7 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
     ```bash
     $ pytest
     ```
+
+## Further documentation
+
+You can find further documentaion [here](docs/index.md)
