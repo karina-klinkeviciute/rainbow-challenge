@@ -123,7 +123,7 @@ class BaseJoinedChallenge(models.Model):
     main_joined_challenge = models.OneToOneField(
         'joined_challenge.JoinedChallenge',
         verbose_name=_('main joined challenge'),
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         null=True,
         blank=True)
 
