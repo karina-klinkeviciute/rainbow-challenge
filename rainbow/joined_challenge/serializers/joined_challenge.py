@@ -92,8 +92,7 @@ class EventParticipantJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
         fields = '__all__'
 
     def validate_qr_code(self, value):
-        challenge_uuid = self.initial_data["main_joined_challenge"]["challenge"]
-        event_challenge = EventParticipantChallenge.objects.get(main_challenge__uuid=challenge_uuid)
+        event_challenge = self.instance.main_joined_challenge.challenge.eventparticipantchallenge
         challenge_qr_code = event_challenge.qr_code
         if value != challenge_qr_code:
             raise serializers.ValidationError(_("QR code is invalid."))
