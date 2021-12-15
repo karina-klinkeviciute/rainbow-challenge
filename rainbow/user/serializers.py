@@ -1,11 +1,26 @@
 from django.contrib.auth import get_user_model
 from djoser.conf import settings
+from djoser.serializers import UserCreatePasswordRetypeSerializer
 from rest_framework import serializers
 from djoser.compat import get_user_email, get_user_email_field_name
 
 from results.serializers.medal import MedalSerializer
 
 User = get_user_model()
+
+
+class CustomUserCreateSerializer(UserCreatePasswordRetypeSerializer):
+    class Meta:
+        model = User
+        fields = tuple(User.REQUIRED_FIELDS) + (
+            settings.USER_ID_FIELD,
+            settings.LOGIN_FIELD,
+        ) + (
+                     'gender',
+                     'gender_other',
+                     'username',
+                     'region',
+                 )
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -22,7 +37,6 @@ class UserSerializer(serializers.ModelSerializer):
             'username',
             'region',
             'is_lgbtqia',
-            # 'completed_joined_challenges',
             'all_points',
             'remaining_points',
             'streak',

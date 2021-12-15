@@ -185,6 +185,8 @@ DJOSER = {
     'SEND_CONFIRMATION_EMAIL': True,
     'SERIALIZERS': {
         'user': 'user.serializers.UserSerializer',
+        'user_create': 'user.serializers.CustomUserCreateSerializer',
+        'user_create_password_retype': 'user.serializers.CustomUserCreateSerializer',
         'current_user': 'user.serializers.UserSerializer',
     },
     'LOGIN_FIELD': 'email',
