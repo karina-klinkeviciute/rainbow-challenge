@@ -47,6 +47,11 @@ class JoinedChallenge(models.Model):
         max_length=255,
         default=JoinedChallengeStatus.JOINED
     )
+    joined_at = models.DateTimeField(
+        verbose_name=_('joined at'),
+        auto_now_add=True,
+        null=True, blank=True
+    )
     completed_at = models.DateTimeField(
         verbose_name=_('completed at'),
         null=True, blank=True

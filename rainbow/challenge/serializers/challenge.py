@@ -11,7 +11,6 @@ from challenge.models.school_gsa import SchoolGSAChallenge
 from challenge.models.story import StoryChallenge
 from joined_challenge.models import JoinedChallenge
 from joined_challenge.models.base import JoinedChallengeStatus
-from joined_challenge.serializers.joined_challenge import JoinedChallengeSerializer
 
 
 class ChallengeSerializer(serializers.ModelSerializer):

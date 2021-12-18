@@ -1,7 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
-from challenge.models import EventParticipantChallenge
 from joined_challenge.models import (
     EventOrganizerJoinedChallenge,
     SupportJoinedChallenge,
@@ -27,9 +26,21 @@ class JoinedChallengeFileSerializer(serializers.ModelSerializer):
 
 
 class JoinedChallengeSerializer(serializers.ModelSerializer):
+    from challenge.serializers.challenge import ChallengeSerializer
+    challenge_data = ChallengeSerializer(source='challenge', read_only=True)
+
     class Meta:
         model = JoinedChallenge
-        fields = ('uuid', 'status', 'challenge', 'concrete_joined_challenge', 'challenge_type', 'files', )
+        fields = (
+            'uuid',
+            'status',
+            'challenge',
+            'challenge_data',
+            'concrete_joined_challenge',
+            'challenge_type',
+            'joined_at',
+            'files',
+        )
 
     files = JoinedChallengeFileSerializer(many=True, read_only=True)
 
