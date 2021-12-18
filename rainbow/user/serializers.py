@@ -5,6 +5,7 @@ from rest_framework import serializers
 from djoser.compat import get_user_email, get_user_email_field_name
 
 from results.serializers.medal import MedalSerializer
+from results.serializers.region import RegionSerializer
 
 User = get_user_model()
 
@@ -25,6 +26,7 @@ class CustomUserCreateSerializer(UserCreatePasswordRetypeSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     all_points = serializers.IntegerField()
+    region = RegionSerializer()
 
     class Meta:
         model = User
