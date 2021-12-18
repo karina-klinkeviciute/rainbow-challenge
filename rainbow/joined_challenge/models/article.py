@@ -15,6 +15,10 @@ class ArticleJoinedChallenge(BaseJoinedChallenge):
         blank=True,
         null=True
     )
+    description = models.TextField(
+        verbose_name=_("description"),
+        blank=True, null=True,
+    )
 
     @property
     def concrete_challenge(self):
