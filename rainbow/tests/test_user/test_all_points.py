@@ -6,7 +6,7 @@ from joined_challenge.models.base import JoinedChallengeStatus
 pytestmark = pytest.mark.django_db
 
 
-def test_all_points():
+def test_all_points(user_1, user_2):
     """
     Tests if calculation of all points is alright:
 
@@ -16,31 +16,23 @@ def test_all_points():
     complete those challenges
     count their points and check if it's calculated alright
     """
-
-    user1 = baker.make('user.User', email='testemail21@example.com')
-    user2 = baker.make('user.User', email='testemail21@aha.com')
-
     joined_challenge1 = baker.make_recipe(
-        'tests.joined_challenge_recipe',
-        user=user1,
-        status=JoinedChallengeStatus.CONFIRMED,
+        'tests.confirmed_joined_challenge_recipe',
+        user=user_1,
     )
 
     joined_challenge2 = baker.make_recipe(
-        'tests.joined_challenge_recipe',
-        user=user1,
-        status=JoinedChallengeStatus.CONFIRMED,
+        'tests.confirmed_joined_challenge_recipe',
+        user=user_1,
     )
 
     joined_challenge3 = baker.make_recipe(
-        'tests.joined_challenge_recipe',
-        user=user2,
-        status=JoinedChallengeStatus.CONFIRMED,
+        'tests.confirmed_joined_challenge_recipe',
+        user=user_2,
     )
 
     joined_challenge4 = baker.make_recipe(
         'tests.joined_challenge_recipe',
-        user=user1,
-        status=JoinedChallengeStatus.JOINED)
+        user=user_1,)
 
-    assert user1.all_points == joined_challenge1.challenge.points + joined_challenge2.challenge.points
+    assert user_1.all_points == joined_challenge1.challenge.points + joined_challenge2.challenge.points
