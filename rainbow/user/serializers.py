@@ -17,11 +17,12 @@ class CustomUserCreateSerializer(UserCreatePasswordRetypeSerializer):
             settings.USER_ID_FIELD,
             settings.LOGIN_FIELD,
         ) + (
-                     'gender',
-                     'gender_other',
-                     'username',
-                     'region',
-                 )
+             'password',
+             'gender',
+             'gender_other',
+             'username',
+             'region',
+         )
 
 
 class UserSerializer(serializers.ModelSerializer):
