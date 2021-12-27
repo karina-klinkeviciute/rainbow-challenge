@@ -68,7 +68,6 @@ class JoinedChallenge(models.Model):
         for file in files:
             file_list.append(file.file)
 
-
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         """Overridden save method for the model"""
         if self.completed_at is None and (

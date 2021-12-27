@@ -99,7 +99,6 @@ class EventParticipantJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
     class Meta:
         model = EventParticipantJoinedChallenge
-        # fields = ('main_joined_challenge', 'qr_code', 'concrete_challenge')
         fields = '__all__'
 
     def validate_qr_code(self, value):

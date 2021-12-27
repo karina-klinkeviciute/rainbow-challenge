@@ -1,7 +1,9 @@
+from django.apps import apps
+
 from rest_framework import serializers
 
 from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge
-from challenge.models.base import Challenge
+from challenge.models.base import Challenge, ChallengeType
 from challenge.models.custom import CustomChallenge
 from challenge.models.event_organizer import EventOrganizerChallenge
 from challenge.models.project import ProjectChallenge
@@ -61,7 +63,12 @@ class ChallengeSerializer(serializers.ModelSerializer):
         )
         concrete_joined_challenges = list()
         for joined_challenge in joined_challenges:
-            concrete_joined_challenges.append(joined_challenge.concrete_joined_challenge)
+            concrete_joined_challenges.append(
+                {
+                    "uuid": joined_challenge.concrete_joined_challenge,
+                    "date_joined": joined_challenge.joined_at.date()
+                }
+            )
         return concrete_joined_challenges
 
     def get_is_joined(self, obj):
