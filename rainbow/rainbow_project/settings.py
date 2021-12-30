@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'nested_inline',
     'widget_tweaks',
     'private_storage',
+    'corsheaders',
 
     # project apps
     'user',
@@ -70,6 +71,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django_otp.middleware.OTPMiddleware',
@@ -247,3 +249,7 @@ LOGGING = {
         'handlers': ['console', 'logfile']
     },
 }
+
+CORS_ALLOWED_ORIGINS = [
+    'https://rainbowchallenge.lt',
+]
