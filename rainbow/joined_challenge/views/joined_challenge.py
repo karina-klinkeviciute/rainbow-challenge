@@ -1,7 +1,6 @@
 from private_storage.views import PrivateStorageDetailView, PrivateStorageView
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView, get_object_or_404, CreateAPIView
-from rest_framework.mixins import CreateModelMixin
 from rest_framework.views import APIView
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \

@@ -71,6 +71,7 @@ class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         main_joined_challenge_data = validated_data.pop('main_joined_challenge')
+
         this_challenge = instance
         main_joined_challenge = instance.main_joined_challenge
         status = main_joined_challenge_data["status"]
@@ -79,11 +80,11 @@ class BaseJoinedChallengeSerializer(serializers.ModelSerializer):
         if status == JoinedChallengeStatus.COMPLETED:
             if main_joined_challenge.challenge.needs_confirmation is False:
                 status = JoinedChallengeStatus.CONFIRMED
-                main_joined_challenge.status = status
+            main_joined_challenge.status = status
             main_joined_challenge.save()
 
         this_challenge.main_joined_challenge = main_joined_challenge
-        this_challenge.save()
+        this_challenge = super().update(this_challenge, validated_data)
 
         return this_challenge
 

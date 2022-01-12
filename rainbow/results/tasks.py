@@ -20,7 +20,7 @@ def test_task():
     )
     message.save()
     send_mail(
-        _('Streaks and medals statistics'),
+        _('Celery works alright'),
         'celery works alright',
         'no-reply@rainbowchallenge.lt',
         settings.ADMIN_EMAILS,
