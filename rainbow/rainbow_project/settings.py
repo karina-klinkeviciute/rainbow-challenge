@@ -249,7 +249,7 @@ LOGGING = {
         'handlers': ['console', 'logfile']
     },
 }
-
-CORS_ALLOWED_ORIGINS = [
-    'https://rainbowchallenge.lt',
-]
+#
+# CORS_ALLOWED_ORIGINS = [
+#     'https://rainbowchallenge.lt',
+# ]
