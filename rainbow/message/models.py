@@ -4,12 +4,9 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class MessageTypes:
+class MessageTypes(models.TextChoices):
     MEDAL = "medal"
-
-    MessageChoices = (
-        (MEDAL, _("medal")),
-    )
+    CHALLENGE_CONFIRMATION = "challenge_confirmation"
 
 
 class Message(models.Model):
@@ -47,7 +44,7 @@ class Message(models.Model):
     type = models.CharField(
         max_length=255,
         verbose_name=_("type"),
-        choices=MessageTypes.MessageChoices,
+        choices=MessageTypes.choices,
         blank=True,
         null=True
     )

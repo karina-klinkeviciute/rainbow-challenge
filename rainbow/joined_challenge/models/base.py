@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from private_storage.fields import PrivateFileField
 
 from challenge.models.base import ChallengeType
+from message.models import Message, MessageTypes
 
 
 class JoinedChallengeStatus:
@@ -70,10 +71,21 @@ class JoinedChallenge(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         """Overridden save method for the model"""
+
+        # adding completed_at if challenge is completed (or confirmed which in some use cases skips step 'completed')
         if self.completed_at is None and (
                 self.status == JoinedChallengeStatus.COMPLETED
                 or self.status == JoinedChallengeStatus.CONFIRMED):
             self.completed_at = datetime.datetime.now()
+
+        # Sending a notification about confirmation of the challenge
+        if self.status == JoinedChallengeStatus.CONFIRMED:
+            message_text = _("Completion of Challenge {} was confirmed. "
+                             "Congratulations! "
+                             "You received {} points".format(self.challenge.name, self.challenge.points))
+            message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
+            message.save()
+
         super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
     def __str__(self):

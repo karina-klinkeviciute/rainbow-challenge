@@ -27,6 +27,7 @@ from joined_challenge.views.joined_challenge import JoinedChallengeFileDetailVie
 from results.urls import router as results_router
 from quiz.urls import router as quiz_router
 from news.urls import router as news_router
+from message.urls import router as message_router
 
 from user.models import User
 from django_otp.plugins.otp_totp.models import TOTPDevice
@@ -55,6 +56,7 @@ router.registry.extend(joined_challenge_router.registry)
 router.registry.extend(results_router.registry)
 router.registry.extend(quiz_router.registry)
 router.registry.extend(news_router.registry)
+router.registry.extend(message_router.registry)
 
 urlpatterns = [
     path('/', include('django.contrib.flatpages.urls')),
