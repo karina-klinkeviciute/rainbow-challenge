@@ -12,4 +12,6 @@ class MessageViewSet(
     """News API viewets"""
     http_method_names = ('get', 'patch', 'head', 'options')
     serializer_class = MessageSerializer
-    queryset = Message.objects.all()
+
+    def get_queryset(self):
+        return Message.objects.filter(user=self.request.user)
