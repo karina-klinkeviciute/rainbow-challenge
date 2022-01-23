@@ -8,7 +8,7 @@ router = routers.DefaultRouter()
 
 app_name = 'message'
 
-router.register(r'message', MessageViewSet)
+router.register(r'message', MessageViewSet, basename="message")
 
 urlpatterns = [
     path('', include(router.urls)),
