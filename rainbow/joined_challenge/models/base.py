@@ -78,6 +78,8 @@ class JoinedChallenge(models.Model):
                 or self.status == JoinedChallengeStatus.CONFIRMED):
             self.completed_at = datetime.datetime.now()
 
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+
         # Sending a notification about confirmation of the challenge
         if self.status == JoinedChallengeStatus.CONFIRMED:
             message_text = _("Completion of Challenge {} was confirmed. "
@@ -86,7 +88,7 @@ class JoinedChallenge(models.Model):
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
 
-        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+
 
     def __str__(self):
         return f'{self.user.email} - {self.challenge.name} / {self.challenge.type}'

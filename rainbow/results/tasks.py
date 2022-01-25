@@ -16,7 +16,7 @@ from user.models import User
 @shared_task
 def test_task():
     message = Message(
-        message_text="celery works alright"
+        message_text="celery works alright",
     )
     message.save()
     send_mail(
@@ -101,7 +101,7 @@ def calculate_streaks():
         # and issue if needed
         if streaks in MedalTypes.MedalLevels:
             level = MedalTypes.MedalLevels[streaks]
-            if not Medal.objects.filter(user=user, level=level).exists:
+            if not Medal.objects.filter(user=user, level=level).exists():
                 Medal.objects.create(user=user, level=level)
                 stats["medals"][level] += 1
 
