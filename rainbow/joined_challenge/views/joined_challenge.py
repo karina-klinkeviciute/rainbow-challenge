@@ -1,6 +1,8 @@
-from private_storage.views import PrivateStorageDetailView, PrivateStorageView
+from private_storage.views import PrivateStorageDetailView
 from rest_framework import viewsets
-from rest_framework.generics import ListAPIView, get_object_or_404, CreateAPIView
+from rest_framework.decorators import permission_classes
+from rest_framework.generics import ListAPIView, get_object_or_404, CreateAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
@@ -13,7 +15,7 @@ from joined_challenge.serializers.joined_challenge import (
     EventParticipantJoinedChallengeSerializer, SchoolGSAJoinedChallengeSerializer,
     EventOrganizerJoinedChallengeSerializer, StoryJoinedChallengeSerializer, ProjectJoinedChallengeSerializer,
     ReactingJoinedChallengeSerializer, SupportJoinedChallengeSerializer, CustomJoinedChallengeSerializer,
-    QuizJoinedChallengeSerializer, JoinedChallengeFileSerializer)
+    QuizJoinedChallengeSerializer, JoinedChallengeFileSerializer, JoinedChallengeFilesListSerializer)
 
 
 class JoinedChallengeViewSet(viewsets.ModelViewSet):
@@ -23,6 +25,7 @@ class JoinedChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = JoinedChallengeSerializer
     queryset = JoinedChallenge.objects.all()
 
+# Files
 
 class JoinedChallengeFileDetailView(APIView, PrivateStorageDetailView):
     model = JoinedChallengeFile
@@ -42,9 +45,19 @@ class JoinedChallengeFileUploadView(CreateAPIView):
     queryset = JoinedChallengeFile.objects.all()
     serializer_class = JoinedChallengeFileSerializer
 
+
+@permission_classes([IsAuthenticated])
+class JoinedChallengeFilesListView(RetrieveAPIView):
+    serializer_class = JoinedChallengeFilesListSerializer
+    lookup_field = 'uuid'
+
+    def get_queryset(self):
+        return JoinedChallenge.objects.filter(user=self.request.user)
+
 class BaseJoinedChallengeViewset(viewsets.ModelViewSet):
     """Base viewset for joined challenges of dihherent typse"""
     http_method_names = ('get', 'head', 'options', 'post', 'patch', 'delete')
+
 
 class ArticleJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
