@@ -1,21 +1,17 @@
-from private_storage.views import PrivateStorageDetailView
 from rest_framework import viewsets
-from rest_framework.decorators import permission_classes
-from rest_framework.generics import ListAPIView, get_object_or_404, CreateAPIView, RetrieveAPIView
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
-from joined_challenge.models.base import JoinedChallengeStatus, JoinedChallengeFile
+from joined_challenge.models.base import JoinedChallengeStatus
 from joined_challenge.serializers.joined_challenge import (
     JoinedChallengeSerializer,
     ArticleJoinedChallengeSerializer,
     EventParticipantJoinedChallengeSerializer, SchoolGSAJoinedChallengeSerializer,
     EventOrganizerJoinedChallengeSerializer, StoryJoinedChallengeSerializer, ProjectJoinedChallengeSerializer,
     ReactingJoinedChallengeSerializer, SupportJoinedChallengeSerializer, CustomJoinedChallengeSerializer,
-    QuizJoinedChallengeSerializer, JoinedChallengeFileSerializer, JoinedChallengeFilesListSerializer)
+    QuizJoinedChallengeSerializer)
 
 
 class JoinedChallengeViewSet(viewsets.ModelViewSet):
@@ -25,34 +21,6 @@ class JoinedChallengeViewSet(viewsets.ModelViewSet):
     serializer_class = JoinedChallengeSerializer
     queryset = JoinedChallenge.objects.all()
 
-# Files
-
-class JoinedChallengeFileDetailView(APIView, PrivateStorageDetailView):
-    model = JoinedChallengeFile
-    model_file_field = 'file'
-    content_disposition = 'attachment'
-
-    def can_access_file(self, private_file):
-        # When the object can be accessed, the file may be downloaded.
-        # This overrides PRIVATE_STORAGE_AUTH_FUNCTION
-        return self.request.user.is_admin or self.request.user == private_file.parent_object.joined_challenge.user
-
-    def get_object(self, queryset=None):
-        return get_object_or_404(JoinedChallengeFile, file=self.kwargs['path'])
-
-
-class JoinedChallengeFileUploadView(CreateAPIView):
-    queryset = JoinedChallengeFile.objects.all()
-    serializer_class = JoinedChallengeFileSerializer
-
-
-@permission_classes([IsAuthenticated])
-class JoinedChallengeFilesListView(RetrieveAPIView):
-    serializer_class = JoinedChallengeFilesListSerializer
-    lookup_field = 'uuid'
-
-    def get_queryset(self):
-        return JoinedChallenge.objects.filter(user=self.request.user)
 
 class BaseJoinedChallengeViewset(viewsets.ModelViewSet):
     """Base viewset for joined challenges of dihherent typse"""
