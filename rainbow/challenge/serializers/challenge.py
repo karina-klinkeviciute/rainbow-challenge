@@ -66,7 +66,9 @@ class ChallengeSerializer(serializers.ModelSerializer):
             concrete_joined_challenges.append(
                 {
                     "uuid": joined_challenge.concrete_joined_challenge,
-                    "date_joined": joined_challenge.joined_at.date()
+                    "date_joined": joined_challenge.joined_at.date(),
+                    "main_joined_challenge": joined_challenge.uuid,
+                    "files": joined_challenge.files.values_list('file', flat=True)
                 }
             )
         return concrete_joined_challenges
