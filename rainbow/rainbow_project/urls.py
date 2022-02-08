@@ -24,7 +24,7 @@ from rest_framework.routers import DefaultRouter
 from challenge.urls import router as challenge_router
 from joined_challenge.urls import router as joined_challenge_router
 from joined_challenge.views.files import JoinedChallengeFileDetailView, JoinedChallengeFileUploadView, \
-    JoinedChallengeFilesListView, ConcreteJoinedChallengeFilesList
+    JoinedChallengeFilesListView, ConcreteJoinedChallengeFilesListView, ConcreteJoinedChallengeFileUploadView
 from results.urls import router as results_router
 from quiz.urls import router as quiz_router
 from news.urls import router as news_router
@@ -77,5 +77,8 @@ urlpatterns = [
     re_path('^api/joined_challenge_files/(?P<path>.*)$', JoinedChallengeFileDetailView.as_view()),
     path('api/joined_challenge_file_upload/', JoinedChallengeFileUploadView.as_view()),
     path('api/joined_challenge_file_list/<uuid>/', JoinedChallengeFilesListView.as_view()),
-    path('api/concrete_joined_challenge_file_list/<challenge_type>/<uuid>/', ConcreteJoinedChallengeFilesList.as_view()),
+    path('api/concrete_joined_challenge_file_list/<challenge_type>/<uuid>/',
+         ConcreteJoinedChallengeFilesListView.as_view()),
+    path('api/concrete_joined_challenge_file_upload/',
+         ConcreteJoinedChallengeFileUploadView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
