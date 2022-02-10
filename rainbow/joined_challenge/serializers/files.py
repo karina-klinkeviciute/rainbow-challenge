@@ -21,11 +21,11 @@ class ConcreteJoinedChallengeFileSerializer(serializers.ModelSerializer):
     concrete_joined_challenge_uuid = serializers.SerializerMethodField()
 
     def get_challenge_type(self, obj):
-        challenge_type = obj.main_joined_challenge.challenge.type
+        challenge_type = obj.joined_challenge.challenge.type
         return challenge_type
 
     def get_concrete_joined_challenge_uuid(self, obj):
-        return obj.main_joined_challenge.concrete_joined_challenge
+        return obj.joined_challenge.concrete_joined_challenge
 
 
 class JoinedChallengeFilesListSerializer(serializers.ModelSerializer):
