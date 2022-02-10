@@ -1,4 +1,5 @@
 from django.apps import apps
+from django.conf import settings
 
 from rest_framework import serializers
 
@@ -57,7 +58,8 @@ class ChallengeSerializer(serializers.ModelSerializer):
         """
         returns a list of User's joined challenges
         """
-        user = self.context["request"].user
+        request = self.context.get("request")
+        user = request.user
         joined_challenges = JoinedChallenge.objects.filter(
             challenge=obj, user=user, status=JoinedChallengeStatus.JOINED
         )
@@ -68,8 +70,14 @@ class ChallengeSerializer(serializers.ModelSerializer):
                     "uuid": joined_challenge.concrete_joined_challenge,
                     "date_joined": joined_challenge.joined_at.date(),
                     "main_joined_challenge": joined_challenge.uuid,
-                    "files": joined_challenge.files.values_list('file', flat=True),
-                    "file_names": [file_name.split("/")[-1] for file_name in joined_challenge.files.values_list('file', flat=True)]
+                    # "files": joined_challenge.files.values_list('file', flat=True),
+                    "files": [
+                        {
+                            "uuid": file.uuid,
+                            "file_name": str(file.file).split("/")[-1],
+                            "file_url": request.build_absolute_uri("/") + 'private-media/' + str(file.file)
+                        } for file in joined_challenge.files.all()
+                    ]
                 }
             )
         return concrete_joined_challenges
