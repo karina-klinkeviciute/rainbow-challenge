@@ -68,7 +68,8 @@ class ChallengeSerializer(serializers.ModelSerializer):
                     "uuid": joined_challenge.concrete_joined_challenge,
                     "date_joined": joined_challenge.joined_at.date(),
                     "main_joined_challenge": joined_challenge.uuid,
-                    "files": joined_challenge.files.values_list('file', flat=True)
+                    "files": joined_challenge.files.values_list('file', flat=True),
+                    "file_names": [file_name.split("/")[-1] for file_name in joined_challenge.files.values_list('file', flat=True)]
                 }
             )
         return concrete_joined_challenges

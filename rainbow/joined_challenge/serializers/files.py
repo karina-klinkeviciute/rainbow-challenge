@@ -15,10 +15,11 @@ class ConcreteJoinedChallengeFileSerializer(serializers.ModelSerializer):
     """Serializer for files added to concrete joined challenges. """
     class Meta:
         model = JoinedChallengeFile
-        fields = ('uuid', 'joined_challenge', 'file', 'challenge_type', 'concrete_joined_challenge_uuid')
+        fields = ('uuid', 'joined_challenge', 'file', 'challenge_type', 'concrete_joined_challenge_uuid', 'file_name')
 
     challenge_type = serializers.SerializerMethodField()
     concrete_joined_challenge_uuid = serializers.SerializerMethodField()
+    file_name = serializers.SerializerMethodField()
 
     def get_challenge_type(self, obj):
         challenge_type = obj.joined_challenge.challenge.type
@@ -26,6 +27,9 @@ class ConcreteJoinedChallengeFileSerializer(serializers.ModelSerializer):
 
     def get_concrete_joined_challenge_uuid(self, obj):
         return obj.joined_challenge.concrete_joined_challenge
+
+    def get_file_name(self, obj):
+        return str(obj.file).split("/")[-1]
 
 
 class JoinedChallengeFilesListSerializer(serializers.ModelSerializer):

@@ -15,6 +15,7 @@ django_widget_tweaks
 django-nested-inline
 isoweek
 celery[redis]
+#django-rest-private-storage
 django-private-storage
 pytest-django
 django-cors-headers
