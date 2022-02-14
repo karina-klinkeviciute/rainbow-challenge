@@ -39,7 +39,7 @@ class UserSerializer(serializers.ModelSerializer):
             'gender_other',
             'username',
             'region',
-            'is_lgbtqia',
+            # 'is_lgbtqia',
             'all_points',
             'remaining_points',
             'streak',

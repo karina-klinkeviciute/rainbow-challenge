@@ -8,7 +8,13 @@ class JoinedChallengeFileSerializer(serializers.ModelSerializer):
     """Serializer for files added to joined challenges. """
     class Meta:
         model = JoinedChallengeFile
-        fields = ('uuid', 'joined_challenge', 'file')
+        fields = ('uuid', 'joined_challenge', 'file', 'file_name')
+
+    file_name = serializers.SerializerMethodField()
+
+    def get_file_name(self, obj):
+        """returns only a file name without path"""
+        return str(obj.file).split("/")[-1],
 
 
 class ConcreteJoinedChallengeFileSerializer(serializers.ModelSerializer):
