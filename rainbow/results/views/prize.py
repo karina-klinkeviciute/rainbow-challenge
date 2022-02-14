@@ -26,12 +26,11 @@ class AvailablePrizeViewSet(viewsets.ModelViewSet):
         return prizes
 
 
-class UserClaimedPrizesAPIView(ListAPIView):
+class ClaimedPrizeViewSet(viewsets.ModelViewSet):
+    """Prizes that are claimed by users"""
+    http_method_names = ('get', 'post', 'head', 'options')
     serializer_class = ClaimedPrizeSerializer
 
     def get_queryset(self):
-        queryset = ClaimedPrize.objects.all()
-        user = self.request.user
-        if user is not None:
-            queryset = queryset.filter(user=user)
+        queryset = ClaimedPrize.objects.filter(user=self.queryset.user)
         return queryset
