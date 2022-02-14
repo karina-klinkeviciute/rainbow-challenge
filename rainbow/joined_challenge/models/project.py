@@ -15,7 +15,7 @@ class ProjectJoinedChallenge(BaseJoinedChallenge):
         blank=True,
         null=True
     )
-    project_description = models.TextField(
+    description = models.TextField(
         verbose_name=_('description of the event in your own words'),
         blank=True,
         null=True

@@ -5,12 +5,10 @@ from joined_challenge.models.base import BaseJoinedChallenge
 
 
 class SupportJoinedChallenge(BaseJoinedChallenge):
-    other_organization = models.CharField(
-        verbose_name=_('Other organization'),
-        help_text=_('only if organization on challenge is Other'),
-        max_length=1000,
-        null=True,
-        blank=True
+    description = models.TextField(
+        verbose_name=_('description of support'),
+        blank=True,
+        null=True
     )
 
     @property
