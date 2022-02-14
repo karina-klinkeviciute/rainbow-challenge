@@ -14,7 +14,7 @@ class JoinedChallengeFileSerializer(serializers.ModelSerializer):
 
     def get_file_name(self, obj):
         """returns only a file name without path"""
-        return str(obj.file).split("/")[-1],
+        return str(obj.file).split("/")[-1]
 
 
 class ConcreteJoinedChallengeFileSerializer(serializers.ModelSerializer):
