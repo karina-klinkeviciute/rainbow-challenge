@@ -1,3 +1,5 @@
+import datetime
+
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
 
@@ -21,7 +23,7 @@ class AvailablePrizeViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """We only need those prizes that are available"""
-        prizes = Prize.objects.filter(available=True)
+        prizes = Prize.objects.filter(available=True, expires_at__lt=datetime.datetime.today())
         prizes = (prize for prize in prizes if prize.amount_remaining > 0)
         return prizes
 

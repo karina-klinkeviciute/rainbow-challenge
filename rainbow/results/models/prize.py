@@ -21,6 +21,7 @@ class Prize(models.Model):
     amount = models.IntegerField(verbose_name=_('amount'))
     image = models.ImageField(verbose_name=_('image'), upload_to='prize', blank=True, null=True)
     available = models.BooleanField(verbose_name=_('available'), default=True)
+    expires_at = models.DateField(verbose_name=_('expiration date'), blank=True, null=True)
 
     def __str__(self):
         return self.name
