@@ -4,12 +4,14 @@ from django.contrib import admin
 from django.core.files import File
 
 from django.utils.translation import gettext_lazy as _
+from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
 from challenge.models import Challenge, ArticleChallenge, EventParticipantChallenge, SupportChallenge, QuizChallenge, \
     CustomChallenge
 
 from challenge.models.event_organizer import EventOrganizerChallenge
 from challenge.models.project import ProjectChallenge
+from challenge.models.quiz import Answer, Question
 from challenge.models.reacting import ReactingChallenge
 from challenge.models.school_gsa import SchoolGSAChallenge
 from challenge.models.story import StoryChallenge
@@ -58,11 +60,26 @@ class ReactingChallengeAdmin(admin.ModelAdmin):
 class SupportChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', 'organization', )
 
-class QuizChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', 'quiz', )
-
 class CustomChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_challenge', )
+
+
+class AnswerInline(NestedStackedInline):
+    model = Answer
+    extra = 1
+    fk_name = 'question'
+
+
+class QuestionInline(NestedStackedInline):
+    model = Question
+    extra = 1
+    fk_name = 'quiz'
+    inlines = (AnswerInline, )
+
+
+class QuizChallengeAdmin(NestedModelAdmin):
+    list_display = ('main_challenge', )
+    inlines = (QuestionInline, )
 
 
 admin.site.register(Challenge, ChallengeAdmin)
@@ -76,5 +93,7 @@ admin.site.register(StoryChallenge, StoryChallengeAdmin)
 admin.site.register(ProjectChallenge, ProjectChallengeAdmin)
 admin.site.register(ReactingChallenge, ReactingChallengeAdmin)
 admin.site.register(SupportChallenge, SupportChallengeAdmin)
-admin.site.register(QuizChallenge, QuizChallengeAdmin)
+
 admin.site.register(CustomChallenge, CustomChallengeAdmin)
+
+admin.site.register(QuizChallenge, QuizChallengeAdmin)

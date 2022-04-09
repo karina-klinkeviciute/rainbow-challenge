@@ -3,7 +3,8 @@ import datetime
 from django.db.models import Q
 from rest_framework import viewsets, mixins
 
-from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge, CustomChallenge
+from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge, CustomChallenge, \
+    QuizChallenge
 from challenge.models.base import Challenge
 from challenge.models.event_organizer import EventOrganizerChallenge
 from challenge.models.project import ProjectChallenge
@@ -124,7 +125,7 @@ class QuizChallengeViewSet(BaseChallengeViewSet):
     A ViewSet for Quiz challenges.
     """
     serializer_class = QuizChallengeSerializer
-    queryset = SupportChallenge.objects.filter(
+    queryset = QuizChallenge.objects.filter(
         query_challenge_visible
     )
 

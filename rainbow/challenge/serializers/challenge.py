@@ -1,6 +1,3 @@
-from django.apps import apps
-from django.conf import settings
-
 from rest_framework import serializers
 
 from challenge.models import SupportChallenge, ArticleChallenge, EventParticipantChallenge
@@ -8,7 +5,7 @@ from challenge.models.base import Challenge, ChallengeType
 from challenge.models.custom import CustomChallenge
 from challenge.models.event_organizer import EventOrganizerChallenge
 from challenge.models.project import ProjectChallenge
-from challenge.models.quiz import QuizChallenge
+from challenge.models.quiz import QuizChallenge, Answer, Question
 from challenge.models.reacting import ReactingChallenge
 from challenge.models.school_gsa import SchoolGSAChallenge
 from challenge.models.story import StoryChallenge
@@ -153,15 +150,41 @@ class SupportChallengeSerializer(BaseChallengeSerializer):
         fields = '__all__'
 
 
-class QuizChallengeSerializer(BaseChallengeSerializer):
-
-    class Meta:
-        model = QuizChallenge
-        fields = '__all__'
-
-
 class CustomChallengeSerializer(BaseChallengeSerializer):
 
     class Meta:
         model = CustomChallenge
         fields = '__all__'
+
+
+class AnswerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = ('uuid', 'answer')
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+
+    answers = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Question
+        fields = ('uuid', 'question', 'answers')
+
+    def get_answers(self, obj):
+        answers = Answer.objects.filter(question=obj)
+        return AnswerSerializer(answers, many=True).data
+
+
+class QuizChallengeSerializer(BaseChallengeSerializer):
+
+    questions = serializers.SerializerMethodField()
+
+    class Meta:
+        model = QuizChallenge
+        fields = ('main_challenge', 'questions')
+
+    def get_questions(self, obj):
+        questions = Question.objects.filter(quiz=obj)
+        return QuestionSerializer(questions, many=True).data

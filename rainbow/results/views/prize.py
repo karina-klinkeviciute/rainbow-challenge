@@ -1,5 +1,6 @@
 import datetime
 
+from django.db.models import Q
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
 
@@ -23,7 +24,13 @@ class AvailablePrizeViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """We only need those prizes that are available"""
-        prizes = Prize.objects.filter(available=True, expires_at__lt=datetime.datetime.today())
+        prizes = Prize.objects.filter(
+
+            Q(
+                expires_at__gt=datetime.datetime.today()) | Q(expires_at__isnull=True),
+                available=True
+              )
+
         prizes = (prize for prize in prizes if prize.amount_remaining > 0)
         return prizes
 
@@ -34,5 +41,5 @@ class ClaimedPrizeViewSet(viewsets.ModelViewSet):
     serializer_class = ClaimedPrizeSerializer
 
     def get_queryset(self):
-        queryset = ClaimedPrize.objects.filter(user=self.queryset.user)
+        queryset = ClaimedPrize.objects.filter(user=self.request.user)
         return queryset

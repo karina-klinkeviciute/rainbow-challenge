@@ -13,7 +13,7 @@ from user.models import User
 
 class RegionViewSet(viewsets.ModelViewSet):
     """
-    A viewset for viewing and editing user instances.
+    A viewset for viewing and editing region instances.
     """
     http_method_names = ('get', 'head', 'options')
     permission_classes = [IsAuthenticatedOrReadOnly, ]

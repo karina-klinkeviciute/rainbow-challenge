@@ -15,7 +15,7 @@ class ClaimedPrizeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ClaimedPrize
-        fields = ['user', 'uuid', 'amount', 'prize', 'issued']
+        fields = ['uuid', 'amount', 'prize', 'issued']
         read_only_fields = ['issued', ]
 
     def validate(self, data):
