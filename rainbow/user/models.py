@@ -198,6 +198,8 @@ class User(AbstractUser):
             points += quiz_joined_challenge.quizjoinedchallenge.quiz_user.correct_answers_count
         return points
 
+    # TODO fix this to reflect changes in the quiz model
+
     @property
     def all_points(self):
         sum_all = self.confirmed_challenges.aggregate((Sum('points')))

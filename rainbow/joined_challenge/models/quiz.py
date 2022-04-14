@@ -14,6 +14,10 @@ class QuizJoinedChallenge(BaseJoinedChallenge):
         from challenge.models import QuizChallenge
         return QuizChallenge.objects.get(main_challenge=self.main_joined_challenge.challenge)
 
+    @property
+    def correct_answers_count(self):
+        return UserAnswer.objects.filter(answer__correct=True).count()
+#     TODO check if correct
 
 class UserAnswer(models.Model):
     uuid = models.UUIDField(
@@ -26,13 +30,13 @@ class UserAnswer(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_('answer')
     )
+
     quiz_joined_challenge = models.ForeignKey(
         QuizJoinedChallenge,
-        verbose_name=_("quiz joined challenge"),
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name=_("quiz joined challenge")
     )
 
     @property
     def is_correct(self):
         return self.answer.correct
-

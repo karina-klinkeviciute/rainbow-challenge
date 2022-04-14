@@ -167,10 +167,23 @@ class AnswerSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
 
     answers = serializers.SerializerMethodField()
+    is_answered = serializers.SerializerMethodField()
 
     class Meta:
         model = Question
-        fields = ('uuid', 'question', 'answers')
+        fields = ('uuid', 'question', 'answers', 'is_answered', )
+        read_only_fields = ('is_answered', )
+
+    def get_is_answered(self, obj):
+        request = self.context.get("request")
+        user = request.user
+        from joined_challenge.models.quiz import UserAnswer
+        if UserAnswer.objects.filter(
+                quiz_joined_challenge__main_joined_challenge__user=user,
+                answer__question=obj
+        ).exists():
+            return True
+        return False
 
     def get_answers(self, obj):
         answers = Answer.objects.filter(question=obj)
@@ -187,4 +200,4 @@ class QuizChallengeSerializer(BaseChallengeSerializer):
 
     def get_questions(self, obj):
         questions = Question.objects.filter(quiz=obj)
-        return QuestionSerializer(questions, many=True).data
+        return QuestionSerializer(questions, many=True, context=self.context).data

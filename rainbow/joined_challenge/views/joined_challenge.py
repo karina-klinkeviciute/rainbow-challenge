@@ -5,13 +5,14 @@ from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, Eve
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
 from joined_challenge.models.base import JoinedChallengeStatus
+from joined_challenge.models.quiz import UserAnswer
 from joined_challenge.serializers.joined_challenge import (
     JoinedChallengeSerializer,
     ArticleJoinedChallengeSerializer,
     EventParticipantJoinedChallengeSerializer, SchoolGSAJoinedChallengeSerializer,
     EventOrganizerJoinedChallengeSerializer, StoryJoinedChallengeSerializer, ProjectJoinedChallengeSerializer,
     ReactingJoinedChallengeSerializer, SupportJoinedChallengeSerializer, CustomJoinedChallengeSerializer,
-    QuizJoinedChallengeSerializer)
+    QuizJoinedChallengeSerializer, UserAnswerSerializer)
 
 
 class JoinedChallengeViewSet(viewsets.ModelViewSet):
@@ -105,6 +106,11 @@ class QuizJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     serializer_class = QuizJoinedChallengeSerializer
     queryset = QuizJoinedChallenge.objects.all()
+
+
+class UserAnswerViewSet(viewsets.ModelViewSet):
+    serializer_class = UserAnswerSerializer
+    queryset = UserAnswer.objects.all()
 
 
 class UserJoinedChallengesAPIView(ListAPIView):

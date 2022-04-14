@@ -1,6 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
+from challenge.models.quiz import Answer, Question
 from joined_challenge.models import (
     EventOrganizerJoinedChallenge,
     SupportJoinedChallenge,
@@ -15,8 +16,8 @@ from joined_challenge.models import (
     QuizJoinedChallenge,
 )
 from joined_challenge.models.base import JoinedChallengeStatus
+from joined_challenge.models.quiz import UserAnswer
 from joined_challenge.serializers.files import JoinedChallengeFileSerializer
-from quiz.models import QuizUser
 
 
 class JoinedChallengeSerializer(serializers.ModelSerializer):
@@ -159,13 +160,19 @@ class QuizJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
         model = QuizJoinedChallenge
         fields = '__all__'
 
-    def create(self, validated_data):
-        this_challenge = super().create(validated_data)
-        user = this_challenge.user
-        quiz = this_challenge.main_joined_challenge.quiz_challenge.quiz
-        quiz_user = QuizUser(user=user, quiz=quiz)
-        quiz_user.save()
-        this_challenge.quiz_user = quiz_user
-        this_challenge.save()
 
+class UserAnswerSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = UserAnswer
+        fields = ('uuid', 'answer', 'is_correct')
+        read_only_fields = ('is_correct', )
+
+    def validate_answer(self, value):
+        answer = Answer.objects.get(uuid=value)
+        question = answer.question
+        if UserAnswer.objects.filter(answer__question=question).exists():
+            raise serializers.ValidationError(_("This question has already been answered."))
+        return value
+
+    # TODO overwrite update method to return total points on completion
