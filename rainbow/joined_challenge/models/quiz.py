@@ -19,6 +19,7 @@ class QuizJoinedChallenge(BaseJoinedChallenge):
         return UserAnswer.objects.filter(answer__correct=True).count()
 #     TODO check if correct
 
+
 class UserAnswer(models.Model):
     uuid = models.UUIDField(
         default=uuid.uuid4,
@@ -40,3 +41,8 @@ class UserAnswer(models.Model):
     @property
     def is_correct(self):
         return self.answer.correct
+
+    @property
+    def correct_answer(self):
+        answer = self.answer.question.answer_set.get(correct=True)
+        return answer

@@ -4,6 +4,7 @@ from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, Eve
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
 from joined_challenge.models.base import JoinedChallengeFile
+from joined_challenge.models.quiz import UserAnswer
 
 
 class JoinedChallengeAdmin(admin.ModelAdmin):
@@ -43,6 +44,9 @@ class CustomJoinedChallengeAdmin(admin.ModelAdmin):
 class QuizJoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('main_joined_challenge', )
 
+class UserAnswerAdmin(admin.ModelAdmin):
+    list_display = ('answer', 'quiz_joined_challenge')
+
 admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
 admin.site.register(JoinedChallengeFile, JoinedChallengeFileAdmin)
 
@@ -55,4 +59,6 @@ admin.site.register(ProjectJoinedChallenge, ProjectJoinedChallengeAdmin)
 admin.site.register(ReactingJoinedChallenge, ReactingJoinedChallengeAdmin)
 admin.site.register(SupportJoinedChallenge, SupportJoinedChallengeAdmin)
 admin.site.register(CustomJoinedChallenge, CustomJoinedChallengeAdmin)
+
 admin.site.register(QuizJoinedChallenge, QuizJoinedChallengeAdmin)
+admin.site.register(UserAnswer, UserAnswerAdmin)

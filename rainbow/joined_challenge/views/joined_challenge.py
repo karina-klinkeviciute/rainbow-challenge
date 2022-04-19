@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
 
+from challenge.models.quiz import Answer
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
@@ -111,6 +112,18 @@ class QuizJoinedChallengeViewSet(BaseJoinedChallengeViewset):
 class UserAnswerViewSet(viewsets.ModelViewSet):
     serializer_class = UserAnswerSerializer
     queryset = UserAnswer.objects.all()
+
+    # def create(self, request, *args, **kwargs):
+        # user = request.user
+        # answer_uuid = request.data["answer"]
+        # answer = Answer.objects.get(uuid=answer_uuid)
+        # question = answer.question
+        # quiz_challenge = question.quiz
+        # quiz_joined_challenge = QuizJoinedChallenge.objects.get(
+        #     main_joined_challenge__user=user,
+        #     main_joined_challenge__challenge=quiz_challenge.main_challenge)
+        # super().create()
+        # TODO finish this
 
 
 class UserJoinedChallengesAPIView(ListAPIView):

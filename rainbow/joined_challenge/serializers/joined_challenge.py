@@ -2,6 +2,7 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from challenge.models.quiz import Answer, Question
+from challenge.serializers.challenge import AnswerSerializer
 from joined_challenge.models import (
     EventOrganizerJoinedChallenge,
     SupportJoinedChallenge,
@@ -162,14 +163,37 @@ class QuizJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
 
 class UserAnswerSerializer(serializers.ModelSerializer):
+    correct_answer = AnswerSerializer(read_only=True)
 
     class Meta:
         model = UserAnswer
-        fields = ('uuid', 'answer', 'is_correct')
-        read_only_fields = ('is_correct', )
+        fields = ('uuid', 'answer', 'is_correct', 'correct_answer')
+        read_only_fields = ('is_correct', 'correct_answer')
+
+        correct_answer = serializers.SerializerMethodField()
+
+    def create(self, validated_data):
+        request = self.context.get("request")
+        user = request.user
+        answer_uuid = request.data["answer"]
+        answer = Answer.objects.get(uuid=answer_uuid)
+        question = answer.question
+        quiz_challenge = question.quiz
+        quiz_joined_challenge = QuizJoinedChallenge.objects.get(
+            main_joined_challenge__user=user,
+            main_joined_challenge__challenge=quiz_challenge.main_challenge)
+        user_answer = UserAnswer(answer=answer, quiz_joined_challenge=quiz_joined_challenge)
+        user_answer.save()
+
+        return user_answer
+
+    # def get_correct_answer(self, obj):
+    #     answer = obj.answer.question.answer_set.get(correct=True)
+    #     correct_answer_data = AnswerSerializer(answer).data
+    #     return correct_answer_data
 
     def validate_answer(self, value):
-        answer = Answer.objects.get(uuid=value)
+        answer = Answer.objects.get(uuid=self.initial_data["answer"])
         question = answer.question
         if UserAnswer.objects.filter(answer__question=question).exists():
             raise serializers.ValidationError(_("This question has already been answered."))

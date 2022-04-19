@@ -35,18 +35,3 @@ class EventParticipantChallenge(BaseChallenge):
         blank=True,
         null=True
     )
-
-
-
-# django admin command - generuoti QR kodą
-
-# Tada prie challenge atsiranda QR kodas kaip failas
-
-#   todo   padarom ir kur nors qr code generavimą, iš kur renginio organizatoriai galėtų jį parsisiųsti/atsispausdinti
-# Kai vartotojas nuskenuoja QR kodą, jis siunčiamas į joined challenge.
-# Ten gal saugomas, o gal tik patikrinamas (sutikrinamas su kodu, esančiu ant challenge) ir tada pažymima varnelė, kad atlikta.
-# Dėl visa ko, galima būtų padaryti, kad kodą galima būtų suvesti ir ranka - nežinau ar tada nebūtų taip, kad juo būtų dalijamasi
-
-# Jei QR kodas kažkodėl nenusiskenuoja, tada reikėtų daryti atvirkščiai - kad renginio organizatoriai gautų kodą iš vartotojo ir pasižymėtų jį?
-
-# Gal foto tiktų kaip įrodymas, kad tikrai dalyvavo, jei nėra galimtybės qr kodo skenuoti?
