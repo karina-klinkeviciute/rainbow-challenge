@@ -157,6 +157,8 @@ class CustomJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
 class QuizJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
+    correct_answers_count = serializers.IntegerField()
+
     class Meta:
         model = QuizJoinedChallenge
         fields = '__all__'
@@ -169,8 +171,6 @@ class UserAnswerSerializer(serializers.ModelSerializer):
         model = UserAnswer
         fields = ('uuid', 'answer', 'is_correct', 'correct_answer')
         read_only_fields = ('is_correct', 'correct_answer')
-
-        correct_answer = serializers.SerializerMethodField()
 
     def create(self, validated_data):
         request = self.context.get("request")
@@ -186,11 +186,6 @@ class UserAnswerSerializer(serializers.ModelSerializer):
         user_answer.save()
 
         return user_answer
-
-    # def get_correct_answer(self, obj):
-    #     answer = obj.answer.question.answer_set.get(correct=True)
-    #     correct_answer_data = AnswerSerializer(answer).data
-    #     return correct_answer_data
 
     def validate_answer(self, value):
         answer = Answer.objects.get(uuid=self.initial_data["answer"])
