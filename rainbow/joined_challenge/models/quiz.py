@@ -17,18 +17,6 @@ class QuizJoinedChallenge(BaseJoinedChallenge):
     @property
     def correct_answers_count(self):
         return UserAnswer.objects.filter(answer__correct=True).count()
-#     TODO check if correct
-
-   # @property
-   #  def all_answered(self):
-   #      """If amount of answered questions is the same as all questions, it's completed"""
-   #      quiz_questions = self.main_joined_challenge.challengequestion_set
-   #      quiz_answers = Answer.objects.filter(question__in=quiz_questions)
-   #      quiz_user_answers = self.useranswer_set
-   #      if quiz_answers.count() == quiz_user_answers.count():
-   #          return True
-   #      else:
-   #          return False
 
 
 class UserAnswer(models.Model):

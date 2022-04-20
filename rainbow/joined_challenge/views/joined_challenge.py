@@ -31,99 +31,127 @@ class BaseJoinedChallengeViewset(viewsets.ModelViewSet):
 
 class ArticleJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A viewset for Article challenges.
+    Challenges of type Article.
     """
     serializer_class = ArticleJoinedChallengeSerializer
     queryset = ArticleJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class EventParticipantJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for EventParticipant challenges.
+    Challenges of type Event Participant.
     """
     serializer_class = EventParticipantJoinedChallengeSerializer
     queryset = EventParticipantJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class SchoolGSAJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for SchoolGSA challenges.
+    Challenges of type School GSA.
     """
     serializer_class = SchoolGSAJoinedChallengeSerializer
     queryset = SchoolGSAJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class EventOrganizerJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for EventOrganizer challenges.
+    Challenges of type Event Organizer.
     """
     serializer_class = EventOrganizerJoinedChallengeSerializer
     queryset = EventOrganizerJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class StoryJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for EventOrganizer challenges.
+    Challenges of type Story.
     """
     serializer_class = StoryJoinedChallengeSerializer
     queryset = StoryJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class ProjectJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for EventOrganizer challenges.
+    Challenges of type Project.
     """
     serializer_class = ProjectJoinedChallengeSerializer
     queryset = ProjectJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class ReactingJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for EventOrganizer challenges.
+    Challenges of type Reacting.
     """
     serializer_class = ReactingJoinedChallengeSerializer
     queryset = ReactingJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class SupportJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for EventOrganizer challenges.
+    Challenges of type Support.
     """
     serializer_class = SupportJoinedChallengeSerializer
     queryset = SupportJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class CustomJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for EventOrganizer challenges.
+    Challenges of type Custom.
     """
     serializer_class = CustomJoinedChallengeSerializer
     queryset = CustomJoinedChallenge.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
+
 
 class QuizJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
-    A ViewSet for EventOrganizer challenges.
+    Challenges of type Quiz.
     """
     serializer_class = QuizJoinedChallengeSerializer
     queryset = QuizJoinedChallenge.objects.all()
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(main_joined_challenge__user=self.request.user)
 
 
 class UserAnswerViewSet(viewsets.ModelViewSet):
     serializer_class = UserAnswerSerializer
     queryset = UserAnswer.objects.all()
-
-    # def create(self, request, *args, **kwargs):
-        # user = request.user
-        # answer_uuid = request.data["answer"]
-        # answer = Answer.objects.get(uuid=answer_uuid)
-        # question = answer.question
-        # quiz_challenge = question.quiz
-        # quiz_joined_challenge = QuizJoinedChallenge.objects.get(
-        #     main_joined_challenge__user=user,
-        #     main_joined_challenge__challenge=quiz_challenge.main_challenge)
-        # super().create()
-        # TODO finish this
 
 
 class UserJoinedChallengesAPIView(ListAPIView):
