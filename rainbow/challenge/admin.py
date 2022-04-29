@@ -1,6 +1,7 @@
 import qrcode
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.admin import display
 from django.core.files import File
 
 from django.utils.translation import gettext_lazy as _
@@ -35,33 +36,49 @@ class ChallengeAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'image', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
     list_filter = ('type', 'region', 'published', )
 
-class ArticleChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', )
+class BaseChallengeAdmin(admin.ModelAdmin):
+    list_display = ('main_challenge', 'get_published')
 
-class EventParticipantChallengeAdmin(admin.ModelAdmin):
-    list_display = ('event_name', )
+    @display(ordering='main_challenge__published', description='Published')
+    def get_published(self, obj):
+        return obj.main_challenge.published
+
+
+class ArticleChallengeAdmin(BaseChallengeAdmin):
+    pass
+
+
+class EventParticipantChallengeAdmin(BaseChallengeAdmin):
+    list_display = ('event_name', 'get_published')
     actions = [generate_qr_codes]
 
-class SchoolGSAChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', )
 
-class EventOrganizerChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', )
+class SchoolGSAChallengeAdmin(BaseChallengeAdmin):
+    pass
 
-class StoryChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', )
 
-class ProjectChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', )
+class EventOrganizerChallengeAdmin(BaseChallengeAdmin):
+    pass
 
-class ReactingChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', )
 
-class SupportChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', 'organization', )
+class StoryChallengeAdmin(BaseChallengeAdmin):
+    pass
 
-class CustomChallengeAdmin(admin.ModelAdmin):
-    list_display = ('main_challenge', )
+
+class ProjectChallengeAdmin(BaseChallengeAdmin):
+    pass
+
+
+class ReactingChallengeAdmin(BaseChallengeAdmin):
+    pass
+
+
+class SupportChallengeAdmin(BaseChallengeAdmin):
+    list_display = ('main_challenge', 'organization', 'get_published')
+
+
+class CustomChallengeAdmin(BaseChallengeAdmin):
+    pass
 
 
 class AnswerInline(NestedStackedInline):
@@ -77,8 +94,8 @@ class QuestionInline(NestedStackedInline):
     inlines = (AnswerInline, )
 
 
-class QuizChallengeAdmin(NestedModelAdmin):
-    list_display = ('main_challenge', )
+class QuizChallengeAdmin(BaseChallengeAdmin):
+    list_display = ('main_challenge', 'get_published')
     inlines = (QuestionInline, )
 
 
