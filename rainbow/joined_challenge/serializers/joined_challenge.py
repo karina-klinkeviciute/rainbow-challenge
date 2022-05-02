@@ -157,7 +157,7 @@ class CustomJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
 class QuizJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
-    correct_answers_count = serializers.IntegerField()
+    correct_answers_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = QuizJoinedChallenge
