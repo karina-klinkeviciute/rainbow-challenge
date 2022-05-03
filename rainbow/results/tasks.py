@@ -22,7 +22,7 @@ def test_task():
     send_mail(
         _('Celery works alright'),
         'celery works alright',
-        'no-reply@rainbowchallenge.lt',
+        'rainbowchallenge@rainbowchallenge.lt',
         settings.ADMIN_EMAILS,
         fail_silently=True,
     )
@@ -132,7 +132,7 @@ def calculate_streaks():
     send_mail(
         _('Streaks and medals statistics'),
         email_text,
-        'no-reply@rainbowchallenge.lt',
+        'rainbowchallenge@rainbowchallenge.lt',
         settings.ADMIN_EMAILS,
         fail_silently=False,
     )
