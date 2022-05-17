@@ -59,11 +59,11 @@ INSTALLED_APPS = [
     # project apps
     'user',
     'results',
-    'quiz',
     'challenge',
     'joined_challenge',
     'news',
     'message',
+    'quiz',
 
 ]
 
