@@ -1,7 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
-from challenge.models.quiz import Answer, Question
+from challenge.models.quiz import Answer
 from challenge.serializers.challenge import AnswerSerializer
 from joined_challenge.models import (
     EventOrganizerJoinedChallenge,

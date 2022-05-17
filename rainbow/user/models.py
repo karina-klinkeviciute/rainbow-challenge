@@ -195,7 +195,7 @@ class User(AbstractUser):
         )
         points = 0
         for quiz_joined_challenge in quiz_joined_challenges:
-            points += quiz_joined_challenge.quizjoinedchallenge.quiz_user.correct_answers_count
+            points += quiz_joined_challenge.quizjoinedchallenge.correct_answers_count
         return points
 
     # TODO fix this to reflect changes in the quiz model
