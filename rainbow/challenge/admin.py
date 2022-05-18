@@ -94,7 +94,7 @@ class QuestionInline(NestedStackedInline):
     inlines = (AnswerInline, )
 
 
-class QuizChallengeAdmin(BaseChallengeAdmin):
+class QuizChallengeAdmin(NestedModelAdmin, BaseChallengeAdmin):
     list_display = ('main_challenge', 'get_published')
     inlines = (QuestionInline, )
 
