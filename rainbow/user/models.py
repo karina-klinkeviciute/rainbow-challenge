@@ -28,7 +28,7 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            year_of_birth=year_of_birth,
+            # year_of_birth=year_of_birth,
         )
 
         user.set_password(password)
@@ -43,7 +43,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password,
-            year_of_birth=year_of_birth,
+            # year_of_birth=year_of_birth,
         )
         user.is_admin = True
         user.is_superuser = True
