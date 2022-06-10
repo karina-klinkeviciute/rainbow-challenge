@@ -105,14 +105,15 @@ class User(AbstractUser):
         editable=False)
     username = models.CharField(
         _('username'),
-        max_length=150,
-        unique=True,
-        help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
-        validators=[username_validator],
-        error_messages={
-            'unique': _("A user with that username already exists."),
-        },
+        # max_length=150,
+        # unique=False,
+        # help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+        # validators=[username_validator],
+        # error_messages={
+        #     'unique': _("A user with that username already exists."),
+        # },
         null=True,
+        blank=True
     )
     email = models.EmailField(_('email address'), blank=True, unique=True)
     year_of_birth = models.IntegerField(
