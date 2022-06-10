@@ -22,6 +22,7 @@ class CustomUserCreateSerializer(UserCreatePasswordRetypeSerializer):
              'gender_other',
              'username',
              'region',
+             'year_of_birth',
          )
 
 
@@ -39,6 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
             'gender_other',
             'username',
             'region',
+            'year_of_birth',
             # 'is_lgbtqia',
             'all_points',
             'remaining_points',
