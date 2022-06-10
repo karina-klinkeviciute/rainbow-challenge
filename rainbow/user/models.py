@@ -18,7 +18,7 @@ from results.models.region import Region
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, password=None, **kwargs):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -26,9 +26,17 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError('Users must have an email address')
 
+        # 'password',
+        # 'gender',
+        # 'gender_other',
+        # 'username',
+        # 'region',
+        # 'year_of_birth',
+
         user = self.model(
             email=self.normalize_email(email),
             # year_of_birth=year_of_birth,
+            **kwargs
         )
 
         user.set_password(password)
