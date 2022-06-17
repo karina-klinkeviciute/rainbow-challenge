@@ -28,7 +28,7 @@ class ClaimedPrizeSerializer(serializers.ModelSerializer):
         # todo write tests for this
 
         cost_points = prize.price * amount
-        user = data['user']
+        user = self.context['request'].user
         if user.remaining_points < cost_points:
             raise serializers.ValidationError(_("Sorry, you don't have enough rainbows for that."))
 
