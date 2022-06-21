@@ -200,4 +200,14 @@ class QuizChallengeSerializer(BaseChallengeSerializer):
 
     def get_questions(self, obj):
         questions = Question.objects.filter(quiz=obj)
-        return QuestionSerializer(questions, many=True, context=self.context).data
+        questions_filtered = []
+        request = self.context.get("request")
+        user = request.user
+        from joined_challenge.models.quiz import UserAnswer
+        for question in questions:
+            if not UserAnswer.objects.filter(
+                    quiz_joined_challenge__main_joined_challenge__user=user,
+                    answer__question=question
+            ).exists():
+                questions_filtered.append(question)
+        return QuestionSerializer(questions_filtered, many=True, context=self.context).data
