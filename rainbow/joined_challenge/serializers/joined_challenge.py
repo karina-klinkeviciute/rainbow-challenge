@@ -161,7 +161,7 @@ class QuizJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
 
     class Meta:
         model = QuizJoinedChallenge
-        fields = ("main_joined_challenge", "correct_answers_count")
+        fields = ("uuid", "main_joined_challenge", "correct_answers_count")
         read_only_fields = ("correct_answers_count", )
 
 
