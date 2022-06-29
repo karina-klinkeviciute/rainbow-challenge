@@ -231,8 +231,8 @@ ADMIN_EMAILS = os.environ.get("ADMIN_EMAILS").split(",")
 # FILES
 
 
-# max file size - 10 MB
-FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760
+# max file size - 20 MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 20971520
 
 PRIVATE_STORAGE_ROOT = os.path.join(BASE_DIR, 'media-private')
 PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_staff'
