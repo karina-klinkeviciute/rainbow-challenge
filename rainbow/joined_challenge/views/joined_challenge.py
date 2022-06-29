@@ -1,7 +1,11 @@
-from rest_framework import viewsets
-from rest_framework.generics import ListAPIView
+from django.utils.translation import gettext_lazy as _
 
-from challenge.models.quiz import Answer
+from rest_framework import viewsets, status
+from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from challenge.models import EventParticipantChallenge
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
@@ -13,7 +17,7 @@ from joined_challenge.serializers.joined_challenge import (
     EventParticipantJoinedChallengeSerializer, SchoolGSAJoinedChallengeSerializer,
     EventOrganizerJoinedChallengeSerializer, StoryJoinedChallengeSerializer, ProjectJoinedChallengeSerializer,
     ReactingJoinedChallengeSerializer, SupportJoinedChallengeSerializer, CustomJoinedChallengeSerializer,
-    QuizJoinedChallengeSerializer, UserAnswerSerializer)
+    QuizJoinedChallengeSerializer, UserAnswerSerializer, QRCodeScanSerializer)
 
 
 class JoinedChallengeViewSet(viewsets.ModelViewSet):
@@ -51,6 +55,21 @@ class EventParticipantJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(main_joined_challenge__user=self.request.user)
+
+
+class QRCodeScanView(APIView):
+    """
+    A view for joining and completing any event challenge
+    """
+    serializer_class = QRCodeScanSerializer
+
+    def post(self, request, format=None):
+        qr_code = request.data.get("qr_code")
+        serializer = QRCodeScanSerializer(data={"qr_code": qr_code}, context={"user": self.request.user})
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class SchoolGSAJoinedChallengeViewSet(BaseJoinedChallengeViewset):

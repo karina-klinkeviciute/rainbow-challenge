@@ -25,6 +25,7 @@ from challenge.urls import router as challenge_router
 from joined_challenge.urls import router as joined_challenge_router
 from joined_challenge.views.files import JoinedChallengeFileDetailView, JoinedChallengeFileUploadView, \
     JoinedChallengeFilesListView, ConcreteJoinedChallengeFilesListView, ConcreteJoinedChallengeFileUploadView
+from joined_challenge.views.joined_challenge import QRCodeScanView
 from results.urls import router as results_router
 from news.urls import router as news_router
 from message.urls import router as message_router
@@ -79,4 +80,6 @@ urlpatterns = [
          ConcreteJoinedChallengeFilesListView.as_view()),
     path('api/concrete_joined_challenge_file_upload/',
          ConcreteJoinedChallengeFileUploadView.as_view()),
+    path('api/qr_code_scan/',
+         QRCodeScanView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

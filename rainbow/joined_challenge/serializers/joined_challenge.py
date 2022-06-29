@@ -1,6 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
+from challenge.models import EventParticipantChallenge
 from challenge.models.quiz import Answer
 from challenge.serializers.challenge import AnswerSerializer
 from joined_challenge.models import (
@@ -104,6 +105,44 @@ class EventParticipantJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
         if value != challenge_qr_code:
             raise serializers.ValidationError(_("QR code is invalid."))
         return value
+
+
+class QRCodeScanSerializer(serializers.Serializer):
+    qr_code = serializers.CharField()
+    joined_challenge_name = serializers.CharField(read_only=True)
+    points = serializers.IntegerField(read_only=True)
+
+    def validate_qr_code(self, value):
+        try:
+            event_participant_challenge = EventParticipantChallenge.objects.get(qr_code=value)
+        except EventParticipantChallenge.DoesNotExist:
+            raise serializers.ValidationError(_("QR code is invalid."))
+
+        if EventParticipantJoinedChallenge.objects.filter(
+                main_joined_challenge__challenge__eventparticipantchallenge=event_participant_challenge
+                ).exists():
+            raise serializers.ValidationError(_("You have already completed this challenge"))
+
+        return value
+
+    def create(self, validated_data):
+        qr_code = validated_data["qr_code"]
+        event_participant_challenge = EventParticipantChallenge.objects.get(qr_code=qr_code)
+        user = self.context.get("user")
+        event_participant_main_joined_challenge = JoinedChallenge(
+            user=user, challenge=event_participant_challenge.main_challenge
+        )
+        event_participant_main_joined_challenge.save()
+        event_participant_joined_challenge = EventParticipantJoinedChallenge(
+            main_joined_challenge=event_participant_main_joined_challenge,
+            qr_code=qr_code
+        )
+        event_participant_joined_challenge.save()
+        data = {
+            "qr_code": qr_code,
+            "joined_challenge_name": event_participant_challenge.main_challenge.name,
+            "points": event_participant_challenge.main_challenge.points}
+        return data
 
 
 class SchoolGSAJoinedChallengeSerializer(BaseJoinedChallengeSerializer):
