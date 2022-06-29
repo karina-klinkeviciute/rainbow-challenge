@@ -16,7 +16,7 @@ class QuizJoinedChallenge(BaseJoinedChallenge):
 
     @property
     def correct_answers_count(self):
-        return UserAnswer.objects.filter(answer__correct=True).count()
+        return UserAnswer.objects.filter(answer__correct=True, quiz_joined_challenge=self).count()
 
 
 class UserAnswer(models.Model):
