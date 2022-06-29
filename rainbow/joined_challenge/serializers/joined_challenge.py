@@ -130,7 +130,9 @@ class QRCodeScanSerializer(serializers.Serializer):
         event_participant_challenge = EventParticipantChallenge.objects.get(qr_code=qr_code)
         user = self.context.get("user")
         event_participant_main_joined_challenge = JoinedChallenge(
-            user=user, challenge=event_participant_challenge.main_challenge
+            user=user,
+            challenge=event_participant_challenge.main_challenge,
+            status=JoinedChallengeStatus.CONFIRMED
         )
         event_participant_main_joined_challenge.save()
         event_participant_joined_challenge = EventParticipantJoinedChallenge(
