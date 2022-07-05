@@ -53,11 +53,13 @@ class UserSerializer(serializers.ModelSerializer):
     medals = MedalSerializer(many=True)
 
     def update(self, instance, validated_data):
-        region = validated_data.pop("region")
-        region_uuid = self.initial_data["region"]["uuid"]
-        region = Region.objects.get(uuid=region_uuid)
-        instance.region = region
-        instance.save()
+        if 'region' in validated_data:
+            validated_data.pop("region")
+        if 'region' in self.initial_data:
+            region_uuid = self.initial_data.get("region").get("uuid")
+            region = Region.objects.get(uuid=region_uuid)
+            instance.region = region
+            instance.save()
         email_field = get_user_email_field_name(User)
         if settings.SEND_ACTIVATION_EMAIL and email_field in validated_data:
             instance_email = get_user_email(instance)
