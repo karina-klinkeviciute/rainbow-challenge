@@ -4,6 +4,7 @@ from djoser.serializers import UserCreatePasswordRetypeSerializer
 from rest_framework import serializers
 from djoser.compat import get_user_email, get_user_email_field_name
 
+from results.models import Region
 from results.serializers.medal import MedalSerializer
 from results.serializers.region import RegionSerializer
 
@@ -52,6 +53,11 @@ class UserSerializer(serializers.ModelSerializer):
     medals = MedalSerializer(many=True)
 
     def update(self, instance, validated_data):
+        region = validated_data.pop("region")
+        region_uuid = self.initial_data["region"]["uuid"]
+        region = Region.objects.get(uuid=region_uuid)
+        instance.region = region
+        instance.save()
         email_field = get_user_email_field_name(User)
         if settings.SEND_ACTIVATION_EMAIL and email_field in validated_data:
             instance_email = get_user_email(instance)

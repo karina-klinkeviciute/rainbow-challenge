@@ -113,13 +113,14 @@ class QRCodeScanSerializer(serializers.Serializer):
     points = serializers.IntegerField(read_only=True)
 
     def validate_qr_code(self, value):
+        user = self.context.get("user")
         try:
             event_participant_challenge = EventParticipantChallenge.objects.get(qr_code=value)
         except EventParticipantChallenge.DoesNotExist:
             raise serializers.ValidationError(_("QR code is invalid."))
 
         if EventParticipantJoinedChallenge.objects.filter(
-                main_joined_challenge__challenge__eventparticipantchallenge=event_participant_challenge
+                main_joined_challenge__challenge__eventparticipantchallenge=event_participant_challenge, user=user
                 ).exists():
             raise serializers.ValidationError(_("You have already completed this challenge"))
 

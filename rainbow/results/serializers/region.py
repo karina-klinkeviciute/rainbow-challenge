@@ -4,7 +4,7 @@ from results.models.region import Region
 
 
 class RegionSerializer(serializers.ModelSerializer):
-    points = serializers.SerializerMethodField()
+    points = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Region
