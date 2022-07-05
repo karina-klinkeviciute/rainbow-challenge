@@ -29,6 +29,7 @@ from joined_challenge.views.joined_challenge import QRCodeScanView
 from results.urls import router as results_router
 from news.urls import router as news_router
 from message.urls import router as message_router
+from results.views.balance import BalanceView
 
 from user.models import User
 from django_otp.plugins.otp_totp.models import TOTPDevice
@@ -82,4 +83,6 @@ urlpatterns = [
          ConcreteJoinedChallengeFileUploadView.as_view()),
     path('api/qr_code_scan/',
          QRCodeScanView.as_view()),
+    path('api/results/balance/',
+         BalanceView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
