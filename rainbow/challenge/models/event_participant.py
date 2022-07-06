@@ -26,6 +26,7 @@ class EventParticipantChallenge(BaseChallenge):
         max_length=255,
         blank=True,
         null=True,
+        unique=True,
         verbose_name=_("QR code")
     )
     # todo padaryti protected
