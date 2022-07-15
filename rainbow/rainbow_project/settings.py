@@ -151,9 +151,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'lt-lt'
 
-TIME_ZONE = 'Europe/Vilnius'
-
-USE_I18N = True
+TIME_ZONE = 'UTC'
 
 USE_L10N = True
 
