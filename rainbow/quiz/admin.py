@@ -43,8 +43,8 @@ class UserAnswerAdmin(admin.ModelAdmin):
         return False
 
 
-admin.site.register(Quiz, QuizAdmin)
-admin.site.register(QuizUser, QuizUserAdmin)
-admin.site.register(Question, QuestionAdmin)
-admin.site.register(Answer, AnswerAdmin)
-admin.site.register(UserAnswer, UserAnswerAdmin)
+# admin.site.register(Quiz, QuizAdmin)
+# admin.site.register(QuizUser, QuizUserAdmin)
+# admin.site.register(Question, QuestionAdmin)
+# admin.site.register(Answer, AnswerAdmin)
+# admin.site.register(UserAnswer, UserAnswerAdmin)
