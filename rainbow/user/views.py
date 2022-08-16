@@ -42,3 +42,43 @@ class UserActivationView(TemplateView):
         context["message"] = message
 
         return self.render_to_response(context)
+
+
+class PasswordResetView(TemplateView):
+    """
+    This view gets uuid and activation token and then sends to the API endpoint a request to activate
+    the user with Djoser. Also displays a nice thank you message.
+    """
+    template_name = "user/activation.html"
+
+    def get(self, request, *args, **kwargs):
+        # grab the token, render the form, with the token in it
+        context = super().get_context_data(**kwargs)
+        token = kwargs.get("token")
+        uid = kwargs.get("uid")
+        context["token"] = token
+        context["uid"] = uid
+
+        return self.render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+        # get the new password, set it (call api)
+        context = super().get_context_data(**kwargs)
+        # context["message"] = message
+        token = request.POST.get("token")
+        uid = request.POST.get("uid")
+        password = request.POST.get("password")
+        repeat = request.POST.get("repeat")
+
+        url = 'https://rainbowchallenge.lt/auth/users/reset_passwprd_confirm/'
+        payload = {'uid': uid, 'token': token, 'new_password': password, 're_new_passwprd': repeat}
+        response = requests.post(url, data=payload)
+
+        if response.status_code == 204:
+            message = _("Congratulations! You changed your password successfully.")
+        else:
+            message = _("Sorry, something went wrong.")
+        context = super().get_context_data(**kwargs)
+        context["message"] = message
+
+        return self.render_to_response(context)
