@@ -232,9 +232,12 @@ class UserAnswerSerializer(serializers.ModelSerializer):
         return user_answer
 
     def validate_answer(self, value):
+        user = self.context.get("request").user
         answer = Answer.objects.get(uuid=self.initial_data["answer"])
         question = answer.question
-        if UserAnswer.objects.filter(answer__question=question).exists():
+        if UserAnswer.objects.filter(
+                answer__question=question,
+                quiz_joined_challenge__main_joined_challenge__user=user).exists():
             raise serializers.ValidationError(_("This question has already been answered."))
         return value
 
