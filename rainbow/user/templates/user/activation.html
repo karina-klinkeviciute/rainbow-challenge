@@ -7,7 +7,7 @@
     <h1>{{ message }}</h1>
     {% if not message %}
         {% csrf_token %}
-        <form>
+        <form method="post">
             <label for="password">Įvesk naują slaptažodį</label>
             <input type="password" name="password" id="password">
             <p></p>
