@@ -62,7 +62,6 @@ class PasswordResetView(TemplateView):
 
         return self.render_to_response(context)
 
-    @requires_csrf_token
     def post(self, request, *args, **kwargs):
         # get the new password, set it (call api)
         context = super().get_context_data(**kwargs)
