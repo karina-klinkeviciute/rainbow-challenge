@@ -68,10 +68,10 @@ class PasswordResetView(TemplateView):
         token = request.POST.get("token")
         uid = request.POST.get("uid")
         password = request.POST.get("password")
-        repeat = request.POST.get("repeat")
+        repeat_password = request.POST.get("repeat_password")
 
-        url = 'https://rainbowchallenge.lt/auth/users/reset_passwprd_confirm/'
-        payload = {'uid': uid, 'token': token, 'new_password': password, 're_new_passwprd': repeat}
+        url = 'https://rainbowchallenge.lt/auth/users/reset_password_confirm/'
+        payload = {'uid': uid, 'token': token, 'new_password': password, 're_new_password': repeat_password}
         response = requests.post(url, data=payload)
 
         if response.status_code == 204:
