@@ -52,7 +52,6 @@ class PasswordResetView(TemplateView):
     """
     template_name = "user/activation.html"
 
-    @requires_csrf_token
     def get(self, request, *args, **kwargs):
         # grab the token, render the form, with the token in it
         context = super().get_context_data(**kwargs)
