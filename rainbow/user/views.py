@@ -1,4 +1,5 @@
 import requests
+from django.views.decorators.csrf import requires_csrf_token
 from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
 from rest_framework import views
@@ -51,6 +52,7 @@ class PasswordResetView(TemplateView):
     """
     template_name = "user/activation.html"
 
+    @requires_csrf_token
     def get(self, request, *args, **kwargs):
         # grab the token, render the form, with the token in it
         context = super().get_context_data(**kwargs)
@@ -61,6 +63,7 @@ class PasswordResetView(TemplateView):
 
         return self.render_to_response(context)
 
+    @requires_csrf_token
     def post(self, request, *args, **kwargs):
         # get the new password, set it (call api)
         context = super().get_context_data(**kwargs)
