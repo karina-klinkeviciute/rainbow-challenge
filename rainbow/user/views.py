@@ -50,7 +50,7 @@ class PasswordResetView(TemplateView):
     This view gets uuid and activation token and then sends to the API endpoint a request to activate
     the user with Djoser. Also displays a nice thank you message.
     """
-    template_name = "user/activation.html"
+    template_name = "user/password_reset.html"
 
     def get(self, request, *args, **kwargs):
         # grab the token, render the form, with the token in it
