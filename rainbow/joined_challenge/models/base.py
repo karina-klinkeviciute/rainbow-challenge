@@ -89,11 +89,12 @@ class JoinedChallenge(models.Model):
                 points = self.quizjoinedchallenge.correct_answers_count
             else:
                 points = self.challenge.points
+            # todo make translation work
             message_text = gettext(
-                "Completion was confirmed for challenge: "
+                "Užduoties atlikimas patvirtintas užduočiai: "
             ) + self. challenge.name + gettext(
-                " Congratulations! "
-            ) + gettext(" Received points: ") + str(points)
+                " Sveikinam! "
+            ) + gettext(" Gavai taškų: ") + str(points)
             print(message_text)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
