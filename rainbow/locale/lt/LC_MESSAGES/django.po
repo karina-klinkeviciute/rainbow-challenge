@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 20:31+0300\n"
+"POT-Creation-Date: 2022-09-05 21:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -167,59 +167,59 @@ msgstr "straipsnio pavadinimas"
 msgid "link to the article"
 msgstr "nuoroda į straipsnį"
 
-#: joined_challenge/models/base.py:21
+#: joined_challenge/models/base.py:22
 msgid "joined"
 msgstr "pradėta"
 
-#: joined_challenge/models/base.py:22
+#: joined_challenge/models/base.py:23
 msgid "completed"
 msgstr "atlikta"
 
-#: joined_challenge/models/base.py:23
+#: joined_challenge/models/base.py:24
 msgid "cancelled"
 msgstr "atšaukta"
 
-#: joined_challenge/models/base.py:24
+#: joined_challenge/models/base.py:25
 msgid "confirmed"
 msgstr "patvirtinta"
 
-#: joined_challenge/models/base.py:37 message/models.py:29 quiz/models.py:42
+#: joined_challenge/models/base.py:38 message/models.py:29 quiz/models.py:42
 #: results/models/medal.py:63 results/models/prize.py:49
 #: results/models/streak.py:36
 msgid "user"
 msgstr "vartotojas"
 
-#: joined_challenge/models/base.py:42
+#: joined_challenge/models/base.py:43
 msgid "challenge"
 msgstr "užduotis"
 
-#: joined_challenge/models/base.py:46
+#: joined_challenge/models/base.py:47
 msgid "status"
 msgstr "būsena"
 
-#: joined_challenge/models/base.py:52
+#: joined_challenge/models/base.py:53
 #, fuzzy
 #| msgid "joined"
 msgid "joined at"
 msgstr "pradėta"
 
-#: joined_challenge/models/base.py:57
+#: joined_challenge/models/base.py:58
 #, fuzzy
 #| msgid "completed"
 msgid "completed at"
 msgstr "atlikimo laikas"
 
-#: joined_challenge/models/base.py:92
+#: joined_challenge/models/base.py:93
 msgid "Completion was confirmed for challenge: "
 msgstr "Užduoties atlikimas patvirtintas užduočiai: "
 
-#: joined_challenge/models/base.py:94
+#: joined_challenge/models/base.py:95
 #, fuzzy
 #| msgid "Congratulations! "
 msgid " Congratulations! "
 msgstr " Sveikinam! "
 
-#: joined_challenge/models/base.py:95
+#: joined_challenge/models/base.py:96
 #, fuzzy
 #| msgid "Received points: "
 msgid " Received points: "

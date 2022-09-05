@@ -4,7 +4,7 @@ import datetime
 from django.apps import apps
 from django.db import models
 from django.utils import translation
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, gettext
 from private_storage.fields import PrivateFileField
 
 from challenge.models.base import ChallengeType
@@ -89,11 +89,12 @@ class JoinedChallenge(models.Model):
                 points = self.quizjoinedchallenge.correct_answers_count
             else:
                 points = self.challenge.points
-            message_text = translation.gettext(
+            message_text = gettext(
                 "Completion was confirmed for challenge: "
-            ) + self. challenge.name + translation.gettext(
+            ) + self. challenge.name + gettext(
                 " Congratulations! "
-            ) + translation.gettext(" Received points: ") + str(points)
+            ) + gettext(" Received points: ") + str(points)
+            print(message_text)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
 
