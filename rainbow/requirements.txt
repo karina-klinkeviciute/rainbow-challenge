@@ -19,3 +19,4 @@ celery[redis]
 django-private-storage
 pytest-django
 django-cors-headers
+django-advanced_password_validation
