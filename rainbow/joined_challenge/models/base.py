@@ -89,12 +89,11 @@ class JoinedChallenge(models.Model):
                 points = self.quizjoinedchallenge.correct_answers_count
             else:
                 points = self.challenge.points
-            message_text = _(
+            message_text = translation.gettext(
                 "Completion was confirmed for challenge: "
-            ) + self. challenge.name + _(
+            ) + self. challenge.name + translation.gettext(
                 " Congratulations! "
-            ) + _(" Received points: ") + str(points)
-            message_text = translation.gettext(message_text)
+            ) + translation.gettext(" Received points: ") + str(points)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
 
