@@ -3,6 +3,7 @@ import datetime
 
 from django.apps import apps
 from django.db import models
+from django.utils import translation
 from django.utils.translation import gettext_lazy as _
 from private_storage.fields import PrivateFileField
 
@@ -93,7 +94,7 @@ class JoinedChallenge(models.Model):
             ) + self. challenge.name + _(
                 " Congratulations! "
             ) + _(" Received points: ") + str(points)
-
+            message_text = translation.gettext(message_text)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
 
