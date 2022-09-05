@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 19:44+0300\n"
+"POT-Creation-Date: 2022-09-05 20:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -209,28 +209,37 @@ msgstr "pradėta"
 msgid "completed at"
 msgstr "atlikimo laikas"
 
-#: joined_challenge/models/base.py:85
-msgid ""
-"Completion of Challenge {} was confirmed. Congratulations! You received {} "
-"points"
-msgstr ""
-"Užduoties {} atlikimas patvirtintas. Sveikinam! Gavai {} taškų"
+#: joined_challenge/models/base.py:92
+msgid "Completion was confirmed for challenge: "
+msgstr "Užduoties atlikimas patvirtintas užduočiai: "
 
-#: joined_challenge/models/base.py:121
+#: joined_challenge/models/base.py:94
+#, fuzzy
+#| msgid "Congratulations! "
+msgid " Congratulations! "
+msgstr " Sveikinam! "
+
+#: joined_challenge/models/base.py:95
+#, fuzzy
+#| msgid "Received points: "
+msgid " Received points: "
+msgstr " Gauti ta6kai: "
+
+#: joined_challenge/models/base.py:128
 #, fuzzy
 #| msgid "main joined challenge"
 msgid "joined challenge"
 msgstr "pagrindinė pradėta užduotis"
 
-#: joined_challenge/models/base.py:125
+#: joined_challenge/models/base.py:132
 msgid "file"
 msgstr "failas"
 
-#: joined_challenge/models/base.py:143
+#: joined_challenge/models/base.py:150
 msgid "main joined challenge"
 msgstr "pagrindinė pradėta užduotis"
 
-#: joined_challenge/models/base.py:152
+#: joined_challenge/models/base.py:159
 #, fuzzy
 #| msgid "main joined challenge"
 msgid "concrete joined challenge for: "
@@ -424,8 +433,7 @@ msgstr "Celery veikia tvarkingai"
 #: results/tasks.py:110
 msgid ""
 "Congratulations! You just reached {} streaks and received a new {} medal!"
-msgstr ""
-"Sveikiname! Ką tik pasiekei {} aktyvių savaičių ir gavai {} medalį! "
+msgstr "Sveikiname! Ką tik pasiekei {} aktyvių savaičių ir gavai {} medalį! "
 
 #: results/tasks.py:122
 msgid ""
@@ -551,6 +559,11 @@ msgstr "Sveikiname! Tavo paskyra aktyvuota."
 #: user/views.py:82
 msgid "Sorry, something went wrong."
 msgstr "Atsiprašome, kažkas ne taip."
+
+#~ msgid ""
+#~ "Completion of Challenge {} was confirmed. Congratulations! You received "
+#~ "{} points"
+#~ msgstr "Užduoties {} atlikimas patvirtintas. Sveikinam! Gavai {} taškų"
 
 #, fuzzy
 #~| msgid "quiz-user connection"
