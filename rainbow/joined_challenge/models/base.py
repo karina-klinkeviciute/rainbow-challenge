@@ -82,13 +82,17 @@ class JoinedChallenge(models.Model):
 
         # Sending a notification about confirmation of the challenge
         if self.status == JoinedChallengeStatus.CONFIRMED:
+
+            # Points for quiz are calculated based on the amount of correct answers
+            if self.challenge_type == ChallengeType.QUIZ:
+                points = self.concrete_joined_challenge.correct_answers_count
+            else:
+                points = self.challenge.points
             message_text = _("Completion of Challenge {} was confirmed. "
                              "Congratulations! "
-                             "You received {} points".format(self.challenge.name, self.challenge.points))
+                             "You received {} points".format(self.challenge.name, points))
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
-
-
 
     def __str__(self):
         return f'{self.user.email} - {self.challenge.name} / {self.challenge.type}'
