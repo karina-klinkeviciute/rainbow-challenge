@@ -224,7 +224,7 @@ msgstr "pagrindinė pradėta užduotis"
 
 #: joined_challenge/models/base.py:125
 msgid "file"
-msgstr ""
+msgstr "failas"
 
 #: joined_challenge/models/base.py:143
 msgid "main joined challenge"
@@ -295,31 +295,31 @@ msgstr "Statusas negali būti 'patvirtinta' (confirmed)"
 #: joined_challenge/serializers/joined_challenge.py:106
 #: joined_challenge/serializers/joined_challenge.py:120
 msgid "QR code is invalid."
-msgstr ""
+msgstr "QR kodas neteisingas."
 
 #: joined_challenge/serializers/joined_challenge.py:126
 msgid "You have already completed this challenge"
-msgstr ""
+msgstr "Šią užduotį jau atlikai"
 
 #: joined_challenge/serializers/joined_challenge.py:241
 msgid "This question has already been answered."
-msgstr ""
+msgstr "Šis klausimas jau atsakytas"
 
 #: message/models.py:22
 msgid "message text"
-msgstr ""
+msgstr "žinutės tekstas"
 
 #: message/models.py:38
 msgid "admin__sender"
-msgstr ""
+msgstr "siuntėjas - administratorius"
 
 #: message/models.py:52
 msgid "automated"
-msgstr ""
+msgstr "automatizuota"
 
 #: message/models.py:56
 msgid "time of sending"
-msgstr ""
+msgstr "išsiuntimo laikas"
 
 #: quiz/models.py:119
 msgid "quiz-user connection"
@@ -327,23 +327,23 @@ msgstr "testo-vartotojo ryšys"
 
 #: results/models/medal.py:40
 msgid "bronze"
-msgstr ""
+msgstr "bronzos"
 
 #: results/models/medal.py:41
 msgid "silver"
-msgstr ""
+msgstr "sidabro"
 
 #: results/models/medal.py:42
 msgid "gold"
-msgstr ""
+msgstr "aukso"
 
 #: results/models/medal.py:43
 msgid "platinum"
-msgstr ""
+msgstr "platinos"
 
 #: results/models/medal.py:68
 msgid "level"
-msgstr ""
+msgstr "lygis"
 
 #: results/models/medal.py:71
 #, fuzzy
@@ -379,35 +379,35 @@ msgstr "išduotas"
 
 #: results/models/streak.py:14
 msgid "increased"
-msgstr ""
+msgstr "padidėjo"
 
 #: results/models/streak.py:15
 msgid "decreased"
-msgstr ""
+msgstr "sumažėjo"
 
 #: results/models/streak.py:16
 msgid "zero"
-msgstr ""
+msgstr "nulis"
 
 #: results/models/streak.py:39
 msgid "time_added"
-msgstr ""
+msgstr "pridėjimo laikas"
 
 #: results/models/streak.py:43
 msgid "year"
-msgstr ""
+msgstr "metai"
 
 #: results/models/streak.py:46
 msgid "week number"
-msgstr ""
+msgstr "savaitės numeris"
 
 #: results/models/streak.py:49
 msgid "streaks in a row"
-msgstr ""
+msgstr "aktyvių savaičių iš eilės"
 
 #: results/models/streak.py:53
 msgid "change"
-msgstr ""
+msgstr "pokytis"
 
 #: results/serializers/prize.py:32
 msgid "Sorry, we don't have that much of this prize."
@@ -419,12 +419,13 @@ msgstr "Atsiprašome, neturi pakankamai vaivorykščių šiam prizui"
 
 #: results/tasks.py:23
 msgid "Celery works alright"
-msgstr ""
+msgstr "Celery veikia tvarkingai"
 
 #: results/tasks.py:110
 msgid ""
 "Congratulations! You just reached {} streaks and received a new {} medal!"
 msgstr ""
+"Sveikiname! Ką tik pasiekei {} aktyvių savaičių ir gavai {} medalį! "
 
 #: results/tasks.py:122
 msgid ""
@@ -441,7 +442,7 @@ msgstr ""
 
 #: results/tasks.py:133
 msgid "Streaks and medals statistics"
-msgstr ""
+msgstr "Aktyvumo ir medalių statistika"
 
 #: templates/email/activation.html:5
 #, python-format
@@ -549,7 +550,7 @@ msgstr "Sveikiname! Tavo paskyra aktyvuota."
 
 #: user/views.py:82
 msgid "Sorry, something went wrong."
-msgstr ""
+msgstr "Atsiprašome, kažkas ne taip."
 
 #, fuzzy
 #~| msgid "quiz-user connection"
