@@ -85,7 +85,7 @@ class JoinedChallenge(models.Model):
 
             # Points for quiz are calculated based on the amount of correct answers
             if self.challenge_type == ChallengeType.QUIZ:
-                points = self.concrete_joined_challenge.correct_answers_count
+                points = self.quizjoinedchallenge.correct_answers_count
             else:
                 points = self.challenge.points
             message_text = _("Completion of Challenge {} was confirmed. "

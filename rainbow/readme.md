@@ -48,8 +48,6 @@ Users won't be able to communicate with each other.
 
 Users should have an option to contact support through the app. This will be done through the messaging system that will also be responsible for sending automated messages about confirming challenges etc.
 
-`quiz` app is for quizzes that are connected to the challenges of quiz type.
-
 [More about the app structure](docs/app_structure.md)
 
 ## Contributing
