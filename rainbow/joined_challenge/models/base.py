@@ -93,7 +93,7 @@ class JoinedChallenge(models.Model):
             message_text = gettext(
                 "Užduoties atlikimas patvirtintas užduočiai: "
             ) + self. challenge.name + gettext(
-                " Sveikinam! "
+                ". Sveikinam! "
             ) + gettext(" Gavai taškų: ") + str(points)
             print(message_text)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
