@@ -29,6 +29,7 @@ from joined_challenge.views.joined_challenge import QRCodeScanView
 from results.urls import router as results_router
 from news.urls import router as news_router
 from message.urls import router as message_router
+from texts.urls import router as texts_router
 from results.views.balance import BalanceView
 
 from user.models import User
@@ -46,8 +47,8 @@ class AdminSiteEditors(OTPAdminSite):
 
 
 admin_site = OTPAdmin(name='OTPAdmin')
-admin_site.register(User)
-admin_site.register(TOTPDevice, TOTPDeviceAdmin)
+# admin_site.register(User)
+# admin_site.register(TOTPDevice, TOTPDeviceAdmin)
 for model_cls, model_admin in admin.site._registry.items():
     admin_site.register(model_cls, model_admin.__class__)
 
@@ -58,6 +59,7 @@ router.registry.extend(joined_challenge_router.registry)
 router.registry.extend(results_router.registry)
 router.registry.extend(news_router.registry)
 router.registry.extend(message_router.registry)
+router.registry.extend(texts_router.registry)
 
 urlpatterns = [
     path('/', include('django.contrib.flatpages.urls')),
