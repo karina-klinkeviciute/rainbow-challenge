@@ -46,8 +46,8 @@ class AdminSiteEditors(OTPAdminSite):
 
 
 admin_site = OTPAdmin(name='OTPAdmin')
-# admin_site.register(User)
-# admin_site.register(TOTPDevice, TOTPDeviceAdmin)
+admin_site.register(User)
+admin_site.register(TOTPDevice, TOTPDeviceAdmin)
 for model_cls, model_admin in admin.site._registry.items():
     admin_site.register(model_cls, model_admin.__class__)
 
@@ -61,7 +61,7 @@ router.registry.extend(message_router.registry)
 
 urlpatterns = [
     path('/', include('django.contrib.flatpages.urls')),
-    # path('admin/', admin_site.urls),
+    path('admin/', admin_site.urls),
     # path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
