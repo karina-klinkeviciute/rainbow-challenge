@@ -11,3 +11,4 @@ class TextViewSet(
     """News API viewets"""
     http_method_names = ('get', 'head', 'options')
     serializer_class = TextSerializer
+    queryset = Text.objects.all()
