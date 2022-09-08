@@ -39,7 +39,6 @@ def calculate_streaks():
 
     stats = {
         "streaks_increased": 0,
-        "streaks_decreased": 0,
         "medals": {level: 0 for level in MedalTypes.MedalLevels.values()}}
 
     current_week = date.today().isocalendar()[1]
@@ -79,13 +78,7 @@ def calculate_streaks():
             change = 1
             stats["streaks_increased"] += 1
         else:
-            if streaks > 0:
-                change = -1
-                stats["streaks_decreased"] += 1
-            else:
-                # if streaks is 0 this means that user has been inactive for some weeks and if we go negative,
-                # it might be difficult to climb up again, we don't want that. In other words, we never go below zero.
-                change = 0
+            change = 0
 
         streaks += change
 
