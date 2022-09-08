@@ -21,7 +21,7 @@ class Region(models.Model):
             user__in=self.user_set.all())
 
         completed_joined_challenges_region = joined_joined_challenges_region.filter(
-            status=JoinedChallengeStatus.COMPLETED)
+            status__in=(JoinedChallengeStatus.COMPLETED, JoinedChallengeStatus.CONFIRMED))
 
         points = 0
 
