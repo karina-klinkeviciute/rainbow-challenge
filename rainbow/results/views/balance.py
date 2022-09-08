@@ -16,7 +16,7 @@ class BalanceView(APIView):
         for confirmed_challenge in all_confirmed_challenges:
             earning.append({
                 "name": confirmed_challenge.challenge.name,
-                "points": confirmed_challenge.challenge.points
+                "points": confirmed_challenge.final_points
             })
 
         all_prizes = ClaimedPrize.objects.filter(user=user)

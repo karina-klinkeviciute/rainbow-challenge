@@ -212,7 +212,7 @@ class User(AbstractUser):
 
     @property
     def all_points(self):
-        sum_all = self.confirmed_challenges.aggregate((Sum('points')))
+        sum_all = self.confirmed_challenges.exclude(type=ChallengeType.QUIZ).aggregate((Sum('points')))
         sum_field = sum_all.get('points__sum')
         if sum_field is None:
             sum_field = 0

@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from django.utils.translation import gettext_lazy as _
 
+from challenge.models.base import ChallengeType
 from message.models import Message, MessageTypes
 from results.models import Streak, MedalTypes, Medal
 

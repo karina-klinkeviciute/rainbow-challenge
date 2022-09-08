@@ -25,14 +25,11 @@ class Region(models.Model):
             user__in=self.user_set.all())
 
         completed_joined_challenges_region = joined_joined_challenges_region.filter(
-            status__in=(JoinedChallengeStatus.COMPLETED, JoinedChallengeStatus.CONFIRMED))
+            status=JoinedChallengeStatus.CONFIRMED
+        )
 
         points = 0
-        # todo for quiz this is different, change calculation for quiz
         for completed_challenge in completed_joined_challenges_region:
-            if completed_challenge.challenge_type == ChallengeType.QUIZ:
-                points += completed_challenge.quizjoinedchallenge.correct_answers_count
-            else:
-                points += completed_challenge.challenge.points
+            points += completed_challenge.final_points
 
         return points
