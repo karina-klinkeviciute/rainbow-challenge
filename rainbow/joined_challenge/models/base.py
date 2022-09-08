@@ -78,6 +78,9 @@ class JoinedChallenge(models.Model):
                 self.status == JoinedChallengeStatus.COMPLETED
                 or self.status == JoinedChallengeStatus.CONFIRMED):
             self.completed_at = datetime.datetime.now()
+            # Also this means that we need to add 1 streak if this is the first challenge in the week.
+            from results.utils import update_streak
+            update_streak(self.user)
 
         super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 

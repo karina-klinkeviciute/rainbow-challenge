@@ -46,7 +46,7 @@ class Streak(models.Model):
         verbose_name=_("week number")
     )
     streaks = models.IntegerField(
-        verbose_name=_("streaks in a row")
+        verbose_name=_("streaks completed")
     )
     change = models.IntegerField(
         choices=StreakChangeOptions.StreakChangeChoices,
