@@ -122,7 +122,7 @@ class JoinedChallenge(models.Model):
     @property
     def final_points(self):
         if self.challenge_type == ChallengeType.QUIZ:
-            points = self.quizjoinedchallenge.correct_answers_count()
+            points = self.quizjoinedchallenge.correct_answers_count
         else:
             points = self.challenge.points
         return points
