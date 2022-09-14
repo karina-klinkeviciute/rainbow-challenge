@@ -11,4 +11,4 @@ class NewsViewSet(
     """News API viewets"""
     http_method_names = ('get', 'head', 'options')
     serializer_class = NewsItemSerializer
-    queryset = NewsItem.objects.filter(published=True)
+    queryset = NewsItem.objects.filter(published=True).order_by('created_at')
