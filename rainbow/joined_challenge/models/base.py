@@ -9,6 +9,7 @@ from private_storage.fields import PrivateFileField
 
 from challenge.models.base import ChallengeType
 from message.models import Message, MessageTypes
+from results.utils import message_site_admins
 
 
 class JoinedChallengeStatus:
@@ -79,8 +80,7 @@ class JoinedChallenge(models.Model):
                 or self.status == JoinedChallengeStatus.CONFIRMED):
             self.completed_at = datetime.datetime.now()
             # Also this means that we need to add 1 streak if this is the first challenge in the week.
-            from results.utils import update_streak
-            update_streak(self.user)
+            self.user.update_streak()
 
         super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
@@ -101,6 +101,13 @@ class JoinedChallenge(models.Model):
             print(message_text)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
+
+        # if completed challenge needs confirmation, send an email to admins asking to confirm
+        if self.status == JoinedChallengeStatus.COMPLETED and self.challenge.needs_confirmation:
+            message_site_admins(
+                _("Challenge confirmation needed"),
+                _("User has just completed a challenge. Please confirm it.")
+            )
 
     def __str__(self):
         return f'{self.user.email} - {self.challenge.name} / {self.challenge.type}'
