@@ -13,12 +13,16 @@ from user.models import User
 
 class RegionViewSet(viewsets.ModelViewSet):
     """
-    A viewset for viewing and editing region instances.
+    A viewset for viewing region instances.
     """
     http_method_names = ('get', 'head', 'options')
     permission_classes = [IsAuthenticatedOrReadOnly, ]
     serializer_class = RegionSerializer
-    queryset = Region.objects.all()
+    # queryset = Region.objects.all()
+
+    def get_queryset(self):
+        sorted_regions = sorted(Region.objects.all(), key=lambda r: r.points)
+        return sorted_regions
 
 
 class RegionUsersAPIView(ListAPIView):
