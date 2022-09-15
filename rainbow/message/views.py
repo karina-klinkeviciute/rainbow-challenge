@@ -14,4 +14,4 @@ class MessageViewSet(
     serializer_class = MessageSerializer
 
     def get_queryset(self):
-        return Message.objects.filter(user=self.request.user).order_by("time_sent")
+        return Message.objects.filter(user=self.request.user).order_by("-time_sent")
