@@ -21,7 +21,7 @@ class RegionViewSet(viewsets.ModelViewSet):
     # queryset = Region.objects.all()
 
     def get_queryset(self):
-        sorted_regions = sorted(Region.objects.all(), key=lambda r: r.points)
+        sorted_regions = sorted(Region.objects.all(), key=lambda r: r.points, reverse=True)
         return sorted_regions
 
 
