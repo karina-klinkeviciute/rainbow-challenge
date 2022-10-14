@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+<div class="block m-5">
+    <div class="block">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    {% block go-back %}
+    <div class="block"><a href="{% url 'dashboard' %}" class="button is-primary">Back to Dashboard</a></div>
+    {% endblock %}
+</div>
+
+</body>
+</html>

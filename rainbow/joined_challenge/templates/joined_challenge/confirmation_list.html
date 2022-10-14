@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block title %} {% translate "Extra admin panel" %} {% endblock %}
+
+{% block content %}
+
+    <div class="box">
+        <div class="title">{% translate "Challenges confirmation" %}</div>
+        <div class="block">
+            <table class="table">
+                <thead>
+                <th>{% trans "Challenge name" %}</th><th>{% trans "User" %}</th>
+                </thead>
+                {% for joined_challenge in joinedchallenge_list %}
+                    <tr>
+                        <td><a href="{% url 'confirmation-detail' joined_challenge.uuid %}">{{ joined_challenge.challenge.name }}</a></td>
+                        <td>{{ joined_challenge }}</td>
+                    </tr>
+
+
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}

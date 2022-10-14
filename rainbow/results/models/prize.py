@@ -4,6 +4,8 @@ from django.db import models
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
 
+from results.utils import message_site_admins
+
 
 class Prize(models.Model):
     """Model for prizes that are given for points (rainbows)"""
@@ -58,3 +60,10 @@ class ClaimedPrize(models.Model):
     )
     amount = models.IntegerField(verbose_name=_('amount'))
     issued = models.BooleanField(verbose_name=_('issued'), default=False)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+        message_site_admins(
+            _("Prize confirmation needed"),
+            _("User has just claimed a prize. Please issue it.")
+        )

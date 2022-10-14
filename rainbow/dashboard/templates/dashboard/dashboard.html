@@ -1,0 +1,15 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block title %} {% translate "Extra admin panel" %} {% endblock %}
+
+{% block content %}
+
+    <div class="box">
+        <div class="title">{% translate "Challenges" %}</div>
+
+        <a href="{% url 'confirmation' %}" class="block">{% translate "Confirmations of completed challenges" %}</a>
+        <br>
+    </div>
+
+{% endblock %}

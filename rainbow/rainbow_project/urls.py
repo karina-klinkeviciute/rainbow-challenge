@@ -64,8 +64,10 @@ router.registry.extend(texts_router.registry)
 urlpatterns = [
     path('/', include('django.contrib.flatpages.urls')),
     path('admin/', admin_site.urls),
+    # statistics
+    path('dashboard/', include('dashboard.urls')),
     # path('grappelli/', include('grappelli.urls')),  # grappelli URLS
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('api/user/', include('user.urls')),

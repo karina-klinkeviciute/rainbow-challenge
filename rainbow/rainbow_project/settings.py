@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'message',
     'quiz',
     'texts',
+    'dashboard',
 
 ]
 
