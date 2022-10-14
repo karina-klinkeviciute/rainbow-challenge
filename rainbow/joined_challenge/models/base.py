@@ -64,12 +64,14 @@ class JoinedChallenge(models.Model):
     def files(self):
         return self.joinedchallengefile_set
 
+    @property
     def files_admin(self):
         """property to return a list of files in a convenient enough format for admin"""
         files = self.joinedchallengefile_set
         file_list = []
         for file in files:
             file_list.append(file.file)
+        return file_list
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         """Overridden save method for the model"""

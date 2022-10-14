@@ -7,5 +7,5 @@ urlpatterns = [
     # dashboard
     path('', DashboardView.as_view(), name="dashboard"),
     path('confirmation/', ConfirmListView.as_view(), name="confirmation"),
-    path('confirmation/<uuid>', ConfirmDetailView.as_view(), name="confirmation-detail"),
+    path('confirmation/<uuid:pk>', ConfirmDetailView.as_view(), name="confirmation-detail"),
     ]

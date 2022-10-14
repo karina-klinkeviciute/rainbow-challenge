@@ -16,6 +16,13 @@ class ConfirmListView(LoginRequiredMixin, ListView):
 
 class ConfirmDetailView(LoginRequiredMixin, DetailView):
     """
-
+        View for confirmation of chalenge.
     """
-    pass
+    model = JoinedChallenge
+    template_name = "joined_challenge/confirmation_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+
+        return context
