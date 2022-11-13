@@ -61,7 +61,7 @@ class UserSerializer(serializers.ModelSerializer):
             instance.region = region
             instance.save()
         email_field = get_user_email_field_name(User)
-        if settings.SEND_ACTIVATION_EMAIL and email_field in validated_data:
+        if settings.SEND_ACTIVATION_EMAIL and (email_field in validated_data):
             instance_email = get_user_email(instance)
             if instance_email != validated_data[email_field]:
                 instance.is_active = False
