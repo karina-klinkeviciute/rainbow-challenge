@@ -1,4 +1,4 @@
-django
+Django<4
 djangorestframework
 python-dotenv
 djoser
