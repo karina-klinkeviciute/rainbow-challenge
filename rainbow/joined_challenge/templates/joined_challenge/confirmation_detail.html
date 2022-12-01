@@ -20,6 +20,8 @@
             <div class="box">{% translate "User completed challenge at" %}: {{ joinedchallenge.completed_at }}</div>
             {% if joinedchallenge.articlejoinedchallenge %}
                 <div class="box">{% translate "User description of challenge" %}: {{ joinedchallenge.articlejoinedchallenge.description }}</div>
+                <div class="box">{% translate "Article title" %}: {{ joinedchallenge.articlejoinedchallenge.article_name }}</div>
+                <div class="box">{% translate "Article URL" %}: {{ joinedchallenge.articlejoinedchallenge.article_url }}</div>
             {% endif %}
             {% if joinedchallenge.customjoinedchallenge %}
                 <div class="box">{% translate "User description of challenge" %}: {{ joinedchallenge.customjoinedchallenge.description }}</div>
@@ -49,8 +51,11 @@
             {% if joinedchallenge.supportjoinedchallenge %}
                 <div class="box">{% translate "User description of challenge" %}: {{ joinedchallenge.supportjoinedchallenge.description }}</div>
             {% endif %}
-{# todo Add files and "Confirm" button #}
-
+{# todo Add "Confirm" button #}
+            <div class="box">{% translate "Files:" %} </div>
+            {% for file in joinedchallenge.files %}
+                <div class="box"><a href="{{ file.file.url }}" target="_blank">{{ file.file.url }}</a></div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
