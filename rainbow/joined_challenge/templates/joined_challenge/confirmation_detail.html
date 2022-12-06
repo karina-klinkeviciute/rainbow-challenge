@@ -6,9 +6,9 @@
 {% block content %}
 
     <div class="box">
-        <div class="title">{% translate "Challenge confirmation" %}</div>
+        <div class="title is-2">{% translate "Challenge confirmation" %}</div>
         <div class="block">
-            <div class="title is-2">{% translate "Challenge information" %}</div>
+            <div class="title is-3">{% translate "Challenge information" %}</div>
             <div class="box"> <strong>{% translate "Challenge name" %}: </strong> {{ joinedchallenge.challenge.name }}</div>
             <div class="box"> <strong>{% translate "Challenge description" %}: </strong> {{ joinedchallenge.challenge.description }}</div>
             <table class="table">
@@ -25,7 +25,7 @@
             </table>
         </div>
         <div class="block">
-            <div class="title is-2">{% translate "User submited information" %}</div>
+            <div class="title is-3">{% translate "User submited information" %}</div>
             <div class="box">
                 <strong>{% translate "User joined chalenge at" %}</strong>: {{ joinedchallenge.joined_at }};
                 <strong>{% translate "User completed challenge at" %}:</strong> {{ joinedchallenge.completed_at }}
@@ -53,25 +53,26 @@
                     <strong>{% translate "Name of the project" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.project_name }};
                     <strong>{% translate "URL to the project" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.project_url }};
                     <strong>{% translate "Did user organized it alone" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.organized_alone }}</div>
-                <div class="box">{% translate "Description of project" %}: {{ joinedchallenge.projectjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "Description of project" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.description }}</div>
             {% endif %}
             {% if joinedchallenge.reactingjoinedchallenge %}
-                <div class="box">{% translate "User description of challenge" %}: {{ joinedchallenge.reactingjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.reactingjoinedchallenge.description }}</div>
             {% endif %}
             {% if joinedchallenge.schoolgsajoinedchallenge %}
-                <div class="box">{% translate "User description of challenge" %}: {{ joinedchallenge.schoolgsajoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.schoolgsajoinedchallenge.description }}</div>
             {% endif %}
             {% if joinedchallenge.storyjoinedchallenge %}
-                <div class="box">{% translate "URL of organized event" %}: {{ joinedchallenge.storyjoinedchallenge.project_url }} </div>
-                <div class="box">{% translate "Description of organized event" %}: {{ joinedchallenge.storyjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "URL of organized event" %}:</strong> {{ joinedchallenge.storyjoinedchallenge.project_url }} </div>
+                <div class="box"><strong>{% translate "Description of organized event" %}:</strong> {{ joinedchallenge.storyjoinedchallenge.description }}</div>
             {% endif %}
             {% if joinedchallenge.supportjoinedchallenge %}
-                <div class="box">{% translate "User description of challenge" %}: {{ joinedchallenge.supportjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.supportjoinedchallenge.description }}</div>
             {% endif %}
 
             <div class="box"><span class="title is-3"> {% translate "Files:" %} </span>
             {% for file in joinedchallenge.files %}
                 <div><a href="{{ file.file.url }}" target="_blank">{{ file.file.url }}</a></div>
+                <p></p>
             {% endfor %}
             </div>
 
