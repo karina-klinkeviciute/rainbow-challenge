@@ -6,6 +6,6 @@ from joined_challenge.views.confirmation import ConfirmListView, ConfirmDetailVi
 urlpatterns = [
     # dashboard
     path('', DashboardView.as_view(), name="dashboard"),
-    path('confirmation/', ConfirmListView.as_view(), name="confirmation"),
+    path('confirmation/', ConfirmListView.as_view(), name="confirmation-list"),
     path('confirmation/<uuid:pk>', ConfirmDetailView.as_view(), name="confirmation-detail"),
     ]
