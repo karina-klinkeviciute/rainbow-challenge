@@ -35,10 +35,10 @@
                     <strong>{% translate "Article title" %}:</strong> {{ joinedchallenge.articlejoinedchallenge.article_name }};
                     <strong>{% translate "Article URL" %}:</strong> {{ joinedchallenge.articlejoinedchallenge.article_url }}
                 </div>
-                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.articlejoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.articlejoinedchallenge.description|safe }}</div>
             {% endif %}
             {% if joinedchallenge.customjoinedchallenge %}
-                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.customjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.customjoinedchallenge.description|safe }}</div>
             {% endif %}
             {% if joinedchallenge.eventorganizerjoinedchallenge %}
                 <div class="box">
@@ -46,27 +46,27 @@
                     <strong>{% translate "URL to organized event" %}:</strong> {{ joinedchallenge.eventorganizerjoinedchallenge.event_url }};
                     <strong>{% translate "Did user organized it alone" %}:</strong> {{ joinedchallenge.eventorganizerjoinedchallenge.organized_alone }};
                 </div>
-                <div class="box"><strong>{% translate "Description of organized event" %}:</strong> {{ joinedchallenge.eventorganizerjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "Description of organized event" %}:</strong> {{ joinedchallenge.eventorganizerjoinedchallenge.description|safe }}</div>
             {% endif %}
             {% if joinedchallenge.projectjoinedchallenge %}
                 <div class="box">
                     <strong>{% translate "Name of the project" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.project_name }};
                     <strong>{% translate "URL to the project" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.project_url }};
                     <strong>{% translate "Did user organized it alone" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.organized_alone }}</div>
-                <div class="box"><strong>{% translate "Description of project" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "Description of project" %}:</strong> {{ joinedchallenge.projectjoinedchallenge.description|safe }}</div>
             {% endif %}
             {% if joinedchallenge.reactingjoinedchallenge %}
-                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.reactingjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.reactingjoinedchallenge.description|safe }}</div>
             {% endif %}
             {% if joinedchallenge.schoolgsajoinedchallenge %}
-                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.schoolgsajoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.schoolgsajoinedchallenge.description|safe }}</div>
             {% endif %}
             {% if joinedchallenge.storyjoinedchallenge %}
                 <div class="box"><strong>{% translate "URL of organized event" %}:</strong> {{ joinedchallenge.storyjoinedchallenge.project_url }} </div>
-                <div class="box"><strong>{% translate "Description of organized event" %}:</strong> {{ joinedchallenge.storyjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "Description of organized event" %}:</strong> {{ joinedchallenge.storyjoinedchallenge.description|safe }}</div>
             {% endif %}
             {% if joinedchallenge.supportjoinedchallenge %}
-                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.supportjoinedchallenge.description }}</div>
+                <div class="box"><strong>{% translate "User description of challenge" %}:</strong> {{ joinedchallenge.supportjoinedchallenge.description|safe }}</div>
             {% endif %}
 
             <div class="box"><span class="title is-3"> {% translate "Files:" %} </span>
@@ -82,6 +82,6 @@
             <button class="button is-primary">{% translate "Confirm" %}</button>
             {# todo Make this "Confirm" button work #}
         </form>
-        </div>
+        </div>S
     </div>
 {% endblock %}
