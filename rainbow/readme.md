@@ -9,7 +9,13 @@ Rainbow Challenge is licensed by the MIT license. Full license in the LICENSE fi
 ### Rainbow Challenge project
 
 Rainbow challenge is a project by [Tolerantiško Jaunimo Asociacija](https://tja.lt/) (Tolerant Youth Association). It was designed to help young LGBTQIA+ activists to get involved in the activism and protection of LGBTQIA+ rights.
-This project is 
+
+Website for project: [https://rainbowchallenge.lt/](https://rainbowchallenge.lt/)
+
+Android app can be installed from here: [https://play.google.com/store/apps/details?id=rainbowchallenge.lt.rainbow_challenge](https://play.google.com/store/apps/details?id=rainbowchallenge.lt.rainbow_challenge)
+
+Apple app can be installed from here: [https://apps.apple.com/lt/app/rainbow-challenge-app/id6444240926](https://apps.apple.com/lt/app/rainbow-challenge-app/id6444240926)
+
 
 ### Rainbow Challenge app
 

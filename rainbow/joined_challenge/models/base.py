@@ -62,14 +62,14 @@ class JoinedChallenge(models.Model):
 
     @property
     def files(self):
-        return self.joinedchallengefile_set
+        return self.joinedchallengefile_set.all()
 
     @property
     def files_admin(self):
         """property to return a list of files in a convenient enough format for admin"""
         files = self.joinedchallengefile_set
         file_list = []
-        for file in files:
+        for file in files.all():
             file_list.append(file.file)
         return file_list
 

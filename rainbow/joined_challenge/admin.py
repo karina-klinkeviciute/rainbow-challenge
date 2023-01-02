@@ -10,8 +10,8 @@ from joined_challenge.models.quiz import UserAnswer
 class JoinedChallengeAdmin(admin.ModelAdmin):
     list_display = ('user', 'challenge', 'status', )
     list_filter = ('status', )
-    fields = ('user', 'challenge', 'status', 'joined_at', 'completed_at')
-    readonly_fields = ('joined_at', )
+    fields = ('user', 'challenge', 'status', 'joined_at', 'completed_at', "files_admin")
+    readonly_fields = ('joined_at', "files_admin")
 
 class JoinedChallengeFileAdmin(admin.ModelAdmin):
     list_display = ('joined_challenge', "file")

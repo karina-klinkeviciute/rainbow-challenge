@@ -222,7 +222,7 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'USER_ID_FIELD': 'uid',
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': False,
-
+    # 'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['https://rainbowchallenge.lt', ]
 }
 
 OTP_TOTP_ISSUER = 'Rainbow challenge'
@@ -285,3 +285,16 @@ LOGGING = {
 # CORS_ALLOWED_ORIGINS = [
 #     'https://rainbowchallenge.lt',
 # ]
+
+AUTHENTICATION_BACKENDS = (
+    # We are going to implement Google, choose the one you need from docs
+    'social_core.backends.google.GoogleOAuth2',
+
+    # Crucial when logging into admin with username & password
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '704936491342-61mk5gu17sbign1ilgbsafduh7cvesu9.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
