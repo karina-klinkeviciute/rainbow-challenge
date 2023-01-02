@@ -154,7 +154,7 @@ class User(AbstractUser):
     is_active = models.BooleanField(_('is active'), default=False)
     is_admin = models.BooleanField(_('is admin'), default=False)
     marked_for_deletion = models.BooleanField(_("marked for deletion"), default=False)
-    marked_for_deletion_date = models.DateTimeField(_("date and time when marked for deletion"))
+    marked_for_deletion_date = models.DateTimeField(_("date and time when marked for deletion"), null=True, blank=True)
 
     objects = UserManager()
 
