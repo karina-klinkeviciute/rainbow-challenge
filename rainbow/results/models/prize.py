@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 from django.db import models
 from django.db.models import Sum
@@ -60,10 +61,16 @@ class ClaimedPrize(models.Model):
     )
     amount = models.IntegerField(verbose_name=_('amount'))
     issued = models.BooleanField(verbose_name=_('issued'), default=False)
+    date_claimed = models.DateTimeField(verbose_name=_("date claimed"), auto_now_add=True)
+    date_issued = models.DateTimeField(verbose_name=_("date issued"), blank=True, null=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if (self.issued is True) and (self.date_issued is None):
+            self.date_issued = datetime.now()
         super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
-        message_site_admins(
-            _("Prize confirmation needed"),
-            _("User has just claimed a prize. Please issue it.")
-        )
+
+        if self.issued is False:
+            message_site_admins(
+                _("Prize confirmation needed"),
+                _("User has just claimed a prize. Please issue it.")
+            )
