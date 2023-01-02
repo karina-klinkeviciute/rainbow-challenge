@@ -192,6 +192,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SITE_ID = 1
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'), ]
 
+# for local development
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static'),
+)
+
 AUTH_USER_MODEL = 'user.User'
 
 REST_FRAMEWORK = {
