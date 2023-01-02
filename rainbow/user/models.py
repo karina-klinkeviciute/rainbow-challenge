@@ -154,6 +154,7 @@ class User(AbstractUser):
     is_active = models.BooleanField(_('is active'), default=False)
     is_admin = models.BooleanField(_('is admin'), default=False)
     marked_for_deletion = models.BooleanField(_("marked for deletion"), default=False)
+    marked_for_deletion_date = models.DateTimeField(_("date and time when marked for deletion"))
 
     objects = UserManager()
 
@@ -167,6 +168,7 @@ class User(AbstractUser):
     def delete(self, using=None, keep_parents=False):
         """delete method. Marks for deletion if the user calling it is the user themselves and actually deletes if it's an admin"""
         self.marked_for_deletion = True
+        self.marked_for_deletion_date = datetime.now()
         self.save()
         message_site_admins(
             _("A user wants to delete account"),
