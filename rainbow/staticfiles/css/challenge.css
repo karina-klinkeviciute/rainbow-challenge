@@ -1,0 +1,36 @@
+body {
+    color: darkslategray;
+    font-size: 18px;
+}
+
+li {
+    margin: 10px;
+    padding: 2px;
+}
+
+input {
+    border: darkslategray solid 1px;
+    border-radius: 5px;
+    color: darkslategray;
+    margin: 2px;
+    padding: 1px;
+}
+
+textarea {
+    border: darkslategray solid 1px;
+    border-radius: 5px;
+    color: darkslategray;
+    margin: 2px;
+    padding: 1px;
+}
+
+input[type=checkbox] {
+    line-height: 2rem;
+    height: 2rem;
+    width: 2rem;
+    border: darkslategray solid 1px;
+    border-radius: 5px;
+    color: darkslategray;
+    margin: 2px;
+    padding: 1px;
+}
