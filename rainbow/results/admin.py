@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
+from import_export.admin import ExportMixin
+
 from results.models import Medal, Streak
 from results.models.prize import Prize, ClaimedPrize
 from results.models.region import Region
@@ -12,7 +14,7 @@ class RegionAdmin(admin.ModelAdmin):
 class PrizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'amount', )
 
-class ClaimedPrizeAdmin(admin.ModelAdmin):
+class ClaimedPrizeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('prize', 'user', 'amount', 'issued')
     list_filter = ('prize', 'user', 'issued')
 

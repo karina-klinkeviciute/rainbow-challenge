@@ -1,4 +1,5 @@
 from django.contrib import admin
+from import_export.admin import ExportMixin
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
@@ -7,47 +8,64 @@ from joined_challenge.models.base import JoinedChallengeFile
 from joined_challenge.models.quiz import UserAnswer
 
 
-class JoinedChallengeAdmin(admin.ModelAdmin):
+class JoinedChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('user', 'challenge', 'status', )
     list_filter = ('status', )
     fields = ('user', 'challenge', 'status', 'joined_at', 'completed_at', "files_admin")
     readonly_fields = ('joined_at', "files_admin")
 
+
 class JoinedChallengeFileAdmin(admin.ModelAdmin):
     list_display = ('joined_challenge', "file")
 
-class ArticleJoinedChallengeAdmin(admin.ModelAdmin):
+
+class ExportableJoinedChallengeAdmin(ExportMixin, admin.ModelAdmin):
+    pass
+
+
+class ArticleJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', 'article_name', 'article_url')
 
-class EventParticipantJoinedChallengeAdmin(admin.ModelAdmin):
+
+class EventParticipantJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', )
 
-class SchoolGSAJoinedChallengeAdmin(admin.ModelAdmin):
+
+class SchoolGSAJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', )
 
-class EventOrganizerJoinedChallengeAdmin(admin.ModelAdmin):
+
+class EventOrganizerJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', 'event_name')
 
-class StoryJoinedChallengeAdmin(admin.ModelAdmin):
+
+class StoryJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', )
 
-class ProjectJoinedChallengeAdmin(admin.ModelAdmin):
+
+class ProjectJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', 'project_name')
 
-class ReactingJoinedChallengeAdmin(admin.ModelAdmin):
+
+class ReactingJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', )
 
-class SupportJoinedChallengeAdmin(admin.ModelAdmin):
+
+class SupportJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', )
 
-class CustomJoinedChallengeAdmin(admin.ModelAdmin):
+
+class CustomJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', )
 
-class QuizJoinedChallengeAdmin(admin.ModelAdmin):
+
+class QuizJoinedChallengeAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('main_joined_challenge', )
 
-class UserAnswerAdmin(admin.ModelAdmin):
+
+class UserAnswerAdmin(ExportableJoinedChallengeAdmin):
     list_display = ('answer', 'quiz_joined_challenge')
+
 
 admin.site.register(JoinedChallenge, JoinedChallengeAdmin)
 admin.site.register(JoinedChallengeFile, JoinedChallengeFileAdmin)

@@ -5,6 +5,7 @@ from django.contrib.admin import display
 from django.core.files import File
 
 from django.utils.translation import gettext_lazy as _
+from import_export.admin import ExportMixin
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
 from challenge.models import Challenge, ArticleChallenge, EventParticipantChallenge, SupportChallenge, QuizChallenge, \
@@ -32,11 +33,12 @@ def generate_qr_codes(modeladmin, request, queryset):
                     event_challenge.qr_code_file.save(django_file_name, djangofile)
 
 
-class ChallengeAdmin(admin.ModelAdmin):
+class ChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('name', 'description', 'image', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
     list_filter = ('type', 'region', 'published', )
 
-class BaseChallengeAdmin(admin.ModelAdmin):
+
+class BaseChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('main_challenge', 'get_published')
 
     @display(ordering='main_challenge__published', description='Published')
