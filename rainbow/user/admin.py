@@ -67,7 +67,10 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserResource(ModelResource):
-    fields = ("date_joined", 'last_active', 'gender', 'gender_other', 'region__name', 'year_of_birth')
+
+    class Meta:
+        model = User
+        fields = ("date_joined", 'last_active', 'gender', 'gender_other', 'region__name', 'year_of_birth')
 
 
 class UserAdmin(ExportMixin, BaseUserAdmin):
