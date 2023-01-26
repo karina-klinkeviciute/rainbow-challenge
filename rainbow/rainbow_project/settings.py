@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'private_storage',
     'corsheaders',
     'django_advanced_password_validation',
+    'import_export',
 
     # project apps
     'user',
