@@ -1,5 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ExportMixin
+from import_export.resources import ModelResource
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, EventParticipantJoinedChallenge, \
     SchoolGSAJoinedChallenge, EventOrganizerJoinedChallenge, StoryJoinedChallenge, ProjectJoinedChallenge, \
@@ -8,12 +9,15 @@ from joined_challenge.models.base import JoinedChallengeFile
 from joined_challenge.models.quiz import UserAnswer
 
 
+class JoinedChallengeResource(ModelResource):
+    fields = ("challenge_name",)
+
 class JoinedChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('user', 'challenge', 'status', )
     list_filter = ('status', )
     fields = ('user', 'challenge', 'status', 'joined_at', 'completed_at', "files_admin")
     readonly_fields = ('joined_at', "files_admin")
-
+    resource_class = JoinedChallengeResource
 
 class JoinedChallengeFileAdmin(admin.ModelAdmin):
     list_display = ('joined_challenge', "file")
