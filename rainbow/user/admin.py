@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from import_export.admin import ExportMixin
+from import_export.resources import ModelResource
 
 from user.models import User
 
@@ -65,6 +66,10 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
+class UserResource(ModelResource):
+    fields = ("date_joined", 'last_active', 'gender', 'gender_other', 'region__name', 'year_of_birth')
+
+
 class UserAdmin(ExportMixin, BaseUserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
@@ -93,6 +98,7 @@ class UserAdmin(ExportMixin, BaseUserAdmin):
     ordering = ('email',)
     filter_horizontal = ()
     readonly_fields = ('all_points', 'quiz_points', 'medals_all', 'streak')
+    resource_class = UserResource
 
 
 # Now register the new UserAdmin...

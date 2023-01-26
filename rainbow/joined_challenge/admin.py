@@ -10,7 +10,7 @@ from joined_challenge.models.quiz import UserAnswer
 
 
 class JoinedChallengeResource(ModelResource):
-    fields = ("challenge_name",)
+    fields = ("challenge__name", 'user__email', 'joined_at', 'completed_at', 'status', )
 
 class JoinedChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('user', 'challenge', 'status', )
