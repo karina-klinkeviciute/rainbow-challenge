@@ -19,7 +19,12 @@ DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SET_PASSWORD_RETYPE': True,
     'USER_ID_FIELD': 'uid',
-
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': [
+        'https://rainbowchallenge.lt',
+        "https://rainbowchallenge/auth/o/google-oauth2/",
+        "http://127.0.0.1:8000/auth/o/google-oauth2/",
+        "https://rainbowchallenge.lt/auth/users/me/",
+    ]
 }
 
 REST_FRAMEWORK = {

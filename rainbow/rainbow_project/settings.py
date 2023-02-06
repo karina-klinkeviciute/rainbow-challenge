@@ -229,7 +229,12 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'USER_ID_FIELD': 'uid',
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': False,
-    # 'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['https://rainbowchallenge.lt', ]
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': [
+        'https://rainbowchallenge.lt',
+        "https://rainbowchallenge/auth/o/google-oauth2/",
+        "http://127.0.0.1:8000/auth/o/google-oauth2/",
+        "https://rainbowchallenge.lt/auth/users/me/",
+    ]
 }
 
 # SOCIAL AUTHENTICATION
