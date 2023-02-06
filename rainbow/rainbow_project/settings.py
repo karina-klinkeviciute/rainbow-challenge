@@ -232,15 +232,28 @@ DJOSER = {
     # 'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['https://rainbowchallenge.lt', ]
 }
 
+# SOCIAL AUTHENTICATION
+
 # enabling because of social_django
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
 AUTHENTICATION_BACKENDS = (
+    # We are going to implement Google, choose the one you need from docs
     'social_core.backends.google.GoogleOAuth2',
+
+    # Crucial when logging into admin with username & password
     'django.contrib.auth.backends.ModelBackend',
 )
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+# OTP token login
+
 OTP_TOTP_ISSUER = 'Rainbow challenge'
+
+# EMAIL
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -277,6 +290,8 @@ PRIVATE_STORAGE_SERVER = 'nginx'
 PRIVATE_STORAGE_INTERNAL_URL = '/private-x-accel-redirect/'
 
 
+# LOGGING
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -301,15 +316,4 @@ LOGGING = {
 #     'https://rainbowchallenge.lt',
 # ]
 
-AUTHENTICATION_BACKENDS = (
-    # We are going to implement Google, choose the one you need from docs
-    'social_core.backends.google.GoogleOAuth2',
-
-    # Crucial when logging into admin with username & password
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
