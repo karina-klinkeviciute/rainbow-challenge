@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'social_django',
     'drf_spectacular',
     'django_extensions',
     'django_otp',
@@ -230,6 +231,14 @@ DJOSER = {
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': False,
 
 }
+
+# enabling because of social_django
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 OTP_TOTP_ISSUER = 'Rainbow challenge'
 
