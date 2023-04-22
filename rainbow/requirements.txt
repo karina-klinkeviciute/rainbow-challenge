@@ -97,7 +97,7 @@ rsa==4.9
 six==1.16.0
 social-auth-app-django==4.0.0
 social-auth-core==4.3.0
-sqlparse==0.4.2
+sqlparse==0.4.4
 style==1.1.0
 tablib==3.3.0
 tomli==2.0.1
