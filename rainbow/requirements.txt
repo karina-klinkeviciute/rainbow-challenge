@@ -19,7 +19,7 @@ cryptography==39.0.1
 defusedxml==0.7.1
 Deprecated==1.2.13
 diff-match-patch==20200713
-Django==3.2.18
+Django==3.2.19
 django-advanced-password-validation==1.1.1
 django-allauth==0.51.0
 django-cors-headers==3.13.0
