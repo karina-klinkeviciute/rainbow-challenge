@@ -333,13 +333,22 @@ LOGGING = {
 
 # FIREBASE
 
+# Firebase settings, provided by Google
+
+import firebase_admin
+# from firebase_admin import credentials
+#
+# cred = credentials.Certificate("path/to/serviceAccountKey.json")
+# firebase_admin.initialize_app(cred)
+
+
 # Optional ONLY IF you have initialized a firebase app already:
 # Visit https://firebase.google.com/docs/admin/setup/#python
 # for more options for the following:
 # Store an environment variable called GOOGLE_APPLICATION_CREDENTIALS
 # which is a path that point to a json file with your credentials.
 # Additional arguments are available: credentials, options, name
-FIREBASE_APP = initialize_app()
+FIREBASE_APP = firebase_admin.initialize_app()
 # To learn more, visit the docs here:
 # https://cloud.google.com/docs/authentication/getting-started>
 
