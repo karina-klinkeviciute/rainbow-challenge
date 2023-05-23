@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.views.generic import TemplateView
 from django_otp.admin import OTPAdminSite
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 import private_storage.urls
@@ -91,4 +92,11 @@ urlpatterns = [
          QRCodeScanView.as_view()),
     path('api/results/balance/',
          BalanceView.as_view()),
+    path("firebase-messaging-sw.js",
+        TemplateView.as_view(
+            template_name="firebase-messaging-sw.js",
+            content_type="application/javascript",
+        ),
+        name="firebase-messaging-sw.js"
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
