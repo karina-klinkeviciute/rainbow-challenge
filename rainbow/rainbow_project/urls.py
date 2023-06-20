@@ -93,7 +93,7 @@ urlpatterns = [
          QRCodeScanView.as_view()),
     path('api/results/balance/',
          BalanceView.as_view()),
-    path('fcm_device', FCMDeviceAuthorizedViewSet.as_view({'post': 'create'}), name='create_fcm_device'),
+    path('api/fcm_device', FCMDeviceAuthorizedViewSet.as_view({'post': 'create'}), name='create_fcm_device'),
     path("firebase-messaging-sw.js",
         TemplateView.as_view(
             template_name="firebase-messaging-sw.js",
