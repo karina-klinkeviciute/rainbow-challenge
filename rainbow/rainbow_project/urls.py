@@ -21,6 +21,7 @@ from django.views.generic import TemplateView
 from django_otp.admin import OTPAdminSite
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 import private_storage.urls
+from fcm_django.api.rest_framework import FCMDeviceAuthorizedViewSet
 from rest_framework.routers import DefaultRouter
 from challenge.urls import router as challenge_router
 from joined_challenge.urls import router as joined_challenge_router
@@ -92,6 +93,7 @@ urlpatterns = [
          QRCodeScanView.as_view()),
     path('api/results/balance/',
          BalanceView.as_view()),
+    path('fcm_device', FCMDeviceAuthorizedViewSet.as_view({'post': 'create'}), name='create_fcm_device'),
     path("firebase-messaging-sw.js",
         TemplateView.as_view(
             template_name="firebase-messaging-sw.js",
