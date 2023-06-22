@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 21:35+0300\n"
+"POT-Creation-Date: 2023-06-22 23:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: challenge/admin.py:21
+#: challenge/admin.py:24
 msgid "Generate QR code files"
 msgstr "Sugeneruoti QR kodų paveikslėlius"
+
+#: challenge/admin.py:37
+msgid "Send push notifications"
+msgstr "Siųsti push notifications"
+
+#: challenge/admin.py:41
+#, fuzzy
+#| msgid "challenge"
+msgid "New challenge added: "
+msgstr "Pridėta nauja užduotis: "
+
+#: challenge/admin.py:46
+#, fuzzy
+#| msgid "challenge"
+msgid "New challenge added"
+msgstr "Pridėta nauja užduotis"
 
 #: challenge/models/base.py:24 challenge/models/quiz.py:25 quiz/models.py:37
 #: quiz/models.py:74
@@ -66,17 +82,18 @@ msgstr "parama"
 msgid "type"
 msgstr "tipas"
 
-#: challenge/models/base.py:91 quiz/models.py:16 results/models/prize.py:14
+#: challenge/models/base.py:91 quiz/models.py:16 results/models/prize.py:17
+#: results/models/region.py:11
 msgid "name"
 msgstr "pavadinimas"
 
 #: challenge/models/base.py:92 joined_challenge/models/article.py:19
 #: joined_challenge/models/custom.py:9 quiz/models.py:19
-#: results/models/prize.py:16
+#: results/models/prize.py:19
 msgid "description"
 msgstr "aprašymas"
 
-#: challenge/models/base.py:93 results/models/prize.py:22
+#: challenge/models/base.py:93 results/models/prize.py:25
 msgid "image"
 msgstr "paveikslėlis"
 
@@ -88,7 +105,7 @@ msgstr "paskelbtas"
 msgid "points"
 msgstr "vaivorykštės"
 
-#: challenge/models/base.py:101 user/models.py:139
+#: challenge/models/base.py:101 user/models.py:142
 msgid "region"
 msgstr "regionas"
 
@@ -159,6 +176,22 @@ msgstr "teisingas atsakymas"
 msgid "organization"
 msgstr "organizacija"
 
+#: dashboard/templates/dashboard/dashboard.html:4
+msgid "Extra admin panel"
+msgstr "Papildoma administravimo panelė"
+
+#: dashboard/templates/dashboard/dashboard.html:9
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenges"
+msgstr "užduotis"
+
+#: dashboard/templates/dashboard/dashboard.html:11
+#, fuzzy
+#| msgid "Completion was confirmed for challenge: "
+msgid "Confirmations of completed challenges"
+msgstr "Užduoties atlikimas patvirtintas užduočiai: "
+
 #: joined_challenge/models/article.py:9
 msgid "name of the article"
 msgstr "straipsnio pavadinimas"
@@ -167,79 +200,87 @@ msgstr "straipsnio pavadinimas"
 msgid "link to the article"
 msgstr "nuoroda į straipsnį"
 
-#: joined_challenge/models/base.py:22
+#: joined_challenge/models/base.py:25
 msgid "joined"
 msgstr "pradėta"
 
-#: joined_challenge/models/base.py:23
+#: joined_challenge/models/base.py:26
 msgid "completed"
 msgstr "atlikta"
 
-#: joined_challenge/models/base.py:24
+#: joined_challenge/models/base.py:27
 msgid "cancelled"
 msgstr "atšaukta"
 
-#: joined_challenge/models/base.py:25
+#: joined_challenge/models/base.py:28
 msgid "confirmed"
 msgstr "patvirtinta"
 
-#: joined_challenge/models/base.py:38 message/models.py:29 quiz/models.py:42
-#: results/models/medal.py:63 results/models/prize.py:49
-#: results/models/streak.py:36
+#: joined_challenge/models/base.py:41 message/models.py:29 quiz/models.py:42
+#: results/models/medal.py:63 results/models/prize.py:52
+#: results/models/streak.py:35
 msgid "user"
 msgstr "vartotojas"
 
-#: joined_challenge/models/base.py:43
+#: joined_challenge/models/base.py:46
 msgid "challenge"
 msgstr "užduotis"
 
-#: joined_challenge/models/base.py:47
+#: joined_challenge/models/base.py:50
 msgid "status"
 msgstr "būsena"
 
-#: joined_challenge/models/base.py:53
+#: joined_challenge/models/base.py:56
 #, fuzzy
 #| msgid "joined"
 msgid "joined at"
 msgstr "pradėta"
 
-#: joined_challenge/models/base.py:58
+#: joined_challenge/models/base.py:61
 #, fuzzy
 #| msgid "completed"
 msgid "completed at"
 msgstr "atlikimo laikas"
 
-#: joined_challenge/models/base.py:93
-msgid "Completion was confirmed for challenge: "
-msgstr "Užduoties atlikimas patvirtintas užduočiai: "
+#: joined_challenge/models/base.py:102
+msgid "Užduoties atlikimas patvirtintas užduočiai: "
+msgstr ""
 
-#: joined_challenge/models/base.py:95
-#, fuzzy
-#| msgid "Congratulations! "
-msgid " Congratulations! "
-msgstr " Sveikinam! "
+#: joined_challenge/models/base.py:104
+msgid ". Sveikinam! "
+msgstr ""
 
-#: joined_challenge/models/base.py:96
-#, fuzzy
-#| msgid "Received points: "
-msgid " Received points: "
-msgstr " Gauti ta6kai: "
+#: joined_challenge/models/base.py:105
+msgid " Gavai taškų: "
+msgstr ""
 
-#: joined_challenge/models/base.py:128
+#: joined_challenge/models/base.py:114
+msgid "Your challenge is now confirmed!"
+msgstr "Tavo atlikta užduotis jau patvirtinta!"
+
+#: joined_challenge/models/base.py:123
+msgid "Challenge confirmation needed"
+msgstr "Reikia patvirtinti užduotį"
+
+#: joined_challenge/models/base.py:124
+msgid "User has just completed a challenge. Please confirm it."
+msgstr "Naudotojas ką tik atliko užduotį. Prašau ją patvirtinti."
+
+#: joined_challenge/models/base.py:163
 #, fuzzy
 #| msgid "main joined challenge"
 msgid "joined challenge"
 msgstr "pagrindinė pradėta užduotis"
 
-#: joined_challenge/models/base.py:132
+#: joined_challenge/models/base.py:167
 msgid "file"
 msgstr "failas"
 
-#: joined_challenge/models/base.py:150
+#: joined_challenge/models/base.py:185
 msgid "main joined challenge"
 msgstr "pagrindinė pradėta užduotis"
 
-#: joined_challenge/models/base.py:159
+#: joined_challenge/models/base.py:194
 #, fuzzy
 #| msgid "main joined challenge"
 msgid "concrete joined challenge for: "
@@ -314,6 +355,143 @@ msgstr "Šią užduotį jau atlikai"
 msgid "This question has already been answered."
 msgstr "Šis klausimas jau atsakytas"
 
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:4
+msgid "Challenge to confirm"
+msgstr "Užduotis, kurią reikia patvirtinti"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:9
+msgid "Challenge confirmation"
+msgstr "Užduoties patvirtinimas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:11
+msgid "Challenge information"
+msgstr "Užduoties informacija"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:12
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:13
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenge name"
+msgstr "Užduoties pavadinimas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:13
+#, fuzzy
+#| msgid "description"
+msgid "Challenge description"
+msgstr "Užduoties aprašymas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:16
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenge type"
+msgstr "Užduoties tipas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:17
+#, fuzzy
+#| msgid "points"
+msgid "Points"
+msgstr "vaivorykštės"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:28
+msgid "User submited information"
+msgstr "Naudotojo įvesta informacija"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:30
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "User joined chalenge at"
+msgstr "Naudotojas pradėjo užduotį šiuo laiku"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:31
+#, fuzzy
+#| msgid "You have already completed this challenge"
+msgid "User completed challenge at"
+msgstr "Naudotojas šią užduotį atliko šiuo laiku"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:35
+#, fuzzy
+#| msgid "article"
+msgid "Article title"
+msgstr "Straipsnio pavadinimas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:36
+#, fuzzy
+#| msgid "article"
+msgid "Article URL"
+msgstr "Straipsnio nuoroda"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:38
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:41
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:59
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:62
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:69
+msgid "User description of challenge"
+msgstr "Naudotojo aprašymas apie atliktą užduotį"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:45
+#, fuzzy
+#| msgid "name of the event"
+msgid "Name of the organized event"
+msgstr "Suorganizuoto renginio pavadinimas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:46
+msgid "URL to organized event"
+msgstr "Nuoroda į suorganizuotą renginį"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:47
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:55
+msgid "Did user organized it alone"
+msgstr "Ar naudotojas jį organizavo pats vienas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:49
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:66
+#, fuzzy
+#| msgid "description of your story"
+msgid "Description of organized event"
+msgstr "Suorganizuoto renginio aprašymas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:53
+#, fuzzy
+#| msgid "name of the event"
+msgid "Name of the project"
+msgstr "Projekto pavadinimas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:54
+msgid "URL to the project"
+msgstr "Nuoroda į projektą"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:56
+#, fuzzy
+#| msgid "description of your story"
+msgid "Description of project"
+msgstr "Projekto aprašymas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:65
+msgid "URL of organized event"
+msgstr "Suorganizuoto renginio nuoroda"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:72
+msgid "Files:"
+msgstr "Failai:"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:82
+#, fuzzy
+#| msgid "confirmed"
+msgid "Confirm"
+msgstr "Patvirtinti"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:4
+msgid "List of challenges that are waiting for confirmation"
+msgstr "Patvirtinimo laukiančių užduočių sąrašas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:9
+msgid "Challenges confirmation"
+msgstr "Užduoties patvirtinimas"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:13
+msgid "User"
+msgstr "Naudotojas"
+
 #: message/models.py:22
 msgid "message text"
 msgstr "žinutės tekstas"
@@ -360,61 +538,87 @@ msgstr "lygis"
 msgid "time_issued"
 msgstr "išduotas"
 
-#: results/models/prize.py:20
+#: results/models/prize.py:23
 msgid "price"
 msgstr "kaina"
 
-#: results/models/prize.py:21 results/models/prize.py:59
+#: results/models/prize.py:24 results/models/prize.py:62
 msgid "amount"
 msgstr "kiekis"
 
-#: results/models/prize.py:23
+#: results/models/prize.py:26
 msgid "available"
 msgstr "turime"
 
-#: results/models/prize.py:24
+#: results/models/prize.py:27
 #, fuzzy
 #| msgid "end date"
 msgid "expiration date"
 msgstr "pabaigos data"
 
-#: results/models/prize.py:56
+#: results/models/prize.py:59
 msgid "prize"
 msgstr "prizas"
 
-#: results/models/prize.py:60
+#: results/models/prize.py:63
 msgid "issued"
 msgstr "išduotas"
 
-#: results/models/streak.py:14
+#: results/models/prize.py:64
+msgid "date claimed"
+msgstr "užprašymo data"
+
+#: results/models/prize.py:65
+#, fuzzy
+#| msgid "issued"
+msgid "date issued"
+msgstr "išdavimo data"
+
+#: results/models/prize.py:75
+#, fuzzy
+#| msgid "required confirmation by admin"
+msgid "Prize confirmation needed"
+msgstr "Reikia patvirtinti prizą"
+
+#: results/models/prize.py:76
+msgid "User has just claimed a prize. Please issue it."
+msgstr "Naudotojas ką tik užprašė prizą. Prašau jį išduoti."
+
+#: results/models/region.py:13
+msgid "uuid"
+msgstr ""
+
+#: results/models/streak.py:13
 msgid "increased"
 msgstr "padidėjo"
 
-#: results/models/streak.py:15
+#: results/models/streak.py:14
 msgid "decreased"
 msgstr "sumažėjo"
 
-#: results/models/streak.py:16
+#: results/models/streak.py:15
 msgid "zero"
 msgstr "nulis"
 
-#: results/models/streak.py:39
+#: results/models/streak.py:38
 msgid "time_added"
 msgstr "pridėjimo laikas"
 
-#: results/models/streak.py:43
+#: results/models/streak.py:42
 msgid "year"
 msgstr "metai"
 
-#: results/models/streak.py:46
+#: results/models/streak.py:45
 msgid "week number"
 msgstr "savaitės numeris"
 
-#: results/models/streak.py:49
-msgid "streaks in a row"
-msgstr "aktyvių savaičių iš eilės"
+#: results/models/streak.py:48
+#, fuzzy
+#| msgid "completed"
+msgid "streaks completed"
+msgstr "atlikta iš eilės"
 
-#: results/models/streak.py:53
+#: results/models/streak.py:52
 msgid "change"
 msgstr "pokytis"
 
@@ -425,32 +629,6 @@ msgstr "Atsiprašome, tiek šių prizų dabar neturime"
 #: results/serializers/prize.py:38
 msgid "Sorry, you don't have enough rainbows for that."
 msgstr "Atsiprašome, neturi pakankamai vaivorykščių šiam prizui"
-
-#: results/tasks.py:23
-msgid "Celery works alright"
-msgstr "Celery veikia tvarkingai"
-
-#: results/tasks.py:110
-msgid ""
-"Congratulations! You just reached {} streaks and received a new {} medal!"
-msgstr "Sveikiname! Ką tik pasiekei {} aktyvių savaičių ir gavai {} medalį! "
-
-#: results/tasks.py:122
-msgid ""
-"\n"
-"    Statistics for streaks:\n"
-"    year: {}\n"
-"    week:{}\n"
-"    streaks increased: {}\n"
-"    streaks decreased: {}\n"
-"    medals: {}\n"
-"    \n"
-"    "
-msgstr ""
-
-#: results/tasks.py:133
-msgid "Streaks and medals statistics"
-msgstr "Aktyvumo ir medalių statistika"
 
 #: templates/email/activation.html:5
 #, python-format
@@ -482,65 +660,98 @@ msgstr "%(site_name)s komanda"
 msgid "If you have any questions about the app, send us an email:"
 msgstr "Jei turi klausimų dėl programėlės, parašyk mums:"
 
-#: user/models.py:72
+#: texts/models.py:12
+msgid "body"
+msgstr "turinys"
+
+#: texts/models.py:13
+msgid "title"
+msgstr "pavadinimas"
+
+#: texts/models.py:14
+msgid "notes"
+msgstr "pastabos"
+
+#: user/models.py:75
 msgid "woman"
 msgstr "moteris"
 
-#: user/models.py:73
+#: user/models.py:76
 msgid "man"
 msgstr "vyras"
 
-#: user/models.py:74
+#: user/models.py:77
 msgid "non-binary"
 msgstr "nebinarinė"
 
-#: user/models.py:75
+#: user/models.py:78
 msgid "other"
 msgstr "kita"
 
-#: user/models.py:76 user/models.py:90
+#: user/models.py:79 user/models.py:93
 msgid "prefer not to say"
 msgstr "nenoriu nurodyti"
 
-#: user/models.py:88
+#: user/models.py:91
 msgid "yes"
 msgstr "taip"
 
-#: user/models.py:89
+#: user/models.py:92
 msgid "no"
 msgstr "ne"
 
-#: user/models.py:107
+#: user/models.py:110
 msgid "username"
-msgstr "vartotojo vardas"
+msgstr "naudotojo vardas"
 
-#: user/models.py:118
+#: user/models.py:121
 msgid "email address"
 msgstr "el. pašto adresas"
 
-#: user/models.py:120
+#: user/models.py:123
 msgid "year of birth"
 msgstr "gimimo metai"
 
-#: user/models.py:125
+#: user/models.py:128
 msgid "gender"
 msgstr "lytis"
 
-#: user/models.py:132
+#: user/models.py:135
 msgid "enter gender if selected other"
 msgstr "įvesk lytį, jei pasirinkai 'kita'"
 
-#: user/models.py:146
+#: user/models.py:149
 msgid "Do you consider yourself LGBTQIA+?"
 msgstr "Ar priskiri save LGBTQIA+?"
 
-#: user/models.py:151
+#: user/models.py:154
 msgid "is active"
 msgstr "aktyvus"
 
-#: user/models.py:152
+#: user/models.py:155
 msgid "is admin"
 msgstr "administratorius"
+
+#: user/models.py:156
+msgid "marked for deletion"
+msgstr "pažymėta trynimui"
+
+#: user/models.py:157
+msgid "date and time when marked for deletion"
+msgstr "kada pažymėta trynimui"
+
+#: user/models.py:174
+msgid "A user wants to delete account"
+msgstr "Naudotojas nori ištrinti savo paskyrą"
+
+#: user/models.py:175
+msgid "User has marked account for deletion. Please take care of it."
+msgstr "Naudotojas pažymėjo savo paskyrą trynimui. Prašau tuo pasirūpinti."
+
+#: user/models.py:303
+msgid ""
+"Congratulations! You just reached {} streaks and received a new {} medal!"
+msgstr "Sveikiname! Ką tik pasiekei {} aktyvių savaičių ir gavai {} medalį! "
 
 #: user/views.py:39
 msgid "Congratulations! Your account was successfully activated."
@@ -559,6 +770,25 @@ msgstr "Sveikiname! Tavo paskyra aktyvuota."
 #: user/views.py:82
 msgid "Sorry, something went wrong."
 msgstr "Atsiprašome, kažkas ne taip."
+
+#, fuzzy
+#~| msgid "Congratulations! "
+#~ msgid " Congratulations! "
+#~ msgstr " Sveikinam! "
+
+#, fuzzy
+#~| msgid "Received points: "
+#~ msgid " Received points: "
+#~ msgstr " Gauti ta6kai: "
+
+#~ msgid "streaks in a row"
+#~ msgstr "aktyvių savaičių iš eilės"
+
+#~ msgid "Celery works alright"
+#~ msgstr "Celery veikia tvarkingai"
+
+#~ msgid "Streaks and medals statistics"
+#~ msgstr "Aktyvumo ir medalių statistika"
 
 #~ msgid ""
 #~ "Completion of Challenge {} was confirmed. Congratulations! You received "
