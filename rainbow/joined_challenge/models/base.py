@@ -5,7 +5,9 @@ from django.apps import apps
 from django.db import models
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _, gettext
+from fcm_django.models import FCMDevice
 from private_storage.fields import PrivateFileField
+from firebase_admin.messaging import Message as PushNotification, Notification
 
 from challenge.models.base import ChallengeType
 from message.models import Message, MessageTypes
@@ -86,7 +88,7 @@ class JoinedChallenge(models.Model):
 
         super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
-        # Sending a notification about confirmation of the challenge
+        # Sending an in-app notification and push notification about confirmation of the challenge
         if self.status == JoinedChallengeStatus.CONFIRMED:
 
             # Points for quiz are calculated based on the amount of correct answers
@@ -94,6 +96,7 @@ class JoinedChallenge(models.Model):
                 points = self.quizjoinedchallenge.correct_answers_count
             else:
                 points = self.challenge.points
+
             # todo make translation work
             message_text = gettext(
                 "Užduoties atlikimas patvirtintas užduočiai: "
@@ -103,6 +106,17 @@ class JoinedChallenge(models.Model):
             print(message_text)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
+            # Also sending a push notification
+            # Only send push notification, if this challenge needs confirmation, not to annoy the user
+            if self.challenge.needs_confirmation:
+                try:
+                    device = FCMDevice.objects.get(user=self.user)
+                    notification = PushNotification(
+                        notification=Notification(title="Tavo atlikta užduotis patvirtinta!", body=message_text)
+                    )
+                    device.send_message(notification)
+                except FCMDevice.DoesNotExist:
+                    pass
 
         # if completed challenge needs confirmation, send an email to admins asking to confirm
         if self.status == JoinedChallengeStatus.COMPLETED and self.challenge.needs_confirmation:
