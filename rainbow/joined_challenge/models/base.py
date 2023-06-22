@@ -103,7 +103,6 @@ class JoinedChallenge(models.Model):
             ) + self. challenge.name + gettext(
                 ". Sveikinam! "
             ) + gettext(" Gavai taškų: ") + str(points)
-            print(message_text)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
             # Also sending a push notification
@@ -112,7 +111,7 @@ class JoinedChallenge(models.Model):
                 try:
                     device = FCMDevice.objects.get(user=self.user)
                     notification = PushNotification(
-                        notification=Notification(title="Tavo atlikta užduotis patvirtinta!", body=message_text)
+                        notification=Notification(title=_("Your challenge is now confirmed!"), body=message_text)
                     )
                     device.send_message(notification)
                 except FCMDevice.DoesNotExist:

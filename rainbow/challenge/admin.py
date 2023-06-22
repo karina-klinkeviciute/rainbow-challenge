@@ -5,8 +5,10 @@ from django.contrib.admin import display
 from django.core.files import File
 
 from django.utils.translation import gettext_lazy as _
+from fcm_django.models import FCMDevice
 from import_export.admin import ExportMixin
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
+from firebase_admin.messaging import Message as PushNotification, Notification
 
 from challenge.models import Challenge, ArticleChallenge, EventParticipantChallenge, SupportChallenge, QuizChallenge, \
     CustomChallenge
@@ -32,6 +34,18 @@ def generate_qr_codes(modeladmin, request, queryset):
                     djangofile = File(reopen)
                     event_challenge.qr_code_file.save(django_file_name, djangofile)
 
+@admin.action(description=_('Send push notifications'))
+def send_push_notification(modeladmin, request, queryset):
+    for concrete_challenge in queryset:
+        message_text = _(
+            f"New challenge added: "
+        ) + concrete_challenge.challenge.name
+
+        devices = FCMDevice.objects.all()
+        notification = PushNotification(
+            notification=Notification(title=_("New challenge added"), body=message_text)
+        )
+        devices.send_message(notification)
 
 class ChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('name', 'description', 'image', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
