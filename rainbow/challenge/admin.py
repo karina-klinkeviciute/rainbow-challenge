@@ -39,7 +39,7 @@ def send_push_notification(modeladmin, request, queryset):
     for concrete_challenge in queryset:
         message_text = _(
             f"New challenge added: "
-        ) + concrete_challenge.challenge.name
+        ) + concrete_challenge.main_challenge.name
 
         devices = FCMDevice.objects.all()
         notification = PushNotification(
