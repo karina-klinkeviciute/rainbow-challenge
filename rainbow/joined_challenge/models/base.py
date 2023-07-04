@@ -98,11 +98,10 @@ class JoinedChallenge(models.Model):
                 points = self.challenge.points
 
             # todo make translation work
-            message_text = gettext(
-                "Užduoties atlikimas patvirtintas užduočiai: "
-            ) + self. challenge.name + gettext(
-                ". Sveikinam! "
-            ) + gettext(" Gavai taškų: ") + str(points)
+            # todo translations also don't work in push notifications
+            message_text = "Užduoties atlikimas patvirtintas užduočiai: " \
+                           + self. challenge.name + ". Sveikinam! "\
+                           + " Gavai taškų: " + str(points)
             message = Message(message_text=message_text, user=self.user, type=MessageTypes.CHALLENGE_CONFIRMATION)
             message.save()
             # Also sending a push notification
@@ -111,7 +110,7 @@ class JoinedChallenge(models.Model):
                 try:
                     device = FCMDevice.objects.get(user=self.user)
                     notification = PushNotification(
-                        notification=Notification(title=_("Your challenge is now confirmed!"), body=message_text)
+                        notification=Notification(title="Užduotis patvirtinta!", body=message_text)
                     )
                     device.send_message(notification)
                 except FCMDevice.DoesNotExist:
