@@ -38,7 +38,7 @@ def generate_qr_codes(modeladmin, request, queryset):
 def send_push_notification(modeladmin, request, queryset):
     for concrete_challenge in queryset:
         message_text = _(
-            f"New challenge added: "
+            "New challenge added: "
         ) + concrete_challenge.main_challenge.name
         message_title = _("New challenge added")
         devices = FCMDevice.objects.all()

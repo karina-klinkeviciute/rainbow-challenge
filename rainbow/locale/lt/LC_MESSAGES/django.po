@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-22 23:25+0300\n"
+"POT-Creation-Date: 2023-07-11 19:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Generate QR code files"
 msgstr "Sugeneruoti QR kodų paveikslėlius"
 
-#: challenge/admin.py:37
+#: challenge/admin.py:37 results/admin.py:17
 msgid "Send push notifications"
 msgstr "Siųsti push notifications"
 
@@ -31,7 +31,7 @@ msgstr "Siųsti push notifications"
 msgid "New challenge added: "
 msgstr "Pridėta nauja užduotis: "
 
-#: challenge/admin.py:46
+#: challenge/admin.py:43
 #, fuzzy
 #| msgid "challenge"
 msgid "New challenge added"
@@ -242,45 +242,29 @@ msgstr "pradėta"
 msgid "completed at"
 msgstr "atlikimo laikas"
 
-#: joined_challenge/models/base.py:102
-msgid "Užduoties atlikimas patvirtintas užduočiai: "
-msgstr ""
-
-#: joined_challenge/models/base.py:104
-msgid ". Sveikinam! "
-msgstr ""
-
-#: joined_challenge/models/base.py:105
-msgid " Gavai taškų: "
-msgstr ""
-
-#: joined_challenge/models/base.py:114
-msgid "Your challenge is now confirmed!"
-msgstr "Tavo atlikta užduotis jau patvirtinta!"
-
-#: joined_challenge/models/base.py:123
+#: joined_challenge/models/base.py:122
 msgid "Challenge confirmation needed"
 msgstr "Reikia patvirtinti užduotį"
 
-#: joined_challenge/models/base.py:124
+#: joined_challenge/models/base.py:123
 msgid "User has just completed a challenge. Please confirm it."
 msgstr "Naudotojas ką tik atliko užduotį. Prašau ją patvirtinti."
 
-#: joined_challenge/models/base.py:163
+#: joined_challenge/models/base.py:162
 #, fuzzy
 #| msgid "main joined challenge"
 msgid "joined challenge"
 msgstr "pagrindinė pradėta užduotis"
 
-#: joined_challenge/models/base.py:167
+#: joined_challenge/models/base.py:166
 msgid "file"
 msgstr "failas"
 
-#: joined_challenge/models/base.py:185
+#: joined_challenge/models/base.py:184
 msgid "main joined challenge"
 msgstr "pagrindinė pradėta užduotis"
 
-#: joined_challenge/models/base.py:194
+#: joined_challenge/models/base.py:193
 #, fuzzy
 #| msgid "main joined challenge"
 msgid "concrete joined challenge for: "
@@ -512,6 +496,18 @@ msgstr "išsiuntimo laikas"
 msgid "quiz-user connection"
 msgstr "testo-vartotojo ryšys"
 
+#: results/admin.py:21
+#, fuzzy
+#| msgid "challenge"
+msgid "New prize added: "
+msgstr "Pridėtas naujas prizas: "
+
+#: results/admin.py:23
+#, fuzzy
+#| msgid "challenge"
+msgid "New prize added"
+msgstr "Pridėtas naujas prizas"
+
 #: results/models/medal.py:40
 msgid "bronze"
 msgstr "bronzos"
@@ -542,7 +538,7 @@ msgstr "išduotas"
 msgid "price"
 msgstr "kaina"
 
-#: results/models/prize.py:24 results/models/prize.py:62
+#: results/models/prize.py:24 results/models/prize.py:63
 msgid "amount"
 msgstr "kiekis"
 
@@ -560,27 +556,31 @@ msgstr "pabaigos data"
 msgid "prize"
 msgstr "prizas"
 
-#: results/models/prize.py:63
+#: results/models/prize.py:62 texts/models.py:14
+msgid "notes"
+msgstr "pastabos"
+
+#: results/models/prize.py:64
 msgid "issued"
 msgstr "išduotas"
 
-#: results/models/prize.py:64
+#: results/models/prize.py:65
 msgid "date claimed"
 msgstr "užprašymo data"
 
-#: results/models/prize.py:65
+#: results/models/prize.py:66
 #, fuzzy
 #| msgid "issued"
 msgid "date issued"
 msgstr "išdavimo data"
 
-#: results/models/prize.py:75
+#: results/models/prize.py:76
 #, fuzzy
 #| msgid "required confirmation by admin"
 msgid "Prize confirmation needed"
 msgstr "Reikia patvirtinti prizą"
 
-#: results/models/prize.py:76
+#: results/models/prize.py:77
 msgid "User has just claimed a prize. Please issue it."
 msgstr "Naudotojas ką tik užprašė prizą. Prašau jį išduoti."
 
@@ -667,10 +667,6 @@ msgstr "turinys"
 #: texts/models.py:13
 msgid "title"
 msgstr "pavadinimas"
-
-#: texts/models.py:14
-msgid "notes"
-msgstr "pastabos"
 
 #: user/models.py:75
 msgid "woman"
@@ -770,6 +766,9 @@ msgstr "Sveikiname! Tavo paskyra aktyvuota."
 #: user/views.py:82
 msgid "Sorry, something went wrong."
 msgstr "Atsiprašome, kažkas ne taip."
+
+#~ msgid "Your challenge is now confirmed!"
+#~ msgstr "Tavo atlikta užduotis jau patvirtinta!"
 
 #, fuzzy
 #~| msgid "Congratulations! "

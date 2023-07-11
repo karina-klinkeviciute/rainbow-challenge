@@ -18,7 +18,7 @@ class RegionAdmin(admin.ModelAdmin):
 def send_push_notification(modeladmin, request, queryset):
     for concrete_challenge in queryset:
         message_text = _(
-            f"New prize added: "
+            "New prize added: "
         ) + concrete_challenge.main_challenge.name
         message_title = _("New prize added")
         devices = FCMDevice.objects.all()
