@@ -59,6 +59,7 @@ class ClaimedPrize(models.Model):
         verbose_name=_('prize'),
         on_delete=models.CASCADE,
     )
+    notes = models.TextField(verbose_name=_('notes'), blank=True, null=True)
     amount = models.IntegerField(verbose_name=_('amount'))
     issued = models.BooleanField(verbose_name=_('issued'), default=False)
     date_claimed = models.DateTimeField(verbose_name=_("date claimed"), auto_now_add=True)
