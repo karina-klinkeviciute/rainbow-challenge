@@ -43,6 +43,7 @@ def send_push_notification(modeladmin, request, queryset):
         message_title = "New challenge added"
         devices = FCMDevice.objects.all()
         notification = PushNotification(
+            data={"category": "new_challenge"},
             notification=Notification(title=message_title, body=message_text)
         )
         devices.send_message(notification)

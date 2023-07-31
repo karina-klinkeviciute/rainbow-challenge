@@ -110,6 +110,7 @@ class JoinedChallenge(models.Model):
                 try:
                     device = FCMDevice.objects.get(user=self.user)
                     notification = PushNotification(
+                        data={"category": "challenge_confirmed"},
                         notification=Notification(title="Užduotis patvirtinta!", body=message_text)
                     )
                     device.send_message(notification)
