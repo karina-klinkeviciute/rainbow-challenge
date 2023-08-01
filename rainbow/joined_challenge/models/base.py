@@ -108,12 +108,13 @@ class JoinedChallenge(models.Model):
             # Only send push notification, if this challenge needs confirmation, not to annoy the user
             if self.challenge.needs_confirmation:
                 try:
-                    device = FCMDevice.objects.get(user=self.user)
+                    devices = FCMDevice.objects.filter(user=self.user)
                     notification = PushNotification(
                         data={"category": "challenge_confirmed"},
                         notification=Notification(title="Užduotis patvirtinta!", body=message_text)
                     )
-                    device.send_message(notification)
+                    for device in devices:
+                        device.send_message(notification)
                 except FCMDevice.DoesNotExist:
                     pass
 

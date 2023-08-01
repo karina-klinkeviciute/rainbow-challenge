@@ -28,9 +28,25 @@ def send_push_notification(modeladmin, request, queryset):
         )
         devices.send_message(notification)
 
+@admin.action(description=_('Push notifications to admins only'))
+def send_push_notification_admins(modeladmin, request, queryset):
+    for prize in queryset:
+        message_text = _(
+            "New prize added: "
+        ) + prize.name
+        message_title = "New prize added"
+        devices = FCMDevice.objects.filter(user__is_admin=True)
+        notification = PushNotification(
+            data={"category": "new_prize"},
+            notification=Notification(title=message_title, body=message_text)
+        )
+        devices.send_message(notification)
+
+
+
 class PrizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'amount', )
-    actions = [send_push_notification, ]
+    actions = [send_push_notification, send_push_notification_admins]
 
 class ClaimedPrizeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('prize', 'user', 'amount', 'issued')
