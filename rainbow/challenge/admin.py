@@ -48,6 +48,20 @@ def send_push_notification(modeladmin, request, queryset):
         )
         devices.send_message(notification)
 
+@admin.action(description=_('Push notifications to admins only'))
+def send_push_notification_admins(modeladmin, request, queryset):
+    for concrete_challenge in queryset:
+        message_text = _(
+            "New challenge added: "
+        ) + concrete_challenge.main_challenge.name
+        message_title = "New challenge added"
+        devices = FCMDevice.objects.filter(user__is_admin=True)
+        notification = PushNotification(
+            data={"category": "new_challenge"},
+            notification=Notification(title=message_title, body=message_text)
+        )
+        devices.send_message(notification)
+
 class ChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('name', 'description', 'image', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
     list_filter = ('type', 'region', 'published', )
