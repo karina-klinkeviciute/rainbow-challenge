@@ -1,18 +1,22 @@
+import json
+
 import requests
 from django.views.decorators.csrf import requires_csrf_token
 from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
-from rest_framework import views
+from rest_framework import views, status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, BasePermission, SAFE_METHODS
 
 from user.models import GenderOptions
 from user.serializers import GenderSerializer
 
-
+class ReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
 class GenderListView(views.APIView):
     http_method_names = ('get', )
-    permission_classes = [IsAuthenticatedOrReadOnly, ]
+    permission_classes = [ReadOnly, ]
 
     def get(self, request, format=None):
         genders = GenderOptions()
@@ -43,6 +47,28 @@ class UserActivationView(TemplateView):
         context["message"] = message
 
         return self.render_to_response(context)
+
+
+class OAuthStateCodeToken(views.APIView):
+    http_method_names = ('get',)
+
+    def get(self, request, *args, **kwargs):
+        state = request.GET.get("state")
+        code = request.GET.get("code")
+        # todo de-hardcode here
+        url = 'https://rainbowchallenge.lt/o/google-oauth2/'
+        payload = {'state': state, 'code': code}
+        response = requests.post(url, data=payload)
+        if response.status_code == 200:
+            data = json.loads(response.text)
+            token = data["token"]
+            content = {"token": token}
+            response_status = status.HTTP_200_OK
+        else:
+            content = {"error": "Sorry, not ok"}
+            response_status = status.HTTP_400_BAD_REQUEST
+
+        return Response(content, status=response_status)
 
 
 class PasswordResetView(TemplateView):
