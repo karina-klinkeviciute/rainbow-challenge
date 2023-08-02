@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
 from rest_framework import views, status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, BasePermission, SAFE_METHODS
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, BasePermission, SAFE_METHODS, AllowAny
 
 from user.models import GenderOptions
 from user.serializers import GenderSerializer
@@ -51,6 +51,7 @@ class UserActivationView(TemplateView):
 
 class OAuthStateCodeToken(views.APIView):
     http_method_names = ('get',)
+    permission_classes = [AllowAny, ]
 
     def get(self, request, *args, **kwargs):
         state = request.GET.get("state")
