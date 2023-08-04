@@ -69,7 +69,7 @@ class ChallengeAdmin(ExportMixin, admin.ModelAdmin):
 
 class BaseChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('main_challenge', 'get_published')
-    actions = [generate_qr_codes, send_push_notification]
+    actions = [generate_qr_codes, send_push_notification, send_push_notification_admins]
 
     @display(ordering='main_challenge__published', description='Published')
     def get_published(self, obj):
