@@ -57,7 +57,7 @@ class OAuthStateCodeToken(views.APIView):
         state = request.GET.get("state")
         code = request.GET.get("code")
         # todo de-hardcode here
-        url = 'https://rainbowchallenge.lt/o/google-oauth2/'
+        url = 'https://rainbowchallenge.lt/auth/o/google-oauth2/'
         payload = {'state': state, 'code': code}
         response = requests.post(url, data=payload)
         if response.status_code == 200:
