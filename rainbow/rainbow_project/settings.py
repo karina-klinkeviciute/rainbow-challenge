@@ -232,6 +232,7 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'USER_ID_FIELD': 'uid',
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': False,
+
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': [
         'https://rainbowchallenge.lt',
         "https://rainbowchallenge/auth/o/google-oauth2/",
@@ -259,7 +260,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 # this is to avoid an error about missing state
-SESSION_COOKIE_SAMESITE = None
+# SESSION_COOKIE_SAMESITE = None
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_user',
