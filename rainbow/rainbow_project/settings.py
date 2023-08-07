@@ -237,6 +237,7 @@ DJOSER = {
         "https://rainbowchallenge/auth/o/google-oauth2/",
         "http://127.0.0.1:8000/auth/o/google-oauth2/",
         "https://rainbowchallenge.lt/auth/users/me/",
+        "https://rainbowchallenge.lt/api/user/oauth_token/"
     ]
 }
 
