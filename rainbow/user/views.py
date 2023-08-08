@@ -1,15 +1,17 @@
 import json
 
+import logging
 import requests
-from django.views.decorators.csrf import requires_csrf_token
 from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
 from rest_framework import views, status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, BasePermission, SAFE_METHODS, AllowAny
+from rest_framework.permissions import BasePermission, SAFE_METHODS, AllowAny
 
 from user.models import GenderOptions
 from user.serializers import GenderSerializer
+
+logger = logging.getLogger('root')
 
 class ReadOnly(BasePermission):
     def has_permission(self, request, view):
@@ -54,7 +56,7 @@ class OAuthStateCodeToken(views.APIView):
     permission_classes = [AllowAny, ]
 
     def get(self, request, *args, **kwargs):
-        print("HEADERS: ", request.headers)
+        logger.info(request.headers)
         state = request.GET.get("state")
         code = request.GET.get("code")
         # todo de-hardcode here
