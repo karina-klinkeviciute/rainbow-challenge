@@ -68,7 +68,7 @@ class OAuthStateCodeToken(views.APIView):
         payload = {'state': state, 'code': code}
 
 
-        response = requests.post(url, data=payload)
+        response = requests.post(url, data=payload, headers=headers)
         if response.status_code == 200:
             data = json.loads(response.text)
             token = data["token"]
