@@ -54,6 +54,7 @@ class OAuthStateCodeToken(views.APIView):
     permission_classes = [AllowAny, ]
 
     def get(self, request, *args, **kwargs):
+        print("HEADERS: ", request.headers)
         state = request.GET.get("state")
         code = request.GET.get("code")
         # todo de-hardcode here
