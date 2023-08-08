@@ -57,11 +57,17 @@ class OAuthStateCodeToken(views.APIView):
 
     def get(self, request, *args, **kwargs):
         logger.info(request.headers)
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        if "Cookie" in request.headers:
+            cookie = request.headers["Cookie"]
+            headers["Cookie"] = cookie
         state = request.GET.get("state")
         code = request.GET.get("code")
         # todo de-hardcode here
         url = 'https://rainbowchallenge.lt/auth/o/google-oauth2/'
         payload = {'state': state, 'code': code}
+
+
         response = requests.post(url, data=payload)
         if response.status_code == 200:
             data = json.loads(response.text)
