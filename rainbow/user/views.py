@@ -1,6 +1,8 @@
 import json
 
 import logging
+import uuid
+
 import requests
 
 from django.views.generic import TemplateView
@@ -9,6 +11,7 @@ from django.conf import settings
 
 from rest_framework import views, status
 from rest_framework.authtoken.models import Token
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 from rest_framework.permissions import BasePermission, SAFE_METHODS, AllowAny
 
@@ -106,15 +109,20 @@ class OAuthTokenID(views.APIView):
             # userid = "karina.klinkeviciute@gmail.com"
 
             # user_token = settings.TOKEN_MODEL.objects.get()
-            user = User.objects.get(email=userid)
-            user_token = Token.objects.get(user=user).key
-            print("USER EMAIL: ", userid)
-            print("USER TOKEN: ", user_token)
+            try:
+                user = User.objects.get(email=userid)
+            except User.DoesNotExist:
+                user = User.objects.create_user(userid, uuid.UUID)
 
-            return Response(data={"auth_token": user_token})
+            try:
+                user_token = Token.objects.get(user=user).key
+            except Token.DoesNotExist:
+                user_token = Token.objects.create(user=user)
+
+            return Response(data={"auth_token": user_token, "email": userid})
 
         except ValueError:
-            pass
+            raise PermissionDenied({"message": "Wrong credentials"})
 
 
 class PasswordResetView(TemplateView):
