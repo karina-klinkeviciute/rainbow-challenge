@@ -36,7 +36,7 @@ jobs:
           HOST_IP: ${{secrets.HOST_IP}}
           SSH_PRIVATE_KEY: ${{secrets.SSH_SECRET_KEY}}
         run: |
-          echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
+          echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key && cat private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_IP} '
             ifconfig; exit
             '
