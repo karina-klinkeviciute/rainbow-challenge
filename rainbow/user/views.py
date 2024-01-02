@@ -112,7 +112,7 @@ class OAuthTokenID(views.APIView):
             try:
                 user = User.objects.get(email=userid)
             except User.DoesNotExist:
-                user = User.objects.create_user(userid, uuid.UUID)
+                user = User.objects.create_user(userid, uuid.uuid4())
 
             try:
                 user_token = Token.objects.get(user=user).key
