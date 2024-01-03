@@ -119,6 +119,9 @@ class OAuthTokenID(views.APIView):
             except Token.DoesNotExist:
                 user_token = Token.objects.create(user=user)
 
+            user.is_active = True
+            user.save()
+
             return Response(data={"auth_token": user_token, "email": userid})
 
         except ValueError:
