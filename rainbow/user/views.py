@@ -117,7 +117,7 @@ class OAuthTokenID(views.APIView):
             try:
                 user_token = Token.objects.get(user=user).key
             except Token.DoesNotExist:
-                user_token = Token.objects.create(user=user)
+                user_token = Token.objects.create(user=user).key
 
             user.is_active = True
             user.save()
