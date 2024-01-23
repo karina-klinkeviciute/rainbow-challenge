@@ -134,16 +134,17 @@ class OAuthTokenID(views.APIView):
     permission_classes = [AllowAny, ]
 
     def post(self, request, *args, **kwargs):
-        token = request.POST.get("token")
-        type = request.POST.get("type")
-        if type is None:
-            type = "google"
+        token = request.data.get("token")
+        token_type = request.data.get("type")
+        print("TYPE: ", token_type)
+        if token_type is None:
+            token_type = "google"
 
         #     for testing only
         # type = "apple"
         # token = """eyJraWQiOiJmaDZCczhDIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwczovL2FwcGxlaWQuYXBwbGUuY29tIiwiYXVkIjoib3JnLnJhaW5ib3djaGFsbGVuZ2UiLCJleHAiOjE3MDYwMzMyMjYsImlhdCI6MTcwNTk0NjgyNiwic3ViIjoiMDAxNjQ3LjY0YTNlNWNmM2Y1OTQ2YTViMjdlNmFjZWQwNDU3MzVkLjE1MjciLCJjX2hhc2giOiJoVmJWMmxNdXZPVXJyS1gtN2dLTXVBIiwiZW1haWwiOiJhcGFiaXRhc2RldjFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOiJ0cnVlIiwiYXV0aF90aW1lIjoxNzA1OTQ2ODI2LCJub25jZV9zdXBwb3J0ZWQiOnRydWV9.ZaWQzN4VywDtn2lq7_K5ITAVbUkO9mo7UVAWItpxj3dDgx94BM493KyCNkyGVEyoCpZmZl7VisTIxWAKksgti1TCx3u-2Jvxt6XEhUprmHIuCZAiVJMEZejvaV5E2_Yt5i6l7bpkQu_UPYWdPhpNdDjk8pVmd-iPbC4sooacIf8uyUslyBfArdaP8EhQkHUTNAnKZh1smQa-xWZ4r01G_PpQX4WzbVLkdasu7Q3Gg5yj_1N8RbmJo3QxwZnK8qXjnZW9OYGolSeeNQIQE_DAn4lirO--bh6ElchLUX_hh2mLhGppKyhTapxunw_m3w6XjcZ_BKfQ5wDn7NiSXL5Z8g"""
 
-        if type == "google":
+        if token_type == "google":
 
             response = requests.get(f"https://oauth2.googleapis.com/tokeninfo?id_token={token}")
 
@@ -151,11 +152,11 @@ class OAuthTokenID(views.APIView):
 
             userid = response.json()["email"]
 
-        if type == "apple":
+        if token_type == "apple":
 
             user_data = decode_and_validate_token(token)
 
-            print("RESPONSE APPLE: ", user_data)
+            logger.info("RESPONSE APPLE: ", user_data)
 
             userid = user_data["email"]
 
