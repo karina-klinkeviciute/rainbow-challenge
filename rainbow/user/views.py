@@ -158,7 +158,7 @@ class OAuthTokenID(views.APIView):
             print("RESPONSE APPLE: ", user_data)
 
             userid = user_data["email"]
-            # todo log user data to logger and check on the server
+
             print(user_data)
 
         try:
