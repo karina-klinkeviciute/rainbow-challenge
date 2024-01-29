@@ -7,6 +7,7 @@ import httpx
 import requests
 
 import jwt
+from django.shortcuts import redirect
 
 from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
@@ -188,6 +189,10 @@ class OAuthTokenID(views.APIView):
         except ValueError:
             raise PermissionDenied({"message": "Wrong credentials"})
 
+def apple_redirect(request):
+    package = 'rainbowchallenge.lt.rainbow_challenge'
+    payload = request.body
+    redirect(f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end");
 
 class PasswordResetView(TemplateView):
     """
