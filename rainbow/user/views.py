@@ -192,7 +192,7 @@ class OAuthTokenID(views.APIView):
 def apple_redirect(request):
     package = 'rainbowchallenge.lt.rainbow_challenge'
     payload = request.body
-    redirect(f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end");
+    redirect(f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end")
 
 class PasswordResetView(TemplateView):
     """
