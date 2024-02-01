@@ -8,6 +8,7 @@ import requests
 
 import jwt
 from django.shortcuts import redirect
+from django.views.decorators.csrf import csrf_exempt
 
 from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
@@ -189,6 +190,7 @@ class OAuthTokenID(views.APIView):
         except ValueError:
             raise PermissionDenied({"message": "Wrong credentials"})
 
+@csrf_exempt
 def apple_redirect(request):
     package = 'rainbowchallenge.lt.rainbow_challenge'
     payload = request.body
