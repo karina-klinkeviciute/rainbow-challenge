@@ -197,7 +197,7 @@ class HttpResponseRedirectIntent(HttpResponseRedirect):
 @csrf_exempt
 def apple_redirect(request):
     package = 'rainbowchallenge.lt.rainbow_challenge'
-    payload = request.body
+    payload = request.body.decode('utf-8')
     logger.info(f"REQUEST BODY: {request.body}")
     logger.info(f"REQUEST POST: {request.POST}")
     to = f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end"
