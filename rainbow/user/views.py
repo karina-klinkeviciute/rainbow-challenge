@@ -198,7 +198,10 @@ class HttpResponseRedirectIntent(HttpResponseRedirect):
 def apple_redirect(request):
     package = 'rainbowchallenge.lt.rainbow_challenge'
     payload = request.body
+    logger.info(f"REQUEST BODY: {request.body}")
+    logger.info(f"REQUEST POST: {request.POST}")
     to = f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end"
+    logger.info(to)
     return HttpResponseRedirectIntent(to)
     # redirect_intent(f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end")
 
