@@ -216,7 +216,7 @@ def redirect_intent(to, *args, **kwargs):
 def apple_redirect(request):
     package = 'rainbowchallenge.lt.rainbow_challenge'
     payload = request.body
-    redirect(f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end")
+    redirect_intent(f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end")
 
 class PasswordResetView(TemplateView):
     """
