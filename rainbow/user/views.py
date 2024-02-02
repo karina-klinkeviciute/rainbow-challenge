@@ -119,7 +119,11 @@ def decode_and_validate_token(token):
     jwks_client = jwt.PyJWKClient(jwks_url)
     header = jwt.get_unverified_header(token)
     key = jwks_client.get_signing_key(header["kid"]).key
-    return jwt.decode(token, key, [header["alg"]], audience="org.rainbowchallenge")
+    try:
+        decoded_jwt = jwt.decode(token, key, [header["alg"]], audience="org.rainbowchallenge")
+    except:
+        decoded_jwt = jwt.decode(token, key, [header["alg"]], audience="rainbow_challenge")
+    return decoded_jwt
 
 # Another option:
 def decode_jwt_token(token: str, auth_domain: str, audience: str):

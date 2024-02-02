@@ -68,7 +68,7 @@ class ClaimedPrize(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if (self.issued is True) and (self.date_issued is None):
             self.date_issued = datetime.now()
-            self.galiojimo_pabaiga = self.pateikimo_dat
+            # self.galiojimo_pabaiga = self.pateikimo_data
         super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
         if self.issued is False:
