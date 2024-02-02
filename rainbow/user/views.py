@@ -7,7 +7,8 @@ import httpx
 import requests
 
 import jwt
-from django.shortcuts import redirect
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import redirect, resolve_url
 from django.views.decorators.csrf import csrf_exempt
 
 from django.views.generic import TemplateView
@@ -190,6 +191,27 @@ class OAuthTokenID(views.APIView):
         except ValueError:
             raise PermissionDenied({"message": "Wrong credentials"})
 
+class HttpResponseRedirectIntent(HttpResponseRedirect):
+    allowed_schemes = ['http', 'https', 'ftp', 'intent']
+
+def redirect_intent(to, *args, **kwargs):
+    """
+    Return an HttpResponseRedirect to the appropriate URL for the arguments
+    passed.
+
+    The arguments could be:
+
+        * A model: the model's `get_absolute_url()` function will be called.
+
+        * A view name, possibly with arguments: `urls.reverse()` will be used
+          to reverse-resolve the name.
+
+        * A URL, which will be used as-is for the redirect location.
+
+    Issues a temporary redirect by default; pass permanent=True to issue a
+    permanent redirect.
+    """
+    return HttpResponseRedirectIntent(resolve_url(to, *args, **kwargs))
 @csrf_exempt
 def apple_redirect(request):
     package = 'rainbowchallenge.lt.rainbow_challenge'
