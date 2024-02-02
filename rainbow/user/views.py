@@ -194,29 +194,13 @@ class OAuthTokenID(views.APIView):
 class HttpResponseRedirectIntent(HttpResponseRedirect):
     allowed_schemes = ['http', 'https', 'ftp', 'intent']
 
-def redirect_intent(to, *args, **kwargs):
-    """
-    Return an HttpResponseRedirect to the appropriate URL for the arguments
-    passed.
-
-    The arguments could be:
-
-        * A model: the model's `get_absolute_url()` function will be called.
-
-        * A view name, possibly with arguments: `urls.reverse()` will be used
-          to reverse-resolve the name.
-
-        * A URL, which will be used as-is for the redirect location.
-
-    Issues a temporary redirect by default; pass permanent=True to issue a
-    permanent redirect.
-    """
-    return HttpResponseRedirectIntent(resolve_url(to, *args, **kwargs))
 @csrf_exempt
 def apple_redirect(request):
     package = 'rainbowchallenge.lt.rainbow_challenge'
     payload = request.body
-    redirect_intent(f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end")
+    to = f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end"
+    return HttpResponseRedirectIntent(to)
+    # redirect_intent(f"intent://callback?{payload}#Intent;package={package};scheme=signinwithapple;end")
 
 class PasswordResetView(TemplateView):
     """
