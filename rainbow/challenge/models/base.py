@@ -130,15 +130,16 @@ class Challenge(models.Model):
     @property
     def concrete_challenge_uuid(self):
         """
-        Information that we have about a specific challenge
+        UUID of a specific challenge (challenge of some concrete type
         """
         challenge_class = ChallengeType.CLASSES[self.type]
         model = apps.get_model('challenge', challenge_class)
-        info = model.objects.get(main_challenge=self)
-        return info.uuid
+        concrete_challenge = model.objects.get(main_challenge=self)
+        return concrete_challenge.uuid
 
     @property
     def challenge_model(self):
+        """Model of a concrete challenge(challenge of the concrete type)"""
         challenge_class = ChallengeType.CLASSES[self.type]
         model = apps.get_model('challenge', challenge_class)
         return model
