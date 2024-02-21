@@ -26,6 +26,7 @@ class RegionViewSet(viewsets.ModelViewSet):
 
 
 class RegionUsersAPIView(ListAPIView):
+    http_method_names = ('get', 'head', 'options')
     serializer_class = UserSerializer
 
     def get_queryset(self):
@@ -37,6 +38,7 @@ class RegionUsersAPIView(ListAPIView):
 
 
 class RegionChallengesAPIView(ListAPIView):
+    http_method_names = ('get', 'head', 'options')
     serializer_class = ChallengeSerializer
 
     def get_queryset(self):

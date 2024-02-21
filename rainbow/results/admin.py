@@ -50,7 +50,7 @@ class PrizeAdmin(admin.ModelAdmin):
 
 class ClaimedPrizeAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ('prize', 'user', 'amount', 'issued')
-    list_filter = ('prize', 'user', 'issued')
+    list_filter = ('prize', 'issued')
     readonly_fields = ('date_claimed', )
 
 class MedalAdmin(admin.ModelAdmin):

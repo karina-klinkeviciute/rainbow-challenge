@@ -7,6 +7,7 @@ from results.models import ClaimedPrize
 
 
 class BalanceView(APIView):
+    http_method_names = ('get', 'head', 'options')
     """A view for Rainbows earning/spending data"""
     def get(self, request, format=None):
         earning = []

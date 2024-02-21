@@ -24,7 +24,7 @@ class ChallengeViewSet(
     """
     A viewset for viewing Challenge instances.
     """
-    http_method_names = ('get', )
+    http_method_names = ('get', 'head', 'options')
     serializer_class = ChallengeSerializer
     queryset = Challenge.active.all()
 
