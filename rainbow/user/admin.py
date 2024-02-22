@@ -81,7 +81,7 @@ class UserAdmin(ExportMixin, BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'is_admin', 'is_active', 'marked_for_deletion')
+    list_display = ('email', 'is_admin', 'is_active', 'marked_for_deletion', 'date_joined')
     list_filter = ('is_admin', 'region', 'marked_for_deletion')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

@@ -3,7 +3,6 @@ import uuid
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
-from challenge.models.base import ChallengeType
 from joined_challenge.models.base import JoinedChallengeStatus
 
 
