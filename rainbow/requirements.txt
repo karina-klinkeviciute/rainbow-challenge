@@ -39,7 +39,7 @@ ecdsa==0.18.0
 et-xmlfile==1.1.0
 exceptiongroup==1.0.4
 factory-boy==3.3.0
-Faker==15.3.4
+Faker==23.2.1
 fcm-django==1.0.12
 firebase-admin==5.4.0
 google-api-core==2.11.0
@@ -88,7 +88,7 @@ pycparser==2.21
 PyJWT==2.8.0
 pyparsing==3.0.9
 pyrsistent==0.18.1
-pytest==7.2.0
+pytest==8.0.1
 pytest-django==4.5.2
 python-dateutil==2.8.2
 python-dotenv==0.21.0
