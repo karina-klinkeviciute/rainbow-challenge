@@ -76,7 +76,7 @@ odfpy==1.4.1
 openpyxl==3.0.10
 packaging==21.3
 pillow==10.2.0
-pluggy==1.0.0
+pluggy==1.4.0
 prompt-toolkit==3.0.31
 proto-plus==1.22.2
 protobuf==4.21.12
