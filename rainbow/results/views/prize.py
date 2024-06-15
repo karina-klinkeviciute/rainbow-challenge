@@ -2,7 +2,6 @@ import datetime
 
 from django.db.models import Q
 from rest_framework import viewsets
-from rest_framework.generics import ListAPIView
 
 from results.models.prize import ClaimedPrize, Prize
 from results.serializers.prize import PrizeSerializer, ClaimedPrizeSerializer

@@ -7,7 +7,7 @@ router = routers.DefaultRouter()
 
 app_name = 'news'
 
-router.register(r'news', NewsViewSet)
+router.register(r'news', NewsViewSet, basename="news")
 
 urlpatterns = [
     path('', include(router.urls)),

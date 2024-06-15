@@ -187,6 +187,8 @@ LANGUAGES = (
     ('sk', "Po slovensky")
 )
 
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'lt'
+
 TIME_ZONE = 'Europe/Vilnius'
 # USE_DEPRECATED_PYTZ = True
 
