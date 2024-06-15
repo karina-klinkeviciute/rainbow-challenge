@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
@@ -63,7 +64,11 @@ router.registry.extend(news_router.registry)
 router.registry.extend(message_router.registry)
 router.registry.extend(texts_router.registry)
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
+    path('admin/', admin_site.urls),
+)
+
+urlpatterns += [
     path('/', include('django.contrib.flatpages.urls')),
     path('admin/', admin_site.urls),
     # statistics

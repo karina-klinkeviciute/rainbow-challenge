@@ -7,7 +7,8 @@ class BaseChallengeForm(forms.ModelForm):
     class Meta:
         model = Challenge
         fields = (
-            'name',
+            '_name',
+            'topic',
             'description',
             'points',
             'region',

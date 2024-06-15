@@ -12,6 +12,7 @@ from firebase_admin.messaging import Message as PushNotification, Notification
 
 from challenge.models import Challenge, ArticleChallenge, EventParticipantChallenge, SupportChallenge, QuizChallenge, \
     CustomChallenge
+from challenge.models.base import Topic
 
 from challenge.models.event_organizer import EventOrganizerChallenge
 from challenge.models.project import ProjectChallenge
@@ -63,7 +64,7 @@ def send_push_notification_admins(modeladmin, request, queryset):
         devices.send_message(notification)
 
 class ChallengeAdmin(ExportMixin, admin.ModelAdmin):
-    list_display = ('name', 'description', 'image', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
+    list_display = ('_name', 'description', 'image', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
     list_filter = ('type', 'region', 'published', )
 
 
@@ -131,6 +132,7 @@ class QuizChallengeAdmin(NestedModelAdmin, BaseChallengeAdmin):
     inlines = (QuestionInline, )
 
 
+admin.site.register(Topic)
 admin.site.register(Challenge, ChallengeAdmin)
 
 

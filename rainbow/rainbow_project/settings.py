@@ -36,6 +36,7 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
 
 INSTALLED_APPS = [
     # 'grappelli',
+    "modeltranslation",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,6 +79,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "django.middleware.locale.LocaleMiddleware",
     'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -175,7 +177,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'lt-lt'
+# LANGUAGE_CODE = 'lt-lt'
+
+# gettext = lambda s: s
+LANGUAGES = (
+    ('lt', "Lietuviškai"),
+    ('en', "English"),
+    ('pt', "Português"),
+    ('sk', "Po slovensky")
+)
 
 TIME_ZONE = 'Europe/Vilnius'
 # USE_DEPRECATED_PYTZ = True
@@ -378,3 +388,5 @@ FCM_DJANGO_SETTINGS = {
      # default: False
      "UPDATE_ON_DUPLICATE_REG_ID": True,
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

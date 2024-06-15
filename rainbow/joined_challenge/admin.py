@@ -13,7 +13,7 @@ class JoinedChallengeResource(ModelResource):
 
     class Meta:
         model = JoinedChallenge
-        fields = ("challenge__name", 'challenge__type', 'user__email', 'joined_at', 'completed_at', 'status', )
+        fields = ("challenge___name", 'challenge__type', 'user__email', 'joined_at', 'completed_at', 'status', )
 
 
 class JoinedChallengeAdmin(ExportMixin, admin.ModelAdmin):

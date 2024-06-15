@@ -73,6 +73,14 @@ class ActiveChallengeManager(models.Manager):
             Q(end_date__gt=datetime.datetime.now()) | Q(end_date__isnull=True)
         )
 
+class Topic(models.Model):
+    """
+    Model for storing topics for challenges
+    """
+    topic = models.CharField(max_length=255, verbose_name=_('topic'))
+
+    def __str__(self):
+        return self.topic
 
 class Challenge(models.Model):
     """
@@ -88,7 +96,8 @@ class Challenge(models.Model):
         choices=ChallengeType.TYPE_CHOICES,
         verbose_name=_("type")
     )
-    name = models.CharField(max_length=255, verbose_name=_("name"))
+    topic = models.ForeignKey(Topic, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_("topic"))
+    _name = models.CharField(max_length=255, verbose_name=_("name"))
     description = models.TextField(verbose_name=_("description"))
     image = models.ImageField(verbose_name=_("image"), upload_to="challenge", blank=True, null=True)
     published = models.BooleanField(verbose_name=_('is published'), default=False)
@@ -126,6 +135,12 @@ class Challenge(models.Model):
 
     objects = models.Manager()
     active = ActiveChallengeManager()
+
+    @property
+    def name(self):
+        if self.topic:
+            return f"[{self.topic}] {self._name}"
+        return self._name
 
     @property
     def concrete_challenge_uuid(self):
