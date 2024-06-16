@@ -64,7 +64,7 @@ def send_push_notification_admins(modeladmin, request, queryset):
         devices.send_message(notification)
 
 class ChallengeAdmin(ExportMixin, admin.ModelAdmin):
-    list_display = ('_name', 'description', 'image', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
+    list_display = ('_name', 'description', 'type', 'points', 'region', 'published', 'start_date', 'end_date')
     list_filter = ('type', 'region', 'published', )
 
 
