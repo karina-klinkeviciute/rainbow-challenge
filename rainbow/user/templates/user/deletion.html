@@ -1,0 +1,17 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block head-title %} User Activation {% endblock %}
+
+{% block content %}
+
+    <h1>Jei nori panaikinti savo paskyrą, įvesk savo el. pašto adresą, kuriuo registravaisi programėlėje.</h1>
+
+    <form method="post">
+
+        {% csrf_token %}
+        {{ form }}
+
+        <button type="submit">Įvesti</button>
+    </form>
+{% endblock content %}

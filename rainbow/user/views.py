@@ -2,18 +2,17 @@ import json
 
 import logging
 import uuid
+from datetime import datetime
 
 import httpx
 import requests
 
 import jwt
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import redirect, resolve_url
 from django.views.decorators.csrf import csrf_exempt
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.utils.translation import gettext_lazy as _
-from django.conf import settings
 
 from rest_framework import views, status
 from rest_framework.authtoken.models import Token
@@ -21,9 +20,7 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 from rest_framework.permissions import BasePermission, SAFE_METHODS, AllowAny
 
-from google.oauth2 import id_token
-from google.auth.transport import requests as google_requests
-
+from user.forms import AccountDeletionForm
 from user.models import GenderOptions, User
 from user.serializers import GenderSerializer
 
@@ -248,3 +245,16 @@ class PasswordResetView(TemplateView):
         context["message"] = message
 
         return self.render_to_response(context)
+
+
+class DeleteAccountView(FormView):
+    template_name = "user/deletion.html"
+    form_class = AccountDeletionForm
+    success_url = "/"
+
+    def form_valid(self, form):
+        user = User.objects.get(email=form.cleaned_data["email"])
+        user.marked_for_deletion = True
+        user.marked_for_deletion_date = datetime.now()
+        user.save()
+        return super().form_valid(form)

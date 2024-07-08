@@ -39,7 +39,7 @@ from user.models import User
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp.plugins.otp_totp.admin import TOTPDeviceAdmin
 
-from user.views import UserActivationView, PasswordResetView
+from user.views import UserActivationView, PasswordResetView, DeleteAccountView
 
 
 class OTPAdmin(OTPAdminSite):
@@ -86,6 +86,7 @@ urlpatterns += [
     path('challenge/', include('challenge.urls')),
     path('activate/<uid>/<token>', UserActivationView.as_view(), name='user-activate'),
     path('password_reset/<uid>/<token>', PasswordResetView.as_view(), name='user-activate'),
+    path('delete_account', DeleteAccountView.as_view(), name='delete-account'),
     path('private-media/', include(private_storage.urls)),
     re_path('^api/joined_challenge_files/(?P<path>.*)$', JoinedChallengeFileDetailView.as_view()),
     path('api/joined_challenge_file_upload/', JoinedChallengeFileUploadView.as_view()),
