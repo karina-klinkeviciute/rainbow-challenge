@@ -254,7 +254,5 @@ class DeleteAccountView(FormView):
 
     def form_valid(self, form):
         user = User.objects.get(email=form.cleaned_data["email"])
-        user.marked_for_deletion = True
-        user.marked_for_deletion_date = datetime.now()
-        user.save()
+        user.delete()
         return super().form_valid(form)
