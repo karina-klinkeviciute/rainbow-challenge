@@ -184,7 +184,7 @@ LANGUAGES = (
     ('lt', "Lietuviškai"),
     ('en', "English"),
     ('pt', "Português"),
-    ('sk', "Po slovensky")
+    ('sk', "Slovenský")
 )
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'lt'
