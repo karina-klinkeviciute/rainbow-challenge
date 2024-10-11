@@ -1,4 +1,7 @@
+from datetime import datetime
+
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 from djoser.conf import settings
 from djoser.serializers import UserCreatePasswordRetypeSerializer
 from rest_framework import serializers
@@ -7,6 +10,8 @@ from djoser.compat import get_user_email, get_user_email_field_name
 from results.models import Region
 from results.serializers.medal import MedalSerializer
 from results.serializers.region import RegionSerializer
+from results.utils import message_site_admins
+
 
 User = get_user_model()
 
@@ -68,6 +73,14 @@ class UserSerializer(serializers.ModelSerializer):
                 instance.save(update_fields=["is_active"])
         return super().update(instance, validated_data)
 
+    def delete(self, instance):
+        instance.marked_for_deletion = True
+        instance.marked_for_deletion_date = datetime.now()
+        instance.save()
+        message_site_admins(
+            _("A user wants to delete account"),
+            _("User has marked account for deletion. Please take care of it.")
+        )
 
 class GenderSerializer(serializers.Serializer):
     genders = serializers.DictField()
