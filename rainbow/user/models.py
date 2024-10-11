@@ -18,6 +18,7 @@ from message.models import Message, MessageTypes
 from results.models import Streak, MedalTypes, Medal
 from results.models.region import Region
 from results.utils import message_site_admins
+from teams.models import Team
 
 
 class UserManager(BaseUserManager):
@@ -151,6 +152,8 @@ class User(AbstractUser):
         blank=True,
         max_length=255
     )
+
+    team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True)
     is_active = models.BooleanField(_('is active'), default=False)
     is_admin = models.BooleanField(_('is admin'), default=False)
     marked_for_deletion = models.BooleanField(_("marked for deletion"), default=False)
