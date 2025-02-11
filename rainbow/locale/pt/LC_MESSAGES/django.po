@@ -1,0 +1,814 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-11 19:14+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: challenge/admin.py:24
+msgid "Generate QR code files"
+msgstr "Gerar imagens de códigos QR"
+
+#: challenge/admin.py:37 results/admin.py:17
+msgid "Send push notifications"
+msgstr "Enviar notificações push"
+
+#: challenge/admin.py:41
+#, fuzzy
+#| msgid "challenge"
+msgid "New challenge added: "
+msgstr "Novo desafio adicionado: "
+
+#: challenge/admin.py:43
+#, fuzzy
+#| msgid "challenge"
+msgid "New challenge added"
+msgstr "Novo desafio adicionado"
+
+#: challenge/models/base.py:24 challenge/models/quiz.py:25 quiz/models.py:37
+#: quiz/models.py:74
+msgid "quiz"
+msgstr "Teste"
+
+#: challenge/models/base.py:25
+msgid "article"
+msgstr "straipsnis"
+
+#: challenge/models/base.py:26
+msgid "event"
+msgstr "Evento"
+
+#: challenge/models/base.py:27
+msgid "custom"
+msgstr "Personalizado"
+
+#: challenge/models/base.py:28
+msgid "school GSA"
+msgstr "GSA escolar"
+
+#: challenge/models/base.py:29
+msgid "event organizer"
+msgstr "Organizador de eventos"
+
+#: challenge/models/base.py:30
+msgid "story"
+msgstr "História"
+
+#: challenge/models/base.py:31
+msgid "project"
+msgstr "Projeto"
+
+#: challenge/models/base.py:32
+msgid "reacting to public events, informing society"
+msgstr "Reagir a eventos públicos, informar a sociedade"
+
+#: challenge/models/base.py:33
+msgid "support"
+msgstr "Apoio"
+
+#: challenge/models/base.py:89 message/models.py:46
+msgid "type"
+msgstr "Tipo"
+
+#: challenge/models/base.py:91 quiz/models.py:16 results/models/prize.py:17
+#: results/models/region.py:11
+msgid "name"
+msgstr "Nome"
+
+#: challenge/models/base.py:92 joined_challenge/models/article.py:19
+#: joined_challenge/models/custom.py:9 quiz/models.py:19
+#: results/models/prize.py:19
+msgid "description"
+msgstr "Descrição"
+
+#: challenge/models/base.py:93 results/models/prize.py:25
+msgid "image"
+msgstr "Imagem"
+
+#: challenge/models/base.py:94
+msgid "is published"
+msgstr "Está publicado"
+
+#: challenge/models/base.py:95
+msgid "points"
+msgstr "Arco-íris"
+
+#: challenge/models/base.py:101 user/models.py:142
+msgid "region"
+msgstr "Região"
+
+#: challenge/models/base.py:106
+msgid "start date"
+msgstr "Data de início"
+
+#: challenge/models/base.py:111
+msgid "end date"
+msgstr "Data de término"
+
+#: challenge/models/base.py:114
+msgid "can the participant join this challenge more than once"
+msgstr "O participante pode participar neste desafio mais de uma vez"
+
+#: challenge/models/base.py:115
+msgid "multiple"
+msgstr "Múltiplo"
+
+#: challenge/models/base.py:118
+msgid "if completion of this challenge needs to be confirmed by admins"
+msgstr "Se a conclusão deste desafio precisa ser confirmada pelos administradores"
+
+#: challenge/models/base.py:119
+msgid "required confirmation by admin"
+msgstr "Confirmação necessária pelo administrador"
+
+#: challenge/models/base.py:159
+msgid "main challenge"
+msgstr "Desafio principal"
+
+#: challenge/models/event_participant.py:14
+msgid "event name"
+msgstr "Nome do evento"
+
+#: challenge/models/event_participant.py:17
+msgid "date"
+msgstr "Data"
+
+#: challenge/models/event_participant.py:24
+msgid "link to the event"
+msgstr "Link para o evento"
+
+#: challenge/models/event_participant.py:30
+#: joined_challenge/models/event_participant.py:14
+msgid "QR code"
+msgstr "Código QR"
+
+#: challenge/models/event_participant.py:34
+msgid "QR code file"
+msgstr "Arquivo de código QR"
+
+#: challenge/models/quiz.py:21 challenge/models/quiz.py:45 quiz/models.py:70
+#: quiz/models.py:94
+msgid "question"
+msgstr "Pergunta"
+
+#: challenge/models/quiz.py:40 joined_challenge/models/quiz.py:31
+#: quiz/models.py:89 quiz/models.py:114
+msgid "answer"
+msgstr "Resposta"
+
+#: challenge/models/quiz.py:48 quiz/models.py:97
+msgid "correct answer"
+msgstr "Resposta correta"
+
+#: challenge/models/support.py:10
+msgid "organization"
+msgstr "Organização"
+
+#: dashboard/templates/dashboard/dashboard.html:4
+msgid "Extra admin panel"
+msgstr "Painel de administrador extra"
+
+#: dashboard/templates/dashboard/dashboard.html:9
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenges"
+msgstr "Desafios"
+
+#: dashboard/templates/dashboard/dashboard.html:11
+#, fuzzy
+#| msgid "Completion was confirmed for challenge: "
+msgid "Confirmations of completed challenges"
+msgstr "Confirmações de desafios concluídos "
+
+#: joined_challenge/models/article.py:9
+msgid "name of the article"
+msgstr "Nome do artigo"
+
+#: joined_challenge/models/article.py:14
+msgid "link to the article"
+msgstr "Link para o artigo"
+
+#: joined_challenge/models/base.py:25
+msgid "joined"
+msgstr "Juntou-se"
+
+#: joined_challenge/models/base.py:26
+msgid "completed"
+msgstr "Concluído"
+
+#: joined_challenge/models/base.py:27
+msgid "cancelled"
+msgstr "Cancelado"
+
+#: joined_challenge/models/base.py:28
+msgid "confirmed"
+msgstr "Confirmado"
+
+#: joined_challenge/models/base.py:41 message/models.py:29 quiz/models.py:42
+#: results/models/medal.py:63 results/models/prize.py:52
+#: results/models/streak.py:35
+msgid "user"
+msgstr "Usuário"
+
+#: joined_challenge/models/base.py:46
+msgid "challenge"
+msgstr "Desafio"
+
+#: joined_challenge/models/base.py:50
+msgid "status"
+msgstr "Estado"
+
+#: joined_challenge/models/base.py:56
+#, fuzzy
+#| msgid "joined"
+msgid "joined at"
+msgstr "Juntou-se em"
+
+#: joined_challenge/models/base.py:61
+#, fuzzy
+#| msgid "completed"
+msgid "completed at"
+msgstr "Concluído em"
+
+#: joined_challenge/models/base.py:122
+msgid "Challenge confirmation needed"
+msgstr "Confirmação do desafio necessária"
+
+#: joined_challenge/models/base.py:123
+msgid "User has just completed a challenge. Please confirm it."
+msgstr "O usuário acabou de concluir um desafio. Por favor, confirme."
+
+#: joined_challenge/models/base.py:162
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "joined challenge"
+msgstr "Desafio aderido"
+
+#: joined_challenge/models/base.py:166
+msgid "file"
+msgstr "Arquivo"
+
+#: joined_challenge/models/base.py:184
+msgid "main joined challenge"
+msgstr "Desafio principal aderido"
+
+#: joined_challenge/models/base.py:193
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "concrete joined challenge for: "
+msgstr "Desafio aderido específico para:"
+
+#: joined_challenge/models/event_organizer.py:9
+#: joined_challenge/models/project.py:9
+msgid "name of the event"
+msgstr "Nome do evento"
+
+#: joined_challenge/models/event_organizer.py:14
+#: joined_challenge/models/project.py:14
+msgid "link to the event website or Facebook page if there is one"
+msgstr "Link para o site do evento ou página do Facebook, se existir"
+
+#: joined_challenge/models/event_organizer.py:19
+#: joined_challenge/models/project.py:19
+msgid "description of the event in your own words"
+msgstr "Descrição do evento com as suas próprias palavras"
+
+#: joined_challenge/models/event_organizer.py:24
+msgid "was this event was organized by you alone"
+msgstr "Este evento foi organizado apenas por você?"
+
+#: joined_challenge/models/project.py:24
+msgid "if this project was implemented by you alone"
+msgstr "Se este projeto foi implementado apenas por você"
+
+#: joined_challenge/models/quiz.py:37
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "quiz joined challenge"
+msgstr "Desafio de quiz aderido"
+
+#: joined_challenge/models/reacting.py:9
+#: joined_challenge/models/school_gsa.py:10
+msgid "description of the reaction in your own words"
+msgstr "Descrição da reação com as suas próprias palavras"
+
+#: joined_challenge/models/story.py:10
+msgid "link to the story if it has one"
+msgstr "Link para a história, se houver"
+
+#: joined_challenge/models/story.py:15
+msgid "description of your story"
+msgstr "Descrição da sua história"
+
+#: joined_challenge/models/support.py:9
+#, fuzzy
+#| msgid "description of your story"
+msgid "description of support"
+msgstr "Descrição do apoio"
+
+#: joined_challenge/serializers/joined_challenge.py:59
+msgid "This challenge can be joined only once."
+msgstr "Este desafio só pode ser aderido uma vez."
+
+#: joined_challenge/serializers/joined_challenge.py:76
+msgid "Status can't be 'confirmed'"
+msgstr "O status não pode ser 'confirmado'"
+
+#: joined_challenge/serializers/joined_challenge.py:106
+#: joined_challenge/serializers/joined_challenge.py:120
+msgid "QR code is invalid."
+msgstr "O código QR é inválido."
+
+#: joined_challenge/serializers/joined_challenge.py:126
+msgid "You have already completed this challenge"
+msgstr "Você já concluiu este desafio."
+
+#: joined_challenge/serializers/joined_challenge.py:241
+msgid "This question has already been answered."
+msgstr "Esta pergunta já foi respondida."
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:4
+msgid "Challenge to confirm"
+msgstr "Desafio a confirmar"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:9
+msgid "Challenge confirmation"
+msgstr "Confirmação do desafio"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:11
+msgid "Challenge information"
+msgstr "Informação do desafio"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:12
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:13
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenge name"
+msgstr "Nome do desafio"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:13
+#, fuzzy
+#| msgid "description"
+msgid "Challenge description"
+msgstr "Descrição do desafio"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:16
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenge type"
+msgstr "Tipo de desafio"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:17
+#, fuzzy
+#| msgid "points"
+msgid "Points"
+msgstr "Arco-íris"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:28
+msgid "User submited information"
+msgstr "Informação enviada pelo usuário"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:30
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "User joined chalenge at"
+msgstr "O usuário aderiu ao desafio em"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:31
+#, fuzzy
+#| msgid "You have already completed this challenge"
+msgid "User completed challenge at"
+msgstr "O usuário concluiu o desafio em"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:35
+#, fuzzy
+#| msgid "article"
+msgid "Article title"
+msgstr "Título do artigo"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:36
+#, fuzzy
+#| msgid "article"
+msgid "Article URL"
+msgstr "URL do artigo"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:38
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:41
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:59
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:62
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:69
+msgid "User description of challenge"
+msgstr "Descrição do desafio pelo usuário"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:45
+#, fuzzy
+#| msgid "name of the event"
+msgid "Name of the organized event"
+msgstr "Nome do evento organizado"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:46
+msgid "URL to organized event"
+msgstr "URL do evento organizado"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:47
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:55
+msgid "Did user organized it alone"
+msgstr "O usuário organizou isso sozinho"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:49
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:66
+#, fuzzy
+#| msgid "description of your story"
+msgid "Description of organized event"
+msgstr "Descrição do evento organizado"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:53
+#, fuzzy
+#| msgid "name of the event"
+msgid "Name of the project"
+msgstr "Nome do projeto"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:54
+msgid "URL to the project"
+msgstr "URL do projeto"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:56
+#, fuzzy
+#| msgid "description of your story"
+msgid "Description of project"
+msgstr "Descrição do projeto"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:65
+msgid "URL of organized event"
+msgstr "URL do evento organizado"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:72
+msgid "Files:"
+msgstr "Arquivos:"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:82
+#, fuzzy
+#| msgid "confirmed"
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:4
+msgid "List of challenges that are waiting for confirmation"
+msgstr "Lista de desafios que aguardam confirmação"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:9
+msgid "Challenges confirmation"
+msgstr "Confirmação de desafios"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:13
+msgid "User"
+msgstr "Usuário"
+
+#: message/models.py:22
+msgid "message text"
+msgstr "Texto da mensagem"
+
+#: message/models.py:38
+msgid "admin__sender"
+msgstr "Administrador__remetente"
+
+#: message/models.py:52
+msgid "automated"
+msgstr "Automatizado"
+
+#: message/models.py:56
+msgid "time of sending"
+msgstr "Hora de envio"
+
+#: quiz/models.py:119
+msgid "quiz-user connection"
+msgstr "Conexão usuário-quiz"
+
+#: results/admin.py:21
+#, fuzzy
+#| msgid "challenge"
+msgid "New prize added: "
+msgstr "Novo prémio adicionado: "
+
+#: results/admin.py:23
+#, fuzzy
+#| msgid "challenge"
+msgid "New prize added"
+msgstr "Novo prémio adicionado"
+
+#: results/models/medal.py:40
+msgid "bronze"
+msgstr "Bronze"
+
+#: results/models/medal.py:41
+msgid "silver"
+msgstr "Prata"
+
+#: results/models/medal.py:42
+msgid "gold"
+msgstr "Ouro"
+
+#: results/models/medal.py:43
+msgid "platinum"
+msgstr "Platina"
+
+#: results/models/medal.py:68
+msgid "level"
+msgstr "Nível"
+
+#: results/models/medal.py:71
+#, fuzzy
+#| msgid "issued"
+msgid "time_issued"
+msgstr "Tempo_emissão"
+
+#: results/models/prize.py:23
+msgid "price"
+msgstr "Preço"
+
+#: results/models/prize.py:24 results/models/prize.py:63
+msgid "amount"
+msgstr "Quantidade"
+
+#: results/models/prize.py:26
+msgid "available"
+msgstr "Disponível"
+
+#: results/models/prize.py:27
+#, fuzzy
+#| msgid "end date"
+msgid "expiration date"
+msgstr "Data de expiração"
+
+#: results/models/prize.py:59
+msgid "prize"
+msgstr "Prémio"
+
+#: results/models/prize.py:62 texts/models.py:14
+msgid "notes"
+msgstr "Notas"
+
+#: results/models/prize.py:64
+msgid "issued"
+msgstr "Emitido"
+
+#: results/models/prize.py:65
+msgid "date claimed"
+msgstr "Data de resgate"
+
+#: results/models/prize.py:66
+#, fuzzy
+#| msgid "issued"
+msgid "date issued"
+msgstr "Data de emissão"
+
+#: results/models/prize.py:76
+#, fuzzy
+#| msgid "required confirmation by admin"
+msgid "Prize confirmation needed"
+msgstr "Confirmação do prémio necessária"
+
+#: results/models/prize.py:77
+msgid "User has just claimed a prize. Please issue it."
+msgstr "O usuário acabou de resgatar um prémio. Por favor, emita-o."
+
+#: results/models/region.py:13
+msgid "uuid"
+msgstr ""
+
+#: results/models/streak.py:13
+msgid "increased"
+msgstr "Aumentado"
+
+#: results/models/streak.py:14
+msgid "decreased"
+msgstr "Diminuído"
+
+#: results/models/streak.py:15
+msgid "zero"
+msgstr "Zero"
+
+#: results/models/streak.py:38
+msgid "time_added"
+msgstr "Tempo_adicionado"
+
+#: results/models/streak.py:42
+msgid "year"
+msgstr "Ano"
+
+#: results/models/streak.py:45
+msgid "week number"
+msgstr "Número da semana"
+
+#: results/models/streak.py:48
+#, fuzzy
+#| msgid "completed"
+msgid "streaks completed"
+msgstr "Sequências concluídas"
+
+#: results/models/streak.py:52
+msgid "change"
+msgstr "Alteração"
+
+#: results/serializers/prize.py:32
+msgid "Sorry, we don't have that much of this prize."
+msgstr "Desculpe, não temos essa quantidade deste prémio."
+
+#: results/serializers/prize.py:38
+msgid "Sorry, you don't have enough rainbows for that."
+msgstr "Desculpe, você não tem arco-íris suficientes para isso."
+
+#: templates/email/activation.html:5
+#, python-format
+msgid "Account activation on %(site_name)s"
+msgstr "Ativação da conta em %(site_name)s"
+
+#: templates/email/activation.html:9 templates/email/activation.html:24
+#, python-format
+msgid ""
+"You're receiving this email because you need to finish activation process on "
+"%(site_name)s."
+msgstr ""
+"Você está recebendo este e-mail porque precisa concluir o processo de ativação em %(site_name)s "
+
+#: templates/email/activation.html:11 templates/email/activation.html:26
+msgid "Please go to the following page to activate account:"
+msgstr "Por favor, acesse a seguinte página para ativar a conta:"
+
+#: templates/email/activation.html:14 templates/email/activation.html:29
+msgid "Thanks for using our site!"
+msgstr "Obrigado por usar o nosso site!"
+
+#: templates/email/activation.html:16 templates/email/activation.html:31
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "A equipa do %(site_name)s"
+
+#: templates/email/activation.html:18
+msgid "If you have any questions about the app, send us an email:"
+msgstr "Se tiver alguma dúvida sobre a aplicação, envie-nos um e-mail:"
+
+#: texts/models.py:12
+msgid "body"
+msgstr "Conteúdo"
+
+#: texts/models.py:13
+msgid "title"
+msgstr "Título"
+
+#: user/models.py:75
+msgid "woman"
+msgstr "Mulher"
+
+#: user/models.py:76
+msgid "man"
+msgstr "Homem"
+
+#: user/models.py:77
+msgid "non-binary"
+msgstr "Não-binário"
+
+#: user/models.py:78
+msgid "other"
+msgstr "Outro"
+
+#: user/models.py:79 user/models.py:93
+msgid "prefer not to say"
+msgstr "Prefiro não dizer"
+
+#: user/models.py:91
+msgid "yes"
+msgstr "sim"
+
+#: user/models.py:92
+msgid "no"
+msgstr "Não"
+
+#: user/models.py:110
+msgid "username"
+msgstr "Nome de usuário"
+
+#: user/models.py:121
+msgid "email address"
+msgstr "Endereço de e-mail"
+
+#: user/models.py:123
+msgid "year of birth"
+msgstr "Ano de nascimento"
+
+#: user/models.py:128
+msgid "gender"
+msgstr "Género"
+
+#: user/models.py:135
+msgid "enter gender if selected other"
+msgstr "Digite o gênero se selecionou 'Outro'"
+
+#: user/models.py:149
+msgid "Do you consider yourself LGBTQIA+?"
+msgstr "Você se considera LGBTQIA+?"
+
+#: user/models.py:154
+msgid "is active"
+msgstr "Está ativo"
+
+#: user/models.py:155
+msgid "is admin"
+msgstr "É administrador"
+
+#: user/models.py:156
+msgid "marked for deletion"
+msgstr "Marcado para exclusão"
+
+#: user/models.py:157
+msgid "date and time when marked for deletion"
+msgstr "Data e hora em que foi marcado para exclusão"
+
+#: user/models.py:174
+msgid "A user wants to delete account"
+msgstr "Um usuário quer excluir a conta"
+
+#: user/models.py:175
+msgid "User has marked account for deletion. Please take care of it."
+msgstr "O usuário marcou a conta para exclusão. Por favor, cuide disso."
+
+#: user/models.py:303
+msgid ""
+"Congratulations! You just reached {} streaks and received a new {} medal!"
+msgstr "Parabéns! Você acabou de alcançar {} sequências e recebeu uma nova medalha de {}! "
+
+#: user/views.py:39
+msgid "Congratulations! Your account was successfully activated."
+msgstr "Parabéns! Sua conta foi ativada com sucesso."
+
+#: user/views.py:41
+msgid "Sorry, your account can't be activated."
+msgstr "Desculpe, sua conta não pode ser ativada."
+
+#: user/views.py:80
+#, fuzzy
+#| msgid "Congratulations! Your account was successfully activated."
+msgid "Congratulations! You changed your password successfully."
+msgstr "Parabéns! Sua conta foi ativada com sucesso."
+
+#: user/views.py:82
+msgid "Sorry, something went wrong."
+msgstr "Desculpe, algo deu errado."
+
+#~ msgid "Your challenge is now confirmed!"
+#~ msgstr "O seu desafio está agora confirmado!"
+
+#, fuzzy
+#~| msgid "Congratulations! "
+#~ msgid " Congratulations! "
+#~ msgstr " Parabéns! "
+
+#, fuzzy
+#~| msgid "Received points: "
+#~ msgid " Received points: "
+#~ msgstr " Pontos recebidos: "
+
+#~ msgid "streaks in a row"
+#~ msgstr "Sequências seguidas"
+
+#~ msgid "Celery works alright"
+#~ msgstr "O aipo funciona bem"
+
+#~ msgid "Streaks and medals statistics"
+#~ msgstr "Estatísticas de sequências e medalhas"
+
+#~ msgid ""
+#~ "Completion of Challenge {} was confirmed. Congratulations! You received "
+#~ "{} points"
+#~ msgstr "A conclusão do Desafio {} foi confirmada. Parabéns! Você recebeu"
+
+#, fuzzy
+#~| msgid "quiz-user connection"
+#~ msgid "quiz user object"
+#~ msgstr "Conexão usuário-quiz"
+
+#~ msgid "Other organization"
+#~ msgstr "Outra organização"
+
+#~ msgid "only if organization on challenge is Other"
+#~ msgstr "Somente se a organização no desafio for 'Outra'"
+
+#~ msgid ""
+#~ "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+#~ msgstr ""
+#~ "Obrigatório. 150 caracteres ou menos. Apenas letras, números e @/./+/-/_"
+
+#~ msgid "A user with that username already exists."
+#~ msgstr "Já existe um usuário com esse nome de usuário."

@@ -1,0 +1,815 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-11 19:14+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: challenge/admin.py:24
+msgid "Generate QR code files"
+msgstr "Generovať obrázky QR kódov"
+
+#: challenge/admin.py:37 results/admin.py:17
+msgid "Send push notifications"
+msgstr "Posielať push notifikácie"
+
+#: challenge/admin.py:41
+#, fuzzy
+#| msgid "challenge"
+msgid "New challenge added: "
+msgstr "Nová výzva pridaná: "
+
+#: challenge/admin.py:43
+#, fuzzy
+#| msgid "challenge"
+msgid "New challenge added"
+msgstr "Nová výzva pridaná"
+
+#: challenge/models/base.py:24 challenge/models/quiz.py:25 quiz/models.py:37
+#: quiz/models.py:74
+msgid "quiz"
+msgstr "Kvíz"
+
+#: challenge/models/base.py:25
+msgid "article"
+msgstr "Článok"
+
+#: challenge/models/base.py:26
+msgid "event"
+msgstr "Podujatie"
+
+#: challenge/models/base.py:27
+msgid "custom"
+msgstr "Prispôsobené"
+
+#: challenge/models/base.py:28
+msgid "school GSA"
+msgstr "Školský GSA"
+
+#: challenge/models/base.py:29
+msgid "event organizer"
+msgstr "Organizátor podujatí"
+
+#: challenge/models/base.py:30
+msgid "story"
+msgstr "Príbeh"
+
+#: challenge/models/base.py:31
+msgid "project"
+msgstr "Projekt"
+
+#: challenge/models/base.py:32
+msgid "reacting to public events, informing society"
+msgstr "Reagovanie na verejné udalosti, informovanie spoločnosti"
+
+#: challenge/models/base.py:33
+msgid "support"
+msgstr "Podpora"
+
+#: challenge/models/base.py:89 message/models.py:46
+msgid "type"
+msgstr "Typ"
+
+#: challenge/models/base.py:91 quiz/models.py:16 results/models/prize.py:17
+#: results/models/region.py:11
+msgid "name"
+msgstr "Meno"
+
+#: challenge/models/base.py:92 joined_challenge/models/article.py:19
+#: joined_challenge/models/custom.py:9 quiz/models.py:19
+#: results/models/prize.py:19
+msgid "description"
+msgstr "Popis"
+
+#: challenge/models/base.py:93 results/models/prize.py:25
+msgid "image"
+msgstr "Obrázok"
+
+#: challenge/models/base.py:94
+msgid "is published"
+msgstr "Je zverejnené"
+
+#: challenge/models/base.py:95
+msgid "points"
+msgstr "Dúhy"
+
+#: challenge/models/base.py:101 user/models.py:142
+msgid "region"
+msgstr "Región"
+
+#: challenge/models/base.py:106
+msgid "start date"
+msgstr "Dátum začiatku"
+
+#: challenge/models/base.py:111
+msgid "end date"
+msgstr "Dátum ukončenia"
+
+#: challenge/models/base.py:114
+msgid "can the participant join this challenge more than once"
+msgstr "Môže sa účastník zapojiť do tejto výzvy viackrát"
+
+#: challenge/models/base.py:115
+msgid "multiple"
+msgstr "Viacnásobný"
+
+#: challenge/models/base.py:118
+msgid "if completion of this challenge needs to be confirmed by admins"
+msgstr "Ak dokončenie tejto výzvy musí byť potvrdené administrátormi"
+
+#: challenge/models/base.py:119
+msgid "required confirmation by admin"
+msgstr "Vyžaduje sa potvrdenie administrátorom"
+
+#: challenge/models/base.py:159
+msgid "main challenge"
+msgstr "Hlavná výzva"
+
+#: challenge/models/event_participant.py:14
+msgid "event name"
+msgstr "Názov podujatia"
+
+#: challenge/models/event_participant.py:17
+msgid "date"
+msgstr "Dátum"
+
+#: challenge/models/event_participant.py:24
+msgid "link to the event"
+msgstr "Odkaz na podujatie"
+
+#: challenge/models/event_participant.py:30
+#: joined_challenge/models/event_participant.py:14
+msgid "QR code"
+msgstr "QR kód"
+
+#: challenge/models/event_participant.py:34
+msgid "QR code file"
+msgstr "Súbor QR kódu"
+
+#: challenge/models/quiz.py:21 challenge/models/quiz.py:45 quiz/models.py:70
+#: quiz/models.py:94
+msgid "question"
+msgstr "Otázka"
+
+#: challenge/models/quiz.py:40 joined_challenge/models/quiz.py:31
+#: quiz/models.py:89 quiz/models.py:114
+msgid "answer"
+msgstr "Odpoveď"
+
+#: challenge/models/quiz.py:48 quiz/models.py:97
+msgid "correct answer"
+msgstr "Správna odpoveď"
+
+#: challenge/models/support.py:10
+msgid "organization"
+msgstr "Organizácia"
+
+#: dashboard/templates/dashboard/dashboard.html:4
+msgid "Extra admin panel"
+msgstr "Extra administrátorský panel"
+
+#: dashboard/templates/dashboard/dashboard.html:9
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenges"
+msgstr "Výzvy"
+
+#: dashboard/templates/dashboard/dashboard.html:11
+#, fuzzy
+#| msgid "Completion was confirmed for challenge: "
+msgid "Confirmations of completed challenges"
+msgstr "Potvrdenia dokončených výziev "
+
+#: joined_challenge/models/article.py:9
+msgid "name of the article"
+msgstr "Názov článku"
+
+#: joined_challenge/models/article.py:14
+msgid "link to the article"
+msgstr "Odkaz na článok"
+
+#: joined_challenge/models/base.py:25
+msgid "joined"
+msgstr "Pripojil sa"
+
+#: joined_challenge/models/base.py:26
+msgid "completed"
+msgstr "Dokončené"
+
+#: joined_challenge/models/base.py:27
+msgid "cancelled"
+msgstr "Zrušené"
+
+#: joined_challenge/models/base.py:28
+msgid "confirmed"
+msgstr "Potvrdené"
+
+#: joined_challenge/models/base.py:41 message/models.py:29 quiz/models.py:42
+#: results/models/medal.py:63 results/models/prize.py:52
+#: results/models/streak.py:35
+msgid "user"
+msgstr "Používateľ"
+
+#: joined_challenge/models/base.py:46
+msgid "challenge"
+msgstr "Výzva"
+
+#: joined_challenge/models/base.py:50
+msgid "status"
+msgstr "Stav"
+
+#: joined_challenge/models/base.py:56
+#, fuzzy
+#| msgid "joined"
+msgid "joined at"
+msgstr "Pripojil sa dňa"
+
+#: joined_challenge/models/base.py:61
+#, fuzzy
+#| msgid "completed"
+msgid "completed at"
+msgstr "Dokončené dňa"
+
+#: joined_challenge/models/base.py:122
+msgid "Challenge confirmation needed"
+msgstr "Vyžaduje sa potvrdenie výzvy"
+
+#: joined_challenge/models/base.py:123
+msgid "User has just completed a challenge. Please confirm it."
+msgstr "Používateľ práve dokončil výzvu. Prosím, potvrďte ju."
+
+#: joined_challenge/models/base.py:162
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "joined challenge"
+msgstr "Zapojená výzva"
+
+#: joined_challenge/models/base.py:166
+msgid "file"
+msgstr "Súbor"
+
+#: joined_challenge/models/base.py:184
+msgid "main joined challenge"
+msgstr "Hlavná zapojená výzva"
+
+#: joined_challenge/models/base.py:193
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "concrete joined challenge for: "
+msgstr "Konkrétna zapojená výzva pre:"
+
+#: joined_challenge/models/event_organizer.py:9
+#: joined_challenge/models/project.py:9
+msgid "name of the event"
+msgstr "Názov podujatia"
+
+#: joined_challenge/models/event_organizer.py:14
+#: joined_challenge/models/project.py:14
+msgid "link to the event website or Facebook page if there is one"
+msgstr "Odkaz na webovú stránku podujatia alebo stránku na Facebooku, ak existuje"
+
+#: joined_challenge/models/event_organizer.py:19
+#: joined_challenge/models/project.py:19
+msgid "description of the event in your own words"
+msgstr "Popis podujatia vlastnými slovami"
+
+#: joined_challenge/models/event_organizer.py:24
+msgid "was this event was organized by you alone"
+msgstr "Bolo toto podujatie organizované iba vami?"
+
+#: joined_challenge/models/project.py:24
+msgid "if this project was implemented by you alone"
+msgstr "Ak bol tento projekt realizovaný iba vami"
+
+#: joined_challenge/models/quiz.py:37
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "quiz joined challenge"
+msgstr "Zapojená výzva kvízu"
+
+#: joined_challenge/models/reacting.py:9
+#: joined_challenge/models/school_gsa.py:10
+msgid "description of the reaction in your own words"
+msgstr "Popis reakcie vlastnými slovami"
+
+#: joined_challenge/models/story.py:10
+msgid "link to the story if it has one"
+msgstr "Link para a história, se houver"
+
+#: joined_challenge/models/story.py:15
+msgid "description of your story"
+msgstr "Popis vášho príbehu"
+
+#: joined_challenge/models/support.py:9
+#, fuzzy
+#| msgid "description of your story"
+msgid "description of support"
+msgstr "Popis podpory"
+
+#: joined_challenge/serializers/joined_challenge.py:59
+msgid "This challenge can be joined only once."
+msgstr "Do tejto výzvy sa dá zapojiť iba raz."
+
+#: joined_challenge/serializers/joined_challenge.py:76
+msgid "Status can't be 'confirmed'"
+msgstr "Stav nemôže byť 'potvrdený' (confirmed)"
+
+#: joined_challenge/serializers/joined_challenge.py:106
+#: joined_challenge/serializers/joined_challenge.py:120
+msgid "QR code is invalid."
+msgstr "QR kód je neplatný."
+
+#: joined_challenge/serializers/joined_challenge.py:126
+msgid "You have already completed this challenge"
+msgstr "Túto výzvu ste už dokončili."
+
+#: joined_challenge/serializers/joined_challenge.py:241
+msgid "This question has already been answered."
+msgstr "Táto otázka už bola zodpovedaná."
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:4
+msgid "Challenge to confirm"
+msgstr "Výzva na potvrdenie"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:9
+msgid "Challenge confirmation"
+msgstr "Potvrdenie výzvy"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:11
+msgid "Challenge information"
+msgstr "Informácie o výzve"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:12
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:13
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenge name"
+msgstr "Názov výzvy"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:13
+#, fuzzy
+#| msgid "description"
+msgid "Challenge description"
+msgstr "Popis výzvy"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:16
+#, fuzzy
+#| msgid "challenge"
+msgid "Challenge type"
+msgstr "Typ výzvy"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:17
+#, fuzzy
+#| msgid "points"
+msgid "Points"
+msgstr "Dúhy"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:28
+msgid "User submited information"
+msgstr "Používateľ odoslal informácie"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:30
+#, fuzzy
+#| msgid "main joined challenge"
+msgid "User joined chalenge at"
+msgstr "Používateľ sa zapojil do výzvy dňa"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:31
+#, fuzzy
+#| msgid "You have already completed this challenge"
+msgid "User completed challenge at"
+msgstr "Používateľ dokončil výzvu dňa"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:35
+#, fuzzy
+#| msgid "article"
+msgid "Article title"
+msgstr "Názov článku"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:36
+#, fuzzy
+#| msgid "article"
+msgid "Article URL"
+msgstr "URL článku"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:38
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:41
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:59
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:62
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:69
+msgid "User description of challenge"
+msgstr "Popis výzvy používateľom"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:45
+#, fuzzy
+#| msgid "name of the event"
+msgid "Name of the organized event"
+msgstr "Názov organizovaného podujatia"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:46
+msgid "URL to organized event"
+msgstr "URL organizovaného podujatia"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:47
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:55
+msgid "Did user organized it alone"
+msgstr "Organizoval to používateľ sám"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:49
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:66
+#, fuzzy
+#| msgid "description of your story"
+msgid "Description of organized event"
+msgstr "Popis organizovaného podujatia"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:53
+#, fuzzy
+#| msgid "name of the event"
+msgid "Name of the project"
+msgstr "Názov projektu"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:54
+msgid "URL to the project"
+msgstr "URL projektu"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:56
+#, fuzzy
+#| msgid "description of your story"
+msgid "Description of project"
+msgstr "Popis projektu"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:65
+msgid "URL of organized event"
+msgstr "URL organizovaného podujatia"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:72
+msgid "Files:"
+msgstr "Súbory:"
+
+#: joined_challenge/templates/joined_challenge/confirmation_detail.html:82
+#, fuzzy
+#| msgid "confirmed"
+msgid "Confirm"
+msgstr "Potvrdiť"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:4
+msgid "List of challenges that are waiting for confirmation"
+msgstr "Zoznam výziev čakajúcich na potvrdenie"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:9
+msgid "Challenges confirmation"
+msgstr "Potvrdenie výziev"
+
+#: joined_challenge/templates/joined_challenge/confirmation_list.html:13
+msgid "User"
+msgstr "Používateľ"
+
+#: message/models.py:22
+msgid "message text"
+msgstr "Text správy"
+
+#: message/models.py:38
+msgid "admin__sender"
+msgstr "Administrátor__odosielateľ"
+
+#: message/models.py:52
+msgid "automated"
+msgstr "Automatizované"
+
+#: message/models.py:56
+msgid "time of sending"
+msgstr "Čas odoslania"
+
+#: quiz/models.py:119
+msgid "quiz-user connection"
+msgstr "Prepojenie používateľ-kvíz"
+
+#: results/admin.py:21
+#, fuzzy
+#| msgid "challenge"
+msgid "New prize added: "
+msgstr "Nová odmena pridaná: "
+
+#: results/admin.py:23
+#, fuzzy
+#| msgid "challenge"
+msgid "New prize added"
+msgstr "Nová odmena pridaná"
+
+#: results/models/medal.py:40
+msgid "bronze"
+msgstr "Bronz"
+
+#: results/models/medal.py:41
+msgid "silver"
+msgstr "Striebro"
+
+#: results/models/medal.py:42
+msgid "gold"
+msgstr "Zlato"
+
+#: results/models/medal.py:43
+msgid "platinum"
+msgstr "Platina"
+
+#: results/models/medal.py:68
+msgid "level"
+msgstr "Úroveň"
+
+#: results/models/medal.py:71
+#, fuzzy
+#| msgid "issued"
+msgid "time_issued"
+msgstr "Čas_vydania"
+
+#: results/models/prize.py:23
+msgid "price"
+msgstr "Cena"
+
+#: results/models/prize.py:24 results/models/prize.py:63
+msgid "amount"
+msgstr "Množstvo"
+
+#: results/models/prize.py:26
+msgid "available"
+msgstr "Dostupné"
+
+#: results/models/prize.py:27
+#, fuzzy
+#| msgid "end date"
+msgid "expiration date"
+msgstr "Dátum expirácie"
+
+#: results/models/prize.py:59
+msgid "prize"
+msgstr "Odmena"
+
+#: results/models/prize.py:62 texts/models.py:14
+msgid "notes"
+msgstr "Poznámky"
+
+#: results/models/prize.py:64
+msgid "issued"
+msgstr "Vydané"
+
+#: results/models/prize.py:65
+msgid "date claimed"
+msgstr "Dátum uplatnenia"
+
+#: results/models/prize.py:66
+#, fuzzy
+#| msgid "issued"
+msgid "date issued"
+msgstr "Dátum vydania"
+
+#: results/models/prize.py:76
+#, fuzzy
+#| msgid "required confirmation by admin"
+msgid "Prize confirmation needed"
+msgstr "Vyžaduje sa potvrdenie odmeny"
+
+#: results/models/prize.py:77
+msgid "User has just claimed a prize. Please issue it."
+msgstr "Používateľ si práve uplatnil odmenu. Prosím, vydajte ju."
+
+#: results/models/region.py:13
+msgid "uuid"
+msgstr ""
+
+#: results/models/streak.py:13
+msgid "increased"
+msgstr "Zvýšené"
+
+#: results/models/streak.py:14
+msgid "decreased"
+msgstr "Znížené"
+
+#: results/models/streak.py:15
+msgid "zero"
+msgstr "Nula"
+
+#: results/models/streak.py:38
+msgid "time_added"
+msgstr "Čas_pridaný"
+
+#: results/models/streak.py:42
+msgid "year"
+msgstr "Rok"
+
+#: results/models/streak.py:45
+msgid "week number"
+msgstr "Číslo týždňa"
+
+#: results/models/streak.py:48
+#, fuzzy
+#| msgid "completed"
+msgid "streaks completed"
+msgstr "Dokončené série"
+
+#: results/models/streak.py:52
+msgid "change"
+msgstr "Zmena"
+
+#: results/serializers/prize.py:32
+msgid "Sorry, we don't have that much of this prize."
+msgstr "Prepáčte, nemáme tak veľa tejto odmeny."
+
+#: results/serializers/prize.py:38
+msgid "Sorry, you don't have enough rainbows for that."
+msgstr "Prepáčte, nemáte dostatok dúh na to."
+
+#: templates/email/activation.html:5
+#, python-format
+msgid "Account activation on %(site_name)s"
+msgstr "Aktivácia účtu na %(site_name)s"
+
+#: templates/email/activation.html:9 templates/email/activation.html:24
+#, python-format
+msgid ""
+"You're receiving this email because you need to finish activation process on "
+"%(site_name)s."
+msgstr ""
+"Tento e-mail ste dostali, pretože potrebujete dokončiť proces aktivácie na %(site_name)s "
+
+#: templates/email/activation.html:11 templates/email/activation.html:26
+msgid "Please go to the following page to activate account:"
+msgstr "Prosím, prejdite na nasledujúcu stránku a aktivujte účet:"
+
+#: templates/email/activation.html:14 templates/email/activation.html:29
+msgid "Thanks for using our site!"
+msgstr "Ďakujeme, že používate našu stránku!"
+
+#: templates/email/activation.html:16 templates/email/activation.html:31
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "Tím %(site_name)s"
+
+#: templates/email/activation.html:18
+msgid "If you have any questions about the app, send us an email:"
+msgstr "Ak máte nejaké otázky o aplikácii, pošlite nám e-mail:"
+
+#: texts/models.py:12
+msgid "body"
+msgstr "Obsah"
+
+#: texts/models.py:13
+msgid "title"
+msgstr "Názov"
+
+#: user/models.py:75
+msgid "woman"
+msgstr "Žena"
+
+#: user/models.py:76
+msgid "man"
+msgstr "Muž"
+
+#: user/models.py:77
+msgid "non-binary"
+msgstr "Ne-binárny"
+
+#: user/models.py:78
+msgid "other"
+msgstr "Iné"
+
+#: user/models.py:79 user/models.py:93
+msgid "prefer not to say"
+msgstr "Radšej neuvádzam"
+
+#: user/models.py:91
+msgid "yes"
+msgstr "Áno"
+
+#: user/models.py:92
+msgid "no"
+msgstr "nie"
+
+#: user/models.py:110
+msgid "username"
+msgstr "Používateľské meno"
+
+#: user/models.py:121
+msgid "email address"
+msgstr "E-mailová adresa"
+
+#: user/models.py:123
+msgid "year of birth"
+msgstr "Rok narodenia"
+
+#: user/models.py:128
+msgid "gender"
+msgstr "Pohlavie"
+
+#: user/models.py:135
+msgid "enter gender if selected other"
+msgstr "Zadajte pohlavie, ak ste vybrali možnosť 'Iné'"
+
+#: user/models.py:149
+msgid "Do you consider yourself LGBTQIA+?"
+msgstr "Považujete sa za LGBTQIA+?"
+
+#: user/models.py:154
+msgid "is active"
+msgstr "Je aktívny"
+
+#: user/models.py:155
+msgid "is admin"
+msgstr "Je administrátor"
+
+#: user/models.py:156
+msgid "marked for deletion"
+msgstr "Označené na vymazanie"
+
+#: user/models.py:157
+msgid "date and time when marked for deletion"
+msgstr "Dátum a čas označenia na vymazanie"
+
+#: user/models.py:174
+msgid "A user wants to delete account"
+msgstr "Používateľ chce vymazať účet"
+
+#: user/models.py:175
+msgid "User has marked account for deletion. Please take care of it."
+msgstr "Používateľ označil účet na vymazanie. Prosím, postarajte sa o to."
+
+#: user/models.py:303
+msgid ""
+"Congratulations! You just reached {} streaks and received a new {} medal!"
+msgstr "Gratulujeme! Práve ste dosiahli {} sérií a získali ste novú {} medailu! "
+
+#: user/views.py:39
+msgid "Congratulations! Your account was successfully activated."
+msgstr "Gratulujeme! Váš účet bol úspešne aktivovaný."
+
+#: user/views.py:41
+msgid "Sorry, your account can't be activated."
+msgstr "Prepáčte, váš účet nemôže byť aktivovaný."
+
+#: user/views.py:80
+#, fuzzy
+#| msgid "Congratulations! Your account was successfully activated."
+msgid "Congratulations! You changed your password successfully."
+msgstr "Gratulujeme! Váš účet bol úspešne aktivovaný."
+
+#: user/views.py:82
+msgid "Sorry, something went wrong."
+msgstr "Prepáčte, niečo sa pokazilo."
+
+#~ msgid "Your challenge is now confirmed!"
+#~ msgstr "Vaša výzva je teraz potvrdená!"
+
+#, fuzzy
+#~| msgid "Congratulations! "
+#~ msgid " Congratulations! "
+#~ msgstr " Gratulujeme! "
+
+#, fuzzy
+#~| msgid "Received points: "
+#~ msgid " Received points: "
+#~ msgstr " Získané body: "
+
+#~ msgid "streaks in a row"
+#~ msgstr "Po sebe idúce série"
+
+#~ msgid "Celery works alright"
+#~ msgstr "Zeler funguje v poriadku"
+
+#~ msgid "Streaks and medals statistics"
+#~ msgstr "Štatistiky sérií a medailí"
+
+#~ msgid ""
+#~ "Completion of Challenge {} was confirmed. Congratulations! You received "
+#~ "{} points"
+#~ msgstr "Dokončenie výzvy {} bolo potvrdené. Gratulujeme! Získali ste"
+
+#, fuzzy
+#~| msgid "quiz-user connection"
+#~ msgid "quiz user object"
+#~ msgstr "Prepojenie používateľ-kvíz"
+
+#~ msgid "Other organization"
+#~ msgstr "Iná organizácia"
+
+#~ msgid "only if organization on challenge is Other"
+#~ msgstr "Iba ak organizácia vo výzve je 'Iná'"
+
+#~ msgid ""
+#~ "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+#~ msgstr ""
+#~ "Povinné. 150 znakov alebo menej. Iba písmená, číslice a @/./+/-/_"
+
+#~ msgid "A user with that username already exists."
+#~ msgstr "Používateľ s týmto používateľským menom už existuje."
+
