@@ -22,7 +22,7 @@ Deprecated==1.2.13
 diff-match-patch==20200713
 Django==4.2.27
 django-advanced-password-validation==1.1.1
-django-allauth==0.51.0
+django-allauth==65.13.0
 django-cors-headers==3.13.0
 django-extensions==3.2.1
 django-import-export==3.0.2
