@@ -89,7 +89,7 @@ pycparser==2.21
 PyJWT==2.12.0
 pyparsing==3.0.9
 pyrsistent==0.18.1
-pytest==8.0.1
+pytest==9.0.3
 pytest-django==4.5.2
 python-dateutil==2.8.2
 python-dotenv==0.21.0
