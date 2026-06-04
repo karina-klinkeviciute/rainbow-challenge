@@ -1,6 +1,6 @@
 from django.apps import apps
 from private_storage.views import PrivateStorageDetailView
-from rest_framework.decorators import permission_classes
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.generics import get_object_or_404, CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -32,9 +32,9 @@ class JoinedChallengeFileUploadView(CreateAPIView):
     serializer_class = JoinedChallengeFileSerializer
 
 
-@permission_classes([IsAuthenticated])
 class JoinedChallengeFilesListView(RetrieveAPIView):
     serializer_class = JoinedChallengeFilesListSerializer
+    permission_classes = [IsAuthenticated]
     lookup_field = 'uuid'
 
     def get_queryset(self):
@@ -43,12 +43,19 @@ class JoinedChallengeFilesListView(RetrieveAPIView):
 
 class ConcreteJoinedChallengeFilesListView(APIView):
     """Class to get file list for """
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, challenge_type, uuid, format=None):
 
         joined_challenge_class = ChallengeType.JOINED_CHALLENGE_CLASSES[challenge_type]
         model = apps.get_model('joined_challenge', joined_challenge_class)
-        joined_challenge = model.objects.get(uuid=uuid)
-        files = JoinedChallengeFileSerializer(joined_challenge.main_joined_challenge.files, many=True)
+        joined_challenge = get_object_or_404(model, uuid=uuid)
+        main_joined_challenge = joined_challenge.main_joined_challenge
+        # Through the API, only the owning user may access their joined challenge
+        # files; cross-user access is reserved for the Django admin interface.
+        if main_joined_challenge.user != request.user:
+            raise PermissionDenied
+        files = JoinedChallengeFileSerializer(main_joined_challenge.files, many=True)
         return Response(files.data)
 
 
