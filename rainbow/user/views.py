@@ -8,11 +8,10 @@ import httpx
 import requests
 
 import jwt
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
 
 from rest_framework import views, status
@@ -21,7 +20,6 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 from rest_framework.permissions import BasePermission, SAFE_METHODS, AllowAny
 
-from user.forms import AccountDeletionForm
 from user.models import GenderOptions, User
 from user.serializers import GenderSerializer
 
@@ -246,20 +244,3 @@ class PasswordResetView(TemplateView):
         context["message"] = message
 
         return self.render_to_response(context)
-
-
-class DeleteAccountView(LoginRequiredMixin, FormView):
-    template_name = "user/deletion.html"
-    form_class = AccountDeletionForm
-    success_url = "/"
-
-    def form_valid(self, form):
-        # A user may only delete their own account. The submitted e-mail is used
-        # purely as a confirmation that it matches the logged-in user; we never
-        # delete an account chosen by arbitrary e-mail (that was an auth hole
-        # letting anyone delete any account).
-        if form.cleaned_data["email"].strip().lower() != self.request.user.email.lower():
-            form.add_error("email", _("This e-mail does not match your account."))
-            return self.form_invalid(form)
-        self.request.user.delete()
-        return super().form_valid(form)

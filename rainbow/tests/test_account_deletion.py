@@ -1,43 +1,57 @@
-"""Regression tests for DeleteAccountView authorization.
+"""Tests for account deletion.
 
-The view is a session-authenticated HTML form, so it is driven with Django's
-test client. A user may only delete their *own* account: anonymous requests and
-attempts to delete someone else's account by e-mail must not delete anything.
+There is a single account-deletion path through the API: djoser's
+``DELETE /auth/users/me/``, which requires authentication and the user's
+current password. The old, unauthenticated ``/delete_account`` HTML view has
+been removed (it let anyone delete any account by e-mail).
 """
 import pytest
-from django.test import Client
+from model_bakery import baker
+from rest_framework.test import APIClient
 
 from user.models import User
 
 pytestmark = pytest.mark.django_db
 
-DELETE_URL = '/delete_account'
+LEGACY_DELETE_URL = '/delete_account'
+ME_URL = '/auth/users/me/'
+PASSWORD = 'Testpass123!'
 
 
-def test_anonymous_user_cannot_delete_an_account(user):
-    response = Client().post(DELETE_URL, {'email': user.email})
+def make_user_with_password(email):
+    user = baker.make('user.User', email=email, is_active=True)
+    user.set_password(PASSWORD)
+    user.save()
+    return user
 
-    # LoginRequiredMixin redirects to the login page instead of deleting.
-    assert response.status_code in (302, 403)
-    assert User.objects.filter(pk=user.pk).exists()
+
+def test_legacy_delete_account_endpoint_is_removed():
+    response = APIClient().post(LEGACY_DELETE_URL, {'email': 'someone@example.com'})
+    assert response.status_code == 404
 
 
-def test_user_can_delete_their_own_account(user):
-    client = Client()
-    client.force_login(user)
+def test_account_deletion_requires_authentication():
+    response = APIClient().delete(ME_URL, {'current_password': PASSWORD}, format='json')
+    assert response.status_code in (401, 403)
 
-    response = client.post(DELETE_URL, {'email': user.email})
 
-    assert response.status_code == 302
+def test_user_can_delete_own_account_with_correct_password():
+    user = make_user_with_password('owner@example.com')
+    client = APIClient()
+    client.force_authenticate(user)
+
+    response = client.delete(ME_URL, {'current_password': PASSWORD}, format='json')
+
+    assert response.status_code == 204
     assert not User.objects.filter(pk=user.pk).exists()
 
 
-def test_user_cannot_delete_another_users_account(user, other_user):
-    client = Client()
-    client.force_login(user)
+def test_account_deletion_with_wrong_password_is_rejected():
+    user = make_user_with_password('owner@example.com')
+    client = APIClient()
+    client.force_authenticate(user)
 
-    client.post(DELETE_URL, {'email': other_user.email})
+    response = client.delete(ME_URL, {'current_password': 'WrongPass1!'}, format='json')
 
-    # Neither the targeted account nor the requester's own account is deleted.
-    assert User.objects.filter(pk=other_user.pk).exists()
+    assert response.status_code == 400
     assert User.objects.filter(pk=user.pk).exists()
