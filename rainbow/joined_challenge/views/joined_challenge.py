@@ -2,6 +2,7 @@ from django.utils.translation import gettext_lazy as _
 
 from rest_framework import viewsets, status
 from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -11,6 +12,7 @@ from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge, Eve
     ReactingJoinedChallenge, SupportJoinedChallenge, CustomJoinedChallenge, QuizJoinedChallenge
 from joined_challenge.models.base import JoinedChallengeStatus
 from joined_challenge.models.quiz import UserAnswer
+from joined_challenge.permissions import UserOwnedQuerysetMixin
 from joined_challenge.serializers.joined_challenge import (
     JoinedChallengeSerializer,
     ArticleJoinedChallengeSerializer,
@@ -20,7 +22,7 @@ from joined_challenge.serializers.joined_challenge import (
     QuizJoinedChallengeSerializer, UserAnswerSerializer, QRCodeScanSerializer)
 
 
-class JoinedChallengeViewSet(viewsets.ModelViewSet):
+class JoinedChallengeViewSet(UserOwnedQuerysetMixin, viewsets.ModelViewSet):
     """
     A viewset for viewing and editing JoinedChallenge instances.
     """
@@ -28,9 +30,14 @@ class JoinedChallengeViewSet(viewsets.ModelViewSet):
     queryset = JoinedChallenge.objects.all()
 
 
-class BaseJoinedChallengeViewset(viewsets.ModelViewSet):
-    """Base viewset for joined challenges of dihherent typse"""
+class BaseJoinedChallengeViewset(UserOwnedQuerysetMixin, viewsets.ModelViewSet):
+    """Base viewset for joined challenges of different types.
+
+    Access is restricted to the owning user via ``UserOwnedQuerysetMixin``;
+    the concrete challenges link to their user through ``main_joined_challenge``.
+    """
     http_method_names = ('get', 'head', 'options', 'post', 'patch', 'delete')
+    owner_lookup_field = 'main_joined_challenge__user'
 
 
 class ArticleJoinedChallengeViewSet(BaseJoinedChallengeViewset):
@@ -40,10 +47,6 @@ class ArticleJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     serializer_class = ArticleJoinedChallengeSerializer
     queryset = ArticleJoinedChallenge.objects.all()
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
-
 
 class EventParticipantJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
@@ -51,10 +54,6 @@ class EventParticipantJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     serializer_class = EventParticipantJoinedChallengeSerializer
     queryset = EventParticipantJoinedChallenge.objects.all()
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
 
 
 class QRCodeScanView(APIView):
@@ -79,10 +78,6 @@ class SchoolGSAJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     serializer_class = SchoolGSAJoinedChallengeSerializer
     queryset = SchoolGSAJoinedChallenge.objects.all()
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
-
 
 class EventOrganizerJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
@@ -90,10 +85,6 @@ class EventOrganizerJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     serializer_class = EventOrganizerJoinedChallengeSerializer
     queryset = EventOrganizerJoinedChallenge.objects.all()
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
 
 
 class StoryJoinedChallengeViewSet(BaseJoinedChallengeViewset):
@@ -103,10 +94,6 @@ class StoryJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     serializer_class = StoryJoinedChallengeSerializer
     queryset = StoryJoinedChallenge.objects.all()
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
-
 
 class ProjectJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
@@ -114,10 +101,6 @@ class ProjectJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     serializer_class = ProjectJoinedChallengeSerializer
     queryset = ProjectJoinedChallenge.objects.all()
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
 
 
 class ReactingJoinedChallengeViewSet(BaseJoinedChallengeViewset):
@@ -127,10 +110,6 @@ class ReactingJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     serializer_class = ReactingJoinedChallengeSerializer
     queryset = ReactingJoinedChallenge.objects.all()
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
-
 
 class SupportJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
@@ -138,10 +117,6 @@ class SupportJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
     serializer_class = SupportJoinedChallengeSerializer
     queryset = SupportJoinedChallenge.objects.all()
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
 
 
 class CustomJoinedChallengeViewSet(BaseJoinedChallengeViewset):
@@ -151,10 +126,6 @@ class CustomJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     serializer_class = CustomJoinedChallengeSerializer
     queryset = CustomJoinedChallenge.objects.all()
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
-
 
 class QuizJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     """
@@ -163,39 +134,30 @@ class QuizJoinedChallengeViewSet(BaseJoinedChallengeViewset):
     serializer_class = QuizJoinedChallengeSerializer
     queryset = QuizJoinedChallenge.objects.all()
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(main_joined_challenge__user=self.request.user)
 
-
-class UserAnswerViewSet(viewsets.ModelViewSet):
+class UserAnswerViewSet(UserOwnedQuerysetMixin, viewsets.ModelViewSet):
     serializer_class = UserAnswerSerializer
     queryset = UserAnswer.objects.all()
+    owner_lookup_field = 'quiz_joined_challenge__main_joined_challenge__user'
 
 
 class UserJoinedChallengesAPIView(ListAPIView):
     serializer_class = JoinedChallengeSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = JoinedChallenge.objects.all()
-        user = self.request.user
-        if user is not None:
-            queryset = queryset.filter(
-                user=user,
-                status=JoinedChallengeStatus.JOINED
-            )
-        return queryset
+        return JoinedChallenge.objects.filter(
+            user=self.request.user,
+            status=JoinedChallengeStatus.JOINED
+        )
 
 
 class UserCompletedChallengesAPIView(ListAPIView):
     serializer_class = JoinedChallengeSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = JoinedChallenge.objects.all()
-        user = self.request.user
-        if user is not None:
-            queryset = queryset.filter(
-                user=user,
-                status__in=(JoinedChallengeStatus.CONFIRMED, JoinedChallengeStatus.COMPLETED)
-            )
-        return queryset
+        return JoinedChallenge.objects.filter(
+            user=self.request.user,
+            status__in=(JoinedChallengeStatus.CONFIRMED, JoinedChallengeStatus.COMPLETED)
+        )
