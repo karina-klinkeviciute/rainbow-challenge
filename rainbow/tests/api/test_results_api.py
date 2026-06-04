@@ -95,6 +95,18 @@ def test_claiming_prize_with_enough_points_succeeds(
     assert user.claimedprize_set.count() == 1
 
 
+def test_claiming_more_than_available_stock_is_rejected(
+        auth_client, user, make_joined_challenge, make_challenge):
+    # Enough points, but not enough stock -> the stock check must reject it.
+    give_user_points(make_joined_challenge, make_challenge, user, points=100)
+    prize = baker.make('results.Prize', price=1, amount=2)
+
+    response = auth_client(user).post(CLAIMED_PRIZE_URL, {'prize': str(prize.uuid), 'amount': 3})
+
+    assert response.status_code == 400
+    assert user.claimedprize_set.count() == 0
+
+
 # --- balance --------------------------------------------------------------
 
 def test_balance_requires_authentication(api_client):
