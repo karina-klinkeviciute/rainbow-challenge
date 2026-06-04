@@ -39,7 +39,7 @@ from user.models import User
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp.plugins.otp_totp.admin import TOTPDeviceAdmin
 
-from user.views import UserActivationView, PasswordResetView
+from user.views import UserActivationView, PasswordResetView, UserViewSet as DjoserUserViewSet
 
 
 class OTPAdmin(OTPAdminSite):
@@ -64,6 +64,10 @@ router.registry.extend(news_router.registry)
 router.registry.extend(message_router.registry)
 router.registry.extend(texts_router.registry)
 
+# Replaces djoser's default users router so account deletion is a soft delete.
+djoser_users_router = DefaultRouter()
+djoser_users_router.register('users', DjoserUserViewSet)
+
 urlpatterns = i18n_patterns(
     path('admin/', admin_site.urls),
 )
@@ -75,7 +79,7 @@ urlpatterns += [
     path('dashboard/', include('dashboard.urls')),
     # path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     # path('admin/', admin.site.urls),
-    path('auth/', include('djoser.urls')),
+    path('auth/', include(djoser_users_router.urls)),
     path('auth/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.social.urls')),
     path('api/user/', include('user.urls')),

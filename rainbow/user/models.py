@@ -6,6 +6,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
 from django.db.models import Sum
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.models import AbstractUser
@@ -168,15 +169,21 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
-    # def delete(self, using=None, keep_parents=False):
-    #     """delete method. Marks for deletion if the user calling it is the user themselves and actually deletes if it's an admin"""
-    #     self.marked_for_deletion = True
-    #     self.marked_for_deletion_date = datetime.now()
-    #     self.save()
-    #     message_site_admins(
-    #         _("A user wants to delete account"),
-    #         _("User has marked account for deletion. Please take care of it.")
-    #     )
+    def soft_delete(self):
+        """Flag the account for deletion and notify admins, without removing it.
+
+        Used for user-initiated deletion through the API: the account is kept
+        but marked, and an admin processes the actual removal. ``delete()`` is
+        intentionally left as Django's normal hard delete so admins can still
+        remove users via the Django admin.
+        """
+        self.marked_for_deletion = True
+        self.marked_for_deletion_date = timezone.now()
+        self.save(update_fields=["marked_for_deletion", "marked_for_deletion_date"])
+        message_site_admins(
+            _("A user wants to delete account"),
+            _("User has marked account for deletion. Please take care of it."),
+        )
 
     def has_perm(self, perm, obj=None):
         """Does the user have a specific permission?"""
