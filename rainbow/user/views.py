@@ -11,20 +11,33 @@ import jwt
 from django.http.response import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
 
+from djoser.views import UserViewSet as DjoserUserViewSet
 from rest_framework import views, status
 from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 from rest_framework.permissions import BasePermission, SAFE_METHODS, AllowAny
 
-from user.forms import AccountDeletionForm
 from user.models import GenderOptions, User
 from user.serializers import GenderSerializer
 
 logger = logging.getLogger('root')
+
+
+class UserViewSet(DjoserUserViewSet):
+    """djoser user viewset overriding account deletion to be a soft delete.
+
+    ``DELETE /auth/users/me/`` still requires the current password (handled by
+    djoser's ``destroy``), but instead of removing the row it marks the account
+    for deletion and notifies admins. Replaces djoser's users routes via
+    ``rainbow_project.urls``.
+    """
+
+    def perform_destroy(self, instance):
+        instance.soft_delete()
 
 class ReadOnly(BasePermission):
     def has_permission(self, request, view):
@@ -245,14 +258,3 @@ class PasswordResetView(TemplateView):
         context["message"] = message
 
         return self.render_to_response(context)
-
-
-class DeleteAccountView(FormView):
-    template_name = "user/deletion.html"
-    form_class = AccountDeletionForm
-    success_url = "/"
-
-    def form_valid(self, form):
-        user = User.objects.get(email=form.cleaned_data["email"])
-        user.delete()
-        return super().form_valid(form)
