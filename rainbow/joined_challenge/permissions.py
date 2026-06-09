@@ -1,4 +1,21 @@
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import BasePermission, IsAuthenticated
+
+
+class IsJoinedChallengeOwner(BasePermission):
+    """Object-level permission granting access only to a joined challenge's owner.
+
+    The object handed to ``has_object_permission`` is expected to be a (main)
+    ``JoinedChallenge``. As with :class:`UserOwnedQuerysetMixin`, cross-user
+    access is reserved for the Django admin interface, so this deliberately
+    excludes admins -- only the owning user passes.
+
+    Views that don't resolve the object through ``get_object`` (e.g. uploads
+    keyed off ``validated_data`` or a concrete uuid) must invoke it explicitly
+    via ``self.check_object_permissions(request, joined_challenge)``.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return obj.user == request.user
 
 
 class UserOwnedQuerysetMixin:

@@ -4,10 +4,11 @@ Only the user themselves and admins may access a user's joined challenges.
 """
 import pytest
 from model_bakery import baker
-from rest_framework.test import APIClient
+from rest_framework.test import APIClient, APIRequestFactory
 
 from joined_challenge.models import JoinedChallenge, ArticleJoinedChallenge
 from joined_challenge.models.quiz import QuizJoinedChallenge, UserAnswer
+from joined_challenge.permissions import IsJoinedChallengeOwner
 
 pytestmark = pytest.mark.django_db
 
@@ -100,3 +101,28 @@ def test_admin_does_not_see_others_quiz_answers_via_api(user, admin_user):
 
     assert response.status_code == 200
     assert [item['uuid'] for item in response.data] == [str(mine.uuid)]
+
+
+# --- IsJoinedChallengeOwner (the shared object-level permission) -----------
+
+def _object_request(as_user):
+    request = APIRequestFactory().get("/")
+    request.user = as_user
+    return request
+
+
+def test_owner_permission_allows_only_the_owner(user, other_user):
+    joined = baker.make(JoinedChallenge, user=user)
+    permission = IsJoinedChallengeOwner()
+
+    assert permission.has_object_permission(_object_request(user), None, joined) is True
+    assert permission.has_object_permission(_object_request(other_user), None, joined) is False
+
+
+def test_owner_permission_excludes_admins(user, admin_user):
+    # Cross-user access is reserved for the Django admin interface, so even an
+    # admin is denied object access through this API permission.
+    joined = baker.make(JoinedChallenge, user=user)
+    permission = IsJoinedChallengeOwner()
+
+    assert permission.has_object_permission(_object_request(admin_user), None, joined) is False
