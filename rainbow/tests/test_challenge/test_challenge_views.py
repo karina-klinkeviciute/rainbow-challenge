@@ -19,16 +19,9 @@ from challenge.models import ArticleChallenge
 pytestmark = pytest.mark.django_db
 
 
-@pytest.fixture
-def staff_user(make_user):
-    # staff_member_required needs is_active *and* is_staff (== is_admin here);
-    # the shared admin_user fixture is not active, so make a dedicated one.
-    return make_user(is_admin=True, is_active=True)
-
-
-def staff_client(client, staff_user):
-    client.force_login(staff_user)
-    return client
+# These views use ``staff_member_required``, which needs is_active *and*
+# is_staff (== is_admin here); the shared ``admin_user`` fixture is active, so
+# it satisfies both.
 
 
 def make_article_challenge(make_challenge, **kwargs):
@@ -47,18 +40,17 @@ def test_article_list_redirects_anonymous(client):
     assert "/admin/login" in response.url
 
 
-def test_article_list_redirects_non_staff(client, user):
-    client.force_login(user)
-    response = client.get(reverse("challenge:articles"))
+def test_article_list_redirects_non_staff(logged_in_client, user):
+    response = logged_in_client(user).get(reverse("challenge:articles"))
 
     assert response.status_code == 302
     assert "/admin/login" in response.url
 
 
-def test_article_list_shows_challenges_for_staff(client, staff_user, make_challenge):
+def test_article_list_shows_challenges_for_staff(logged_in_client, admin_user, make_challenge):
     article = make_article_challenge(make_challenge)
 
-    response = staff_client(client, staff_user).get(reverse("challenge:articles"))
+    response = logged_in_client(admin_user).get(reverse("challenge:articles"))
 
     assert response.status_code == 200
     assert list(response.context["object_list"]) == [article]
@@ -66,34 +58,33 @@ def test_article_list_shows_challenges_for_staff(client, staff_user, make_challe
 
 # --- update view ----------------------------------------------------------
 
-def test_article_update_requires_staff(client, user, make_challenge):
+def test_article_update_requires_staff(logged_in_client, user, make_challenge):
     article = make_article_challenge(make_challenge)
-    client.force_login(user)
 
     url = reverse("challenge:article-update", kwargs={"uuid": str(article.uuid)})
-    response = client.get(url)
+    response = logged_in_client(user).get(url)
 
     assert response.status_code == 302
     assert "/admin/login" in response.url
 
 
-def test_article_update_renders_bound_form(client, staff_user, make_challenge):
+def test_article_update_renders_bound_form(logged_in_client, admin_user, make_challenge):
     article = make_article_challenge(make_challenge, _name="Original")
 
     url = reverse("challenge:article-update", kwargs={"uuid": str(article.uuid)})
-    response = staff_client(client, staff_user).get(url)
+    response = logged_in_client(admin_user).get(url)
 
     assert response.status_code == 200
     # The form is bound to the existing challenge, so its current name is shown.
     assert response.context["view"].form.instance == article.main_challenge
 
 
-def test_article_update_saves_changes(client, staff_user, make_challenge):
+def test_article_update_saves_changes(logged_in_client, admin_user, make_challenge):
     article = make_article_challenge(make_challenge, _name="Original", points=10)
     challenge = article.main_challenge
 
     url = reverse("challenge:article-update", kwargs={"uuid": str(article.uuid)})
-    response = staff_client(client, staff_user).post(
+    response = logged_in_client(admin_user).post(
         url,
         {"_name": "Updated", "description": "New description", "points": 55},
     )
@@ -104,12 +95,12 @@ def test_article_update_saves_changes(client, staff_user, make_challenge):
     assert challenge.points == 55
 
 
-def test_article_update_invalid_form_does_not_save(client, staff_user, make_challenge):
+def test_article_update_invalid_form_does_not_save(logged_in_client, admin_user, make_challenge):
     article = make_article_challenge(make_challenge, _name="Original")
     challenge = article.main_challenge
 
     url = reverse("challenge:article-update", kwargs={"uuid": str(article.uuid)})
-    response = staff_client(client, staff_user).post(
+    response = logged_in_client(admin_user).post(
         url,
         # _name is required; omitting it makes the form invalid.
         {"description": "New description", "points": 55},

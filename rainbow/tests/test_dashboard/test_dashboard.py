@@ -11,25 +11,19 @@ from django.urls import reverse
 pytestmark = pytest.mark.django_db
 
 
-def logged_in_client(user):
-    client = Client()
-    client.force_login(user)
-    return client
-
-
 def test_dashboard_requires_login():
     response = Client().get(reverse("dashboard"))
 
     assert response.status_code == 302
 
 
-def test_dashboard_forbidden_for_non_staff(user):
+def test_dashboard_forbidden_for_non_staff(logged_in_client, user):
     response = logged_in_client(user).get(reverse("dashboard"))
 
     assert response.status_code == 403
 
 
-def test_dashboard_renders_for_staff(admin_user):
+def test_dashboard_renders_for_staff(logged_in_client, admin_user):
     response = logged_in_client(admin_user).get(reverse("dashboard"))
 
     assert response.status_code == 200

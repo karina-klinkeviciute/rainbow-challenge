@@ -17,12 +17,6 @@ from message.models import Message, MessageTypes
 pytestmark = pytest.mark.django_db
 
 
-def logged_in_client(user):
-    client = Client()
-    client.force_login(user)
-    return client
-
-
 # --- access control -------------------------------------------------------
 
 def test_confirmation_list_requires_login():
@@ -32,14 +26,14 @@ def test_confirmation_list_requires_login():
     assert response.status_code == 302
 
 
-def test_confirmation_list_forbidden_for_non_staff(user):
+def test_confirmation_list_forbidden_for_non_staff(logged_in_client, user):
     # A logged-in, non-admin user is rejected (not redirected).
     response = logged_in_client(user).get(reverse("confirmation-list"))
 
     assert response.status_code == 403
 
 
-def test_non_staff_cannot_confirm(user, make_challenge, make_joined_challenge):
+def test_non_staff_cannot_confirm(logged_in_client, user, make_challenge, make_joined_challenge):
     challenge = make_challenge(needs_confirmation=False)
     joined = make_joined_challenge(
         user, challenge=challenge, status=JoinedChallengeStatus.COMPLETED,
@@ -55,7 +49,7 @@ def test_non_staff_cannot_confirm(user, make_challenge, make_joined_challenge):
 
 # --- staff happy paths ----------------------------------------------------
 
-def test_confirmation_list_shows_only_completed(admin_user, user, make_joined_challenge):
+def test_confirmation_list_shows_only_completed(logged_in_client, admin_user, user, make_joined_challenge):
     completed = make_joined_challenge(user, status=JoinedChallengeStatus.COMPLETED)
     make_joined_challenge(user, status=JoinedChallengeStatus.JOINED)
     make_joined_challenge(user, status=JoinedChallengeStatus.CONFIRMED)
@@ -67,7 +61,7 @@ def test_confirmation_list_shows_only_completed(admin_user, user, make_joined_ch
 
 
 def test_staff_can_confirm_challenge_and_redirects(
-    admin_user, user, make_challenge, make_joined_challenge,
+    logged_in_client, admin_user, user, make_challenge, make_joined_challenge,
 ):
     challenge = make_challenge(needs_confirmation=False)
     joined = make_joined_challenge(
@@ -85,7 +79,7 @@ def test_staff_can_confirm_challenge_and_redirects(
 
 
 def test_confirming_notifies_the_owner(
-    admin_user, user, make_challenge, make_joined_challenge,
+    logged_in_client, admin_user, user, make_challenge, make_joined_challenge,
 ):
     challenge = make_challenge(needs_confirmation=False)
     joined = make_joined_challenge(
@@ -100,7 +94,7 @@ def test_confirming_notifies_the_owner(
     assert str(challenge.points) in message.message_text
 
 
-def test_confirmation_detail_renders(admin_user, user, make_joined_challenge):
+def test_confirmation_detail_renders(logged_in_client, admin_user, user, make_joined_challenge):
     joined = make_joined_challenge(user, status=JoinedChallengeStatus.COMPLETED)
 
     response = logged_in_client(admin_user).get(

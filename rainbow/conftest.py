@@ -4,6 +4,7 @@ Lives at the project root so every test module (top-level ``tests/`` and the
 per-app test packages) can use these fixtures without importing anything.
 """
 import pytest
+from django.test import Client
 from model_bakery import baker
 from rest_framework.test import APIClient
 
@@ -38,7 +39,9 @@ def other_user(make_user):
 
 @pytest.fixture
 def admin_user(make_user):
-    return make_user(is_admin=True)
+    # Active, like any real admin who can log in: some staff-only views go
+    # through staff_member_required, which requires is_active as well as is_staff.
+    return make_user(is_admin=True, is_active=True)
 
 
 # --- API clients ----------------------------------------------------------
@@ -58,6 +61,21 @@ def auth_client():
         return client
 
     return _auth_client
+
+
+@pytest.fixture
+def logged_in_client():
+    """Factory returning a Django test ``Client`` logged in as the given user.
+
+    The template-view (non-DRF) counterpart of ``auth_client``; use it for the
+    dashboard / confirmation / challenge admin screens.
+    """
+    def _logged_in_client(user):
+        client = Client()
+        client.force_login(user)
+        return client
+
+    return _logged_in_client
 
 
 # --- Domain object factories ---------------------------------------------
