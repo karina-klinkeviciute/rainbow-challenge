@@ -1,10 +1,14 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
+from user.mixins import StaffRequiredMixin
 
-class DashboardView(LoginRequiredMixin, TemplateView):
+
+class DashboardView(StaffRequiredMixin, TemplateView):
     """
     Dashboard view. Links to actions for admins to perform.
+
+    Staff-only: it links to admin actions (e.g. the confirmation list, which is
+    itself staff-gated), so a non-admin would only reach dead 403 links.
     """
     template_name = "dashboard/dashboard.html"
 

@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import View
@@ -7,18 +6,7 @@ from django.views.generic import ListView, DetailView, FormView
 from joined_challenge.forms.confirmation import ConfirmationForm
 from joined_challenge.models import JoinedChallenge
 from joined_challenge.models.base import JoinedChallengeStatus
-
-
-class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
-    """Restrict a view to staff (admin) users.
-
-    Confirming challenges awards points, so it must not be available to every
-    logged-in user. Anonymous users are redirected to login (by
-    ``LoginRequiredMixin``); authenticated non-admins get a 403.
-    """
-
-    def test_func(self):
-        return self.request.user.is_admin
+from user.mixins import StaffRequiredMixin
 
 
 class ConfirmListView(StaffRequiredMixin, ListView):
