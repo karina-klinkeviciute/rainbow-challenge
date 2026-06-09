@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import View
@@ -7,9 +6,10 @@ from django.views.generic import ListView, DetailView, FormView
 from joined_challenge.forms.confirmation import ConfirmationForm
 from joined_challenge.models import JoinedChallenge
 from joined_challenge.models.base import JoinedChallengeStatus
+from user.mixins import StaffRequiredMixin
 
 
-class ConfirmListView(LoginRequiredMixin, ListView):
+class ConfirmListView(StaffRequiredMixin, ListView):
     """Lists all challenges that need confirmation"""
     model = JoinedChallenge
     template_name = "joined_challenge/confirmation_list.html"
@@ -18,7 +18,7 @@ class ConfirmListView(LoginRequiredMixin, ListView):
         return JoinedChallenge.objects.filter(status=JoinedChallengeStatus.COMPLETED)
 
 
-class ConfirmDetailView(LoginRequiredMixin, DetailView, FormView):
+class ConfirmDetailView(StaffRequiredMixin, DetailView, FormView):
     """
         View for confirmation of chalenge.
     """

@@ -96,12 +96,19 @@ class OAuthStateCodeToken(views.APIView):
 
         response = requests.post(url, data=payload, headers=headers)
         if response.status_code == 200:
-            data = json.loads(response.text)
-            token = data["token"]
+            try:
+                token = json.loads(response.text)["token"]
+            except (ValueError, KeyError):
+                # Upstream returned 200 but with a non-JSON body or no "token";
+                # surface a clean gateway error instead of crashing with a 500.
+                return Response(
+                    {"error": "Unexpected response from authentication provider."},
+                    status=status.HTTP_502_BAD_GATEWAY,
+                )
             content = {"token": token}
             response_status = status.HTTP_200_OK
         else:
-            content = {response.text}
+            content = {"error": response.text}
             response_status = status.HTTP_400_BAD_REQUEST
 
         return Response(content, status=response_status)
