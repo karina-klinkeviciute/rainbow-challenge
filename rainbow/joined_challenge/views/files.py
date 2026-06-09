@@ -30,6 +30,14 @@ class JoinedChallengeFileDetailView(APIView, PrivateStorageDetailView):
 class JoinedChallengeFileUploadView(CreateAPIView):
     queryset = JoinedChallengeFile.objects.all()
     serializer_class = JoinedChallengeFileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        # A user may only attach files to their own joined challenges.
+        joined_challenge = serializer.validated_data["joined_challenge"]
+        if joined_challenge.user != self.request.user:
+            raise PermissionDenied
+        serializer.save()
 
 
 class JoinedChallengeFilesListView(RetrieveAPIView):
@@ -63,6 +71,7 @@ class ConcreteJoinedChallengeFileUploadView(CreateAPIView):
     """View for uploading files when only having the concrete joined challenge uuid and not main joined challenge."""
     queryset = JoinedChallengeFile.objects.all()
     serializer_class = ConcreteJoinedChallengeFileSerializer
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         challenge_type = request.data.get("challenge_type")
@@ -72,5 +81,8 @@ class ConcreteJoinedChallengeFileUploadView(CreateAPIView):
         model = apps.get_model('joined_challenge', joined_challenge_class)
         concrete_joined_challenge = model.objects.get(uuid=concrete_challenge_uuid)
         joined_challenge = concrete_joined_challenge.main_joined_challenge
+        # A user may only attach files to their own joined challenges.
+        if joined_challenge.user != request.user:
+            raise PermissionDenied
         request.data["joined_challenge"] = joined_challenge.uuid
         return super().post(request, *args, **kwargs)
