@@ -8,6 +8,8 @@ challenges by region. They are imported in ``challenge/urls.py`` but not wired t
 any URL, so they're exercised here at the ``get_queryset`` level directly rather
 than over HTTP.
 """
+from datetime import date, timedelta
+
 import pytest
 from model_bakery import baker
 
@@ -34,10 +36,13 @@ def test_region_list_is_public(api_client):
 def test_region_list_is_ordered_by_points_desc(
     api_client, make_user, make_challenge, make_joined_challenge,
 ):
-    high = baker.make(Region, name="High")
-    low = baker.make(Region, name="Low")  # no members -> 0 points
+    # Names and insertion order are arranged so ONLY a points-based sort yields
+    # the asserted order: the higher-points region ("Zeta") sorts *later* both
+    # alphabetically and by insertion, so a regression to alphabetical/insertion
+    # ordering would produce ["Alpha", "Zeta"] and fail this test.
+    low = baker.make(Region, name="Alpha")  # inserted first, no members -> 0 points
+    high = baker.make(Region, name="Zeta")  # inserted second, 50 points
 
-    # Give "High" a member with a CONFIRMED challenge worth 50 points.
     member = make_user(region=high)
     challenge = make_challenge(points=50, region=high)
     make_joined_challenge(
@@ -48,7 +53,7 @@ def test_region_list_is_ordered_by_points_desc(
 
     assert response.status_code == 200
     names = [r["name"] for r in response.data]
-    assert names == ["High", "Low"]
+    assert names == ["Zeta", "Alpha"]
 
 
 # --- RegionUsersAPIView (unrouted; queryset tested directly) ---------------
@@ -87,11 +92,13 @@ def test_region_challenges_filters_by_region(make_challenge):
     assert list(view.get_queryset()) == [in_region]
 
 
-def test_region_challenges_without_region_returns_all_active(make_challenge):
-    make_challenge()
-    make_challenge()
+def test_region_challenges_without_region_returns_only_active(make_challenge):
+    active_1 = make_challenge()
+    active_2 = make_challenge()
+    # Ended yesterday -> excluded by the ActiveChallengeManager.
+    make_challenge(end_date=date.today() - timedelta(days=1))
 
     view = RegionChallengesAPIView()
     view.kwargs = {}
 
-    assert view.get_queryset().count() == Challenge.active.count()
+    assert set(view.get_queryset()) == {active_1, active_2}

@@ -1,6 +1,6 @@
 from django.apps import apps
 from private_storage.views import PrivateStorageDetailView
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import NotFound, PermissionDenied, ValidationError
 from rest_framework.generics import get_object_or_404, CreateAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -11,6 +11,27 @@ from joined_challenge.models import JoinedChallenge
 from joined_challenge.models.base import JoinedChallengeFile
 from joined_challenge.serializers.files import JoinedChallengeFileSerializer, JoinedChallengeFilesListSerializer, \
     ConcreteJoinedChallengeFileSerializer
+
+
+def resolve_main_joined_challenge(challenge_type, uuid):
+    """Resolve a concrete joined challenge (by type + uuid) to its main
+    ``JoinedChallenge``, raising clean 4xx errors instead of 500s.
+
+    - an unknown ``challenge_type`` -> 400 (bad request param)
+    - a missing concrete joined challenge -> 404
+    - a concrete joined challenge with no main (``main_joined_challenge`` is
+      nullable) -> 404
+    """
+    try:
+        joined_challenge_class = ChallengeType.JOINED_CHALLENGE_CLASSES[challenge_type]
+    except KeyError:
+        raise ValidationError({"challenge_type": "Unknown challenge type."})
+    model = apps.get_model('joined_challenge', joined_challenge_class)
+    concrete_joined_challenge = get_object_or_404(model, uuid=uuid)
+    main_joined_challenge = concrete_joined_challenge.main_joined_challenge
+    if main_joined_challenge is None:
+        raise NotFound("Joined challenge not found.")
+    return main_joined_challenge
 
 
 class JoinedChallengeFileDetailView(APIView, PrivateStorageDetailView):
@@ -55,10 +76,7 @@ class ConcreteJoinedChallengeFilesListView(APIView):
 
     def get(self, request, challenge_type, uuid, format=None):
 
-        joined_challenge_class = ChallengeType.JOINED_CHALLENGE_CLASSES[challenge_type]
-        model = apps.get_model('joined_challenge', joined_challenge_class)
-        joined_challenge = get_object_or_404(model, uuid=uuid)
-        main_joined_challenge = joined_challenge.main_joined_challenge
+        main_joined_challenge = resolve_main_joined_challenge(challenge_type, uuid)
         # Through the API, only the owning user may access their joined challenge
         # files; cross-user access is reserved for the Django admin interface.
         if main_joined_challenge.user != request.user:
@@ -77,10 +95,7 @@ class ConcreteJoinedChallengeFileUploadView(CreateAPIView):
         challenge_type = request.data.get("challenge_type")
         concrete_challenge_uuid = request.data.get("concrete_joined_challenge_uuid")
 
-        joined_challenge_class = ChallengeType.JOINED_CHALLENGE_CLASSES[challenge_type]
-        model = apps.get_model('joined_challenge', joined_challenge_class)
-        concrete_joined_challenge = model.objects.get(uuid=concrete_challenge_uuid)
-        joined_challenge = concrete_joined_challenge.main_joined_challenge
+        joined_challenge = resolve_main_joined_challenge(challenge_type, concrete_challenge_uuid)
         # A user may only attach files to their own joined challenges.
         if joined_challenge.user != request.user:
             raise PermissionDenied

@@ -10,6 +10,8 @@ Endpoints exercised:
   - GET  /api/concrete_joined_challenge_file_list/<type>/<uuid>/
   - POST /api/concrete_joined_challenge_file_upload/        (concrete joined challenge uuid)
 """
+from uuid import uuid4
+
 import pytest
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -137,6 +139,62 @@ def test_cannot_upload_via_concrete_to_another_users_challenge(
 
     assert response.status_code == 403
     assert not JoinedChallengeFile.objects.filter(joined_challenge=joined).exists()
+
+
+def test_concrete_upload_unknown_challenge_type_is_400(user, auth_client):
+    upload = SimpleUploadedFile("proof.txt", b"hello", content_type="text/plain")
+
+    response = auth_client(user).post(
+        CONCRETE_UPLOAD_URL,
+        {
+            "challenge_type": "not_a_real_type",
+            "concrete_joined_challenge_uuid": str(uuid4()),
+            "file": upload,
+        },
+        format="multipart",
+        secure=True,
+    )
+
+    # An unknown challenge_type is a bad request param, not a server error.
+    assert response.status_code == 400
+
+
+def test_concrete_upload_missing_concrete_challenge_is_404(user, auth_client):
+    upload = SimpleUploadedFile("proof.txt", b"hello", content_type="text/plain")
+
+    response = auth_client(user).post(
+        CONCRETE_UPLOAD_URL,
+        {
+            "challenge_type": ChallengeType.ARTICLE,
+            "concrete_joined_challenge_uuid": str(uuid4()),  # does not exist
+            "file": upload,
+        },
+        format="multipart",
+        secure=True,
+    )
+
+    assert response.status_code == 404
+
+
+def test_concrete_upload_without_main_joined_challenge_is_404(
+    user, auth_client, private_storage_tmp,
+):
+    # A concrete joined challenge whose main link is unset (the FK is nullable).
+    orphan = baker.make(ArticleJoinedChallenge, main_joined_challenge=None)
+    upload = SimpleUploadedFile("proof.txt", b"hello", content_type="text/plain")
+
+    response = auth_client(user).post(
+        CONCRETE_UPLOAD_URL,
+        {
+            "challenge_type": ChallengeType.ARTICLE,
+            "concrete_joined_challenge_uuid": str(orphan.uuid),
+            "file": upload,
+        },
+        format="multipart",
+        secure=True,
+    )
+
+    assert response.status_code == 404
 
 
 # --- list (main joined challenge) -----------------------------------------
