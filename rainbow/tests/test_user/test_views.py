@@ -76,6 +76,30 @@ def test_oauth_state_code_exchange_relays_upstream_error(api_client):
     assert response.data == {"error": "invalid_grant"}
 
 
+def test_oauth_state_code_non_json_200_is_502(api_client):
+    # Upstream replies 200 but with a non-JSON body -> gateway error, not a 500.
+    with patch("user.views.requests.post") as mock_post:
+        mock_post.return_value = _response(200, text="<html>not json</html>")
+
+        response = api_client.get(
+            "/api/user/oauth_token/", {"state": "s", "code": "c"},
+        )
+
+    assert response.status_code == 502
+
+
+def test_oauth_state_code_200_without_token_is_502(api_client):
+    # Upstream replies 200 with valid JSON but no "token" key -> gateway error.
+    with patch("user.views.requests.post") as mock_post:
+        mock_post.return_value = _response(200, text=json.dumps({"detail": "nope"}))
+
+        response = api_client.get(
+            "/api/user/oauth_token/", {"state": "s", "code": "c"},
+        )
+
+    assert response.status_code == 502
+
+
 # --- id-token login (Google / Apple) --------------------------------------
 
 GOOGLE_EMAIL = "googler@example.com"
