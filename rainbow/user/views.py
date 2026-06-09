@@ -101,7 +101,7 @@ class OAuthStateCodeToken(views.APIView):
             content = {"token": token}
             response_status = status.HTTP_200_OK
         else:
-            content = {response.text}
+            content = {"error": response.text}
             response_status = status.HTTP_400_BAD_REQUEST
 
         return Response(content, status=response_status)
