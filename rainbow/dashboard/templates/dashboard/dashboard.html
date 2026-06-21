@@ -40,7 +40,34 @@
             </div>
         </div>
 
-        {# Future admin actions (prizes, quiz creation, challenge creation) go here. #}
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title is-4">
+                        {% translate "Prizes to issue" %}
+                        {% if pending_prize_issuance_count %}
+                            <span class="tag is-danger is-rounded ml-2">{{ pending_prize_issuance_count }}</span>
+                        {% else %}
+                            <span class="tag is-success is-rounded ml-2">0</span>
+                        {% endif %}
+                    </p>
+                    <p class="content">
+                        {% blocktranslate count counter=pending_prize_issuance_count %}
+                            {{ counter }} claimed prize is waiting to be issued.
+                        {% plural %}
+                            {{ counter }} claimed prizes are waiting to be issued.
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <a href="{% url 'prize-issue-list' %}" class="card-footer-item">
+                        {% translate "Review claimed prizes" %}
+                    </a>
+                </footer>
+            </div>
+        </div>
+
+        {# Future admin actions (quiz creation, challenge creation) go here. #}
 
     </div>
 
