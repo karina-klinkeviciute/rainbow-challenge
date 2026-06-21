@@ -8,6 +8,8 @@ import pytest
 from django.test import Client
 from django.urls import reverse
 
+from model_bakery import baker
+
 from joined_challenge.models.base import JoinedChallengeStatus
 
 pytestmark = pytest.mark.django_db
@@ -44,3 +46,15 @@ def test_dashboard_shows_pending_confirmation_count(
 
     assert response.status_code == 200
     assert response.context["pending_confirmations_count"] == 2
+
+
+def test_dashboard_shows_pending_prize_issuance_count(logged_in_client, admin_user, user):
+    # Two claimed prizes waiting (issued=False); an already-issued one is excluded.
+    baker.make("results.ClaimedPrize", user=user, issued=False, amount=1)
+    baker.make("results.ClaimedPrize", user=user, issued=False, amount=1)
+    baker.make("results.ClaimedPrize", user=user, issued=True, amount=1)
+
+    response = logged_in_client(admin_user).get(reverse("dashboard"))
+
+    assert response.status_code == 200
+    assert response.context["pending_prize_issuance_count"] == 2

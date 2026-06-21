@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 
 from joined_challenge.models import JoinedChallenge
 from joined_challenge.models.base import JoinedChallengeStatus
+from results.models import ClaimedPrize
 from user.mixins import StaffRequiredMixin
 
 
@@ -21,6 +22,11 @@ class DashboardView(StaffRequiredMixin, TemplateView):
         # a glance. Same filter the confirmation list uses (status COMPLETED).
         context["pending_confirmations_count"] = JoinedChallenge.objects.filter(
             status=JoinedChallengeStatus.COMPLETED
+        ).count()
+
+        # Prizes users have claimed but that an admin has not handed over yet.
+        context["pending_prize_issuance_count"] = ClaimedPrize.objects.filter(
+            issued=False
         ).count()
 
         return context
