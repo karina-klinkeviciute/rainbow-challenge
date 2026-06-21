@@ -102,3 +102,23 @@ def test_confirmation_detail_renders(logged_in_client, admin_user, user, make_jo
     )
 
     assert response.status_code == 200
+
+
+def test_confirmation_list_is_ordered_oldest_first(
+    logged_in_client, admin_user, user, make_joined_challenge,
+):
+    # The queue is worked through FIFO: oldest completed submission first.
+    import datetime
+
+    older = make_joined_challenge(
+        user, status=JoinedChallengeStatus.COMPLETED,
+        completed_at=datetime.datetime(2024, 1, 1, tzinfo=datetime.timezone.utc),
+    )
+    newer = make_joined_challenge(
+        user, status=JoinedChallengeStatus.COMPLETED,
+        completed_at=datetime.datetime(2024, 6, 1, tzinfo=datetime.timezone.utc),
+    )
+
+    response = logged_in_client(admin_user).get(reverse("confirmation-list"))
+
+    assert list(response.context["object_list"]) == [older, newer]

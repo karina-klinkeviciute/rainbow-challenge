@@ -15,7 +15,10 @@ class ConfirmListView(StaffRequiredMixin, ListView):
     template_name = "joined_challenge/confirmation_list.html"
 
     def get_queryset(self):
-        return JoinedChallenge.objects.filter(status=JoinedChallengeStatus.COMPLETED)
+        # Oldest submissions first so the queue is worked through fairly (FIFO).
+        return JoinedChallenge.objects.filter(
+            status=JoinedChallengeStatus.COMPLETED
+        ).order_by("completed_at")
 
 
 class ConfirmDetailView(StaffRequiredMixin, DetailView, FormView):

@@ -1,5 +1,7 @@
 from django.views.generic import TemplateView
 
+from joined_challenge.models import JoinedChallenge
+from joined_challenge.models.base import JoinedChallengeStatus
 from user.mixins import StaffRequiredMixin
 
 
@@ -13,6 +15,12 @@ class DashboardView(StaffRequiredMixin, TemplateView):
     template_name = "dashboard/dashboard.html"
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
+        context = super().get_context_data(**kwargs)
+
+        # Surface how many submissions are waiting so admins see the workload at
+        # a glance. Same filter the confirmation list uses (status COMPLETED).
+        context["pending_confirmations_count"] = JoinedChallenge.objects.filter(
+            status=JoinedChallengeStatus.COMPLETED
+        ).count()
 
         return context

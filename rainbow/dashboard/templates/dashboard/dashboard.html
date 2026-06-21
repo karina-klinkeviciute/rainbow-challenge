@@ -1,15 +1,49 @@
 {% extends 'dashboard/base.html' %}
 {% load i18n %}
 
-{% block title %} {% translate "Extra admin panel" %} {% endblock %}
+{% block title %} {% translate "Admin panel" %} {% endblock %}
 
+{# The dashboard is the landing page for admin actions. New actions (issuing #}
+{# prizes, creating quizzes, creating challenges) should be added as further #}
+{# cards in the grid below. #}
 {% block content %}
 
-    <div class="box">
-        <div class="title">{% translate "Challenges" %}</div>
+    <h1 class="title">{% translate "Admin panel" %}</h1>
+    <p class="subtitle">{% translate "Manage challenges and review submissions." %}</p>
 
-        <a href="{% url 'confirmation-list' %}" class="block">{% translate "Confirmations of completed challenges" %}</a>
-        <br>
+    <div class="columns is-multiline">
+
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title is-4">
+                        {% translate "Challenges confirmation" %}
+                        {% if pending_confirmations_count %}
+                            <span class="tag is-danger is-rounded ml-2">{{ pending_confirmations_count }}</span>
+                        {% else %}
+                            <span class="tag is-success is-rounded ml-2">0</span>
+                        {% endif %}
+                    </p>
+                    <p class="content">
+                        {% blocktranslate count counter=pending_confirmations_count %}
+                            {{ counter }} completed challenge is waiting for confirmation.
+                        {% plural %}
+                            {{ counter }} completed challenges are waiting for confirmation.
+                        {% endblocktranslate %}
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <a href="{% url 'confirmation-list' %}" class="card-footer-item">
+                        {% translate "Review submissions" %}
+                    </a>
+                </footer>
+            </div>
+        </div>
+
+        {# Future admin actions (prizes, quiz creation, challenge creation) go here. #}
+
     </div>
 
 {% endblock %}
+
+{% block go-back %}{% endblock %}

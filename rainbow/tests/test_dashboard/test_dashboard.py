@@ -8,6 +8,8 @@ import pytest
 from django.test import Client
 from django.urls import reverse
 
+from joined_challenge.models.base import JoinedChallengeStatus
+
 pytestmark = pytest.mark.django_db
 
 
@@ -27,3 +29,18 @@ def test_dashboard_renders_for_staff(logged_in_client, admin_user):
     response = logged_in_client(admin_user).get(reverse("dashboard"))
 
     assert response.status_code == 200
+
+
+def test_dashboard_shows_pending_confirmation_count(
+    logged_in_client, admin_user, user, make_joined_challenge,
+):
+    # Two submissions waiting (COMPLETED); others should not be counted.
+    make_joined_challenge(user, status=JoinedChallengeStatus.COMPLETED)
+    make_joined_challenge(user, status=JoinedChallengeStatus.COMPLETED)
+    make_joined_challenge(user, status=JoinedChallengeStatus.JOINED)
+    make_joined_challenge(user, status=JoinedChallengeStatus.CONFIRMED)
+
+    response = logged_in_client(admin_user).get(reverse("dashboard"))
+
+    assert response.status_code == 200
+    assert response.context["pending_confirmations_count"] == 2

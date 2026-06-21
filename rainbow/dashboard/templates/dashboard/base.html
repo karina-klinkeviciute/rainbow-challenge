@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
-<div class="block m-5">
-    <div class="block">
-        {% block content %}
+{% load i18n %}
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item has-text-weight-bold" href="{% url 'dashboard' %}">
+            🌈 {% translate "Admin panel" %}
+        </a>
+    </div>
+</nav>
 
+<section class="section">
+    <div class="container">
+        <div class="block">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+
+        {% block go-back %}
+        <div class="block"><a href="{% url 'dashboard' %}" class="button is-light">{% translate "Back to Dashboard" %}</a></div>
         {% endblock %}
     </div>
-
-    {% block go-back %}
-    <div class="block"><a href="{% url 'dashboard' %}" class="button is-primary">Back to Dashboard</a></div>
-    {% endblock %}
-</div>
+</section>
 
 </body>
 </html>
