@@ -1,0 +1,66 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block title %} {% translate "Prize to issue" %} {% endblock %}
+
+{% block content %}
+
+    <h1 class="title">{% translate "Issue prize" %}</h1>
+    <p class="subtitle">
+        {{ object.prize.name }} &mdash;
+        <span class="has-text-grey">{{ object.user.email }}</span>
+    </p>
+
+    <div class="columns">
+        <div class="column is-half">
+            <div class="box">
+                <h2 class="title is-4">{% translate "Prize" %}</h2>
+                <p><strong>{% translate "Name" %}:</strong> {{ object.prize.name }}</p>
+                <p><strong>{% translate "Description" %}:</strong> {{ object.prize.description }}</p>
+                <div class="tags mt-3">
+                    <span class="tag is-info">{{ object.prize.price }} {% translate "points each" %}</span>
+                    <span class="tag is-primary">{{ object.prize.amount_remaining }} {% translate "remaining" %}</span>
+                </div>
+            </div>
+        </div>
+        <div class="column is-half">
+            <div class="box">
+                <h2 class="title is-4">{% translate "Claim" %}</h2>
+                <p><strong>{% translate "User" %}:</strong> {{ object.user.email }}</p>
+                <p><strong>{% translate "Amount" %}:</strong> {{ object.amount }}</p>
+                <p><strong>{% translate "Total cost" %}:</strong> {{ object.amount }} &times; {{ object.prize.price }} {% translate "points" %}</p>
+                <p><strong>{% translate "Claimed at" %}:</strong> {{ object.date_claimed|date:"Y-m-d H:i" }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <form method="post">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label" for="id_notes">{% translate "Admin note" %}</label>
+                <div class="control">
+                    <textarea class="textarea" name="notes" id="id_notes"
+                              placeholder="{% translate 'e.g. reached out to the user, prize sent…' %}">{{ object.notes|default:'' }}</textarea>
+                </div>
+                <p class="help">
+                    {% translate "Only an admin sees this. Save your progress here, and mark the prize as issued once the user confirms they received it." %}
+                </p>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" name="action" value="save_note">{% translate "Save note" %}</button>
+                </div>
+                <div class="control">
+                    <button class="button is-primary" name="action" value="issue">{% translate "Mark as issued" %}</button>
+                </div>
+                <div class="control">
+                    <a href="{% url 'prize-issue-list' %}" class="button is-light">{% translate "Back to list" %}</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block go-back %}{% endblock %}

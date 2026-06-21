@@ -1,0 +1,60 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block title %} {% translate "Prizes waiting to be issued" %} {% endblock %}
+
+{% block content %}
+
+    <div class="level">
+        <div class="level-left">
+            <h1 class="title">{% translate "Prizes to issue" %}</h1>
+        </div>
+        <div class="level-right">
+            <span class="tag is-medium {% if claimedprize_list %}is-danger{% else %}is-success{% endif %} is-rounded">
+                {% blocktranslate count counter=claimedprize_list|length %}
+                    {{ counter }} waiting
+                {% plural %}
+                    {{ counter }} waiting
+                {% endblocktranslate %}
+            </span>
+        </div>
+    </div>
+
+    {% if claimedprize_list %}
+        <div class="box">
+            <table class="table is-fullwidth is-hoverable">
+                <thead>
+                    <tr>
+                        <th>{% translate "Prize" %}</th>
+                        <th>{% translate "User" %}</th>
+                        <th>{% translate "Amount" %}</th>
+                        <th>{% translate "Points cost" %}</th>
+                        <th>{% translate "Claimed at" %}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for claimed_prize in claimedprize_list %}
+                    <tr>
+                        <td>{{ claimed_prize.prize.name }}</td>
+                        <td>{{ claimed_prize.user.email }}</td>
+                        <td>{{ claimed_prize.amount }}</td>
+                        <td>{{ claimed_prize.amount }} &times; {{ claimed_prize.prize.price }}</td>
+                        <td>{{ claimed_prize.date_claimed|date:"Y-m-d H:i" }}</td>
+                        <td class="has-text-right">
+                            <a href="{% url 'prize-issue-detail' claimed_prize.uuid %}" class="button is-small is-primary">
+                                {% translate "Review" %}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="notification is-success is-light">
+            {% translate "No prizes are waiting to be issued. 🎉" %}
+        </div>
+    {% endif %}
+
+{% endblock %}
