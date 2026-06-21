@@ -1,8 +1,8 @@
 from django.urls import path, include
 
 from dashboard.views.dashboard import DashboardView
-from joined_challenge.views.confirmation import ConfirmListView, ConfirmDetailView
-from results.views.issue import ClaimedPrizeIssueListView, ClaimedPrizeIssueDetailView
+from dashboard.views.confirmation import ConfirmListView, ConfirmDetailView
+from dashboard.views.prize import ClaimedPrizeIssueListView, ClaimedPrizeIssueDetailView
 
 urlpatterns = [
     # dashboard
