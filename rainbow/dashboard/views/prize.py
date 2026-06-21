@@ -9,7 +9,7 @@ from user.mixins import StaffRequiredMixin
 class ClaimedPrizeIssueListView(StaffRequiredMixin, ListView):
     """Lists prizes that users have claimed but that have not been issued yet."""
     model = ClaimedPrize
-    template_name = "results/claimed_prize_issue_list.html"
+    template_name = "dashboard/claimed_prize_issue_list.html"
 
     def get_queryset(self):
         # Oldest claims first so the queue is worked through fairly (FIFO).
@@ -26,7 +26,7 @@ class ClaimedPrizeIssueDetailView(StaffRequiredMixin, DetailView):
     confirms they received the prize does the admin **Mark as issued**.
     """
     model = ClaimedPrize
-    template_name = "results/claimed_prize_issue_detail.html"
+    template_name = "dashboard/claimed_prize_issue_detail.html"
 
     def post(self, request, *args, **kwargs):
         claimed_prize = self.get_object()
