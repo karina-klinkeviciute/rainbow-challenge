@@ -62,36 +62,40 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
 
 ## Launching Django project
 
-1. create some directory and clone the repository 
+Dependencies are managed with [uv](https://docs.astral.sh/uv/). The pinned set
+lives in `pyproject.toml` (direct dependencies) and `uv.lock` (the full resolved
+lockfile); both are committed. Python is pinned to 3.10 via `.python-version`.
 
-2. create virtual environment next to the repository:
+1. create some directory and clone the repository
 
-    Linux/MacOS"
-    `python3 -m venv venv`
-   
-    Windows:
-    `py -m venv venv`
-
-3. activate the virtual environment:
+2. install uv (one-time, if you don't have it):
 
     Linux/MacOS:
-    `source venv/bin/activate`
+    `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
-    Windows:
-    `venv\Scripts\activate`
+    Windows (PowerShell):
+    `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
 
-4. cd into the project:
+3. cd into the project:
     `cd rainbow_challenge/rainbow/`
-   
-5. install requirements
 
-    `pip install -r requirements.txt`
+4. install dependencies (this creates a local `.venv` and installs the exact
+   locked versions, Python included):
 
-6. create database
+    `uv sync`
+
+    Prefix project commands with `uv run` (e.g. `uv run python manage.py ...`),
+    or activate the venv with `source .venv/bin/activate`. For a production
+    install without dev/test tooling, use `uv sync --no-dev`.
+
+    To add or change a dependency, edit `pyproject.toml` (or use `uv add <pkg>` /
+    `uv remove <pkg>`) and commit the updated `uv.lock`.
+
+5. create database
 
     create an empty `postgresql` database called `rainbow`. Must be accessible at port `5432`
 
-7. clone the environment file
+6. clone the environment file
 
     in this directory there's a file `.env_example` - you should copy it to a file called `.env` and change those settings there to your own:
 
@@ -104,15 +108,15 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
     DB_PASSWORD=add_one
     ```
 
-8. migrate database:
-    `python manage.py migrate`
+7. migrate database:
+    `uv run python manage.py migrate`
    
-9. create a user (superuser) for yourself:
-    `python manage.py createsuperuser`
+8. create a user (superuser) for yourself:
+    `uv run python manage.py createsuperuser`
    and enter the details it asks
 
-10. run django server:
-     `python manage.py runserver`
+9. run django server:
+     `uv run python manage.py runserver`
    
      This will start Django server on port 8000
     

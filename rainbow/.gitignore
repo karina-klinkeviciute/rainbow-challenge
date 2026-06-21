@@ -3,3 +3,7 @@
 celery.log
 celerybeat-schedule
 django-logfile
+
+# uv-managed virtualenv (recreate with `uv sync`). pyproject.toml, uv.lock and
+# .python-version are committed; the .venv itself is not.
+.venv/
