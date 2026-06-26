@@ -13,38 +13,45 @@ requires-python = ">=3.10,<3.11"
 # loosen to lower bounds when you next want to take upgrades.
 dependencies = [
     # Django + DRF stack
-    "Django==4.2.30",
-    "djangorestframework==3.15.2",
-    "djoser==2.3.0",
-    "drf-spectacular==0.25.1",
+    "Django>=5.2,<5.3",
+    "djangorestframework>=3.15.2",
+    "djoser>=2.3.0",
+    "drf-spectacular>=0.25.1",
     # Django apps (INSTALLED_APPS / MIDDLEWARE)
-    "django-cors-headers==3.13.0",
-    "django-extensions==3.2.1",
-    "django-import-export==3.0.2",
-    "django-modeltranslation==0.19.3",
-    "django-nested-inline==0.4.5",
-    "django-otp==1.1.4",
-    "django-private-storage==3.1.1",
-    "django-widget-tweaks==1.4.12",
-    "django-advanced-password-validation==1.1.1",
-    "social-auth-app-django==5.4.3",
+    "django-cors-headers>=3.13.0",
+    "django-extensions>=3.2.1",
+    "django-import-export>=3.0.2",
+    "django-modeltranslation>=0.19.3",
+    "django-nested-inline>=0.4.5",
+    "django-otp>=1.1.4",
+    "django-private-storage>=3.1.1",
+    "django-widget-tweaks>=1.4.12",
+    "django-advanced-password-validation>=1.1.1",
+    # NOTE: Dependabot flags <5.6.0 (associate-by-email advisory), but every
+    # patched release (>=5.6.0) requires Django>=5.1 and we are on the 4.2 LTS,
+    # so the bump is blocked until a Django 5.x upgrade. Practical risk is low:
+    # we use Google/Apple (which verify email ownership) and include
+    # associate_by_email in SOCIAL_AUTH_PIPELINE intentionally.
+    "social-auth-app-django>=5.6.0",
     # Async tasks + cache/broker
-    "celery==5.2.7",
-    "redis==4.4.4",
+    "celery>=5.2.7",
+    "redis>=4.4.4",
     # Runtime infrastructure
-    "psycopg2-binary==2.9.5",
-    "gunicorn==23.0.0",
-    "pillow==12.2.0",
+    "psycopg2-binary>=2.9.5",
+    "gunicorn>=23.0.0",
+    "pillow>=12.2.0",
     # Push notifications / Firebase
-    "firebase-admin==5.4.0",
-    "fcm-django==1.0.12",
+    "firebase-admin>=5.4.0",
+    "fcm-django>=1.0.12",
     # Misc libraries imported directly in the code
-    "qrcode==7.3.1",
-    "requests==2.33.0",
-    "httpx==0.26.0",
-    "PyJWT==2.12.0",
-    "python-dotenv==1.2.2",
-    "isoweek==1.3.3",
+    "qrcode>=7.3.1",
+    "requests>=2.33.0",
+    "httpx>=0.26.0",
+    # Security floor: >=2.13.0 fixes the HS256/JWK algorithm-confusion advisory
+    # (GHSA / Dependabot). Kept as a floor so future security patches resolve.
+    "PyJWT>=2.13.0",
+    "python-dotenv>=1.2.2",
+    "isoweek>=1.3.3",
     # Provides pkg_resources, which django-widget-tweaks (and other older
     # packages) import at runtime. Was implicitly present in the old virtualenv;
     # uv's minimal .venv does not include it unless declared.
@@ -55,11 +62,11 @@ dependencies = [
 # Dev/test tooling. `uv sync` installs these by default; use
 # `uv sync --no-dev` for a production install.
 dev = [
-    "pytest==9.0.3",
-    "pytest-django==4.5.2",
-    "model-bakery==1.9.0",
-    "factory-boy==3.3.0",
-    "ruff==0.2.2",
+    "pytest>=9.0.3",
+    "pytest-django>=4.5.2",
+    "model-bakery>=1.9.0",
+    "factory-boy>=3.3.0",
+    "ruff>=0.2.2",
 ]
 
 [tool.uv]
