@@ -1,9 +1,11 @@
 """API tests for the results endpoints: regions, prizes, claimed prizes, balance."""
 import pytest
 from model_bakery import baker
+from rest_framework.test import APIRequestFactory
 
 from challenge.models.base import ChallengeType
 from joined_challenge.models.base import JoinedChallengeStatus
+from results.permissions import IsClaimedPrizeOwner
 
 pytestmark = pytest.mark.django_db
 
@@ -76,6 +78,27 @@ def test_user_only_sees_own_claimed_prizes(auth_client, user, other_user):
     assert [item['uuid'] for item in response.data] == [str(mine.uuid)]
 
 
+def test_user_cannot_retrieve_another_users_claimed_prize(auth_client, user, other_user):
+    prize = baker.make('results.Prize', price=1, amount=10)
+    theirs = baker.make('results.ClaimedPrize', user=other_user, prize=prize, amount=1)
+
+    response = auth_client(user).get(f'{CLAIMED_PRIZE_URL}{theirs.uuid}/')
+
+    assert response.status_code == 404
+
+
+def test_admin_does_not_see_others_claimed_prizes_via_api(auth_client, user, admin_user):
+    # Admins get cross-user access only through the Django admin, not the API.
+    prize = baker.make('results.Prize', price=1, amount=10)
+    mine = baker.make('results.ClaimedPrize', user=admin_user, prize=prize, amount=1)
+    baker.make('results.ClaimedPrize', user=user, prize=prize, amount=1)
+
+    response = auth_client(admin_user).get(CLAIMED_PRIZE_URL)
+
+    assert response.status_code == 200
+    assert [item['uuid'] for item in response.data] == [str(mine.uuid)]
+
+
 def test_claiming_prize_without_enough_points_is_rejected(auth_client, user):
     prize = baker.make('results.Prize', price=100, amount=10)
 
@@ -124,3 +147,30 @@ def test_balance_reports_earned_and_remaining(
     assert response.data['earned_rainbows'] == 70
     assert response.data['remaining_rainbows'] == 70
     assert len(response.data['earning']) == 1
+
+
+# --- IsClaimedPrizeOwner (object-level ownership guard) --------------------
+
+def _object_request(as_user):
+    request = APIRequestFactory().get("/")
+    request.user = as_user
+    return request
+
+
+def test_claimed_prize_owner_permission_allows_only_the_owner(user, other_user):
+    prize = baker.make('results.Prize', price=1, amount=10)
+    claimed = baker.make('results.ClaimedPrize', user=user, prize=prize, amount=1)
+    permission = IsClaimedPrizeOwner()
+
+    assert permission.has_object_permission(_object_request(user), None, claimed) is True
+    assert permission.has_object_permission(_object_request(other_user), None, claimed) is False
+
+
+def test_claimed_prize_owner_permission_excludes_admins(user, admin_user):
+    # Cross-user access is reserved for the Django admin interface, so even an
+    # admin is denied object access through this API permission.
+    prize = baker.make('results.Prize', price=1, amount=10)
+    claimed = baker.make('results.ClaimedPrize', user=user, prize=prize, amount=1)
+    permission = IsClaimedPrizeOwner()
+
+    assert permission.has_object_permission(_object_request(admin_user), None, claimed) is False
