@@ -1,3 +1,4 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -7,8 +8,14 @@ from results.models import ClaimedPrize
 
 
 class BalanceView(APIView):
+    """A view for the requesting user's own Rainbows earning/spending data.
+
+    All figures are scoped to ``request.user``; there is no way to read another
+    user's balance through this endpoint.
+    """
     http_method_names = ('get', 'head', 'options')
-    """A view for Rainbows earning/spending data"""
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
         earning = []
         spending = []
