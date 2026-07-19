@@ -13,7 +13,11 @@ requires-python = ">=3.10,<3.11"
 # loosen to lower bounds when you next want to take upgrades.
 dependencies = [
     # Django + DRF stack
-    "Django>=5.2,<5.3",
+    # Pinned to the 4.2 LTS line: production still runs Django 4.2, so tests
+    # (CI + local) must resolve to it too until we deliberately upgrade. Django
+    # 5.x breaks a few tests (unpicklable ResolverMatch in templated emails,
+    # AccessMixin redirect-vs-403 changes), so don't bump without that work.
+    "Django>=4.2,<4.3",
     "djangorestframework>=3.15.2",
     "djoser>=2.3.0",
     "drf-spectacular>=0.25.1",
@@ -32,7 +36,7 @@ dependencies = [
     # so the bump is blocked until a Django 5.x upgrade. Practical risk is low:
     # we use Google/Apple (which verify email ownership) and include
     # associate_by_email in SOCIAL_AUTH_PIPELINE intentionally.
-    "social-auth-app-django>=5.6.0",
+    "social-auth-app-django>=5.4.0,<5.6.0",
     # Async tasks + cache/broker
     "celery>=5.2.7",
     "redis>=4.4.4",

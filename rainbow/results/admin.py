@@ -9,9 +9,10 @@ from firebase_admin.messaging import Message as PushNotification, Notification
 from results.models import Medal, Streak
 from results.models.prize import Prize, ClaimedPrize
 from results.models.region import Region
+from user.admin_mixins import SuperuserOnlyAdminMixin
 
 
-class RegionAdmin(admin.ModelAdmin):
+class RegionAdmin(SuperuserOnlyAdminMixin, admin.ModelAdmin):
     list_display = ('name', )
 
 @admin.action(description=_('Send push notifications'))
@@ -44,19 +45,19 @@ def send_push_notification_admins(modeladmin, request, queryset):
 
 
 
-class PrizeAdmin(admin.ModelAdmin):
+class PrizeAdmin(SuperuserOnlyAdminMixin, admin.ModelAdmin):
     list_display = ('name', 'amount', )
     actions = [send_push_notification, send_push_notification_admins]
 
-class ClaimedPrizeAdmin(ExportMixin, admin.ModelAdmin):
+class ClaimedPrizeAdmin(SuperuserOnlyAdminMixin, ExportMixin, admin.ModelAdmin):
     list_display = ('prize', 'user', 'amount', 'issued')
     list_filter = ('prize', 'issued')
     readonly_fields = ('date_claimed', )
 
-class MedalAdmin(admin.ModelAdmin):
+class MedalAdmin(SuperuserOnlyAdminMixin, admin.ModelAdmin):
     list_display = ('user', 'level')
 
-class StreakAdmin(admin.ModelAdmin):
+class StreakAdmin(SuperuserOnlyAdminMixin, admin.ModelAdmin):
     list_display = ('user', 'week', 'streaks', 'change')
     list_filter = ('week', 'streaks', 'change')
 
