@@ -59,7 +59,7 @@ dependencies = [
     # Provides pkg_resources, which django-widget-tweaks (and other older
     # packages) import at runtime. Was implicitly present in the old virtualenv;
     # uv's minimal .venv does not include it unless declared.
-    "setuptools>=68,<81",
+    "setuptools>=83.0.0,<84",
 ]
 
 [dependency-groups]
