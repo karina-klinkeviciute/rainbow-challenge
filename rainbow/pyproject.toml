@@ -43,7 +43,7 @@ dependencies = [
     # Runtime infrastructure
     "psycopg2-binary>=2.9.5",
     "gunicorn>=23.0.0",
-    "pillow>=12.2.0",
+    "pillow>=12.3.0",
     # Push notifications / Firebase
     "firebase-admin>=5.4.0",
     "fcm-django>=1.0.12",
