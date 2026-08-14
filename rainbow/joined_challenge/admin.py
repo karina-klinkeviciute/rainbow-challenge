@@ -21,7 +21,7 @@ class JoinedChallengeAdmin(ExportMixin, admin.ModelAdmin):
     list_filter = ('status', )
     fields = ('user', 'challenge', 'status', 'joined_at', 'completed_at', "files_admin")
     readonly_fields = ('joined_at', "files_admin")
-    resource_class = JoinedChallengeResource
+    resource_classes = [JoinedChallengeResource]
 
 class JoinedChallengeFileAdmin(admin.ModelAdmin):
     list_display = ('joined_challenge', "file")

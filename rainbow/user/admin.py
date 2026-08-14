@@ -101,7 +101,7 @@ class UserAdmin(ExportMixin, BaseUserAdmin):
     ordering = ('email',)
     filter_horizontal = ()
     readonly_fields = ('all_points', 'quiz_points', 'medals_all', 'streak')
-    resource_class = UserResource
+    resource_classes = [UserResource]
 
 
 # Now register the new UserAdmin...
