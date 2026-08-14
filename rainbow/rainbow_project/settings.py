@@ -239,6 +239,16 @@ DJOSER = {
         'user_create_password_retype': 'user.serializers.CustomUserCreateSerializer',
         'current_user': 'user.serializers.UserSerializer',
     },
+    # Djoser's own email classes, subclassed to drop the request they hold on
+    # to after rendering — see user/email.py.
+    'EMAIL': {
+        'activation': 'user.email.ActivationEmail',
+        'confirmation': 'user.email.ConfirmationEmail',
+        'password_reset': 'user.email.PasswordResetEmail',
+        'password_changed_confirmation': 'user.email.PasswordChangedConfirmationEmail',
+        'username_changed_confirmation': 'user.email.UsernameChangedConfirmationEmail',
+        'username_reset': 'user.email.UsernameResetEmail',
+    },
     'LOGIN_FIELD': 'email',
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'USER_CREATE_PASSWORD_RETYPE': True,
