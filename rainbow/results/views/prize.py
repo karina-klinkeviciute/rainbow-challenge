@@ -2,23 +2,30 @@ import datetime
 
 from django.db.models import Q
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from results.models.prize import ClaimedPrize, Prize
+from results.permissions import IsClaimedPrizeOwner
 from results.serializers.prize import PrizeSerializer, ClaimedPrizeSerializer
 
 
-class PrizeViewSet(viewsets.ModelViewSet):
+class PrizeViewSet(viewsets.ReadOnlyModelViewSet):
+    """Read-only catalogue of prizes, visible to any authenticated user.
+
+    The prize catalogue is shared reference data; users may browse it but never
+    edit it through the API. Prizes are created/edited only via the Django admin
+    (or the staff-only dashboard). Using ``ReadOnlyModelViewSet`` enforces this
+    structurally -- there simply are no write routes -- rather than relying on
+    ``http_method_names`` to hide them on a full ``ModelViewSet``.
     """
-    A viewset for viewing prizes.
-    """
-    http_method_names = ('get', 'head', 'options')
+    permission_classes = [IsAuthenticated]
     serializer_class = PrizeSerializer
     queryset = Prize.objects.all()
 
 
-class AvailablePrizeViewSet(viewsets.ModelViewSet):
-    """A view for only available prizes"""
-    http_method_names = ('get', 'head', 'options')
+class AvailablePrizeViewSet(viewsets.ReadOnlyModelViewSet):
+    """Read-only view of only the currently available prizes."""
+    permission_classes = [IsAuthenticated]
     serializer_class = PrizeSerializer
 
     def get_queryset(self):
@@ -35,8 +42,15 @@ class AvailablePrizeViewSet(viewsets.ModelViewSet):
 
 
 class ClaimedPrizeViewSet(viewsets.ModelViewSet):
-    """Prizes that are claimed by users"""
+    """Prizes that are claimed by users.
+
+    A user only ever sees and claims their own prizes: the queryset is scoped to
+    ``request.user`` (so lists/retrieves never leak other users' claims) and
+    ``IsClaimedPrizeOwner`` guards object access as defence-in-depth. Cross-user
+    access is reserved for the Django admin, matching the issue #104 contract.
+    """
     http_method_names = ('get', 'post', 'head', 'options')
+    permission_classes = [IsAuthenticated, IsClaimedPrizeOwner]
     serializer_class = ClaimedPrizeSerializer
 
     def get_queryset(self):

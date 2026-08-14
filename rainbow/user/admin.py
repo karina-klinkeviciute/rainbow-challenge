@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from import_export.admin import ExportMixin
 from import_export.resources import ModelResource
 
+from user.admin_mixins import SuperuserOnlyAdminMixin
 from user.models import User
 
 
@@ -73,7 +74,7 @@ class UserResource(ModelResource):
         fields = ("date_joined", 'last_active', 'gender', 'gender_other', 'region__name', 'year_of_birth')
 
 
-class UserAdmin(ExportMixin, BaseUserAdmin):
+class UserAdmin(SuperuserOnlyAdminMixin, ExportMixin, BaseUserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
