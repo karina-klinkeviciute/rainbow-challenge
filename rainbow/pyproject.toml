@@ -45,8 +45,10 @@ dependencies = [
     "gunicorn>=23.0.0",
     "pillow>=12.2.0",
     # Push notifications / Firebase
-    "firebase-admin>=5.4.0",
-    "fcm-django>=1.0.12",
+    "firebase-admin>=7.5.0",
+    # 3.x ships two migrations the old version did not (a unique constraint on
+    # registration_id and an index): run `manage.py migrate fcm_django`.
+    "fcm-django>=3.2.0",
     # Misc libraries imported directly in the code
     "qrcode>=7.3.1",
     "requests>=2.33.0",
