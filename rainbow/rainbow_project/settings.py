@@ -314,8 +314,11 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 # SSL/TLS
 
-CORS_REPLACE_HTTPS_REFERER = True
-HOST_SCHEME = "https://"
+# CORS_REPLACE_HTTPS_REFERER (and the HOST_SCHEME it read) were removed in
+# django-cors-headers 4.0. They rewrote the Referer header so Django's CSRF
+# check would accept https requests arriving through the proxy; that job now
+# belongs to SECURE_PROXY_SSL_HEADER below, plus CSRF_TRUSTED_ORIGINS if the
+# admin is ever served from a different host than the one it is called by.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 # SESSION_COOKIE_SECURE = True
