@@ -3,7 +3,7 @@ name = "rainbow-challenge"
 version = "0.1.0"
 description = "Backend for the Rainbow Challenge — a Django REST API."
 readme = "readme.md"
-requires-python = ">=3.10,<3.11"
+requires-python = ">=3.12,<3.13"
 
 # Direct (top-level) dependencies only. These are the packages the project
 # imports or configures itself (INSTALLED_APPS / MIDDLEWARE / settings) plus the
