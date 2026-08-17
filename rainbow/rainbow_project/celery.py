@@ -15,6 +15,11 @@ app = Celery('rainbow_project')
 app.config_from_object('django.conf:settings', namespace="CELERY")
 app.conf.broker_url = 'redis://localhost:6379/0'
 app.conf.result_backend = 'redis://localhost:6379/0'
+# Keep retrying the broker connection when the worker starts. This was the
+# behaviour before Celery 6 and it is what we want on the server, where the
+# worker may come up before redis does; Celery 5.3+ warns on every start unless
+# the choice is stated explicitly.
+app.conf.broker_connection_retry_on_startup = True
 
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()

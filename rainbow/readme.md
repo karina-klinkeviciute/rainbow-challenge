@@ -64,7 +64,7 @@ Contributors are welcome. If you'd like to contribute, you can write to the emai
 
 Dependencies are managed with [uv](https://docs.astral.sh/uv/). The pinned set
 lives in `pyproject.toml` (direct dependencies) and `uv.lock` (the full resolved
-lockfile); both are committed. Python is pinned to 3.10 via `.python-version`.
+lockfile); both are committed. Python is pinned to 3.12 via `.python-version`.
 
 1. create some directory and clone the repository
 

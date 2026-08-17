@@ -3,74 +3,73 @@ name = "rainbow-challenge"
 version = "0.1.0"
 description = "Backend for the Rainbow Challenge — a Django REST API."
 readme = "readme.md"
-requires-python = ">=3.10,<3.11"
+requires-python = ">=3.12,<3.13"
 
 # Direct (top-level) dependencies only. These are the packages the project
 # imports or configures itself (INSTALLED_APPS / MIDDLEWARE / settings) plus the
 # runtime infrastructure (DB driver, Celery broker, WSGI server, image library).
 # Transitive dependencies are resolved and pinned in uv.lock — do not list them
-# here. Versions match the previous requirements.txt for a zero-drift migration;
-# loosen to lower bounds when you next want to take upgrades.
+# here. The lower bounds are the versions the project was last verified
+# against; `uv lock --upgrade` takes newer ones.
 dependencies = [
     # Django + DRF stack
-    # Pinned to the 4.2 LTS line: production still runs Django 4.2, so tests
-    # (CI + local) must resolve to it too until we deliberately upgrade. Django
-    # 5.x breaks a few tests (unpicklable ResolverMatch in templated emails,
-    # AccessMixin redirect-vs-403 changes), so don't bump without that work.
-    "Django>=4.2,<4.3",
-    "djangorestframework>=3.15.2",
-    "djoser>=2.3.0",
-    "drf-spectacular>=0.25.1",
+    # 5.2 is the LTS line (security support until April 2028). Django 6.x is
+    # out but not LTS, so we stay here until 6.2 LTS unless something forces a
+    # move; the bound keeps a `uv lock --upgrade` from jumping lines silently.
+    "Django>=5.2,<5.3",
+    "djangorestframework>=3.18.0",
+    "djoser>=2.3.4",
+    "drf-spectacular>=0.30.0",
     # Django apps (INSTALLED_APPS / MIDDLEWARE)
-    "django-cors-headers>=3.13.0",
-    "django-extensions>=3.2.1",
-    "django-import-export>=3.0.2",
-    "django-modeltranslation>=0.19.3",
-    "django-nested-inline>=0.4.5",
-    "django-otp>=1.1.4",
-    "django-private-storage>=3.1.1",
-    "django-widget-tweaks>=1.4.12",
-    "django-advanced-password-validation>=1.1.1",
-    # NOTE: Dependabot flags <5.6.0 (associate-by-email advisory), but every
-    # patched release (>=5.6.0) requires Django>=5.1 and we are on the 4.2 LTS,
-    # so the bump is blocked until a Django 5.x upgrade. Practical risk is low:
-    # we use Google/Apple (which verify email ownership) and include
-    # associate_by_email in SOCIAL_AUTH_PIPELINE intentionally.
-    "social-auth-app-django>=5.4.0,<5.6.0",
+    "django-cors-headers>=4.9.0",
+    "django-extensions>=4.1",
+    # The xlsx/ods extras pull the tablib backends for those formats. Version 4
+    # stopped depending on them, and without them the admin's export screen
+    # silently offers CSV/JSON only. The legacy .xls backend (xlwt) is gone for
+    # good — Excel reads .xlsx.
+    "django-import-export[ods,xlsx]>=4.4.1",
+    "django-modeltranslation>=0.20.3",
+    "django-nested-inline>=0.4.6",
+    "django-otp>=1.7.0",
+    "django-private-storage>=3.1.3",
+    "django-widget-tweaks>=1.5.1",
+    "django-advanced-password-validation>=1.2.0",
+    # Stuck on 5.x: djoser requires social-auth-app-django<6, and 5.9 in turn
+    # caps social-auth-core at <5. Both move once djoser allows 6.x. This is
+    # past the version Dependabot's associate-by-email advisory asked for.
+    "social-auth-app-django>=5.9.0",
     # Async tasks + cache/broker
-    "celery>=5.2.7",
-    "redis>=4.4.4",
+    "celery>=5.6.3",
+    "redis>=8.1.0",
     # Runtime infrastructure
-    "psycopg2-binary>=2.9.5",
-    "gunicorn>=23.0.0",
+    "psycopg2-binary>=2.9.12",
+    "gunicorn>=26.0.0",
     "pillow>=12.3.0",
     # Push notifications / Firebase
-    "firebase-admin>=5.4.0",
-    "fcm-django>=1.0.12",
+    "firebase-admin>=7.5.0",
+    # 3.x ships two migrations the old version did not (a unique constraint on
+    # registration_id and an index): run `manage.py migrate fcm_django`.
+    "fcm-django>=3.2.0",
     # Misc libraries imported directly in the code
-    "qrcode>=7.3.1",
-    "requests>=2.33.0",
-    "httpx>=0.26.0",
+    "qrcode>=8.2",
+    "requests>=2.34.2",
+    "httpx>=0.28.1",
     # Security floor: >=2.13.0 fixes the HS256/JWK algorithm-confusion advisory
     # (GHSA / Dependabot). Kept as a floor so future security patches resolve.
     "PyJWT>=2.13.0",
     "python-dotenv>=1.2.2",
     "isoweek>=1.3.3",
-    # Provides pkg_resources, which django-widget-tweaks (and other older
-    # packages) import at runtime. Was implicitly present in the old virtualenv;
-    # uv's minimal .venv does not include it unless declared.
-    "setuptools>=68,<81",
 ]
 
 [dependency-groups]
 # Dev/test tooling. `uv sync` installs these by default; use
 # `uv sync --no-dev` for a production install.
 dev = [
-    "pytest>=9.0.3",
-    "pytest-django>=4.5.2",
-    "model-bakery>=1.9.0",
-    "factory-boy>=3.3.0",
-    "ruff>=0.2.2",
+    "pytest>=9.1.1",
+    "pytest-django>=4.14.0",
+    "model-bakery>=1.24.0",
+    "factory-boy>=3.3.3",
+    "ruff>=0.16.3",
 ]
 
 [tool.uv]

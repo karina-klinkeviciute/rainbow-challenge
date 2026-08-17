@@ -22,6 +22,13 @@ def make_user(db):
     def _make_user(**kwargs):
         counter["n"] += 1
         kwargs.setdefault("email", f"user{counter['n']}@example.com")
+        # Active by default, like any user who has confirmed their email. An
+        # inactive user cannot hold a session at all: the social-auth backend
+        # (first in AUTHENTICATION_BACKENDS, so the one force_login records)
+        # returns None from get_user() for them, which turns the request back
+        # into AnonymousUser. Tests about activation create their own inactive
+        # users explicitly.
+        kwargs.setdefault("is_active", True)
         return baker.make("user.User", **kwargs)
 
     return _make_user
@@ -39,9 +46,7 @@ def other_user(make_user):
 
 @pytest.fixture
 def admin_user(make_user):
-    # Active, like any real admin who can log in: some staff-only views go
-    # through staff_member_required, which requires is_active as well as is_staff.
-    return make_user(is_admin=True, is_active=True)
+    return make_user(is_admin=True)
 
 
 # --- API clients ----------------------------------------------------------
